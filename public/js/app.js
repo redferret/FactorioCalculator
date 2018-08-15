@@ -36074,33 +36074,22 @@ var Main = function (_Component) {
   _createClass(Main, [{
     key: 'render',
     value: function render() {
-      if (this.props.isAuthorized === "false") {
-        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'div',
-          null,
-          'You\'re a Guest'
-        );
-      } else {
-        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'div',
-          null,
-          'Welcome Back!'
-        );
-      }
+      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        'div',
+        null,
+        'Welcome Back!'
+      );
     }
   }]);
 
   return Main;
 }(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
 
+/* harmony default export */ __webpack_exports__["default"] = (Main);
 ;
 
-/* harmony default export */ __webpack_exports__["default"] = (Main);
-
 if (document.getElementById('root')) {
-  var rootElement = document.getElementById('root');
-  var isAuthorized = rootElement.getAttribute('isAuthorized');
-  __WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.render(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(Main, { isAuthorized: isAuthorized }), rootElement);
+  __WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.render(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(Main, null), document.getDocumentById('root'));
 }
 
 /***/ }),
