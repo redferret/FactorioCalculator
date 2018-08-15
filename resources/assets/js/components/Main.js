@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
-import { Panel, PanelGroup, Alert } from 'react-bootstrap';
+import { Panel, PanelGroup, Alert, Label } from 'react-bootstrap';
 import ProductionPanel from './production-panel.js';
 
 export default class Main extends Component {
@@ -12,7 +12,7 @@ export default class Main extends Component {
     this.handleSelect = this.handleSelect.bind(this);
 
     this.state = {
-      activeKey: '1',
+      activeKey: "0",
       productionPanels: [
         {eventKey: "1", heading: "Production Line 1", body: "Stats"}, 
         {eventKey: "2", heading: "Copper Production 1", body: "Stats"},
@@ -40,11 +40,14 @@ export default class Main extends Component {
         activeKey={this.state.activeKey}
         onSelect={this.handleSelect}
       >
+      <div>
+        <h3><Label bsStyle="primary">Your Production Lines</Label></h3>
+      </div>
         {this.renderPanels()}
       </PanelGroup>
     );
   }
-};
+}
 
 const RootElement = document.getElementById('root');
 
