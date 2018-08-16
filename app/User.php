@@ -26,4 +26,16 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+    
+    public function factories() {
+      return $this->hasMany(Factory::class);
+    }
+    
+    public function products() {
+      return $this->hasMany(Product::class);
+    }
+    
+    public function productionLines() {
+      return $this->hasMany(ProductionLine::class);
+    }
 }

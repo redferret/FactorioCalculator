@@ -23,8 +23,8 @@ export default class Main extends Component {
     
   renderPanels() {
     // Perform a fetch to get each panel from the server
-    return this.state.productionPanels.map((child) => 
-      <ProductionPanel key={child.eventKey} eventKey={child.eventKey} heading={child.heading} body={child.body} />
+    return this.state.productionPanels.map((panel) => 
+      <ProductionPanel key={panel.eventKey} eventKey={panel.eventKey} heading={panel.heading} body={panel.body} />
     );
   }
   

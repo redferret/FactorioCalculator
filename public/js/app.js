@@ -44778,8 +44778,8 @@ var Main = function (_Component) {
     key: 'renderPanels',
     value: function renderPanels() {
       // Perform a fetch to get each panel from the server
-      return this.state.productionPanels.map(function (child) {
-        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__production_panel_js__["a" /* default */], { key: child.eventKey, eventKey: child.eventKey, heading: child.heading, body: child.body });
+      return this.state.productionPanels.map(function (panel) {
+        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__production_panel_js__["a" /* default */], { key: panel.eventKey, eventKey: panel.eventKey, heading: panel.heading, body: panel.body });
       });
     }
   }, {
