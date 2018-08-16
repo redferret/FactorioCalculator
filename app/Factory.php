@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Factory extends Model {
   
-  protected $fillable = ['name'];
+  protected $fillable = ['name', 'user_id'];
   
   public function productionLines() {
     return $this->hasMany(ProductionLine::class);

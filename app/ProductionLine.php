@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class ProductionLine extends Model
 {
-  protected $fillable = ['name', 'user_id'];
+  protected $fillable = ['name', 'user_id', 'factory_id'];
   
   public function produces() {
     return $this->hasOne(Product::class);
