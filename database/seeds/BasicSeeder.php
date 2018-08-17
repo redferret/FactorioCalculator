@@ -44,6 +44,7 @@ class BasicSeeder extends Seeder {
     
     $factory->productionLines()->save($copperProduction);
     $factory->productionLines()->save($ironProduction);
+    $factory->productionLines()->save($emptyProduction);
     
     $copperPlate = $user->products()->save(App\Product::create([
       'name' => 'Copper Plate',

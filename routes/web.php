@@ -14,10 +14,29 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
 
-Route::get('/productionLines', function() {
-  $productionLines = Auth::user()->productionLines;
-  foreach ($productionLines as $productionLine) {
-    $productionLine->produces;
+Route::get('/factories/{id}', function($id){
+  $factories = App\User::find($id)->factories;
+  foreach($factories as $factory) {
+    foreach($factory->productionLines as $productionLine) {
+      $productionLine->produces; // Get the product this line produces
+    }
   }
-  return $productionLines;
+  return $factories;
 });
+
+Route::get('/factories', function(){
+  $factories = Auth::user()->factories;
+  foreach($factories as $factory) {
+    foreach($factory->productionLines as $productionLine) {
+      $productionLine->produces; // Get the product this line produces
+    }
+  }
+  return $factories;
+});
+
+Route::get('/product/{id}', function($id) {
+  $product = Auth::user()->products()->find($id);
+  $product->products; // Get the inputs for this product
+  return $product;
+});
+
