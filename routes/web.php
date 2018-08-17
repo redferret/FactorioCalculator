@@ -13,3 +13,11 @@
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
+
+Route::get('/productionLines', function() {
+  $productionLines = Auth::user()->productionLines;
+  foreach ($productionLines as $productionLine) {
+    $productionLine->produces;
+  }
+  return $productionLines;
+});
