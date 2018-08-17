@@ -12,7 +12,7 @@ export default class ProductionPanel extends React.Component {
     if (this.props.productDetails !== null) {
       return (
         <div>
-          <h4><Label bsStyle='success'>Product Details</Label></h4>
+          <h4><Label bsStyle='success'>Production Details</Label></h4>
           <Table>
             <thead>
               <tr>
@@ -33,6 +33,7 @@ export default class ProductionPanel extends React.Component {
           </Table>
           <Button bsStyle='primary'>Select Product</Button>{' '}
           <Button bsStyle='warning'>Remove Product from Production Line</Button>
+          {this.renderUserOptions()}
         </div>
       );
     }
@@ -41,6 +42,17 @@ export default class ProductionPanel extends React.Component {
       <div>
         <Alert bsStyle='danger'>Produces Nothing, Select a Product for this Production Line</Alert>
         <Button bsStyle='primary'>Add Product</Button>
+        {this.renderUserOptions()}
+      </div>
+    );
+  }
+    
+  renderUserOptions() {
+    return (
+      <div>
+        <br/>
+        <Button bsStyle='primary'>Select Production Line</Button>{' '}
+        <Button bsStyle='warning'>Remove Production Line from Factory</Button>
       </div>
     );
   }

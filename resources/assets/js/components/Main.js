@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
 import { Panel, PanelGroup, Alert, Label } from 'react-bootstrap';
-import ProductionPanel from './production-panel.js';
+import Factory from './factory.js';
 
 export default class Main extends Component {
     
@@ -13,21 +13,21 @@ export default class Main extends Component {
 
     this.state = {
       activeKey: "0",
-      productionPanels: []
+      factories: []
     };
-  }
-  
-  componentDidMount() {
-    fetch(this.props.baseURL + '/productionLines').then(results => {
-      return results.json();
-    }).then(data => {
-      console.log(data);
-      this.setState({productionPanels: data});
-    }).catch(error => console.log(error));
   }
   
   handleSelect(activeKey) {
     this.setState({ activeKey });
+  }
+  
+  componentDidMount() {
+    fetch(this.props.baseURL + '/factories').then(results => {
+      return results.json();
+    }).then(data => {
+      console.log("factories", data);
+      this.setState({factories: data});
+    }).catch(error => console.log(error));
   }
   
   render() {
@@ -39,14 +39,14 @@ export default class Main extends Component {
         onSelect={this.handleSelect}
       >
       <div>
-        <h3><Label bsStyle="primary">Your Production Lines</Label></h3>
+        <h3><Label bsStyle="primary">Your Factories</Label></h3>
       </div>
-        {this.state.productionPanels.map(panel =>
-          <ProductionPanel 
-            key={panel.id} 
-            eventKey={panel.id} 
-            name={panel.name}
-            productDetails={panel.produces}
+        {this.state.factories.map(factory =>
+          <Factory 
+            key={factory.id} 
+            eventKey={factory.id} 
+            name={factory.name}
+            productionLines={factory.production_lines}
           />
         )}
       </PanelGroup>
