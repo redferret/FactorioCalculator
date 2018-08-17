@@ -13,14 +13,6 @@ class Product extends Model
       return $this->belongsTo(ProductionLine::class);
     }
     
-    public function consumedBy() {
-      return $this->product;
-    }
-    
-    public function inputs() {
-      return $this->products;
-    }
-    
     public function product() {
       return $this->belongsTo(Product::class);
     }
