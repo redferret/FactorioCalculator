@@ -3,9 +3,9 @@
 @section('content')
 <div class="container">
   <div class="row justify-content-center">
-    <div class="col-md-8">
+    <div>
       <!-- Entry Point for ReactJS -->
-      <div id='root'></div>
+      <div id='root' url='{{url('/')}}'></div>
     </div>
   </div>
 </div>
