@@ -13,19 +13,17 @@ export default class Main extends Component {
 
     this.state = {
       activeKey: "0",
-      productionPanels: [
-        {eventKey: "1", heading: "Production Line 1", body: "Stats"}, 
-        {eventKey: "2", heading: "Copper Production 1", body: "Stats"},
-        {eventKey: "3", heading: "Iron Production 1", body: "Stats"},
-        {eventKey: "4", heading: "Green Circuit Production 1", body: "Stats"}]
+      productionPanels: []
     };
   }
-    
-  renderPanels() {
-    // Perform a fetch to get each panel from the server
-    return this.state.productionPanels.map((panel) => 
-      <ProductionPanel key={panel.eventKey} eventKey={panel.eventKey} heading={panel.heading} body={panel.body} />
-    );
+  
+  componentDidMount() {
+    fetch(this.props.baseURL + '/productionLines').then(results => {
+      return results.json();
+    }).then(data => {
+      console.log(data);
+      this.setState({productionPanels: data});
+    }).catch(error => console.log(error));
   }
   
   handleSelect(activeKey) {
@@ -43,7 +41,14 @@ export default class Main extends Component {
       <div>
         <h3><Label bsStyle="primary">Your Production Lines</Label></h3>
       </div>
-        {this.renderPanels()}
+        {this.state.productionPanels.map(panel =>
+          <ProductionPanel 
+            key={panel.id} 
+            eventKey={panel.id} 
+            name={panel.name}
+            productDetails={panel.produces}
+          />
+        )}
       </PanelGroup>
     );
   }
@@ -52,7 +57,8 @@ export default class Main extends Component {
 const RootElement = document.getElementById('root');
 
 if (RootElement) {
-  ReactDOM.render(<Main />, RootElement);
+  var baseURL = RootElement.getAttribute('url');
+  ReactDOM.render(<Main baseURL={baseURL}/>, RootElement);
 } else {
   console.log("Something went wrong, couldn't find 'root' element");
 }
