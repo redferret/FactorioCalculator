@@ -10,38 +10,62 @@ class BasicSeeder extends Seeder {
    * @return void
    */
   public function run() {
-    App\User::create([
+    $user = App\User::create([
       'name' => 'Richard',
-      'email' => str_random(10).'@gmail.com',
+      'email' => 'TestUserEmail@gmail.com',
       'password' => bcrypt('secret')
     ]);
     
-    App\Factory::create([
-      'name' => "My Factory",
-      'user_id' => 1
-    ]);
+    $user->factories()->save(
+      App\Factory::create([
+        'name' => "My Factory"
+      ])
+    );
     
-    App\ProductionLine::create([
-      'name' => 'Copper Production 1',
-      'user_id' => 1,
-      'factory_id' => 1
-    ]);
+    $factory = $user->factories()->first();
     
-    App\Product::create([
+    $copperProduction = $user->productionLines()->save(
+      App\ProductionLine::create([
+        'name' => 'Copper Production 1',
+      ])
+    );
+    
+    $ironProduction = $user->productionLines()->save(
+      App\ProductionLine::create([
+        'name' => 'Iron Production 1',
+      ])
+    );
+    
+    $emptyProduction = $user->productionLines()->save(
+      App\ProductionLine::create([
+        'name' => 'Empty Production Example',
+      ])
+    );
+    
+    $factory->productionLines()->save($copperProduction);
+    $factory->productionLines()->save($ironProduction);
+    
+    $copperPlate = $user->products()->save(App\Product::create([
       'name' => 'Copper Plate',
-      'crafting_time' => 3.5,
-      'user_id' => 1,
-      'production_line_id' => 1,
-      'product_id' => 2
-    ]);
-    
-    App\Product::create([
+      'crafting_time' => 3.5
+    ]));
+    $copperOre = $user->products()->save(App\Product::create([
       'name' => 'Copper Ore',
-      'crafting_time' => 3.5,
-      'user_id' => 1,
-      'product_id' => 1
-    ]);
+      'crafting_time' => 3.5
+    ]));
+    $copperPlate->products()->save($copperOre);
     
+    $ironPlate = $user->products()->save(App\Product::create([
+      'name' => 'Iron Plate',
+      'crafting_time' => 3.5
+    ]));
+    $ironOre = $user->products()->save(App\Product::create([
+      'name' => 'Iron Ore',
+      'crafting_time' => 3.5
+    ]));
+    $ironPlate->products()->save($ironOre);
+    
+    $copperProduction->produces()->save($copperPlate);
+    $ironProduction->produces()->save($ironPlate);
   }
-
 }

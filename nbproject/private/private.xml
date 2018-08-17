@@ -3,13 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/E:/FactorioCalculator/resources/views/layouts/app.blade.php</file>
-            <file>file:/E:/FactorioCalculator/resources/views/auth/login.blade.php</file>
-            <file>file:/E:/FactorioCalculator/resources/assets/js/components/Main.js</file>
-            <file>file:/E:/FactorioCalculator/app/Http/Controllers/HomeController.php</file>
-            <file>file:/E:/FactorioCalculator/routes/web.php</file>
-            <file>file:/E:/FactorioCalculator/.env</file>
-            <file>file:/E:/FactorioCalculator/resources/views/home.blade.php</file>
+            <file>file:/E:/xampp/apps/FactorioCalculator/public/index.php</file>
+            <file>file:/E:/xampp/apps/FactorioCalculator/resources/views/layouts/app.blade.php</file>
+            <file>file:/E:/xampp/apps/FactorioCalculator/app/Factory.php</file>
+            <file>file:/E:/xampp/apps/FactorioCalculator/resources/assets/js/components/production-panel.js</file>
+            <file>file:/E:/xampp/apps/FactorioCalculator/resources/views/home.blade.php</file>
+            <file>file:/E:/xampp/apps/FactorioCalculator/resources/views/auth/login.blade.php</file>
+            <file>file:/E:/xampp/apps/FactorioCalculator/database/seeds/BasicSeeder.php</file>
+            <file>file:/E:/xampp/apps/FactorioCalculator/resources/assets/js/components/Main.js</file>
         </group>
     </open-files>
 </project-private>

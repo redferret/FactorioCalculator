@@ -18120,7 +18120,7 @@ module.exports = ReactPropTypesSecret;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Accordion__ = __webpack_require__(181);
 /* unused harmony reexport Accordion */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Alert__ = __webpack_require__(221);
-/* unused harmony reexport Alert */
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_1__Alert__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Badge__ = __webpack_require__(224);
 /* unused harmony reexport Badge */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Breadcrumb__ = __webpack_require__(225);
@@ -18128,7 +18128,7 @@ module.exports = ReactPropTypesSecret;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__BreadcrumbItem__ = __webpack_require__(112);
 /* unused harmony reexport BreadcrumbItem */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Button__ = __webpack_require__(39);
-/* unused harmony reexport Button */
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_5__Button__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ButtonGroup__ = __webpack_require__(74);
 /* unused harmony reexport ButtonGroup */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ButtonToolbar__ = __webpack_require__(228);
@@ -18174,7 +18174,7 @@ module.exports = ReactPropTypesSecret;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__Jumbotron__ = __webpack_require__(266);
 /* unused harmony reexport Jumbotron */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__Label__ = __webpack_require__(267);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_28__Label__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return __WEBPACK_IMPORTED_MODULE_28__Label__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__ListGroup__ = __webpack_require__(268);
 /* unused harmony reexport ListGroup */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__ListGroupItem__ = __webpack_require__(122);
@@ -18216,9 +18216,9 @@ module.exports = ReactPropTypesSecret;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_48__Pagination__ = __webpack_require__(308);
 /* unused harmony reexport Pagination */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_49__Panel__ = __webpack_require__(310);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_49__Panel__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return __WEBPACK_IMPORTED_MODULE_49__Panel__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_50__PanelGroup__ = __webpack_require__(108);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return __WEBPACK_IMPORTED_MODULE_50__PanelGroup__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return __WEBPACK_IMPORTED_MODULE_50__PanelGroup__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_51__Popover__ = __webpack_require__(316);
 /* unused harmony reexport Popover */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_52__ProgressBar__ = __webpack_require__(317);
@@ -18240,7 +18240,7 @@ module.exports = ReactPropTypesSecret;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_60__TabContent__ = __webpack_require__(83);
 /* unused harmony reexport TabContent */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_61__Table__ = __webpack_require__(324);
-/* unused harmony reexport Table */
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return __WEBPACK_IMPORTED_MODULE_61__Table__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_62__TabPane__ = __webpack_require__(140);
 /* unused harmony reexport TabPane */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_63__Tabs__ = __webpack_require__(325);
@@ -44769,17 +44769,23 @@ var Main = function (_Component) {
 
     _this.state = {
       activeKey: "0",
-      productionPanels: [{ eventKey: "1", heading: "Production Line 1", body: "Stats" }, { eventKey: "2", heading: "Copper Production 1", body: "Stats" }, { eventKey: "3", heading: "Iron Production 1", body: "Stats" }, { eventKey: "4", heading: "Green Circuit Production 1", body: "Stats" }]
+      productionPanels: []
     };
     return _this;
   }
 
   _createClass(Main, [{
-    key: 'renderPanels',
-    value: function renderPanels() {
-      // Perform a fetch to get each panel from the server
-      return this.state.productionPanels.map(function (panel) {
-        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__production_panel_js__["a" /* default */], { key: panel.eventKey, eventKey: panel.eventKey, heading: panel.heading, body: panel.body });
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      fetch(this.props.baseURL + '/productionLines').then(function (results) {
+        return results.json();
+      }).then(function (data) {
+        console.log(data);
+        _this2.setState({ productionPanels: data });
+      }).catch(function (error) {
+        return console.log(error);
       });
     }
   }, {
@@ -44791,7 +44797,7 @@ var Main = function (_Component) {
     key: 'render',
     value: function render() {
       return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-        __WEBPACK_IMPORTED_MODULE_2_react_bootstrap__["c" /* PanelGroup */],
+        __WEBPACK_IMPORTED_MODULE_2_react_bootstrap__["e" /* PanelGroup */],
         {
           accordion: true,
           id: 'accordion-controlled-example',
@@ -44805,13 +44811,20 @@ var Main = function (_Component) {
             'h3',
             null,
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              __WEBPACK_IMPORTED_MODULE_2_react_bootstrap__["a" /* Label */],
+              __WEBPACK_IMPORTED_MODULE_2_react_bootstrap__["c" /* Label */],
               { bsStyle: 'primary' },
               'Your Production Lines'
             )
           )
         ),
-        this.renderPanels()
+        this.state.productionPanels.map(function (panel) {
+          return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__production_panel_js__["a" /* default */], {
+            key: panel.id,
+            eventKey: panel.id,
+            name: panel.name,
+            productDetails: panel.produces
+          });
+        })
       );
     }
   }]);
@@ -44825,7 +44838,8 @@ var Main = function (_Component) {
 var RootElement = document.getElementById('root');
 
 if (RootElement) {
-  __WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.render(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(Main, null), RootElement);
+  var baseURL = RootElement.getAttribute('url');
+  __WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.render(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(Main, { baseURL: baseURL }), RootElement);
 } else {
   console.log("Something went wrong, couldn't find 'root' element");
 }
@@ -65985,7 +65999,7 @@ var Alert = function (_React$Component) {
 Alert.propTypes = propTypes;
 Alert.defaultProps = defaultProps;
 
-/* unused harmony default export */ var _unused_webpack_default_export = (Object(__WEBPACK_IMPORTED_MODULE_9__utils_bootstrapUtils__["c" /* bsStyles */])(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_values___default()(__WEBPACK_IMPORTED_MODULE_10__utils_StyleConfig__["d" /* State */]), __WEBPACK_IMPORTED_MODULE_10__utils_StyleConfig__["d" /* State */].INFO, Object(__WEBPACK_IMPORTED_MODULE_9__utils_bootstrapUtils__["a" /* bsClass */])('alert', Alert)));
+/* harmony default export */ __webpack_exports__["a"] = (Object(__WEBPACK_IMPORTED_MODULE_9__utils_bootstrapUtils__["c" /* bsStyles */])(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_values___default()(__WEBPACK_IMPORTED_MODULE_10__utils_StyleConfig__["d" /* State */]), __WEBPACK_IMPORTED_MODULE_10__utils_StyleConfig__["d" /* State */].INFO, Object(__WEBPACK_IMPORTED_MODULE_9__utils_bootstrapUtils__["a" /* bsClass */])('alert', Alert)));
 
 /***/ }),
 /* 222 */
@@ -75822,7 +75836,7 @@ var Table = function (_React$Component) {
 Table.propTypes = propTypes;
 Table.defaultProps = defaultProps;
 
-/* unused harmony default export */ var _unused_webpack_default_export = (Object(__WEBPACK_IMPORTED_MODULE_8__utils_bootstrapUtils__["a" /* bsClass */])('table', Table));
+/* harmony default export */ __webpack_exports__["a"] = (Object(__WEBPACK_IMPORTED_MODULE_8__utils_bootstrapUtils__["a" /* bsClass */])('table', Table));
 
 /***/ }),
 /* 325 */
@@ -76531,28 +76545,133 @@ var ProductionPanel = function (_React$Component) {
   }
 
   _createClass(ProductionPanel, [{
+    key: 'renderProductDetails',
+    value: function renderProductDetails() {
+      if (this.props.productDetails !== null) {
+        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'div',
+          null,
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'h4',
+            null,
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["c" /* Label */],
+              { bsStyle: 'success' },
+              'Product Details'
+            )
+          ),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["f" /* Table */],
+            null,
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'thead',
+              null,
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'tr',
+                null,
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                  'th',
+                  null,
+                  'Name'
+                ),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                  'th',
+                  null,
+                  'Crafting Time'
+                ),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                  'th',
+                  null,
+                  'Number of Items Per Second'
+                ),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                  'th',
+                  null,
+                  'Total Seconds Per Item'
+                )
+              )
+            ),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'tbody',
+              null,
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'tr',
+                null,
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                  'td',
+                  null,
+                  this.props.productDetails.name
+                ),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                  'td',
+                  null,
+                  this.props.productDetails.crafting_time
+                ),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                  'td',
+                  null,
+                  '#'
+                ),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                  'td',
+                  null,
+                  '#'
+                )
+              )
+            )
+          ),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["b" /* Button */],
+            { bsStyle: 'primary' },
+            'Select Product'
+          ),
+          ' ',
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["b" /* Button */],
+            { bsStyle: 'warning' },
+            'Remove Product from Production Line'
+          )
+        );
+      }
+
+      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        'div',
+        null,
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["a" /* Alert */],
+          { bsStyle: 'danger' },
+          'Produces Nothing, Select a Product for this Production Line'
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["b" /* Button */],
+          { bsStyle: 'primary' },
+          'Add Product'
+        )
+      );
+    }
+  }, {
     key: 'render',
     value: function render() {
       return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-        __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["b" /* Panel */],
+        __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["d" /* Panel */],
         { eventKey: this.props.eventKey },
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["b" /* Panel */].Heading,
+          __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["d" /* Panel */].Heading,
           null,
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["b" /* Panel */].Title,
+            __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["d" /* Panel */].Title,
             { toggle: true },
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               'h4',
               null,
-              this.props.heading
+              this.props.name
             )
           )
         ),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["b" /* Panel */].Body,
+          __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["d" /* Panel */].Body,
           { collapsible: true },
-          this.props.body
+          this.renderProductDetails()
         )
       );
     }
@@ -76561,14 +76680,13 @@ var ProductionPanel = function (_React$Component) {
   return ProductionPanel;
 }(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component);
 
+/* harmony default export */ __webpack_exports__["a"] = (ProductionPanel);
 ;
 ProductionPanel.defaultProps = {
   eventKey: "0",
-  heading: "",
-  body: ""
+  name: "",
+  productDetails: []
 };
-
-/* harmony default export */ __webpack_exports__["a"] = (ProductionPanel);
 
 /***/ }),
 /* 332 */
