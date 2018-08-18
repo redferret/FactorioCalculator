@@ -3269,7 +3269,7 @@ module.exports = checkPropTypes;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ButtonGroup__ = __webpack_require__(75);
 /* unused harmony reexport ButtonGroup */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ButtonToolbar__ = __webpack_require__(228);
-/* unused harmony reexport ButtonToolbar */
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return __WEBPACK_IMPORTED_MODULE_7__ButtonToolbar__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__Carousel__ = __webpack_require__(229);
 /* unused harmony reexport Carousel */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__CarouselItem__ = __webpack_require__(113);
@@ -3311,7 +3311,7 @@ module.exports = checkPropTypes;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__Jumbotron__ = __webpack_require__(266);
 /* unused harmony reexport Jumbotron */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__Label__ = __webpack_require__(267);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return __WEBPACK_IMPORTED_MODULE_28__Label__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return __WEBPACK_IMPORTED_MODULE_28__Label__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__ListGroup__ = __webpack_require__(268);
 /* unused harmony reexport ListGroup */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__ListGroupItem__ = __webpack_require__(122);
@@ -3353,9 +3353,9 @@ module.exports = checkPropTypes;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_48__Pagination__ = __webpack_require__(308);
 /* unused harmony reexport Pagination */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_49__Panel__ = __webpack_require__(310);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return __WEBPACK_IMPORTED_MODULE_49__Panel__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return __WEBPACK_IMPORTED_MODULE_49__Panel__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_50__PanelGroup__ = __webpack_require__(108);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return __WEBPACK_IMPORTED_MODULE_50__PanelGroup__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return __WEBPACK_IMPORTED_MODULE_50__PanelGroup__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_51__Popover__ = __webpack_require__(316);
 /* unused harmony reexport Popover */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_52__ProgressBar__ = __webpack_require__(317);
@@ -3377,7 +3377,7 @@ module.exports = checkPropTypes;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_60__TabContent__ = __webpack_require__(84);
 /* unused harmony reexport TabContent */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_61__Table__ = __webpack_require__(324);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return __WEBPACK_IMPORTED_MODULE_61__Table__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return __WEBPACK_IMPORTED_MODULE_61__Table__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_62__TabPane__ = __webpack_require__(140);
 /* unused harmony reexport TabPane */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_63__Tabs__ = __webpack_require__(325);
@@ -44797,7 +44797,7 @@ var Main = function (_Component) {
     key: 'render',
     value: function render() {
       return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-        __WEBPACK_IMPORTED_MODULE_2_react_bootstrap__["e" /* PanelGroup */],
+        __WEBPACK_IMPORTED_MODULE_2_react_bootstrap__["f" /* PanelGroup */],
         {
           accordion: true,
           id: 'accordion-controlled-example',
@@ -44811,7 +44811,7 @@ var Main = function (_Component) {
             'h3',
             null,
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              __WEBPACK_IMPORTED_MODULE_2_react_bootstrap__["c" /* Label */],
+              __WEBPACK_IMPORTED_MODULE_2_react_bootstrap__["d" /* Label */],
               { bsStyle: 'primary' },
               'Your Factories'
             )
@@ -66405,7 +66405,7 @@ var ButtonToolbar = function (_React$Component) {
   return ButtonToolbar;
 }(__WEBPACK_IMPORTED_MODULE_6_react___default.a.Component);
 
-/* unused harmony default export */ var _unused_webpack_default_export = (Object(__WEBPACK_IMPORTED_MODULE_7__utils_bootstrapUtils__["a" /* bsClass */])('btn-toolbar', ButtonToolbar));
+/* harmony default export */ __webpack_exports__["a"] = (Object(__WEBPACK_IMPORTED_MODULE_7__utils_bootstrapUtils__["a" /* bsClass */])('btn-toolbar', ButtonToolbar));
 
 /***/ }),
 /* 229 */
@@ -76570,13 +76570,13 @@ var Factory = function (_React$Component) {
           'h4',
           null,
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["c" /* Label */],
+            __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["d" /* Label */],
             { bsStyle: 'success' },
             'Factory Details'
           )
         ),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["f" /* Table */],
+          __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["g" /* Table */],
           null,
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'thead',
@@ -76611,7 +76611,7 @@ var Factory = function (_React$Component) {
     key: 'renderFactoryProductionLines',
     value: function renderFactoryProductionLines() {
       return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-        __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["e" /* PanelGroup */],
+        __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["f" /* PanelGroup */],
         {
           accordion: true,
           id: 'accordion-controlled-example',
@@ -76626,7 +76626,7 @@ var Factory = function (_React$Component) {
             'h3',
             null,
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["c" /* Label */],
+              __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["d" /* Label */],
               { bsStyle: 'primary' },
               'Production Lines'
             )
@@ -76649,13 +76649,13 @@ var Factory = function (_React$Component) {
         'div',
         null,
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["d" /* Panel */],
+          __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["e" /* Panel */],
           { eventKey: this.props.eventKey },
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["d" /* Panel */].Heading,
+            __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["e" /* Panel */].Heading,
             null,
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["d" /* Panel */].Title,
+              __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["e" /* Panel */].Title,
               { toggle: true },
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'h4',
@@ -76665,7 +76665,7 @@ var Factory = function (_React$Component) {
             )
           ),
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["d" /* Panel */].Body,
+            __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["e" /* Panel */].Body,
             { collapsible: true },
             this.renderFactoryProductionLines()
           )
@@ -76722,16 +76722,21 @@ var ProductionPanel = function (_React$Component) {
           'div',
           null,
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["b" /* Button */],
+            { bsSize: 'xsmall' },
+            'Edit Production Line'
+          ),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'h4',
             null,
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["c" /* Label */],
+              __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["d" /* Label */],
               { bsStyle: 'success' },
               'Production Details'
             )
           ),
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["f" /* Table */],
+            __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["g" /* Table */],
             null,
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               'thead',
@@ -76743,11 +76748,6 @@ var ProductionPanel = function (_React$Component) {
                   'th',
                   null,
                   'Name'
-                ),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                  'th',
-                  null,
-                  'Crafting Time'
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                   'th',
@@ -76775,11 +76775,6 @@ var ProductionPanel = function (_React$Component) {
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                   'td',
                   null,
-                  this.props.productDetails.crafting_time
-                ),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                  'td',
-                  null,
                   '#'
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -76791,17 +76786,20 @@ var ProductionPanel = function (_React$Component) {
             )
           ),
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["b" /* Button */],
-            { bsStyle: 'primary' },
-            'Select Product'
-          ),
-          ' ',
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["b" /* Button */],
-            { bsStyle: 'warning' },
-            'Remove Product from Production Line'
-          ),
-          this.renderUserOptions()
+            __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["c" /* ButtonToolbar */],
+            null,
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["b" /* Button */],
+              { bsStyle: 'primary', bsSize: 'small' },
+              'Select Product'
+            ),
+            ' ',
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["b" /* Button */],
+              { bsSize: 'small' },
+              'Remove Product from Production Line'
+            )
+          )
         );
       }
 
@@ -76814,30 +76812,13 @@ var ProductionPanel = function (_React$Component) {
           'Produces Nothing, Select a Product for this Production Line'
         ),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["b" /* Button */],
-          { bsStyle: 'primary' },
-          'Add Product'
-        ),
-        this.renderUserOptions()
-      );
-    }
-  }, {
-    key: 'renderUserOptions',
-    value: function renderUserOptions() {
-      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-        'div',
-        null,
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('br', null),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["b" /* Button */],
-          { bsStyle: 'primary' },
-          'Select Production Line'
-        ),
-        ' ',
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["b" /* Button */],
-          { bsStyle: 'warning' },
-          'Remove Production Line from Factory'
+          __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["c" /* ButtonToolbar */],
+          null,
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["b" /* Button */],
+            { bsStyle: 'primary' },
+            'Add Product'
+          )
         )
       );
     }
@@ -76845,13 +76826,13 @@ var ProductionPanel = function (_React$Component) {
     key: 'render',
     value: function render() {
       return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-        __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["d" /* Panel */],
+        __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["e" /* Panel */],
         { eventKey: this.props.eventKey },
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["d" /* Panel */].Heading,
+          __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["e" /* Panel */].Heading,
           null,
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["d" /* Panel */].Title,
+            __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["e" /* Panel */].Title,
             { toggle: true },
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               'h4',
@@ -76861,7 +76842,7 @@ var ProductionPanel = function (_React$Component) {
           )
         ),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["d" /* Panel */].Body,
+          __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["e" /* Panel */].Body,
           { collapsible: true },
           this.renderProductDetails()
         )

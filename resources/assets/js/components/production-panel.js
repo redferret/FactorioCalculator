@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Panel, Label, Well, Table, Button, Alert } from 'react-bootstrap';
-
+import { Panel, Label, Well, Table, Button, Alert, ButtonToolbar } from 'react-bootstrap';
 
 export default class ProductionPanel extends React.Component {
     
@@ -12,12 +11,12 @@ export default class ProductionPanel extends React.Component {
     if (this.props.productDetails !== null) {
       return (
         <div>
+          <Button bsSize="xsmall">Edit Production Line</Button>
           <h4><Label bsStyle='success'>Production Details</Label></h4>
           <Table>
             <thead>
               <tr>
                 <th>Name</th>
-                <th>Crafting Time</th>
                 <th>Number of Items Per Second</th>
                 <th>Total Seconds Per Item</th>
               </tr>
@@ -25,15 +24,15 @@ export default class ProductionPanel extends React.Component {
             <tbody>
               <tr>
                 <td>{this.props.productDetails.name}</td>
-                <td>{this.props.productDetails.crafting_time}</td>
                 <td>#</td>
                 <td>#</td>
               </tr>
             </tbody>
           </Table>
-          <Button bsStyle='primary'>Select Product</Button>{' '}
-          <Button bsStyle='warning'>Remove Product from Production Line</Button>
-          {this.renderUserOptions()}
+          <ButtonToolbar>
+            <Button bsStyle='primary' bsSize="small">Select Product</Button>{' '}
+            <Button bsSize="small">Remove Product from Production Line</Button>
+          </ButtonToolbar>
         </div>
       );
     }
@@ -41,18 +40,9 @@ export default class ProductionPanel extends React.Component {
     return (
       <div>
         <Alert bsStyle='danger'>Produces Nothing, Select a Product for this Production Line</Alert>
-        <Button bsStyle='primary'>Add Product</Button>
-        {this.renderUserOptions()}
-      </div>
-    );
-  }
-    
-  renderUserOptions() {
-    return (
-      <div>
-        <br/>
-        <Button bsStyle='primary'>Select Production Line</Button>{' '}
-        <Button bsStyle='warning'>Remove Production Line from Factory</Button>
+        <ButtonToolbar>
+          <Button bsStyle='primary'>Add Product</Button>
+        </ButtonToolbar>
       </div>
     );
   }
