@@ -17,9 +17,16 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::get('/factories/{id}', function($id){
   $factories = App\User::find($id)->factories;
   foreach($factories as $factory) {
+    $totalItems = 0;
     foreach($factory->productionLines as $productionLine) {
-      $productionLine->produces; // Get the product this line produces
+      $product = $productionLine->produces; // Get the product this line produces
+      if ($product != null) {
+        $product->items_per_second = 4.65;
+        $totalItems += $product->items_per_second;
+        $product->seconds_per_item = 0.2;
+      }
     }
+    $factory->total_items = round($totalItems, 2);
   }
   return $factories;
 });
@@ -27,9 +34,16 @@ Route::get('/factories/{id}', function($id){
 Route::get('/factories', function(){
   $factories = Auth::user()->factories;
   foreach($factories as $factory) {
+    $totalItems = 0;
     foreach($factory->productionLines as $productionLine) {
-      $productionLine->produces; // Get the product this line produces
+      $product = $productionLine->produces; // Get the product this line produces
+      if ($product != null) {
+        $product->items_per_second = 4.65;
+        $totalItems += $product->items_per_second;
+        $product->seconds_per_item = 0.2;
+      }
     }
+    $factory->total_items = round($totalItems, 2);
   }
   return $factories;
 });
