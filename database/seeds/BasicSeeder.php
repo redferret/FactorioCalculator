@@ -18,7 +18,7 @@ class BasicSeeder extends Seeder {
     
     $user->factories()->save(
       App\Factory::create([
-        'name' => "My Factory"
+        'name' => "Metal Plate Factory"
       ])
     );
     
