@@ -16,13 +16,17 @@ class BasicSeeder extends Seeder {
       'password' => bcrypt('secret')
     ]);
     
-    $user->factories()->save(
+    $factory = $user->factories()->save(
       App\Factory::create([
-        'name' => "Metal Plate Factory"
+        'name' => 'Metal Plate Factory'
       ])
     );
     
-    $factory = $user->factories()->first();
+    $user->factories()->save(
+      App\Factory::create([
+        'name' => 'Empty Factory Example'
+      ])
+    );
     
     $copperProduction = $user->productionLines()->save(
       App\ProductionLine::create([
