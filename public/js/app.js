@@ -44743,6 +44743,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_dom__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_bootstrap__ = __webpack_require__(58);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__factory_js__ = __webpack_require__(331);
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -44800,7 +44802,7 @@ var Main = function (_Component) {
         __WEBPACK_IMPORTED_MODULE_2_react_bootstrap__["f" /* PanelGroup */],
         {
           accordion: true,
-          id: 'accordion-controlled-example',
+          id: 'factory-panel-group',
           activeKey: this.state.activeKey,
           onSelect: this.handleSelect
         },
@@ -44818,12 +44820,11 @@ var Main = function (_Component) {
           )
         ),
         this.state.factories.map(function (factory) {
-          return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__factory_js__["a" /* default */], {
+          return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__factory_js__["a" /* default */], _extends({}, factory, {
+            productionLines: factory.production_lines,
             key: factory.id,
-            eventKey: factory.id,
-            name: factory.name,
-            productionLines: factory.production_lines
-          });
+            eventKey: factory.id
+          }));
         })
       );
     }
@@ -76525,6 +76526,8 @@ var Well = function (_React$Component) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__ = __webpack_require__(58);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__production_panel_js__ = __webpack_require__(332);
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -76588,6 +76591,11 @@ var Factory = function (_React$Component) {
                 'th',
                 null,
                 'Total Items Produced'
+              ),
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'th',
+                null,
+                'Number of Production Lines'
               )
             )
           ),
@@ -76600,46 +76608,58 @@ var Factory = function (_React$Component) {
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'td',
                 null,
-                '#'
+                this.props.total_items
+              ),
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'td',
+                null,
+                this.props.productionLines.length
               )
             )
           )
-        )
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["c" /* ButtonToolbar */],
+          null,
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["b" /* Button */],
+            { bsStyle: 'primary' },
+            'Add Production Line'
+          )
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('br', null)
       );
     }
   }, {
     key: 'renderFactoryProductionLines',
     value: function renderFactoryProductionLines() {
-      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-        __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["f" /* PanelGroup */],
-        {
-          accordion: true,
-          id: 'accordion-controlled-example',
-          activeKey: this.state.activeKey,
-          onSelect: this.handleSelect
-        },
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'div',
-          null,
+      if (this.props.productionLines.length > 0) {
+        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["f" /* PanelGroup */],
+          {
+            accordion: true,
+            id: 'production-panel-group',
+            activeKey: this.state.activeKey,
+            onSelect: this.handleSelect
+          },
           this.renderFactoryDetails(),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'h3',
-            null,
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["d" /* Label */],
-              { bsStyle: 'primary' },
-              'Production Lines'
-            )
-          )
-        ),
-        this.props.productionLines.map(function (panel) {
-          return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__production_panel_js__["a" /* default */], {
-            key: panel.id,
-            eventKey: panel.id,
-            name: panel.name,
-            productDetails: panel.produces
-          });
-        })
+          this.props.productionLines.map(function (panel) {
+            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__production_panel_js__["a" /* default */], _extends({}, panel, {
+              key: panel.id,
+              eventKey: panel.id
+            }));
+          })
+        );
+      }
+      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        'div',
+        null,
+        this.renderFactoryDetails(),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["a" /* Alert */],
+          { bsStyle: 'danger' },
+          'No Production Lines, Add a Production Line to this Factory'
+        )
       );
     }
   }, {
@@ -76717,15 +76737,10 @@ var ProductionPanel = function (_React$Component) {
   _createClass(ProductionPanel, [{
     key: 'renderProductDetails',
     value: function renderProductDetails() {
-      if (this.props.productDetails !== null) {
+      if (this.props.produces !== null) {
         return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           'div',
           null,
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["b" /* Button */],
-            { bsSize: 'xsmall' },
-            'Edit Production Line'
-          ),
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'h4',
             null,
@@ -76770,17 +76785,17 @@ var ProductionPanel = function (_React$Component) {
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                   'td',
                   null,
-                  this.props.productDetails.name
+                  this.props.produces.name
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                   'td',
                   null,
-                  '#'
+                  this.props.produces.items_per_second
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                   'td',
                   null,
-                  '#'
+                  this.props.produces.seconds_per_item
                 )
               )
             )
@@ -76806,6 +76821,7 @@ var ProductionPanel = function (_React$Component) {
       return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         'div',
         null,
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('br', null),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["a" /* Alert */],
           { bsStyle: 'danger' },
@@ -76844,6 +76860,11 @@ var ProductionPanel = function (_React$Component) {
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["e" /* Panel */].Body,
           { collapsible: true },
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["b" /* Button */],
+            { bsSize: 'xsmall' },
+            'Edit Production Line'
+          ),
           this.renderProductDetails()
         )
       );

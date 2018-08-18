@@ -5,7 +5,7 @@ import { Panel, PanelGroup, Alert, Label } from 'react-bootstrap';
 import Factory from './factory.js';
 
 export default class Main extends Component {
-    
+
   constructor(props, context) {
     super(props, context);
 
@@ -16,11 +16,11 @@ export default class Main extends Component {
       factories: []
     };
   }
-  
+
   handleSelect(activeKey) {
     this.setState({ activeKey });
   }
-  
+
   componentDidMount() {
     fetch(this.props.baseURL + '/factories').then(results => {
       return results.json();
@@ -29,12 +29,12 @@ export default class Main extends Component {
       this.setState({factories: data});
     }).catch(error => console.log(error));
   }
-  
+
   render() {
-    return ( 
-      <PanelGroup 
+    return (
+      <PanelGroup
         accordion
-        id="accordion-controlled-example"
+        id="factory-panel-group"
         activeKey={this.state.activeKey}
         onSelect={this.handleSelect}
       >
@@ -42,11 +42,11 @@ export default class Main extends Component {
         <h3><Label bsStyle="primary">Your Factories</Label></h3>
       </div>
         {this.state.factories.map(factory =>
-          <Factory 
-            key={factory.id} 
-            eventKey={factory.id} 
-            name={factory.name}
+          <Factory
+            {...factory}
             productionLines={factory.production_lines}
+            key={factory.id}
+            eventKey={factory.id}
           />
         )}
       </PanelGroup>

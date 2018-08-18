@@ -1,11 +1,11 @@
 
 import React from 'react';
 
-import { Panel, PanelGroup, Alert, Label, Button, Table } from 'react-bootstrap';
+import { Panel, PanelGroup, Alert, Label, ButtonToolbar, Button, Table } from 'react-bootstrap';
 import ProductionPanel from './production-panel.js';
 
 export default class Factory extends React.Component {
-    
+
   constructor(props, context) {
     super(props, context);
 
@@ -16,11 +16,11 @@ export default class Factory extends React.Component {
       productionLines: []
     };
   }
-  
+
   handleSelect(activeKey) {
     this.setState({ activeKey });
   }
-  
+
   renderFactoryDetails() {
     return (
       <div>
@@ -29,44 +29,54 @@ export default class Factory extends React.Component {
           <thead>
             <tr>
               <th>Total Items Produced</th>
+              <th>Number of Production Lines</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td>#</td>
+              <td>{this.props.total_items}</td>
+              <td>{this.props.productionLines.length}</td>
             </tr>
           </tbody>
         </Table>
+        <ButtonToolbar>
+          <Button bsStyle='primary'>Add Production Line</Button>
+        </ButtonToolbar>
+        <br/>
       </div>
     );
   }
-  
+
   renderFactoryProductionLines() {
+    if (this.props.productionLines.length > 0) {
+      return (
+        <PanelGroup
+          accordion
+          id="production-panel-group"
+          activeKey={this.state.activeKey}
+          onSelect={this.handleSelect}
+        >
+        {this.renderFactoryDetails()}
+        {this.props.productionLines.map(panel =>
+          <ProductionPanel
+            {...panel}
+            key={panel.id}
+            eventKey={panel.id}
+          />
+        )}
+        </PanelGroup>
+      );
+    }
     return (
-      <PanelGroup 
-        accordion
-        id="accordion-controlled-example"
-        activeKey={this.state.activeKey}
-        onSelect={this.handleSelect}
-      >
       <div>
         {this.renderFactoryDetails()}
-        <h3><Label bsStyle="primary">Production Lines</Label></h3>
+        <Alert bsStyle="danger">No Production Lines, Add a Production Line to this Factory</Alert>
       </div>
-      {this.props.productionLines.map(panel =>
-        <ProductionPanel 
-          key={panel.id} 
-          eventKey={panel.id} 
-          name={panel.name}
-          productDetails={panel.produces}
-        />
-      )}
-      </PanelGroup>
     );
   }
-  
+
   render() {
-    return ( 
+    return (
       <div>
         <Panel eventKey={this.props.eventKey}>
           <Panel.Heading>

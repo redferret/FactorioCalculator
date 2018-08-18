@@ -2,16 +2,15 @@ import React, { Component } from 'react';
 import { Panel, Label, Well, Table, Button, Alert, ButtonToolbar } from 'react-bootstrap';
 
 export default class ProductionPanel extends React.Component {
-    
+
   constructor(props) {
     super(props);
   }
-    
+
   renderProductDetails() {
-    if (this.props.productDetails !== null) {
+    if (this.props.produces !== null) {
       return (
         <div>
-          <Button bsSize="xsmall">Edit Production Line</Button>
           <h4><Label bsStyle='success'>Production Details</Label></h4>
           <Table>
             <thead>
@@ -23,9 +22,9 @@ export default class ProductionPanel extends React.Component {
             </thead>
             <tbody>
               <tr>
-                <td>{this.props.productDetails.name}</td>
-                <td>#</td>
-                <td>#</td>
+                <td>{this.props.produces.name}</td>
+                <td>{this.props.produces.items_per_second}</td>
+                <td>{this.props.produces.seconds_per_item}</td>
               </tr>
             </tbody>
           </Table>
@@ -36,9 +35,10 @@ export default class ProductionPanel extends React.Component {
         </div>
       );
     }
-    
+
     return (
       <div>
+        <br/>
         <Alert bsStyle='danger'>Produces Nothing, Select a Product for this Production Line</Alert>
         <ButtonToolbar>
           <Button bsStyle='primary'>Add Product</Button>
@@ -46,7 +46,7 @@ export default class ProductionPanel extends React.Component {
       </div>
     );
   }
-    
+
   render() {
     return (
       <Panel eventKey={this.props.eventKey}>
@@ -58,6 +58,7 @@ export default class ProductionPanel extends React.Component {
           </Panel.Title>
         </Panel.Heading>
         <Panel.Body collapsible>
+          <Button bsSize="xsmall">Edit Production Line</Button>
           {this.renderProductDetails()}
         </Panel.Body>
       </Panel>
