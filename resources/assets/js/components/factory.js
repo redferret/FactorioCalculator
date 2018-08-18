@@ -5,6 +5,7 @@ import { Panel, PanelGroup, Alert, Label, Button, Table } from 'react-bootstrap'
 import ProductionPanel from './production-panel.js';
 
 export default class Factory extends React.Component {
+    
   constructor(props, context) {
     super(props, context);
 
@@ -36,7 +37,6 @@ export default class Factory extends React.Component {
             </tr>
           </tbody>
         </Table>
-        <Button bsStyle='primary'>Add Production Line to this Factory</Button>
       </div>
     );
   }

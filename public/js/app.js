@@ -76604,11 +76604,6 @@ var Factory = function (_React$Component) {
               )
             )
           )
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["b" /* Button */],
-          { bsStyle: 'primary' },
-          'Add Production Line to this Factory'
         )
       );
     }
