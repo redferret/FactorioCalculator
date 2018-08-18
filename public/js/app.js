@@ -44770,7 +44770,7 @@ var Main = function (_Component) {
     _this.handleSelect = _this.handleSelect.bind(_this);
 
     _this.state = {
-      activeKey: "0",
+      activeKey: '0',
       factories: []
     };
     return _this;
@@ -44789,7 +44789,7 @@ var Main = function (_Component) {
       fetch(this.props.baseURL + '/factories').then(function (results) {
         return results.json();
       }).then(function (data) {
-        console.log("factories", data);
+        console.log('factories', data);
         _this2.setState({ factories: data });
       }).catch(function (error) {
         return console.log(error);
@@ -76551,7 +76551,7 @@ var Factory = function (_React$Component) {
     _this.handleSelect = _this.handleSelect.bind(_this);
 
     _this.state = {
-      activeKey: "0"
+      activeKey: '0'
     };
     return _this;
   }
@@ -76700,7 +76700,7 @@ var Factory = function (_React$Component) {
 
 Factory.defaultProps = {
   id: -1,
-  name: "",
+  name: '',
   productionLines: []
 };
 
@@ -76743,19 +76743,26 @@ var ProductionPanel = function (_React$Component) {
         }
 
         var balanced = this.props.produces.assembly_count === this.props.produces.desired_assembly_count;
-
         var label = __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["d" /* Label */],
           { bsStyle: 'success' },
           'Production Details - Balanced'
         );
+        var balanceButton = __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', null);
+
         if (!balanced) {
           label = __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["d" /* Label */],
             { bsStyle: 'warning' },
             'Production Details - Not Balanced'
           );
+          balanceButton = __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["b" /* Button */],
+            { bsStyle: 'success', bsSize: 'xsmall' },
+            'Balance Production'
+          );
         }
+
         return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           'div',
           null,
@@ -76764,6 +76771,7 @@ var ProductionPanel = function (_React$Component) {
             null,
             label
           ),
+          balanceButton,
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["g" /* Table */],
             null,
@@ -76901,8 +76909,8 @@ var ProductionPanel = function (_React$Component) {
 /* harmony default export */ __webpack_exports__["a"] = (ProductionPanel);
 ;
 ProductionPanel.defaultProps = {
-  eventKey: "0",
-  name: "",
+  eventKey: '0',
+  name: '',
   productDetails: []
 };
 

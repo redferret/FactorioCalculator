@@ -16,14 +16,18 @@ export default class ProductionPanel extends React.Component {
       }
 
       var balanced = this.props.produces.assembly_count === this.props.produces.desired_assembly_count;
-
       var label = <Label bsStyle='success'>Production Details - Balanced</Label>;
+      var balanceButton = <div></div>;
+      
       if (!balanced) {
         label = <Label bsStyle='warning'>Production Details - Not Balanced</Label>;
+        balanceButton = <Button bsStyle='success' bsSize='xsmall'>Balance Production</Button>
       }
+
       return (
         <div>
           <h4>{label}</h4>
+          {balanceButton}
           <Table>
             <thead>
               <tr>
@@ -43,8 +47,8 @@ export default class ProductionPanel extends React.Component {
             </tbody>
           </Table>
           <ButtonToolbar>
-            <Button bsStyle='primary' bsSize="small">Select Product</Button>{' '}
-            <Button bsSize="small">Remove Product from Production Line</Button>
+            <Button bsStyle='primary' bsSize='small'>Select Product</Button>{' '}
+            <Button bsSize='small'>Remove Product from Production Line</Button>
           </ButtonToolbar>
         </div>
       );
@@ -72,7 +76,7 @@ export default class ProductionPanel extends React.Component {
           </Panel.Title>
         </Panel.Heading>
         <Panel.Body collapsible>
-          <Button bsSize="xsmall">Edit Production Line</Button>
+          <Button bsSize='xsmall'>Edit Production Line</Button>
           {this.renderProductDetails()}
         </Panel.Body>
       </Panel>
@@ -80,7 +84,7 @@ export default class ProductionPanel extends React.Component {
   }
 };
 ProductionPanel.defaultProps = {
-   eventKey: "0",
-   name:"",
+   eventKey: '0',
+   name:'',
    productDetails: []
 };

@@ -12,7 +12,7 @@ export default class Factory extends React.Component {
     this.handleSelect = this.handleSelect.bind(this);
 
     this.state = {
-      activeKey: "0",
+      activeKey: '0',
     };
   }
 
@@ -51,7 +51,7 @@ export default class Factory extends React.Component {
       return (
         <PanelGroup
           accordion
-          id="production-panel-group"
+          id='production-panel-group'
           activeKey={this.state.activeKey}
           onSelect={this.handleSelect}
         >
@@ -69,7 +69,7 @@ export default class Factory extends React.Component {
     return (
       <div>
         {this.renderFactoryDetails()}
-        <Alert bsStyle="danger">No Production Lines, Add a Production Line to this Factory</Alert>
+        <Alert bsStyle='danger'>No Production Lines, Add a Production Line to this Factory</Alert>
       </div>
     );
   }
@@ -96,6 +96,6 @@ export default class Factory extends React.Component {
 
 Factory.defaultProps = {
   id: -1,
-  name: "",
+  name: '',
   productionLines: []
 };

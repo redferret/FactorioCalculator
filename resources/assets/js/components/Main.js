@@ -12,7 +12,7 @@ export default class Main extends Component {
     this.handleSelect = this.handleSelect.bind(this);
 
     this.state = {
-      activeKey: "0",
+      activeKey: '0',
       factories: []
     };
   }
@@ -25,7 +25,7 @@ export default class Main extends Component {
     fetch(this.props.baseURL + '/factories').then(results => {
       return results.json();
     }).then(data => {
-      console.log("factories", data);
+      console.log('factories', data);
       this.setState({factories: data});
     }).catch(error => console.log(error));
   }
@@ -34,12 +34,12 @@ export default class Main extends Component {
     return (
       <PanelGroup
         accordion
-        id="factory-panel-group"
+        id='factory-panel-group'
         activeKey={this.state.activeKey}
         onSelect={this.handleSelect}
       >
       <div>
-        <h3><Label bsStyle="primary">Your Factories</Label></h3>
+        <h3><Label bsStyle='primary'>Your Factories</Label></h3>
       </div>
         {this.state.factories.map(factory =>
           <Factory
