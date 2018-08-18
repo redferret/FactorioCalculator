@@ -44,7 +44,6 @@ export default class Main extends Component {
         {this.state.factories.map(factory =>
           <Factory
             {...factory}
-            productionLines={factory.production_lines}
             key={factory.id}
             eventKey={factory.id}
           />

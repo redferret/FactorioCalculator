@@ -13,7 +13,6 @@ export default class Factory extends React.Component {
 
     this.state = {
       activeKey: "0",
-      productionLines: []
     };
   }
 
@@ -35,7 +34,7 @@ export default class Factory extends React.Component {
           <tbody>
             <tr>
               <td>{this.props.total_items}</td>
-              <td>{this.props.productionLines.length}</td>
+              <td>{this.props.production_lines.length}</td>
             </tr>
           </tbody>
         </Table>
@@ -48,7 +47,7 @@ export default class Factory extends React.Component {
   }
 
   renderFactoryProductionLines() {
-    if (this.props.productionLines.length > 0) {
+    if (this.props.production_lines.length > 0) {
       return (
         <PanelGroup
           accordion
@@ -57,7 +56,7 @@ export default class Factory extends React.Component {
           onSelect={this.handleSelect}
         >
         {this.renderFactoryDetails()}
-        {this.props.productionLines.map(panel =>
+        {this.props.production_lines.map(panel =>
           <ProductionPanel
             {...panel}
             key={panel.id}

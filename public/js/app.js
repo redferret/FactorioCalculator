@@ -44821,7 +44821,6 @@ var Main = function (_Component) {
         ),
         this.state.factories.map(function (factory) {
           return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__factory_js__["a" /* default */], _extends({}, factory, {
-            productionLines: factory.production_lines,
             key: factory.id,
             eventKey: factory.id
           }));
@@ -76552,8 +76551,7 @@ var Factory = function (_React$Component) {
     _this.handleSelect = _this.handleSelect.bind(_this);
 
     _this.state = {
-      activeKey: "0",
-      productionLines: []
+      activeKey: "0"
     };
     return _this;
   }
@@ -76613,7 +76611,7 @@ var Factory = function (_React$Component) {
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'td',
                 null,
-                this.props.productionLines.length
+                this.props.production_lines.length
               )
             )
           )
@@ -76633,7 +76631,7 @@ var Factory = function (_React$Component) {
   }, {
     key: 'renderFactoryProductionLines',
     value: function renderFactoryProductionLines() {
-      if (this.props.productionLines.length > 0) {
+      if (this.props.production_lines.length > 0) {
         return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["f" /* PanelGroup */],
           {
@@ -76643,7 +76641,7 @@ var Factory = function (_React$Component) {
             onSelect: this.handleSelect
           },
           this.renderFactoryDetails(),
-          this.props.productionLines.map(function (panel) {
+          this.props.production_lines.map(function (panel) {
             return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__production_panel_js__["a" /* default */], _extends({}, panel, {
               key: panel.id,
               eventKey: panel.id
@@ -76738,17 +76736,33 @@ var ProductionPanel = function (_React$Component) {
     key: 'renderProductDetails',
     value: function renderProductDetails() {
       if (this.props.produces !== null) {
+
+        var headerTitle = 'Number of Assemblers';
+        if (this.props.produces.producer.is_miner) {
+          headerTitle = 'Number of Miners';
+        }
+
+        var balanced = this.props.produces.assembly_count === this.props.produces.desired_assembly_count;
+
+        var label = __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["d" /* Label */],
+          { bsStyle: 'success' },
+          'Production Details - Balanced'
+        );
+        if (!balanced) {
+          label = __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["d" /* Label */],
+            { bsStyle: 'warning' },
+            'Production Details - Not Balanced'
+          );
+        }
         return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           'div',
           null,
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'h4',
             null,
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["d" /* Label */],
-              { bsStyle: 'success' },
-              'Production Details'
-            )
+            label
           ),
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["g" /* Table */],
@@ -76763,6 +76777,11 @@ var ProductionPanel = function (_React$Component) {
                   'th',
                   null,
                   'Name'
+                ),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                  'th',
+                  null,
+                  headerTitle
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                   'th',
@@ -76786,6 +76805,11 @@ var ProductionPanel = function (_React$Component) {
                   'td',
                   null,
                   this.props.produces.name
+                ),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                  'td',
+                  null,
+                  this.props.produces.assembly_count
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                   'td',

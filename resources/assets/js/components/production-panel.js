@@ -9,13 +9,26 @@ export default class ProductionPanel extends React.Component {
 
   renderProductDetails() {
     if (this.props.produces !== null) {
+
+      var headerTitle = 'Number of Assemblers';
+      if (this.props.produces.producer.is_miner) {
+        headerTitle = 'Number of Miners';
+      }
+
+      var balanced = this.props.produces.assembly_count === this.props.produces.desired_assembly_count;
+
+      var label = <Label bsStyle='success'>Production Details - Balanced</Label>;
+      if (!balanced) {
+        label = <Label bsStyle='warning'>Production Details - Not Balanced</Label>;
+      }
       return (
         <div>
-          <h4><Label bsStyle='success'>Production Details</Label></h4>
+          <h4>{label}</h4>
           <Table>
             <thead>
               <tr>
                 <th>Name</th>
+                <th>{headerTitle}</th>
                 <th>Number of Items Per Second</th>
                 <th>Total Seconds Per Item</th>
               </tr>
@@ -23,6 +36,7 @@ export default class ProductionPanel extends React.Component {
             <tbody>
               <tr>
                 <td>{this.props.produces.name}</td>
+                <td>{this.props.produces.assembly_count}</td>
                 <td>{this.props.produces.items_per_second}</td>
                 <td>{this.props.produces.seconds_per_item}</td>
               </tr>
