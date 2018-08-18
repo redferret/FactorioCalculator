@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     protected $fillable = ['crafting_time', 'name', 'user_id', 'product_id',
-        'production_line_id', 'desired_assembly_count', 'assembly_speed', 
-        'items_per_second'];
+        'production_line_id', 'desired_assembly_count', 
+        'items_per_second', 'stock_size', 'consumption_count', 'hardness'];
     
     public function productionLine() {
       return $this->belongsTo(ProductionLine::class);
@@ -20,6 +20,10 @@ class Product extends Model
     
     public function products() {
       return $this->hasMany(Product::class);
+    }
+    
+    public function producer() {
+      return $this->hasOne(Producer::class);
     }
     
     public function user() {

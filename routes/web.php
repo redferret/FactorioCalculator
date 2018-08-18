@@ -21,15 +21,25 @@ Route::get('/factories/{id}', function($id){
     foreach($factory->productionLines as $productionLine) {
       $product = $productionLine->produces; // Get the product this line produces
       if ($product != null) {
-        $product->items_per_second = 4.65;
         $totalItems += $product->items_per_second;
-        $product->seconds_per_item = 0.2;
+        $producer = $product->producer;
+        $product->seconds_per_item = round($product->items_per_second / $producer->speed, 2);
+        $product->assembly_count = round(($product->items_per_second * $product->seconds_per_item) / $product->stock_size, 2);
+        $product->products;
+        // Update inputs for this product
+        
       }
     }
     $factory->total_items = round($totalItems, 2);
   }
   return $factories;
 });
+
+function updateDependents(App\Product $parent) {
+  foreach($parent->products as $input) {
+    $input->items_per_second;
+  }
+}
 
 Route::get('/factories', function(){
   $factories = Auth::user()->factories;
@@ -38,9 +48,13 @@ Route::get('/factories', function(){
     foreach($factory->productionLines as $productionLine) {
       $product = $productionLine->produces; // Get the product this line produces
       if ($product != null) {
-        $product->items_per_second = 4.65;
         $totalItems += $product->items_per_second;
-        $product->seconds_per_item = 0.2;
+        $producer = $product->producer;
+        $product->seconds_per_item = round($product->items_per_second / $producer->speed, 2);
+        $product->assembly_count = round(($product->items_per_second * $product->seconds_per_item) / $product->stock_size, 2);
+        $product->products;
+        // Update inputs for this product
+        
       }
     }
     $factory->total_items = round($totalItems, 2);

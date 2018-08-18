@@ -16,10 +16,12 @@ class CreateProductsTable extends Migration {
       $table->increments('id');
       $table->string('name')->default('New Product');
       $table->float('items_per_second')->default(0);
-      $table->float('assembly_speed')->default(0);
+      $table->float('consumption_count')->default(0);
       $table->integer('desired_assembly_count')->default(0);
       $table->integer('stock_size')->default(1);
-      $table->float('crafting_time')->default('1.0');
+      $table->float('crafting_time')->default(1);
+      $table->float('hardness')->nullable();
+      
       $table->integer('product_id')->unsigned()->nullable();
       $table->integer('production_line_id')->unsigned()->nullable();
       $table->integer('user_id')->unsigned()->nullable();
