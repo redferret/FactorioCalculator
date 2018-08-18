@@ -76712,6 +76712,7 @@ Factory.defaultProps = {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__ = __webpack_require__(58);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__product_details_js__ = __webpack_require__(339);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -76723,18 +76724,217 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 
+
 var ProductionPanel = function (_React$Component) {
   _inherits(ProductionPanel, _React$Component);
 
   function ProductionPanel(props) {
     _classCallCheck(this, ProductionPanel);
 
-    return _possibleConstructorReturn(this, (ProductionPanel.__proto__ || Object.getPrototypeOf(ProductionPanel)).call(this, props));
+    var _this = _possibleConstructorReturn(this, (ProductionPanel.__proto__ || Object.getPrototypeOf(ProductionPanel)).call(this, props));
+
+    _this.handleEditProduction = _this.handleEditProduction.bind(_this);
+    return _this;
   }
 
   _createClass(ProductionPanel, [{
-    key: 'renderProductDetails',
-    value: function renderProductDetails() {
+    key: 'handleEditProduction',
+    value: function handleEditProduction(e) {
+      alert("Edit Production");
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["e" /* Panel */],
+        { eventKey: this.props.eventKey },
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["e" /* Panel */].Heading,
+          null,
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["e" /* Panel */].Title,
+            { toggle: true },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'h4',
+              null,
+              this.props.name
+            )
+          )
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["e" /* Panel */].Body,
+          { collapsible: true },
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["b" /* Button */],
+            { onClick: this.handleEditProduction, bsSize: 'xsmall' },
+            'Edit Production Line'
+          ),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__product_details_js__["a" /* default */], this.props)
+        )
+      );
+    }
+  }]);
+
+  return ProductionPanel;
+}(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["a"] = (ProductionPanel);
+;
+ProductionPanel.defaultProps = {
+  eventKey: '0',
+  name: '',
+  productDetails: []
+};
+
+/***/ }),
+/* 333 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 334 */,
+/* 335 */,
+/* 336 */,
+/* 337 */,
+/* 338 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__ = __webpack_require__(58);
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+
+
+var BalanceProductionButton = function (_React$Component) {
+  _inherits(BalanceProductionButton, _React$Component);
+
+  function BalanceProductionButton(props) {
+    _classCallCheck(this, BalanceProductionButton);
+
+    var _this = _possibleConstructorReturn(this, (BalanceProductionButton.__proto__ || Object.getPrototypeOf(BalanceProductionButton)).call(this, props));
+
+    _this.handleSelect = _this.handleSelect.bind(_this);
+    return _this;
+  }
+
+  _createClass(BalanceProductionButton, [{
+    key: 'handleSelect',
+    value: function handleSelect(e) {
+      alert("Balance Production");
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var label = __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["d" /* Label */],
+        { bsStyle: 'success' },
+        'Production Details - Balanced'
+      );
+
+      if (!this.props.balanced) {
+        label = __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["d" /* Label */],
+          { bsStyle: 'warning' },
+          'Production Details - Not Balanced'
+        );
+      }
+
+      if (this.props.balanced) {
+        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'h4',
+          null,
+          label
+        );
+      }
+      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        'div',
+        null,
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'h4',
+          null,
+          label
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["b" /* Button */],
+          { onClick: this.handleSelect, bsStyle: 'success', bsSize: 'xsmall' },
+          'Balance Production'
+        )
+      );
+    }
+  }]);
+
+  return BalanceProductionButton;
+}(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["a"] = (BalanceProductionButton);
+
+BalanceProductionButton.defaultProps = {
+  balanced: true
+};
+
+/***/ }),
+/* 339 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__ = __webpack_require__(58);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__balance_production_button_js__ = __webpack_require__(338);
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+
+
+
+var ProductDetails = function (_React$Component) {
+  _inherits(ProductDetails, _React$Component);
+
+  function ProductDetails(props) {
+    _classCallCheck(this, ProductDetails);
+
+    var _this = _possibleConstructorReturn(this, (ProductDetails.__proto__ || Object.getPrototypeOf(ProductDetails)).call(this, props));
+
+    _this.addProductToProduction = _this.addProductToProduction.bind(_this);
+    _this.handleSelectProduct = _this.handleSelectProduct.bind(_this);
+    _this.removeFromProduction = _this.removeFromProduction.bind(_this);
+    return _this;
+  }
+
+  _createClass(ProductDetails, [{
+    key: 'handleSelectProduct',
+    value: function handleSelectProduct(e) {
+      alert("Select Product");
+    }
+  }, {
+    key: 'removeFromProduction',
+    value: function removeFromProduction(e) {
+      alert("Remove from Production");
+    }
+  }, {
+    key: 'addProductToProduction',
+    value: function addProductToProduction(e) {
+      alert("Add Product to Production");
+    }
+  }, {
+    key: 'render',
+    value: function render() {
       if (this.props.produces !== null) {
 
         var headerTitle = 'Number of Assemblers';
@@ -76743,35 +76943,11 @@ var ProductionPanel = function (_React$Component) {
         }
 
         var balanced = this.props.produces.assembly_count === this.props.produces.desired_assembly_count;
-        var label = __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["d" /* Label */],
-          { bsStyle: 'success' },
-          'Production Details - Balanced'
-        );
-        var balanceButton = __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', null);
-
-        if (!balanced) {
-          label = __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["d" /* Label */],
-            { bsStyle: 'warning' },
-            'Production Details - Not Balanced'
-          );
-          balanceButton = __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["b" /* Button */],
-            { bsStyle: 'success', bsSize: 'xsmall' },
-            'Balance Production'
-          );
-        }
 
         return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           'div',
           null,
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'h4',
-            null,
-            label
-          ),
-          balanceButton,
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__balance_production_button_js__["a" /* default */], { balanced: balanced }),
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["g" /* Table */],
             null,
@@ -76837,13 +77013,13 @@ var ProductionPanel = function (_React$Component) {
             null,
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["b" /* Button */],
-              { bsStyle: 'primary', bsSize: 'small' },
+              { onClick: this.handleSelectProduct, bsStyle: 'primary', bsSize: 'small' },
               'Select Product'
             ),
             ' ',
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["b" /* Button */],
-              { bsSize: 'small' },
+              { onClick: this.removeFromProduction, bsSize: 'small' },
               'Remove Product from Production Line'
             )
           )
@@ -76864,61 +77040,18 @@ var ProductionPanel = function (_React$Component) {
           null,
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["b" /* Button */],
-            { bsStyle: 'primary' },
+            { onClick: this.addProductToProduction, bsStyle: 'primary' },
             'Add Product'
           )
         )
       );
     }
-  }, {
-    key: 'render',
-    value: function render() {
-      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-        __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["e" /* Panel */],
-        { eventKey: this.props.eventKey },
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["e" /* Panel */].Heading,
-          null,
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["e" /* Panel */].Title,
-            { toggle: true },
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              'h4',
-              null,
-              this.props.name
-            )
-          )
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["e" /* Panel */].Body,
-          { collapsible: true },
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["b" /* Button */],
-            { bsSize: 'xsmall' },
-            'Edit Production Line'
-          ),
-          this.renderProductDetails()
-        )
-      );
-    }
   }]);
 
-  return ProductionPanel;
+  return ProductDetails;
 }(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component);
 
-/* harmony default export */ __webpack_exports__["a"] = (ProductionPanel);
-;
-ProductionPanel.defaultProps = {
-  eventKey: '0',
-  name: '',
-  productDetails: []
-};
-
-/***/ }),
-/* 333 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
+/* harmony default export */ __webpack_exports__["a"] = (ProductDetails);
 
 /***/ })
 /******/ ]);
