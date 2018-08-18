@@ -44789,7 +44789,6 @@ var Main = function (_Component) {
       fetch(this.props.baseURL + '/factories').then(function (results) {
         return results.json();
       }).then(function (data) {
-        console.log('factories', data);
         _this2.setState({ factories: data });
       }).catch(function (error) {
         return console.log(error);
@@ -76740,7 +76739,7 @@ var ProductionPanel = function (_React$Component) {
   _createClass(ProductionPanel, [{
     key: 'handleEditProduction',
     value: function handleEditProduction(e) {
-      alert("Edit Production");
+      alert("Edit Production " + this.props.id);
     }
   }, {
     key: 'render',
@@ -76920,12 +76919,12 @@ var ProductDetails = function (_React$Component) {
   _createClass(ProductDetails, [{
     key: 'handleSelectProduct',
     value: function handleSelectProduct(e) {
-      alert("Select Product");
+      alert("Select " + this.props.produces.name + " Product");
     }
   }, {
     key: 'removeFromProduction',
     value: function removeFromProduction(e) {
-      alert("Remove from Production");
+      alert("Remove " + this.props.produces.name + " from Production " + this.props.produces.production_line_id);
     }
   }, {
     key: 'addProductToProduction',

@@ -11,17 +11,16 @@ export default class ProductDetails extends React.Component {
   }
 
   handleSelectProduct(e) {
-    alert("Select Product");
+    alert("Select "+this.props.produces.name+ " Product");
   }
 
   removeFromProduction(e) {
-    alert("Remove from Production");
+    alert("Remove "+this.props.produces.name+" from Production " + this.props.produces.production_line_id);
   }
 
   addProductToProduction(e) {
     alert("Add Product to Production");
   }
-
 
   render() {
     if (this.props.produces !== null) {

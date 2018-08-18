@@ -10,7 +10,7 @@ export default class ProductionPanel extends React.Component {
   }
 
   handleEditProduction(e) {
-    alert("Edit Production");
+    alert("Edit Production "+this.props.id);
   }
 
   render() {
