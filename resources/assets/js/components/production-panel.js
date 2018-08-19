@@ -4,8 +4,8 @@ import ProductDetails from './product-details.js';
 
 export default class ProductionPanel extends React.Component {
 
-  constructor(props) {
-    super(props);
+  constructor(props, context) {
+    super(props, context);
     this.handleEditProduction = this.handleEditProduction.bind(this);
   }
 
@@ -25,7 +25,9 @@ export default class ProductionPanel extends React.Component {
         </Panel.Heading>
         <Panel.Body collapsible>
           <Button onClick={this.handleEditProduction} bsSize='xsmall'>Edit Production Line</Button>
-          <ProductDetails {...this.props} />
+          <ProductDetails
+            {...this.props}
+          />
         </Panel.Body>
       </Panel>
     );

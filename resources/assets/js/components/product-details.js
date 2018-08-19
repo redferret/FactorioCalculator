@@ -3,8 +3,8 @@ import { Table, Button, Alert, ButtonToolbar } from 'react-bootstrap';
 import BalanceProductionButton from './balance-production-button.js';
 
 export default class ProductDetails extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor(props, context) {
+    super(props, context);
     this.addProductToProduction = this.addProductToProduction.bind(this);
     this.handleSelectProduct = this.handleSelectProduct.bind(this);
     this.removeFromProduction = this.removeFromProduction.bind(this);
@@ -19,7 +19,7 @@ export default class ProductDetails extends React.Component {
   }
 
   addProductToProduction(e) {
-    alert("Add Product to Production");
+    alert("Add Product to Production "+ this.props.id);
   }
 
   render() {
@@ -34,7 +34,9 @@ export default class ProductDetails extends React.Component {
 
       return (
         <div>
-          <BalanceProductionButton balanced={balanced}/>
+          <BalanceProductionButton
+            balanced={balanced}
+          />
           <Table>
             <thead>
               <tr>

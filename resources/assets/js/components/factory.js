@@ -3,20 +3,21 @@ import React from 'react';
 
 import { Panel, PanelGroup, Alert, Label, ButtonToolbar, Button, Table } from 'react-bootstrap';
 import ProductionPanel from './production-panel.js';
+import FactoryStore from '../stores/factory-store.js';
 
 export default class Factory extends React.Component {
 
   constructor(props, context) {
     super(props, context);
 
-    this.handleSelect = this.handleSelect.bind(this);
+    this.handleSelectProductionLine = this.handleSelectProductionLine.bind(this);
 
     this.state = {
       activeKey: '0',
     };
   }
 
-  handleSelect(activeKey) {
+  handleSelectProductionLine(activeKey) {
     this.setState({ activeKey });
   }
 
@@ -53,9 +54,8 @@ export default class Factory extends React.Component {
           accordion
           id='production-panel-group'
           activeKey={this.state.activeKey}
-          onSelect={this.handleSelect}
+          onSelect={this.handleSelectProductionLine}
         >
-        {this.renderFactoryDetails()}
         {this.props.production_lines.map(panel =>
           <ProductionPanel
             {...panel}
@@ -68,7 +68,6 @@ export default class Factory extends React.Component {
     }
     return (
       <div>
-        {this.renderFactoryDetails()}
         <Alert bsStyle='danger'>No Production Lines, Add a Production Line to this Factory</Alert>
       </div>
     );
@@ -76,20 +75,19 @@ export default class Factory extends React.Component {
 
   render() {
     return (
-      <div>
-        <Panel eventKey={this.props.eventKey}>
-          <Panel.Heading>
-            <Panel.Title toggle>
-              <h4>
-                {this.props.name}
-              </h4>
-            </Panel.Title>
-          </Panel.Heading>
-          <Panel.Body collapsible>
-            {this.renderFactoryProductionLines()}
-          </Panel.Body>
-        </Panel>
-      </div>
+      <Panel eventKey={this.props.eventKey}>
+        <Panel.Heading>
+          <Panel.Title toggle>
+            <h4>
+              {this.props.name}
+            </h4>
+          </Panel.Title>
+        </Panel.Heading>
+        <Panel.Body collapsible>
+          {this.renderFactoryDetails()}
+          {this.renderFactoryProductionLines()}
+        </Panel.Body>
+      </Panel>
     );
   }
 }

@@ -62,6 +62,10 @@ Route::get('/factories', function(){
   return $factories;
 });
 
+Route::get('/balance', function() {
+  return array('message'=>'success');
+});
+
 Route::get('/product/{id}', function($id) {
   $product = Auth::user()->products()->find($id);
   $product->products; // Get the inputs for this product

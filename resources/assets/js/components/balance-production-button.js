@@ -2,12 +2,17 @@ import React from 'react';
 import {Label, Button } from 'react-bootstrap';
 
 export default class BalanceProductionButton extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor(props, context) {
+    super(props, context);
     this.handleSelect = this.handleSelect.bind(this);
   }
   handleSelect(e) {
-    alert("Balance Production");
+    fetch(window.baseURL + '/balance')
+    .then(response => {
+      return response.json();
+    }).then(data => {
+      console.log(data);
+    });
   }
   render() {
     var label = <Label bsStyle='success'>Production Details - Balanced</Label>;
