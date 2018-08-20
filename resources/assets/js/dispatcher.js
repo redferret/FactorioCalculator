@@ -1,6 +1,9 @@
 var Dispatcher = require('flux').Dispatcher;
 var AppDispatcher = new Dispatcher();
 
+import * as Routes from './routes.js';
+import * as Actions from './actions.js';
+
 // Register callback with AppDispatcher
 AppDispatcher.register((payload) => {
 
@@ -8,11 +11,9 @@ AppDispatcher.register((payload) => {
   let data = payload.data;
   let store = payload.store;
 
-  switch(action.actionType) {
-
-    // Respond to add-item action
-    case 'balance-production-line':
-      console.log('Action \'balance-production-line\' received');
+  switch(action) {
+    case Actions.BALANCE_PRODUCTION:
+      fetch(Routes.BALANCE_PRODUCTION);
       break;
 
     default:
