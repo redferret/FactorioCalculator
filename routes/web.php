@@ -27,7 +27,7 @@ Route::get('/factories/{id}', function($id){
         $product->assembly_count = round(($product->items_per_second * $product->seconds_per_item) / $product->stock_size, 2);
         $product->products;
         // Update inputs for this product
-        
+
       }
     }
     $factory->total_items = round($totalItems, 2);
@@ -54,7 +54,7 @@ Route::get('/factories', function(){
         $product->assembly_count = round(($product->items_per_second * $product->seconds_per_item) / $product->stock_size, 2);
         $product->products;
         // Update inputs for this product
-        
+
       }
     }
     $factory->total_items = round($totalItems, 2);
@@ -62,8 +62,18 @@ Route::get('/factories', function(){
   return $factories;
 });
 
-Route::get('/balance', function() {
-  return array('message'=>'success');
+Route::get('/balance/{id}', function($id) {
+  $productionLine = Auth::user()->productionLines->find($id);
+  $product = $productionLine->produces; // Get the product this line produces
+  if ($product != null) {
+    $producer = $product->producer;
+    $product->seconds_per_item = round($product->items_per_second / $producer->speed, 2);
+    $product->assembly_count = round(($product->items_per_second * $product->seconds_per_item) / $product->stock_size, 2);
+    $product->desired_assembly_count = $product->assembly_count;
+    $product->products;
+    // Update inputs for this product
+  }
+  return $productionLine;
 });
 
 Route::get('/product/{id}', function($id) {
@@ -71,4 +81,3 @@ Route::get('/product/{id}', function($id) {
   $product->products; // Get the inputs for this product
   return $product;
 });
-
