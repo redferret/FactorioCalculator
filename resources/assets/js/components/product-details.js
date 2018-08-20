@@ -1,17 +1,45 @@
 import React from 'react';
 import { Table, Button, Alert, ButtonToolbar } from 'react-bootstrap';
 import BalanceProductionButton from './balance-production-button.js';
+import ProductModal from './product-modal.js';
 
 export default class ProductDetails extends React.Component {
   constructor(props, context) {
     super(props, context);
     this.addProductToProduction = this.addProductToProduction.bind(this);
-    this.handleSelectProduct = this.handleSelectProduct.bind(this);
+    this.handleShowProductModal = this.handleShowProductModal.bind(this);
+    this.handleHideProductModal = this.handleHideProductModal.bind(this);
     this.removeFromProduction = this.removeFromProduction.bind(this);
+
+    this.state = {
+      showProductModal: false,
+      selectedProduct: null,
+      productStack: []
+    }
   }
 
-  handleSelectProduct(e) {
-    alert("Select "+this.props.produces.name+ " Product");
+  pushProductToStack(product) {
+    this.state.productStack.push(product);
+    this.setState({selectedProduct: product});
+  }
+
+  popProductFromStatck() {
+    this.state.productStack.pop();
+    this.setState({selectedProduct: this.state.productStack.peek()});
+  }
+
+  handleShowProductModal(e) {
+    this.setState({
+      showProductModal: true,
+      selectedProduct: this.props.produces
+    });
+  }
+
+  handleHideProductModal() {
+    this.setState({
+      showProductModal: false,
+      selectedProduct: null
+    });
   }
 
   removeFromProduction(e) {
@@ -57,9 +85,14 @@ export default class ProductDetails extends React.Component {
             </tbody>
           </Table>
           <ButtonToolbar>
-            <Button onClick={this.handleSelectProduct} bsStyle='primary' bsSize='small'>Select Product</Button>{' '}
+            <Button onClick={this.handleShowProductModal} bsStyle='primary' bsSize='small'>Select Product</Button>{' '}
             <Button onClick={this.removeFromProduction} bsSize='small'>Remove Product from Production Line</Button>
           </ButtonToolbar>
+          <ProductModal
+            show={this.state.showProductModal}
+            handleHide={this.handleHideProductModal}
+            {...this.state.selectedProduct}
+          />
         </div>
       );
     }
