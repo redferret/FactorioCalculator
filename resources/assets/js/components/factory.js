@@ -28,21 +28,19 @@ export default class Factory extends React.Component {
         <Table>
           <thead>
             <tr>
-              <th>Total Items Produced</th>
               <th>Number of Production Lines</th>
+              <th>Total Items Produced</th>
+              <th>Total Items Consumed</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td>{this.props.total_items}</td>
               <td>{this.props.production_lines.length}</td>
+              <td>{this.props.total_items}</td>
+              <td>#</td>
             </tr>
           </tbody>
         </Table>
-        <ButtonToolbar>
-          <Button bsStyle='primary'>Add Production Line</Button>
-        </ButtonToolbar>
-        <br/>
       </div>
     );
   }
@@ -75,17 +73,18 @@ export default class Factory extends React.Component {
 
   render() {
     return (
-      <Panel eventKey={this.props.eventKey}>
+      <Panel bsStyle='primary' eventKey={this.props.eventKey}>
         <Panel.Heading>
           <Panel.Title toggle>
-            <h4>
               {this.props.name}
-            </h4>
           </Panel.Title>
         </Panel.Heading>
         <Panel.Body collapsible>
           {this.renderFactoryDetails()}
           {this.renderFactoryProductionLines()}
+          <ButtonToolbar>
+            <Button bsStyle='primary'>Add Production Line</Button>
+          </ButtonToolbar>
         </Panel.Body>
       </Panel>
     );

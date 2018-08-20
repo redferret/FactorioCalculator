@@ -10,6 +10,8 @@ export default class ProductDetails extends React.Component {
     this.handleShowProductModal = this.handleShowProductModal.bind(this);
     this.handleHideProductModal = this.handleHideProductModal.bind(this);
     this.removeFromProduction = this.removeFromProduction.bind(this);
+    this.pushProductToStack = this.pushProductToStack.bind(this);
+    this.popProductFromStack = this.popProductFromStack.bind(this);
 
     this.state = {
       showProductModal: false,
@@ -19,13 +21,18 @@ export default class ProductDetails extends React.Component {
   }
 
   pushProductToStack(product) {
-    this.state.productStack.push(product);
+    this.state.productStack.unshift(product);
     this.setState({selectedProduct: product});
   }
 
-  popProductFromStatck() {
-    this.state.productStack.pop();
-    this.setState({selectedProduct: this.state.productStack.peek()});
+  popProductFromStack() {
+    this.state.productStack.shift();
+    if (this.state.productStack.peek() !== undefined) {
+      this.setState({selectedProduct: this.state.productStack.peek()});
+    } else {
+      this.setState({selectedProduct: this.props.produces});
+    }
+    console.log('popped');
   }
 
   handleShowProductModal(e) {
@@ -53,9 +60,9 @@ export default class ProductDetails extends React.Component {
   render() {
     if (this.props.produces !== null) {
 
-      var headerTitle = 'Number of Assemblers';
+      var assemblyCountTitle = 'Number of Assemblers';
       if (this.props.produces.producer.is_miner) {
-        headerTitle = 'Number of Miners';
+        assemblyCountTitle = 'Number of Miners';
       }
 
       var balanced = this.props.produces.assembly_count === this.props.produces.desired_assembly_count;
@@ -70,9 +77,10 @@ export default class ProductDetails extends React.Component {
             <thead>
               <tr>
                 <th>Name</th>
-                <th>{headerTitle}</th>
-                <th>Number of Items Per Second</th>
-                <th>Total Seconds Per Item</th>
+                <th>{assemblyCountTitle}</th>
+                <th>Items Produced</th>
+                <th>Items Consumed</th>
+                <th>Seconds Per Item Produced</th>
               </tr>
             </thead>
             <tbody>
@@ -80,6 +88,7 @@ export default class ProductDetails extends React.Component {
                 <td>{this.props.produces.name}</td>
                 <td>{this.props.produces.assembly_count}</td>
                 <td>{this.props.produces.items_per_second}</td>
+                <td>#</td>
                 <td>{this.props.produces.seconds_per_item}</td>
               </tr>
             </tbody>
@@ -91,6 +100,8 @@ export default class ProductDetails extends React.Component {
           <ProductModal
             show={this.state.showProductModal}
             handleHide={this.handleHideProductModal}
+            handleSelect={this.pushProductToStack}
+            handleBack={this.popProductFromStack}
             {...this.state.selectedProduct}
           />
         </div>

@@ -33,12 +33,10 @@ export default class ProductionPanel extends React.Component {
 
   render() {
     return (
-      <Panel eventKey={this.props.eventKey}>
+      <Panel bsStyle='info' eventKey={this.props.eventKey}>
         <Panel.Heading>
           <Panel.Title toggle>
-            <h4>
-              {this.props.name}
-            </h4>
+            {this.props.name}
           </Panel.Title>
         </Panel.Heading>
         <Panel.Body collapsible>
