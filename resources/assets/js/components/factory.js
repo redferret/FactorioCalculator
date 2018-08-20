@@ -91,9 +91,3 @@ export default class Factory extends React.Component {
     );
   }
 }
-
-Factory.defaultProps = {
-  id: -1,
-  name: '',
-  productionLines: []
-};
