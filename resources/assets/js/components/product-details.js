@@ -36,6 +36,7 @@ export default class ProductDetails extends React.Component {
         <div>
           <BalanceProductionButton
             balanced={balanced}
+            {...this.props}
           />
           <Table>
             <thead>

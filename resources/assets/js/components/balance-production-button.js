@@ -1,19 +1,24 @@
 import React from 'react';
 import {Label, Button } from 'react-bootstrap';
+import AppDispatcher from '../dispatcher.js';
+import ProductionLineStore from '../stores/production-line-store.js';
+import * as Actions from '../actions.js';
 
 export default class BalanceProductionButton extends React.Component {
   constructor(props, context) {
     super(props, context);
     this.handleSelect = this.handleSelect.bind(this);
   }
+
   handleSelect(e) {
-    fetch(window.baseURL + '/balance')
-    .then(response => {
-      return response.json();
-    }).then(data => {
-      console.log(data);
+    let id = e.target.dataset.id;
+    AppDispatcher.dispatch({
+      action: Actions.BALANCE_PRODUCTION,
+      data: {id: id},
+      store: ProductionLineStore
     });
   }
+
   render() {
     var label = <Label bsStyle='success'>Production Details - Balanced</Label>;
 
@@ -27,7 +32,13 @@ export default class BalanceProductionButton extends React.Component {
     return (
       <div>
         <h4>{label}</h4>
-        <Button onClick={this.handleSelect} bsStyle='success' bsSize='xsmall'>Balance Production</Button>
+        <Button
+          onClick={this.handleSelect}
+          data-id={this.props.id}
+          bsStyle='success'
+          bsSize='xsmall'>
+            Balance Production
+        </Button>
       </div>
     );
   }

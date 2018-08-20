@@ -4,8 +4,9 @@ import ReactDOM from 'react-dom';
 import { Panel, PanelGroup, Alert, Label } from 'react-bootstrap';
 import Factory from './factory.js';
 import FactoryStore from '../stores/factory-store.js';
+import { RootElement } from '../bootstrap.js';
 
-export default class Main extends Component {
+class Main extends Component {
 
   constructor(props, context) {
     super(props, context);
@@ -50,8 +51,6 @@ export default class Main extends Component {
     );
   }
 }
-
-const RootElement = document.getElementById('root');
 
 if (RootElement) {
   ReactDOM.render(<Main />, RootElement);

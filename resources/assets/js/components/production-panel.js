@@ -1,6 +1,7 @@
 import React from 'react';
 import { Panel, Label, Well, Table, Button, Alert, ButtonToolbar } from 'react-bootstrap';
 import ProductDetails from './product-details.js';
+import ProductionLineStore from '../stores/production-line-store.js';
 
 export default class ProductionPanel extends React.Component {
 
@@ -11,6 +12,19 @@ export default class ProductionPanel extends React.Component {
 
   handleEditProduction(e) {
     alert("Edit Production "+this.props.id);
+  }
+
+  _onChange() {
+    // Store signals change after completing HTTP request, get the new
+    // data from the promise
+  }
+
+  componentDidMount() {
+    ProductionLineStore.addChangeListener(this._onChange.bind(this));
+  }
+
+  componentWillUnmount() {
+    ListStore.removeChangeListener(this._onChange.bind(this));
   }
 
   render() {
