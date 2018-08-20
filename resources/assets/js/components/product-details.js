@@ -10,29 +10,10 @@ export default class ProductDetails extends React.Component {
     this.handleShowProductModal = this.handleShowProductModal.bind(this);
     this.handleHideProductModal = this.handleHideProductModal.bind(this);
     this.removeFromProduction = this.removeFromProduction.bind(this);
-    this.pushProductToStack = this.pushProductToStack.bind(this);
-    this.popProductFromStack = this.popProductFromStack.bind(this);
 
     this.state = {
-      showProductModal: false,
-      selectedProduct: null,
-      productStack: []
+      showProductModal: false
     }
-  }
-
-  pushProductToStack(product) {
-    this.state.productStack.unshift(product);
-    this.setState({selectedProduct: product});
-  }
-
-  popProductFromStack() {
-    this.state.productStack.shift();
-    if (this.state.productStack.peek() !== undefined) {
-      this.setState({selectedProduct: this.state.productStack.peek()});
-    } else {
-      this.setState({selectedProduct: this.props.produces});
-    }
-    console.log('popped');
   }
 
   handleShowProductModal(e) {
@@ -100,9 +81,7 @@ export default class ProductDetails extends React.Component {
           <ProductModal
             show={this.state.showProductModal}
             handleHide={this.handleHideProductModal}
-            handleSelect={this.pushProductToStack}
-            handleBack={this.popProductFromStack}
-            {...this.state.selectedProduct}
+            selectedProduct={this.props.produces}
           />
         </div>
       );

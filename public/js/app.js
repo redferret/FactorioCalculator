@@ -77323,35 +77323,14 @@ var ProductDetails = function (_React$Component) {
     _this.handleShowProductModal = _this.handleShowProductModal.bind(_this);
     _this.handleHideProductModal = _this.handleHideProductModal.bind(_this);
     _this.removeFromProduction = _this.removeFromProduction.bind(_this);
-    _this.pushProductToStack = _this.pushProductToStack.bind(_this);
-    _this.popProductFromStack = _this.popProductFromStack.bind(_this);
 
     _this.state = {
-      showProductModal: false,
-      selectedProduct: null,
-      productStack: []
+      showProductModal: false
     };
     return _this;
   }
 
   _createClass(ProductDetails, [{
-    key: 'pushProductToStack',
-    value: function pushProductToStack(product) {
-      this.state.productStack.unshift(product);
-      this.setState({ selectedProduct: product });
-    }
-  }, {
-    key: 'popProductFromStack',
-    value: function popProductFromStack() {
-      this.state.productStack.shift();
-      if (this.state.productStack.peek() !== undefined) {
-        this.setState({ selectedProduct: this.state.productStack.peek() });
-      } else {
-        this.setState({ selectedProduct: this.props.produces });
-      }
-      console.log('popped');
-    }
-  }, {
     key: 'handleShowProductModal',
     value: function handleShowProductModal(e) {
       this.setState({
@@ -77480,12 +77459,11 @@ var ProductDetails = function (_React$Component) {
               'Remove Product from Production Line'
             )
           ),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__product_modal_js__["a" /* default */], _extends({
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__product_modal_js__["a" /* default */], {
             show: this.state.showProductModal,
             handleHide: this.handleHideProductModal,
-            handleSelect: this.pushProductToStack,
-            handleBack: this.popProductFromStack
-          }, this.state.selectedProduct))
+            selectedProduct: this.props.produces
+          })
         );
       }
 
@@ -77930,10 +77908,32 @@ var ProductModal = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (ProductModal.__proto__ || Object.getPrototypeOf(ProductModal)).call(this, props, context));
 
     _this.renderModalBody = _this.renderModalBody.bind(_this);
+    _this.popProductFromStack = _this.popProductFromStack.bind(_this);
+
+    _this.state = {
+      selectedProduct: _this.props.selectedProduct,
+      productStack: []
+    };
     return _this;
   }
 
   _createClass(ProductModal, [{
+    key: 'pushProductToStack',
+    value: function pushProductToStack(product) {
+      this.state.productStack.unshift(product);
+      this.setState({ selectedProduct: product });
+    }
+  }, {
+    key: 'popProductFromStack',
+    value: function popProductFromStack() {
+      this.state.productStack.shift();
+      if (this.state.productStack.peek() !== undefined) {
+        this.setState({ selectedProduct: this.state.productStack.peek() });
+      } else {
+        this.setState({ selectedProduct: this.props.selectedProduct });
+      }
+    }
+  }, {
     key: 'renderOutputProductDetails',
     value: function renderOutputProductDetails() {
       return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -77971,7 +77971,7 @@ var ProductModal = function (_React$Component) {
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               'td',
               null,
-              this.props.crafting_time
+              this.state.selectedProduct.crafting_time
             ),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               'td',
@@ -78019,7 +78019,7 @@ var ProductModal = function (_React$Component) {
               return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'a',
                 { key: product.id,
-                  onClick: _this2.props.handleSelect.bind(_this2, product),
+                  onClick: _this2.pushProductToStack.bind(_this2, product),
                   className: 'list-group-item list-group-item-action'
                 },
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -78109,16 +78109,16 @@ var ProductModal = function (_React$Component) {
 
       var products = [];
 
-      if (this.props.products !== undefined) {
-        products = this.props.products;
+      if (this.state.selectedProduct.products !== undefined) {
+        products = this.state.selectedProduct.products;
       }
 
       var backButton = '';
 
-      if (this.props.product_id !== null) {
+      if (this.state.selectedProduct.product_id !== null) {
         backButton = __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["b" /* Button */],
-          { onClick: this.props.handleBack },
+          { onClick: this.popProductFromStack },
           'Back'
         );
       }
@@ -78136,7 +78136,7 @@ var ProductModal = function (_React$Component) {
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["e" /* Modal */].Title,
             null,
-            this.props.name,
+            this.state.selectedProduct.name,
             ' Inputs'
           )
         ),

@@ -9,6 +9,26 @@ export default class ProductModal extends React.Component {
     super(props, context);
 
     this.renderModalBody = this.renderModalBody.bind(this);
+    this.popProductFromStack = this.popProductFromStack.bind(this);
+
+    this.state = {
+      selectedProduct: this.props.selectedProduct,
+      productStack: []
+    }
+  }
+
+  pushProductToStack(product) {
+    this.state.productStack.unshift(product);
+    this.setState({selectedProduct: product});
+  }
+
+  popProductFromStack() {
+    this.state.productStack.shift();
+    if (this.state.productStack.peek() !== undefined) {
+      this.setState({selectedProduct: this.state.productStack.peek()});
+    } else {
+      this.setState({selectedProduct: this.props.selectedProduct});
+    }
   }
 
   renderOutputProductDetails() {
@@ -20,7 +40,7 @@ export default class ProductModal extends React.Component {
           <th>Surplus/Deficit (Items/Sec)</th>
         </tr></thead>
         <tbody><tr>
-          <td>{this.props.crafting_time}</td>
+          <td>{this.state.selectedProduct.crafting_time}</td>
           <td>Not Implemented Yet</td>
           <td>Not Implemented Yet</td>
         </tr></tbody>
@@ -46,7 +66,7 @@ export default class ProductModal extends React.Component {
           <div className='list-group'>
             {products.map(product =>
               <a key={product.id}
-                onClick={this.props.handleSelect.bind(this, product)}
+                onClick={this.pushProductToStack.bind(this, product)}
                 className='list-group-item list-group-item-action'
               >
                 <h4>{product.name}</h4>
@@ -78,14 +98,14 @@ export default class ProductModal extends React.Component {
 
     let products = [];
 
-    if (this.props.products !== undefined) {
-      products = this.props.products;
+    if (this.state.selectedProduct.products !== undefined) {
+      products = this.state.selectedProduct.products;
     }
 
     let backButton = '';
 
-    if (this.props.product_id !== null) {
-      backButton = <Button onClick={this.props.handleBack}>Back</Button>;
+    if (this.state.selectedProduct.product_id !== null) {
+      backButton = <Button onClick={this.popProductFromStack}>Back</Button>;
     }
 
     return (
@@ -96,7 +116,7 @@ export default class ProductModal extends React.Component {
         >
         <Modal.Header>
           <Modal.Title>
-            {this.props.name} Inputs
+            {this.state.selectedProduct.name} Inputs
           </Modal.Title>
         </Modal.Header>
 
