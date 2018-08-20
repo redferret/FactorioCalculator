@@ -1,22 +1,28 @@
 
 var EventEmitter = require('events').EventEmitter;
 
+import * as Routes from '../routes.js';
+
 class ProductionLineStore extends EventEmitter {
 
   constructor() {
     super();
   }
 
-  emitChange() {
-    this.emit('change');
+  balanceProductionLine(id) {
+    this.productionLinePromise = fetch(Routes.BALANCE_PRODUCTION + id).then(response => response.json());
   }
 
-  addChangeListener(callback) {
-    this.on('change', callback);
+  emitChange(id) {
+    this.emit('change' + id);
   }
 
-  removeChangeListener(callback) {
-    this.removeListener('change', callback);
+  addChangeListener(callback, id) {
+    this.on('change' + id, callback);
+  }
+
+  removeChangeListener(callback, id) {
+    this.removeListener('change' + id, callback);
   }
 
 }

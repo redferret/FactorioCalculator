@@ -8,6 +8,9 @@ export default class ProductionPanel extends React.Component {
   constructor(props, context) {
     super(props, context);
     this.handleEditProduction = this.handleEditProduction.bind(this);
+    this.state = {
+      productionLine: this.props
+    };
   }
 
   handleEditProduction(e) {
@@ -15,16 +18,17 @@ export default class ProductionPanel extends React.Component {
   }
 
   _onChange() {
-    // Store signals change after completing HTTP request, get the new
-    // data from the promise
+    ProductionLineStore.productionLinePromise.then(data => {
+      this.setState({productionLine: data});
+    });
   }
 
   componentDidMount() {
-    ProductionLineStore.addChangeListener(this._onChange.bind(this));
+    ProductionLineStore.addChangeListener(this._onChange.bind(this), this.props.id);
   }
 
   componentWillUnmount() {
-    ListStore.removeChangeListener(this._onChange.bind(this));
+    ProductionLineStore.removeChangeListener(this._onChange.bind(this), this.props.id);
   }
 
   render() {
@@ -40,15 +44,10 @@ export default class ProductionPanel extends React.Component {
         <Panel.Body collapsible>
           <Button onClick={this.handleEditProduction} bsSize='xsmall'>Edit Production Line</Button>
           <ProductDetails
-            {...this.props}
+            {...this.state.productionLine}
           />
         </Panel.Body>
       </Panel>
     );
   }
-};
-ProductionPanel.defaultProps = {
-   eventKey: '0',
-   name:'',
-   productDetails: []
 };

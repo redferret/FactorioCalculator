@@ -1,7 +1,6 @@
 import React from 'react';
 import {Label, Button } from 'react-bootstrap';
 import AppDispatcher from '../dispatcher.js';
-import ProductionLineStore from '../stores/production-line-store.js';
 import * as Actions from '../actions.js';
 
 export default class BalanceProductionButton extends React.Component {
@@ -14,8 +13,7 @@ export default class BalanceProductionButton extends React.Component {
     let id = e.target.dataset.id;
     AppDispatcher.dispatch({
       action: Actions.BALANCE_PRODUCTION,
-      data: {id: id},
-      store: ProductionLineStore
+      data: {id: id}
     });
   }
 
