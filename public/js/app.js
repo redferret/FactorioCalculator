@@ -1732,7 +1732,7 @@ module.exports = exports['default'];
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_67__Tooltip__ = __webpack_require__(333);
 /* unused harmony reexport Tooltip */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_68__Well__ = __webpack_require__(334);
-/* unused harmony reexport Well */
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "i", function() { return __WEBPACK_IMPORTED_MODULE_68__Well__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_69__utils__ = __webpack_require__(335);
 /* unused harmony reexport utils */
 
@@ -23030,14 +23030,13 @@ var FactoryStore = function (_EventEmitter) {
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(149);
-module.exports = __webpack_require__(345);
+module.exports = __webpack_require__(346);
 
 
 /***/ }),
 /* 149 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -23058,7 +23057,7 @@ __webpack_require__(173);
 /**
  * Pull in the ultiities file
  */
-__webpack_require__(350);
+__webpack_require__(345);
 
 /***/ }),
 /* 150 */
@@ -76987,7 +76986,7 @@ var Well = function (_React$Component) {
   return Well;
 }(__WEBPACK_IMPORTED_MODULE_6_react___default.a.Component);
 
-/* unused harmony default export */ var _unused_webpack_default_export = (Object(__WEBPACK_IMPORTED_MODULE_7__utils_bootstrapUtils__["a" /* bsClass */])('well', Object(__WEBPACK_IMPORTED_MODULE_7__utils_bootstrapUtils__["b" /* bsSizes */])([__WEBPACK_IMPORTED_MODULE_8__utils_StyleConfig__["c" /* Size */].LARGE, __WEBPACK_IMPORTED_MODULE_8__utils_StyleConfig__["c" /* Size */].SMALL], Well)));
+/* harmony default export */ __webpack_exports__["a"] = (Object(__WEBPACK_IMPORTED_MODULE_7__utils_bootstrapUtils__["a" /* bsClass */])('well', Object(__WEBPACK_IMPORTED_MODULE_7__utils_bootstrapUtils__["b" /* bsSizes */])([__WEBPACK_IMPORTED_MODULE_8__utils_StyleConfig__["c" /* Size */].LARGE, __WEBPACK_IMPORTED_MODULE_8__utils_StyleConfig__["c" /* Size */].SMALL], Well)));
 
 /***/ }),
 /* 335 */
@@ -77949,17 +77948,7 @@ var ProductModal = function (_React$Component) {
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               'th',
               null,
-              'Assemblers Needed'
-            ),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              'th',
-              null,
               'Crafting Time Per Item'
-            ),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              'th',
-              null,
-              'Items Needed / Sec'
             ),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               'th',
@@ -77982,17 +77971,7 @@ var ProductModal = function (_React$Component) {
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               'td',
               null,
-              this.props.desired_assembly_count
-            ),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              'td',
-              null,
               this.props.crafting_time
-            ),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              'td',
-              null,
-              this.props.items_per_second
             ),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               'td',
@@ -78031,92 +78010,96 @@ var ProductModal = function (_React$Component) {
         null,
         this.renderOutputProductDetails(),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'div',
-          { className: 'list-group' },
-          products.map(function (product) {
-            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              'a',
-              { key: product.id,
-                onClick: _this2.props.handleSelect.bind(_this2, product),
-                className: 'list-group-item list-group-item-action'
-              },
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                'h4',
-                null,
-                product.name
-              ),
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["h" /* Table */],
-                null,
+          __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["i" /* Well */],
+          null,
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'div',
+            { className: 'list-group' },
+            products.map(function (product) {
+              return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'a',
+                { key: product.id,
+                  onClick: _this2.props.handleSelect.bind(_this2, product),
+                  className: 'list-group-item list-group-item-action'
+                },
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                  'thead',
+                  'h4',
                   null,
-                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    'tr',
-                    null,
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                      'th',
-                      null,
-                      'Assemblers Needed'
-                    ),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                      'th',
-                      null,
-                      'Crafting Time Per Item'
-                    ),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                      'th',
-                      null,
-                      'Items Needed / Sec'
-                    ),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                      'th',
-                      null,
-                      'Actual Production (Items/Sec)'
-                    ),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                      'th',
-                      null,
-                      'Surplus/Deficit (Items/Sec)'
-                    )
-                  )
+                  product.name
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                  'tbody',
+                  __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["h" /* Table */],
                   null,
                   __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    'tr',
+                    'thead',
                     null,
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                      'td',
+                      'tr',
                       null,
-                      product.desired_assembly_count
-                    ),
+                      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'th',
+                        null,
+                        'Assemblers Needed'
+                      ),
+                      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'th',
+                        null,
+                        'Crafting Time Per Item'
+                      ),
+                      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'th',
+                        null,
+                        'Items Needed / Sec'
+                      ),
+                      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'th',
+                        null,
+                        'Actual Production (Items/Sec)'
+                      ),
+                      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'th',
+                        null,
+                        'Surplus/Deficit (Items/Sec)'
+                      )
+                    )
+                  ),
+                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'tbody',
+                    null,
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                      'td',
+                      'tr',
                       null,
-                      product.crafting_time
-                    ),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                      'td',
-                      null,
-                      product.items_per_second
-                    ),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                      'td',
-                      null,
-                      'Not Implemented Yet'
-                    ),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                      'td',
-                      null,
-                      'Not Implemented Yet'
+                      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'td',
+                        null,
+                        product.desired_assembly_count
+                      ),
+                      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'td',
+                        null,
+                        product.crafting_time
+                      ),
+                      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'td',
+                        null,
+                        product.items_per_second
+                      ),
+                      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'td',
+                        null,
+                        'Not Implemented Yet'
+                      ),
+                      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'td',
+                        null,
+                        'Not Implemented Yet'
+                      )
                     )
                   )
                 )
-              )
-            );
-          })
+              );
+            })
+          )
         )
       );
     }
@@ -78234,16 +78217,6 @@ var ProductStore = function (_EventEmitter) {
 
 /***/ }),
 /* 345 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 346 */,
-/* 347 */,
-/* 348 */,
-/* 349 */,
-/* 350 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -78289,6 +78262,12 @@ function shallowEqual(objA, objB) {
 function comparePreviousToNext(instance, nextProps, nextState) {
   return !shallowEqual(instance.props, nextProps) || !shallowEqual(instance.state, nextState);
 }
+
+/***/ }),
+/* 346 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
 
 /***/ })
 /******/ ]);

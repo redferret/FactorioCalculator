@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Modal, Button, ButtonToolbar, Alert, Table} from 'react-bootstrap';
+import { Modal, Button, ButtonToolbar, Alert, Table, Well} from 'react-bootstrap';
 import ProductStore from '../stores/product-store.js';
 
 export default class ProductModal extends React.Component {
@@ -15,16 +15,12 @@ export default class ProductModal extends React.Component {
     return (
       <Table>
         <thead><tr>
-          <th>Assemblers Needed</th>
           <th>Crafting Time Per Item</th>
-          <th>Items Needed / Sec</th>
           <th>Actual Production (Items/Sec)</th>
           <th>Surplus/Deficit (Items/Sec)</th>
         </tr></thead>
         <tbody><tr>
-          <td>{this.props.desired_assembly_count}</td>
           <td>{this.props.crafting_time}</td>
-          <td>{this.props.items_per_second}</td>
           <td>Not Implemented Yet</td>
           <td>Not Implemented Yet</td>
         </tr></tbody>
@@ -46,32 +42,34 @@ export default class ProductModal extends React.Component {
     return (
       <Modal.Body>
         {this.renderOutputProductDetails()}
-        <div className='list-group'>
-          {products.map(product =>
-            <a key={product.id}
-              onClick={this.props.handleSelect.bind(this, product)}
-              className='list-group-item list-group-item-action'
-            >
-              <h4>{product.name}</h4>
-              <Table>
-                <thead><tr>
-                  <th>Assemblers Needed</th>
-                  <th>Crafting Time Per Item</th>
-                  <th>Items Needed / Sec</th>
-                  <th>Actual Production (Items/Sec)</th>
-                  <th>Surplus/Deficit (Items/Sec)</th>
-                </tr></thead>
-                <tbody><tr>
-                  <td>{product.desired_assembly_count}</td>
-                  <td>{product.crafting_time}</td>
-                  <td>{product.items_per_second}</td>
-                  <td>Not Implemented Yet</td>
-                  <td>Not Implemented Yet</td>
-                </tr></tbody>
-              </Table>
-            </a>
-          )}
-        </div>
+        <Well>
+          <div className='list-group'>
+            {products.map(product =>
+              <a key={product.id}
+                onClick={this.props.handleSelect.bind(this, product)}
+                className='list-group-item list-group-item-action'
+              >
+                <h4>{product.name}</h4>
+                <Table>
+                  <thead><tr>
+                    <th>Assemblers Needed</th>
+                    <th>Crafting Time Per Item</th>
+                    <th>Items Needed / Sec</th>
+                    <th>Actual Production (Items/Sec)</th>
+                    <th>Surplus/Deficit (Items/Sec)</th>
+                  </tr></thead>
+                  <tbody><tr>
+                    <td>{product.desired_assembly_count}</td>
+                    <td>{product.crafting_time}</td>
+                    <td>{product.items_per_second}</td>
+                    <td>Not Implemented Yet</td>
+                    <td>Not Implemented Yet</td>
+                  </tr></tbody>
+                </Table>
+              </a>
+            )}
+          </div>
+        </Well>
       </Modal.Body>
     );
   }
