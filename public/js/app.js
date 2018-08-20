@@ -13761,6 +13761,7 @@ if (token) {
   console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
 
+// Bootstrap the root element and export it for user by Main.js
 var RootElement = document.getElementById('root');
 
 /**
@@ -77841,11 +77842,8 @@ module.exports = Dispatcher;
 /* unused harmony export ROOT */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BALANCE_PRODUCTION; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return GET_FACTORIES; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__bootstrap_js__ = __webpack_require__(12);
 
-
-
-var ROOT = __WEBPACK_IMPORTED_MODULE_0__bootstrap_js__["RootElement"].getAttribute('url');
+var ROOT = document.head.querySelector('meta[name="rootURL"]').content;
 var BALANCE_PRODUCTION = ROOT + '/balance';
 var GET_FACTORIES = ROOT + '/factories';
 

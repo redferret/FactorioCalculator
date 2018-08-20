@@ -5,7 +5,7 @@
   <div class="row justify-content-center">
     <div>
       <!-- Entry Point for ReactJS -->
-      <div id='root' url='{{url('/')}}'></div>
+      <div id='root'></div>
     </div>
   </div>
 </div>
