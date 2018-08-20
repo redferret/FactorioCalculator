@@ -67,12 +67,18 @@ Route::get('/balance/{id}', function($id) {
   $product = $productionLine->produces; // Get the product this line produces
   if ($product != null) {
     $producer = $product->producer;
-    $product->seconds_per_item = round($product->items_per_second / $producer->speed, 2);
-    $product->assembly_count = round(($product->items_per_second * $product->seconds_per_item) / $product->stock_size, 2);
-    $product->desired_assembly_count = $product->assembly_count;
+    $seconds_per_item = round($product->items_per_second / $producer->speed, 2);
+    $assembly_count = ceil(($product->items_per_second * $seconds_per_item) / $product->stock_size);
+    $product->desired_assembly_count = $assembly_count;
+    $productionLine->produces()->save($product);
+
+    $product->assembly_count = $assembly_count;
+    $product->seconds_per_item = $seconds_per_item;
     $product->products;
+
     // Update inputs for this product
   }
+
   return $productionLine;
 });
 
