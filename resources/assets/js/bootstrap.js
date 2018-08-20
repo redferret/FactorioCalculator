@@ -38,6 +38,7 @@ if (token) {
     console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
 
+// Bootstrap the root element and export it for user by Main.js
 export const RootElement = document.getElementById('root');
 
 /**
