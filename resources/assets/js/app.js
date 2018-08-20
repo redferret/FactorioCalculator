@@ -15,10 +15,7 @@ require('./bootstrap');
 
 require('./components/Main');
 
-Array.prototype.peek = function() {
-    if (this.length > 0) {
-        return this[this.length-1];
-    }
-    // empty array...
-    return undefined;    // or another default value...
-};
+/**
+ * Pull in the ultiities file
+ */
+require('./util.js');

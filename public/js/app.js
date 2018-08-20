@@ -23055,13 +23055,10 @@ __webpack_require__(88);
 
 __webpack_require__(173);
 
-Array.prototype.peek = function () {
-  if (this.length > 0) {
-    return this[this.length - 1];
-  }
-  // empty array...
-  return undefined; // or another default value...
-};
+/**
+ * Pull in the ultiities file
+ */
+__webpack_require__(350);
 
 /***/ }),
 /* 150 */
@@ -78240,6 +78237,58 @@ var ProductStore = function (_EventEmitter) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 346 */,
+/* 347 */,
+/* 348 */,
+/* 349 */,
+/* 350 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (immutable) */ __webpack_exports__["comparePreviousToNext"] = comparePreviousToNext;
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+Array.prototype.peek = function () {
+  if (this.length > 0) {
+    return this[this.length - 1];
+  }
+  // empty array...
+  return undefined; // or another default value...
+};
+
+function shallowEqual(objA, objB) {
+  if (objA === objB) {
+    return true;
+  }
+
+  if ((typeof objA === 'undefined' ? 'undefined' : _typeof(objA)) !== 'object' || objA === null || (typeof objB === 'undefined' ? 'undefined' : _typeof(objB)) !== 'object' || objB === null) {
+    return false;
+  }
+
+  var keysA = Object.keys(objA);
+  var keysB = Object.keys(objB);
+
+  if (keysA.length !== keysB.length) {
+    return false;
+  }
+
+  // Test for A's keys different from B.
+  var bHasOwnProperty = hasOwnProperty.bind(objB);
+  for (var i = 0; i < keysA.length; i++) {
+    if (!bHasOwnProperty(keysA[i]) || objA[keysA[i]] !== objB[keysA[i]]) {
+      return false;
+    }
+  }
+
+  return true;
+}
+
+function comparePreviousToNext(instance, nextProps, nextState) {
+  return !shallowEqual(instance.props, nextProps) || !shallowEqual(instance.state, nextState);
+}
 
 /***/ })
 /******/ ]);

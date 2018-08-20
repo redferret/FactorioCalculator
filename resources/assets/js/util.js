@@ -1,4 +1,12 @@
 
+Array.prototype.peek = function() {
+    if (this.length > 0) {
+        return this[this.length-1];
+    }
+    // empty array...
+    return undefined;    // or another default value...
+};
+
 function shallowEqual(objA: mixed, objB: mixed): boolean {
   if (objA === objB) {
     return true;
