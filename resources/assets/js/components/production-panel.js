@@ -2,6 +2,7 @@ import React from 'react';
 import { Panel, Label, Well, Table, Button, Alert, ButtonToolbar } from 'react-bootstrap';
 import ProductDetails from './product-details.js';
 import ProductionLineStore from '../stores/production-line-store.js';
+import { PRODUCTION_LINE_ID } from '../constants.js';
 
 export default class ProductionPanel extends React.Component {
 
@@ -19,15 +20,14 @@ export default class ProductionPanel extends React.Component {
 
   _onChange() {
     this.setState({productionLine: ProductionLineStore.getProductionLine()});
-    console.log('onChange for productionLine');
   }
 
   componentDidMount() {
-    ProductionLineStore.addChangeListener(this._onChange.bind(this), this.props.id);
+    ProductionLineStore.on(PRODUCTION_LINE_ID + this.props.id, this._onChange.bind(this));
   }
 
   componentWillUnmount() {
-    ProductionLineStore.removeChangeListener(this._onChange.bind(this), this.props.id);
+    ProductionLineStore.removeListener(PRODUCTION_LINE_ID + this.props.id, this._onChange.bind(this));
   }
 
   render() {

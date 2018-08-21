@@ -5,7 +5,10 @@ import { Panel, PanelGroup, Alert, Label } from 'react-bootstrap';
 import Factory from './factory.js';
 import FactoryStore from '../stores/factory-store.js';
 import ProductModal from './product-modal.js';
+import AppDispatcher from '../dispatcher.js';
+import * as Actions from '../actions.js';
 import { RootElement } from '../bootstrap.js';
+import { MAIN_ID } from '../constants.js';
 
 class Main extends Component {
 
@@ -20,14 +23,26 @@ class Main extends Component {
     };
   }
 
+  _onLoadedFactories() {
+    this.setState({factories: FactoryStore.getFactories()});
+  }
+
   handleFactorySelect(activeKey) {
     this.setState({ activeKey });
   }
 
   componentDidMount() {
-    FactoryStore.fetchFactoryPromise.then(data => {
-      this.setState({factories: data});
+    FactoryStore.on(MAIN_ID, this._onLoadedFactories.bind(this));
+    AppDispatcher.dispatch({
+      action: Actions.GET_FACTORIES,
+      data: {
+        componentId: MAIN_ID
+      }
     });
+  }
+
+  componentWillUnmount() {
+    FactoryStore.removeListener(MAIN_ID, this._onLoadedFactories.bind(this));
   }
 
   render() {

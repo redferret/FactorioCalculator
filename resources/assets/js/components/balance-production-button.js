@@ -2,6 +2,7 @@ import React from 'react';
 import {Label, Button } from 'react-bootstrap';
 import AppDispatcher from '../dispatcher.js';
 import * as Actions from '../actions.js';
+import { PRODUCTION_LINE_ID } from '../constants.js';
 
 export default class BalanceProductionButton extends React.Component {
   constructor(props, context) {
@@ -11,12 +12,11 @@ export default class BalanceProductionButton extends React.Component {
 
   handleSelect(e) {
     let id = this.props.id;
-    console.log('dispatching ', id);
     AppDispatcher.dispatch({
       action: Actions.BALANCE_PRODUCTION,
       data: {
         id: id,
-        componentId: id
+        componentId: PRODUCTION_LINE_ID + id
       }
     });
   }

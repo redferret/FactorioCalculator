@@ -11,14 +11,6 @@ class ProducerStore extends EventEmitter {
     this.emit('change');
   }
 
-  addChangeListener(callback) {
-    this.on('change', callback);
-  }
-
-  removeChangeListener(callback) {
-    this.removeListener('change', callback);
-  }
-
 }
 
 export default new ProducerStore();

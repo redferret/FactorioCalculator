@@ -8,21 +8,20 @@ class FactoryStore extends EventEmitter {
   constructor() {
     super();
     this._factories = [];
-
-    this.fetchFactoryPromise = fetch(Routes.GET_FACTORIES).then(response => response.json());
   }
 
-  emitChange() {
-    this.emit('change');
+  setFactories(factories) {
+    this._factories = factories;
   }
 
-  addChangeListener(callback) {
-    this.on('change', callback);
+  getFactories() {
+    return this._factories;
   }
 
-  removeChangeListener(callback) {
-    this.removeListener('change', callback);
+  emitChange(id) {
+    this.emit(id);
   }
+
 };
 
 export default new FactoryStore();

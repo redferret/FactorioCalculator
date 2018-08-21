@@ -5,8 +5,7 @@ import ProductModalStore from '../stores/product-modal-store.js';
 import ProductStore from '../stores/product-store.js';
 import AppDispatcher from '../dispatcher.js';
 import * as Actions from '../actions.js';
-
-const MODAL_ID = 'product-modal';
+import { MODAL_ID } from '../constants.js';
 
 export default class ProductModal extends React.Component {
 
@@ -26,13 +25,13 @@ export default class ProductModal extends React.Component {
   }
 
   componentDidMount() {
-    ProductModalStore.addChangeListener(this._onChange.bind(this));
-    ProductStore.addChangeListener(this._onSelectProduct.bind(this), MODAL_ID);
+    ProductModalStore.on(MODAL_ID, this._onChange.bind(this));
+    ProductStore.on(MODAL_ID, this._onSelectProduct.bind(this));
   }
 
   componentWillUnmount() {
-    ProductModalStore.removeChangeListener(this._onChange.bind(this));
-    ProductStore.removeChangeListener(this._onSelectProduct.bind(this), MODAL_ID);
+    ProductModalStore.removeListener(MODAL_ID, this._onChange.bind(this));
+    ProductStore.removeListener(MODAL_ID, this._onSelectProduct.bind(this));
   }
 
   handleShowProductModal(e) {

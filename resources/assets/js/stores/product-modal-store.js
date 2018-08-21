@@ -1,7 +1,6 @@
 var EventEmitter = require('events').EventEmitter;
 import * as Routes from '../routes.js';
-
-const CHANGE = 'change_';
+import { MODAL_ID } from '../constants.js';
 
 class ProductModalStore extends EventEmitter {
 
@@ -19,7 +18,7 @@ class ProductModalStore extends EventEmitter {
 
   showModal() {
     this.state.show = true;
-    this.emitChange();
+    this.emitChange(MODAL_ID);
   }
 
   hideModal() {
@@ -27,7 +26,7 @@ class ProductModalStore extends EventEmitter {
       selectedProduct: null,
       show: false
     };
-    this.emitChange();
+    this.emitChange(MODAL_ID);
   }
 
   shouldShow() {
@@ -42,16 +41,8 @@ class ProductModalStore extends EventEmitter {
     return this.state.selectedProduct;
   }
 
-  emitChange() {
-    this.emit(CHANGE);
-  }
-
-  addChangeListener(callback) {
-    this.on(CHANGE, callback);
-  }
-
-  removeChangeListener(callback) {
-    this.removeListener(CHANGE + id, callback);
+  emitChange(id) {
+    this.emit(id);
   }
 
 }

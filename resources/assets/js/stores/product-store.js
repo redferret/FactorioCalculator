@@ -19,14 +19,6 @@ class ProductStore extends EventEmitter {
     this.emit(id);
   }
 
-  addChangeListener(callback, id) {
-    this.on(id, callback);
-  }
-
-  removeChangeListener(callback, id) {
-    this.removeListener(id, callback);
-  }
-
 }
 
 export default new ProductStore();
