@@ -13,7 +13,10 @@ export default class BalanceProductionButton extends React.Component {
     let id = e.target.dataset.id;
     AppDispatcher.dispatch({
       action: Actions.BALANCE_PRODUCTION,
-      data: {id: id}
+      data: {
+        id: id,
+        componentId: id
+      }
     });
   }
 

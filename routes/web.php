@@ -85,5 +85,6 @@ Route::get('/balance/{id}', function($id) {
 Route::get('/product/{id}', function($id) {
   $product = Auth::user()->products()->find($id);
   $product->products; // Get the inputs for this product
+  $product->producer;
   return $product;
 });

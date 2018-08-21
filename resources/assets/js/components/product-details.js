@@ -1,33 +1,19 @@
 import React from 'react';
 import { Table, Button, Alert, ButtonToolbar } from 'react-bootstrap';
 import BalanceProductionButton from './balance-production-button.js';
-import ProductModal from './product-modal.js';
+import ProductModalStore from '../stores/product-modal-store.js';
 
 export default class ProductDetails extends React.Component {
   constructor(props, context) {
     super(props, context);
     this.addProductToProduction = this.addProductToProduction.bind(this);
     this.handleShowProductModal = this.handleShowProductModal.bind(this);
-    this.handleHideProductModal = this.handleHideProductModal.bind(this);
     this.removeFromProduction = this.removeFromProduction.bind(this);
-
-    this.state = {
-      showProductModal: false
-    }
   }
 
-  handleShowProductModal(e) {
-    this.setState({
-      showProductModal: true,
-      selectedProduct: this.props.produces
-    });
-  }
-
-  handleHideProductModal() {
-    this.setState({
-      showProductModal: false,
-      selectedProduct: null
-    });
+  handleShowProductModal() {
+    ProductModalStore.setSelectedProduct(this.props.produces);
+    ProductModalStore.showModal();
   }
 
   removeFromProduction(e) {
@@ -78,11 +64,6 @@ export default class ProductDetails extends React.Component {
             <Button onClick={this.handleShowProductModal} bsStyle='primary' bsSize='small'>Select Product</Button>{' '}
             <Button onClick={this.removeFromProduction} bsSize='small'>Remove Product from Production Line</Button>
           </ButtonToolbar>
-          <ProductModal
-            show={this.state.showProductModal}
-            handleHide={this.handleHideProductModal}
-            selectedProduct={this.props.produces}
-          />
         </div>
       );
     }

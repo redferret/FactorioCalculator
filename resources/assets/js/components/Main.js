@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import { Panel, PanelGroup, Alert, Label } from 'react-bootstrap';
 import Factory from './factory.js';
 import FactoryStore from '../stores/factory-store.js';
+import ProductModal from './product-modal.js';
 import { RootElement } from '../bootstrap.js';
 
 class Main extends Component {
@@ -37,6 +38,7 @@ class Main extends Component {
         activeKey={this.state.activeKey}
         onSelect={this.handleFactorySelect}
       >
+        <ProductModal />
         <div>
           <h3><Label bsStyle='primary'>Your Factories</Label></h3>
         </div>

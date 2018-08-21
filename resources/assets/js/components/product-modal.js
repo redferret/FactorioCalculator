@@ -1,7 +1,12 @@
 
 import React from 'react';
 import { Modal, Button, ButtonToolbar, Alert, Table, Well} from 'react-bootstrap';
+import ProductModalStore from '../stores/product-modal-store.js';
 import ProductStore from '../stores/product-store.js';
+import AppDispatcher from '../dispatcher.js';
+import * as Actions from '../actions.js';
+
+const MODAL_ID = 'product-modal';
 
 export default class ProductModal extends React.Component {
 
@@ -9,25 +14,70 @@ export default class ProductModal extends React.Component {
     super(props, context);
 
     this.renderModalBody = this.renderModalBody.bind(this);
-    this.popProductFromStack = this.popProductFromStack.bind(this);
+    this.handleBackSelect = this.handleBackSelect.bind(this);
+    this.handleShowProductModal = this.handleShowProductModal.bind(this);
+    this.handleHideProductModal = this.handleHideProductModal.bind(this);
 
     this.state = {
-      selectedProduct: this.props.selectedProduct,
-      productStack: []
+      selectedProduct: ProductModalStore.getSelectedProduct(),
+      productStack: [],
+      show: false
     }
   }
 
-  pushProductToStack(product) {
-    this.state.productStack.unshift(product);
-    this.setState({selectedProduct: product});
+  componentDidMount() {
+    ProductModalStore.addChangeListener(this._onChange.bind(this));
+    ProductStore.addChangeListener(this._onSelectProduct.bind(this), MODAL_ID);
   }
 
-  popProductFromStack() {
-    this.state.productStack.shift();
-    if (this.state.productStack.peek() !== undefined) {
-      this.setState({selectedProduct: this.state.productStack.peek()});
+  componentWillUnmount() {
+    ProductModalStore.removeChangeListener(this._onChange.bind(this));
+    ProductStore.removeChangeListener(this._onSelectProduct.bind(this), MODAL_ID);
+  }
+
+  handleShowProductModal(e) {
+    ProductModalStore.showModal();
+  }
+
+  handleHideProductModal() {
+    this.setState({productStack: []});
+    ProductModalStore.hideModal();
+  }
+
+  _onSelectProduct() {
+    ProductStore.productPromise.then(data => {
+      ProductModalStore.setSelectedProduct(data);
+      this.setState({selectedProduct: data});
+    });
+  }
+
+  _onChange() {
+    this.setState({selectedProduct: ProductModalStore.getSelectedProduct()});
+    this.setState({show: ProductModalStore.shouldShow()})
+  }
+
+  _fetchProduct(product) {
+    AppDispatcher.dispatch({
+      action: Actions.GET_PRODUCT,
+      data: {
+        id: product.id,
+        componentId: MODAL_ID
+      }
+    });
+  }
+
+  handleSelectInput(product) {
+    this.state.productStack.unshift(this.state.selectedProduct);
+    if (product.products === null || product.products === undefined) {
+      this._fetchProduct(product);
     } else {
-      this.setState({selectedProduct: this.props.selectedProduct});
+      this.setState({selectedProduct: product});
+    }
+  }
+
+  handleBackSelect() {
+    if (this.state.productStack.peek() !== undefined) {
+      this.setState({selectedProduct: this.state.productStack.shift()});
     }
   }
 
@@ -66,7 +116,7 @@ export default class ProductModal extends React.Component {
           <div className='list-group'>
             {products.map(product =>
               <a key={product.id}
-                onClick={this.pushProductToStack.bind(this, product)}
+                onClick={this.handleSelectInput.bind(this, product)}
                 className='list-group-item list-group-item-action'
               >
                 <h4>{product.name}</h4>
@@ -98,20 +148,24 @@ export default class ProductModal extends React.Component {
 
     let products = [];
 
+    if (this.state.selectedProduct === null) {
+      return <div></div>;
+    }
+
     if (this.state.selectedProduct.products !== undefined) {
       products = this.state.selectedProduct.products;
     }
 
     let backButton = '';
 
-    if (this.state.selectedProduct.product_id !== null) {
-      backButton = <Button onClick={this.popProductFromStack}>Back</Button>;
+    if (this.state.productStack.length > 0) {
+      backButton = <Button onClick={this.handleBackSelect}>Back</Button>;
     }
 
     return (
       <Modal
-        show={this.props.show}
-        onHide={this.props.handleHide}
+        show={this.state.show}
+        onHide={this.handleHideProductModal}
         bsSize='large'
         >
         <Modal.Header>
@@ -126,7 +180,7 @@ export default class ProductModal extends React.Component {
           <ButtonToolbar>
             <Button bsStyle='primary'>Add Input</Button>
             {backButton}
-            <Button onClick={this.props.handleHide}>Close</Button>
+            <Button onClick={this.handleHideProductModal}>Close</Button>
           </ButtonToolbar>
         </Modal.Footer>
       </Modal>

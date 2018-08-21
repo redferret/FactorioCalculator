@@ -1,5 +1,8 @@
 
 var EventEmitter = require('events').EventEmitter;
+import * as Routes from '../routes.js';
+
+const CHANGE = 'change_';
 
 class ProductStore extends EventEmitter {
 
@@ -7,16 +10,20 @@ class ProductStore extends EventEmitter {
     super();
   }
 
-  emitChange() {
-    this.emit('change');
+  getProduct(id) {
+    this.productPromise = fetch(Routes.GET_PRODUCT + id).then(response => response.json());
   }
 
-  addChangeListener(callback) {
-    this.on('change', callback);
+  emitChange(id) {
+    this.emit(id);
   }
 
-  removeChangeListener(callback) {
-    this.removeListener('change', callback);
+  addChangeListener(callback, id) {
+    this.on(id, callback);
+  }
+
+  removeChangeListener(callback, id) {
+    this.removeListener(id, callback);
   }
 
 }

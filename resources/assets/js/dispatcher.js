@@ -4,6 +4,7 @@ var AppDispatcher = new Dispatcher();
 import * as Routes from './routes.js';
 import * as Actions from './actions.js';
 import ProductionLineStore from './stores/production-line-store.js';
+import ProductStore from './stores/product-store.js';
 
 // Register callback with AppDispatcher
 AppDispatcher.register((payload) => {
@@ -13,9 +14,13 @@ AppDispatcher.register((payload) => {
 
   switch(action) {
     case Actions.BALANCE_PRODUCTION:
-      let productionLineId = data.id;
-      ProductionLineStore.balanceProductionLine(productionLineId);
-      ProductionLineStore.emitChange(productionLineId);
+      ProductionLineStore.balanceProductionLine(data.id);
+      ProductionLineStore.emitChange(data.componentId);
+      break;
+
+    case Actions.GET_PRODUCT:
+      ProductStore.getProduct(data.id);
+      ProductStore.emitChange(data.componentId);
       break;
   }
   return true;
