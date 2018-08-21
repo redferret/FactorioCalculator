@@ -1,8 +1,6 @@
 
 var EventEmitter = require('events').EventEmitter;
 
-import * as Routes from '../routes.js';
-
 const CHANGE = 'change_';
 
 class ProductionLineStore extends EventEmitter {
@@ -11,8 +9,12 @@ class ProductionLineStore extends EventEmitter {
     super();
   }
 
-  balanceProductionLine(id) {
-    this.productionLinePromise = fetch(Routes.BALANCE_PRODUCTION + id).then(response => response.json());
+  setProductionLine(data) {
+    this._productionLine = data;
+  }
+
+  getProductionLine() {
+    return this._productionLine;
   }
 
   emitChange(id) {

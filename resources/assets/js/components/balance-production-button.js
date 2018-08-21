@@ -10,7 +10,8 @@ export default class BalanceProductionButton extends React.Component {
   }
 
   handleSelect(e) {
-    let id = e.target.dataset.id;
+    let id = this.props.id;
+    console.log('dispatching ', id);
     AppDispatcher.dispatch({
       action: Actions.BALANCE_PRODUCTION,
       data: {
@@ -35,7 +36,6 @@ export default class BalanceProductionButton extends React.Component {
         <h4>{label}</h4>
         <Button
           onClick={this.handleSelect}
-          data-id={this.props.id}
           bsStyle='success'
           bsSize='xsmall'>
             Balance Production

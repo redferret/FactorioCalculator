@@ -22937,16 +22937,25 @@ AppDispatcher.register(function (payload) {
 
   var action = payload.action;
   var data = payload.data;
+  var promise = null;
 
   switch (action) {
     case __WEBPACK_IMPORTED_MODULE_1__actions_js__["a" /* BALANCE_PRODUCTION */]:
-      __WEBPACK_IMPORTED_MODULE_2__stores_production_line_store_js__["a" /* default */].balanceProductionLine(data.id);
-      __WEBPACK_IMPORTED_MODULE_2__stores_production_line_store_js__["a" /* default */].emitChange(data.componentId);
+      fetch(__WEBPACK_IMPORTED_MODULE_0__routes_js__["a" /* BALANCE_PRODUCTION */] + data.id).then(function (response) {
+        return response.json();
+      }).then(function (productionLine) {
+        __WEBPACK_IMPORTED_MODULE_2__stores_production_line_store_js__["a" /* default */].setProductionLine(productionLine);
+        __WEBPACK_IMPORTED_MODULE_2__stores_production_line_store_js__["a" /* default */].emitChange(data.componentId);
+      });
       break;
 
     case __WEBPACK_IMPORTED_MODULE_1__actions_js__["b" /* GET_PRODUCT */]:
-      __WEBPACK_IMPORTED_MODULE_3__stores_product_store_js__["a" /* default */].getProduct(data.id);
-      __WEBPACK_IMPORTED_MODULE_3__stores_product_store_js__["a" /* default */].emitChange(data.componentId);
+      fetch(__WEBPACK_IMPORTED_MODULE_0__routes_js__["c" /* GET_PRODUCT */] + data.id).then(function (response) {
+        return response.json();
+      }).then(function (product) {
+        __WEBPACK_IMPORTED_MODULE_3__stores_product_store_js__["a" /* default */].setProduct(product);
+        __WEBPACK_IMPORTED_MODULE_3__stores_product_store_js__["a" /* default */].emitChange(data.componentId);
+      });
       break;
   }
   return true;
@@ -22959,7 +22968,6 @@ AppDispatcher.register(function (payload) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__routes_js__ = __webpack_require__(42);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -22969,8 +22977,6 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var EventEmitter = __webpack_require__(56).EventEmitter;
-
-
 
 var CHANGE = 'change_';
 
@@ -22984,11 +22990,14 @@ var ProductionLineStore = function (_EventEmitter) {
   }
 
   _createClass(ProductionLineStore, [{
-    key: 'balanceProductionLine',
-    value: function balanceProductionLine(id) {
-      this.productionLinePromise = fetch(__WEBPACK_IMPORTED_MODULE_0__routes_js__["a" /* BALANCE_PRODUCTION */] + id).then(function (response) {
-        return response.json();
-      });
+    key: 'setProductionLine',
+    value: function setProductionLine(data) {
+      this._productionLine = data;
+    }
+  }, {
+    key: 'getProductionLine',
+    value: function getProductionLine() {
+      return this._productionLine;
     }
   }, {
     key: 'emitChange',
@@ -23017,7 +23026,6 @@ var ProductionLineStore = function (_EventEmitter) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__routes_js__ = __webpack_require__(42);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -23027,9 +23035,6 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var EventEmitter = __webpack_require__(56).EventEmitter;
-
-
-var CHANGE = 'change_';
 
 var ProductStore = function (_EventEmitter) {
   _inherits(ProductStore, _EventEmitter);
@@ -23043,9 +23048,12 @@ var ProductStore = function (_EventEmitter) {
   _createClass(ProductStore, [{
     key: 'getProduct',
     value: function getProduct(id) {
-      this.productPromise = fetch(__WEBPACK_IMPORTED_MODULE_0__routes_js__["c" /* GET_PRODUCT */] + id).then(function (response) {
-        return response.json();
-      });
+      return this._product;
+    }
+  }, {
+    key: 'setProduct',
+    value: function setProduct(product) {
+      this._product = product;
     }
   }, {
     key: 'emitChange',
@@ -77433,11 +77441,8 @@ var ProductionPanel = function (_React$Component) {
   }, {
     key: '_onChange',
     value: function _onChange() {
-      var _this2 = this;
-
-      __WEBPACK_IMPORTED_MODULE_3__stores_production_line_store_js__["a" /* default */].productionLinePromise.then(function (data) {
-        _this2.setState({ productionLine: data });
-      });
+      this.setState({ productionLine: __WEBPACK_IMPORTED_MODULE_3__stores_production_line_store_js__["a" /* default */].getProductionLine() });
+      console.log('onChange for productionLine');
     }
   }, {
     key: 'componentDidMount',
@@ -77710,7 +77715,8 @@ var BalanceProductionButton = function (_React$Component) {
   _createClass(BalanceProductionButton, [{
     key: 'handleSelect',
     value: function handleSelect(e) {
-      var id = e.target.dataset.id;
+      var id = this.props.id;
+      console.log('dispatching ', id);
       __WEBPACK_IMPORTED_MODULE_2__dispatcher_js__["a" /* default */].dispatch({
         action: __WEBPACK_IMPORTED_MODULE_3__actions_js__["a" /* BALANCE_PRODUCTION */],
         data: {
@@ -77755,7 +77761,6 @@ var BalanceProductionButton = function (_React$Component) {
           __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["b" /* Button */],
           {
             onClick: this.handleSelect,
-            'data-id': this.props.id,
             bsStyle: 'success',
             bsSize: 'xsmall' },
           'Balance Production'
@@ -78102,12 +78107,7 @@ var ProductModal = function (_React$Component) {
   }, {
     key: '_onSelectProduct',
     value: function _onSelectProduct() {
-      var _this2 = this;
-
-      __WEBPACK_IMPORTED_MODULE_3__stores_product_store_js__["a" /* default */].productPromise.then(function (data) {
-        __WEBPACK_IMPORTED_MODULE_2__stores_product_modal_store_js__["a" /* default */].setSelectedProduct(data);
-        _this2.setState({ selectedProduct: data });
-      });
+      this.setState({ selectedProduct: __WEBPACK_IMPORTED_MODULE_3__stores_product_store_js__["a" /* default */].getProduct() });
     }
   }, {
     key: '_onChange',
@@ -78200,7 +78200,7 @@ var ProductModal = function (_React$Component) {
   }, {
     key: 'renderModalBody',
     value: function renderModalBody(products) {
-      var _this3 = this;
+      var _this2 = this;
 
       if (products.length === 0) {
         return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -78229,7 +78229,7 @@ var ProductModal = function (_React$Component) {
               return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'a',
                 { key: product.id,
-                  onClick: _this3.handleSelectInput.bind(_this3, product),
+                  onClick: _this2.handleSelectInput.bind(_this2, product),
                   className: 'list-group-item list-group-item-action'
                 },
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(

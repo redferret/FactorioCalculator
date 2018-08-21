@@ -1,8 +1,5 @@
 
 var EventEmitter = require('events').EventEmitter;
-import * as Routes from '../routes.js';
-
-const CHANGE = 'change_';
 
 class ProductStore extends EventEmitter {
 
@@ -11,7 +8,11 @@ class ProductStore extends EventEmitter {
   }
 
   getProduct(id) {
-    this.productPromise = fetch(Routes.GET_PRODUCT + id).then(response => response.json());
+    return this._product;
+  }
+
+  setProduct(product) {
+    this._product = product;
   }
 
   emitChange(id) {

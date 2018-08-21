@@ -45,10 +45,7 @@ export default class ProductModal extends React.Component {
   }
 
   _onSelectProduct() {
-    ProductStore.productPromise.then(data => {
-      ProductModalStore.setSelectedProduct(data);
-      this.setState({selectedProduct: data});
-    });
+    this.setState({selectedProduct: ProductStore.getProduct()});
   }
 
   _onChange() {

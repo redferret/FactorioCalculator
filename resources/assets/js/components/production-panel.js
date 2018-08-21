@@ -18,9 +18,8 @@ export default class ProductionPanel extends React.Component {
   }
 
   _onChange() {
-    ProductionLineStore.productionLinePromise.then(data => {
-      this.setState({productionLine: data});
-    });
+    this.setState({productionLine: ProductionLineStore.getProductionLine()});
+    console.log('onChange for productionLine');
   }
 
   componentDidMount() {

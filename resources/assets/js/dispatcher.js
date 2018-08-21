@@ -11,16 +11,25 @@ AppDispatcher.register((payload) => {
 
   let action = payload.action;
   let data = payload.data;
+  var promise = null;
 
   switch(action) {
     case Actions.BALANCE_PRODUCTION:
-      ProductionLineStore.balanceProductionLine(data.id);
-      ProductionLineStore.emitChange(data.componentId);
+      fetch(Routes.BALANCE_PRODUCTION + data.id).then(response => {
+        return response.json();
+      }).then(productionLine => {
+        ProductionLineStore.setProductionLine(productionLine);
+        ProductionLineStore.emitChange(data.componentId);
+      });
       break;
 
     case Actions.GET_PRODUCT:
-      ProductStore.getProduct(data.id);
-      ProductStore.emitChange(data.componentId);
+      fetch(Routes.GET_PRODUCT + data.id).then(response => {
+        return response.json();
+      }).then(product => {
+        ProductStore.setProduct(product);
+        ProductStore.emitChange(data.componentId);
+      })
       break;
   }
   return true;
