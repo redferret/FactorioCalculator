@@ -6,6 +6,7 @@ import AppDispatcher from '../dispatcher.js';
 
 import { MODAL_ID } from '../constants.js';
 import * as Actions from '../actions.js';
+import * as Consts from '../constants.js';
 
 export default class ProductionLineDetails extends React.Component {
   constructor(props, context) {
@@ -13,6 +14,14 @@ export default class ProductionLineDetails extends React.Component {
     this.addProductToProduction = this.addProductToProduction.bind(this);
     this.handleShowProductModal = this.handleShowProductModal.bind(this);
     this.removeFromProduction = this.removeFromProduction.bind(this);
+    this.handleItemsPerSecondChange = this.handleItemsPerSecondChange.bind(this);
+
+    let produces = this.props.produces
+    let curCount = produces !== null? produces.items_per_second : 0;
+
+    this.state = {
+      itemsPerSecond: curCount
+    };
   }
 
   handleShowProductModal() {
@@ -28,6 +37,20 @@ export default class ProductionLineDetails extends React.Component {
     ProductModalStore.showModal();
   }
 
+  handleItemsPerSecondChange(event) {
+    this.setState({
+      itemsPerSecond: event.target.value
+    });
+    AppDispatcher.dispatch({
+      action: Actions.RE_CALCULATE_PRODUCTION,
+      data: {
+        id: this.props.id,
+        itemsPerSecond: this.state.itemsPerSecond,
+        componentId: MAIN_ID
+      }
+    });
+  }
+
   removeFromProduction(e) {
     alert("Remove "+this.props.produces.name+" from Production " + this.props.produces.production_line_id);
   }
@@ -39,12 +62,18 @@ export default class ProductionLineDetails extends React.Component {
   render() {
     if (this.props.produces !== null) {
 
-      var assemblyCountTitle = 'Number of Assemblers';
+      let assemblyCountTitle = 'Number of Assemblers';
       if (this.props.produces.producer.is_miner) {
         assemblyCountTitle = 'Number of Miners';
       }
 
-      var balanced = this.props.produces.assembly_count === this.props.produces.desired_assembly_count;
+      let isOutput = this.props.product_id === null;
+      let balanced = this.props.produces.assembly_count === this.props.produces.desired_assembly_count;
+
+      let itemsPerSecond = isOutput ?
+        <input type='number' name='itemsPerSecond' onChange={this.handleItemsPerSecondChange}
+          value={this.state.itemsPerSecond} /> :
+        <input type='number' name='itemsPerSecond' value={this.state.itemsPerSecond} readOnly/>;
 
       return (
         <div>
@@ -66,7 +95,7 @@ export default class ProductionLineDetails extends React.Component {
               <tr>
                 <td>{this.props.produces.name}</td>
                 <td>{this.props.produces.assembly_count}</td>
-                <td>{this.props.produces.items_per_second}</td>
+                <td>{itemsPerSecond}</td>
                 <td>#</td>
                 <td>{this.props.produces.seconds_per_item}</td>
               </tr>

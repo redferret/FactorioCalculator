@@ -62,7 +62,7 @@ Route::get('/factories', function(){
   return $factories;
 });
 
-Route::get('/balance/{id}', function($id) {
+Route::get('/productionline/{id}/balance', function($id) {
   $productionLine = Auth::user()->productionLines->find($id);
   $product = $productionLine->produces; // Get the product this line produces
   if ($product != null) {
@@ -81,7 +81,7 @@ Route::get('/balance/{id}', function($id) {
   return $productionLine;
 });
 
-Route::get('/product/{id}/productionLines', function($id){
+Route::get('/product/{id}/productionlines', function($id){
   $product = Auth::user()->products()->find($id);
   $productionLines = $product->productionLines;
   foreach($productionLines as $productionLine) {

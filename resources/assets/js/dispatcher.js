@@ -8,7 +8,6 @@ import ProductStore from './stores/product-store.js';
 import FactoryStore from './stores/factory-store.js';
 import ProductModalStore from './stores/product-modal-store.js';
 
-// Register callback with AppDispatcher
 AppDispatcher.register((payload) => {
 
   let action = payload.action;
@@ -49,6 +48,20 @@ AppDispatcher.register((payload) => {
         ProductModalStore.setProductProductionLines(productionLines);
         ProductModalStore.emitChange(data.componentId);
       });
+      break;
+
+    case Actions.RE_CALCULATE_PRODUCTION:
+      fetch(Routes.RE_CALCULATE_PRODUCTION(data.id),
+        Routes.POST({
+          itemsPerSecond: data.itemsPerSecond
+        })
+      ).then(response => {
+        return response.json();
+      }).then(updatedFactories => {
+        FactoryStore.setFactories(updatedFactories);
+        FactoryStore.emitChange(data.componentId);
+      });
+      break;
   }
   return true;
 });
