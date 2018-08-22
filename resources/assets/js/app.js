@@ -16,6 +16,6 @@ require('./bootstrap');
 require('./components/Main');
 
 /**
- * Pull in the ultiities file
+ * Pull in the utilities file
  */
 require('./util.js');
