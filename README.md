@@ -6,3 +6,5 @@ This web app is aimed to help players, like me, setup organized factories and pr
 
 The web app allows a user to setup and define their factories which contain many production lines that produce something and are consumed by some other production line or factory elsewhere. 
 The calculator is mostly aimed though to helping you understand possible bottlenecks and balancing production so that you don't have a deficit or a surplus that will jam or starve other production lines or factories.
+
+This webapp is developed using the LAMP stack and utilizes ReactJS and the Flux design pattern
