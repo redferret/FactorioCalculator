@@ -1,10 +1,10 @@
 import React from 'react';
 import { Panel, Label, Well, Table, Button, Alert, ButtonToolbar } from 'react-bootstrap';
-import ProductDetails from './product-details.js';
+import ProductionLineDetails from './production-line-details.js';
 import ProductionLineStore from '../stores/production-line-store.js';
 import { PRODUCTION_LINE_ID } from '../constants.js';
 
-export default class ProductionPanel extends React.Component {
+export default class ProductionLinePanel extends React.Component {
 
   constructor(props, context) {
     super(props, context);
@@ -40,7 +40,7 @@ export default class ProductionPanel extends React.Component {
         </Panel.Heading>
         <Panel.Body collapsible>
           <Button onClick={this.handleEditProduction} bsSize='xsmall'>Edit Production Line</Button>
-          <ProductDetails
+          <ProductionLineDetails
             {...this.state.productionLine}
           />
         </Panel.Body>

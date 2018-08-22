@@ -2,7 +2,7 @@
 import React from 'react';
 
 import { Panel, PanelGroup, Alert, Label, ButtonToolbar, Button, Table } from 'react-bootstrap';
-import ProductionPanel from './production-panel.js';
+import ProductionLinePanel from './production-line-panel.js';
 import FactoryStore from '../stores/factory-store.js';
 
 export default class Factory extends React.Component {
@@ -55,7 +55,7 @@ export default class Factory extends React.Component {
           onSelect={this.handleSelectProductionLine}
         >
         {this.props.production_lines.map(panel =>
-          <ProductionPanel
+          <ProductionLinePanel
             {...panel}
             key={panel.id}
             eventKey={panel.id}

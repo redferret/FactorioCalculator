@@ -7,7 +7,7 @@ import AppDispatcher from '../dispatcher.js';
 import { MODAL_ID } from '../constants.js';
 import * as Actions from '../actions.js';
 
-export default class ProductDetails extends React.Component {
+export default class ProductionLineDetails extends React.Component {
   constructor(props, context) {
     super(props, context);
     this.addProductToProduction = this.addProductToProduction.bind(this);
