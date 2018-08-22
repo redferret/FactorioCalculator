@@ -1,8 +1,6 @@
 
 var EventEmitter = require('events').EventEmitter;
 
-import * as Routes from '../routes.js';
-
 class FactoryStore extends EventEmitter {
 
   constructor() {

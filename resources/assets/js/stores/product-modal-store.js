@@ -1,5 +1,4 @@
 var EventEmitter = require('events').EventEmitter;
-import * as Routes from '../routes.js';
 import { MODAL_ID } from '../constants.js';
 
 class ProductModalStore extends EventEmitter {

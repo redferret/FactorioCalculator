@@ -19,3 +19,5 @@ require('./components/Main');
  * Pull in the utilities file
  */
 require('./util.js');
+
+require('./router.js');
