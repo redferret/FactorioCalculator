@@ -1570,7 +1570,60 @@ exports.default = !!(typeof window !== 'undefined' && window.document && window.
 module.exports = exports['default'];
 
 /***/ }),
-/* 23 */,
+/* 23 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__constants_js__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__router_js__ = __webpack_require__(358);
+
+
+
+var HEADERS = {
+  'Accept': 'application/json',
+  'Content-Type': 'application/json'
+};
+
+__WEBPACK_IMPORTED_MODULE_1__router_js__["a" /* default */].registerRoute(__WEBPACK_IMPORTED_MODULE_0__constants_js__["h" /* ROOT_URL */], function (args) {
+  return document.head.querySelector('meta[name="rootURL"]').content;
+});
+
+var ROOT = __WEBPACK_IMPORTED_MODULE_1__router_js__["a" /* default */].route(__WEBPACK_IMPORTED_MODULE_0__constants_js__["h" /* ROOT_URL */]);
+
+__WEBPACK_IMPORTED_MODULE_1__router_js__["a" /* default */].registerRoute(__WEBPACK_IMPORTED_MODULE_0__constants_js__["b" /* GET_FACTORIES */], function (args) {
+  return ROOT + '/factories';
+});
+
+__WEBPACK_IMPORTED_MODULE_1__router_js__["a" /* default */].registerRoute(__WEBPACK_IMPORTED_MODULE_0__constants_js__["a" /* BALANCE_PRODUCTION */], function (args) {
+  return ROOT + '/productionline/' + args.id + '/balance';
+});
+
+__WEBPACK_IMPORTED_MODULE_1__router_js__["a" /* default */].registerRoute(__WEBPACK_IMPORTED_MODULE_0__constants_js__["c" /* GET_PRODUCT_PRODUCTION_LINES */], function (args) {
+  return ROOT + '/product/' + args.id + '/productionlines';
+});
+
+__WEBPACK_IMPORTED_MODULE_1__router_js__["a" /* default */].registerRoute(__WEBPACK_IMPORTED_MODULE_0__constants_js__["g" /* RE_CALCULATE_PRODUCTION */], function (args) {
+  return ROOT + '/productionline/' + args.id + '/recalculate';
+});
+
+__WEBPACK_IMPORTED_MODULE_1__router_js__["a" /* default */].registerMethod('POST', function (data) {
+  return {
+    method: 'POST',
+    headers: HEADERS,
+    body: JSON.stringify(data)
+  };
+});
+
+__WEBPACK_IMPORTED_MODULE_1__router_js__["a" /* default */].registerMethod('GET', function (data) {
+  return {
+    method: 'GET',
+    headers: HEADERS,
+    body: JSON.stringify(data)
+  };
+});
+
+/***/ }),
 /* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -5689,6 +5742,13 @@ if (token) {
 
 // Bootstrap the root element and export it for user by Main.js
 var RootElement = document.getElementById('root');
+
+/**
+ * Pull in the utilities file
+ */
+__webpack_require__(352);
+
+__webpack_require__(23);
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
@@ -23172,13 +23232,6 @@ __webpack_require__(93);
  */
 
 __webpack_require__(176);
-
-/**
- * Pull in the utilities file
- */
-__webpack_require__(352);
-
-__webpack_require__(358);
 
 /***/ }),
 /* 153 */
@@ -65085,7 +65138,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 __WEBPACK_IMPORTED_MODULE_0__app_actions_js__["a" /* default */].register(__WEBPACK_IMPORTED_MODULE_2__constants_js__["a" /* BALANCE_PRODUCTION */], function (data) {
-  fetch(__WEBPACK_IMPORTED_MODULE_1__router_js__["default"].route(__WEBPACK_IMPORTED_MODULE_2__constants_js__["a" /* BALANCE_PRODUCTION */], data), __WEBPACK_IMPORTED_MODULE_1__router_js__["default"].method('GET')).then(function (response) {
+  fetch(__WEBPACK_IMPORTED_MODULE_1__router_js__["a" /* default */].route(__WEBPACK_IMPORTED_MODULE_2__constants_js__["a" /* BALANCE_PRODUCTION */], data), __WEBPACK_IMPORTED_MODULE_1__router_js__["a" /* default */].method('GET')).then(function (response) {
     return response.json();
   }).then(function (productionLine) {
     __WEBPACK_IMPORTED_MODULE_3__stores_production_line_store_js__["a" /* default */].setProductionLine(productionLine);
@@ -65110,7 +65163,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 __WEBPACK_IMPORTED_MODULE_0__app_actions_js__["a" /* default */].register(__WEBPACK_IMPORTED_MODULE_2__constants_js__["b" /* GET_FACTORIES */], function (data) {
-  fetch(__WEBPACK_IMPORTED_MODULE_1__router_js__["default"].route(__WEBPACK_IMPORTED_MODULE_2__constants_js__["b" /* GET_FACTORIES */])).then(function (response) {
+  fetch(__WEBPACK_IMPORTED_MODULE_1__router_js__["a" /* default */].route(__WEBPACK_IMPORTED_MODULE_2__constants_js__["b" /* GET_FACTORIES */])).then(function (response) {
     return response.json();
   }).then(function (factories) {
     __WEBPACK_IMPORTED_MODULE_3__stores_factory_store_js__["a" /* default */].setFactories(factories);
@@ -65135,7 +65188,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 __WEBPACK_IMPORTED_MODULE_0__app_actions_js__["a" /* default */].register(__WEBPACK_IMPORTED_MODULE_2__constants_js__["c" /* GET_PRODUCT_PRODUCTION_LINES */], function (data) {
-  fetch(__WEBPACK_IMPORTED_MODULE_1__router_js__["default"].route(__WEBPACK_IMPORTED_MODULE_2__constants_js__["c" /* GET_PRODUCT_PRODUCTION_LINES */], data)).then(function (response) {
+  fetch(__WEBPACK_IMPORTED_MODULE_1__router_js__["a" /* default */].route(__WEBPACK_IMPORTED_MODULE_2__constants_js__["c" /* GET_PRODUCT_PRODUCTION_LINES */], data)).then(function (response) {
     return response.json();
   }).then(function (productionLines) {
     __WEBPACK_IMPORTED_MODULE_3__stores_product_modal_store_js__["a" /* default */].setProductProductionLines(productionLines);
@@ -65165,7 +65218,7 @@ __WEBPACK_IMPORTED_MODULE_0__app_actions_js__["a" /* default */].register(__WEBP
   var args = {
     id: data.id
   };
-  fetch(__WEBPACK_IMPORTED_MODULE_1__router_js__["default"].route(__WEBPACK_IMPORTED_MODULE_2__constants_js__["g" /* RE_CALCULATE_PRODUCTION */], args), __WEBPACK_IMPORTED_MODULE_1__router_js__["default"].method('POST', {
+  fetch(__WEBPACK_IMPORTED_MODULE_1__router_js__["a" /* default */].route(__WEBPACK_IMPORTED_MODULE_2__constants_js__["g" /* RE_CALCULATE_PRODUCTION */], args), __WEBPACK_IMPORTED_MODULE_1__router_js__["a" /* default */].method('POST', {
     itemsPerSecond: data.itemsPerSecond
   })).then(function (response) {
     return response.json();
@@ -78567,95 +78620,46 @@ function comparePreviousToNext(instance, nextProps, nextState) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__constants_js__ = __webpack_require__(16);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-
-
-var HEADERS = {
-  'Accept': 'application/json',
-  'Content-Type': 'application/json'
-};
-
-var Routes = function () {
-  function Routes() {
-    _classCallCheck(this, Routes);
+var Router = function () {
+  function Router() {
+    _classCallCheck(this, Router);
 
     this._routes = new Map();
     this._methods = new Map();
   }
 
-  _createClass(Routes, [{
-    key: 'registerRoute',
+  _createClass(Router, [{
+    key: "registerRoute",
     value: function registerRoute(name, route) {
       this._routes.set(name, route);
     }
   }, {
-    key: 'registerMethod',
+    key: "registerMethod",
     value: function registerMethod(name, method) {
       this._methods.set(name, method);
     }
   }, {
-    key: 'route',
+    key: "route",
     value: function route(name, args) {
       var route = this._routes.get(name);
       return route(args);
     }
   }, {
-    key: 'method',
+    key: "method",
     value: function method(name, data) {
       var method = this._methods.get(name);
       return method(data);
     }
   }]);
 
-  return Routes;
+  return Router;
 }();
 
-var Router = new Routes();
-
-Router.registerRoute(__WEBPACK_IMPORTED_MODULE_0__constants_js__["h" /* ROOT_URL */], function (args) {
-  return document.head.querySelector('meta[name="rootURL"]').content;
-});
-
-var ROOT = Router.route(__WEBPACK_IMPORTED_MODULE_0__constants_js__["h" /* ROOT_URL */]);
-
-Router.registerRoute(__WEBPACK_IMPORTED_MODULE_0__constants_js__["b" /* GET_FACTORIES */], function (args) {
-  return ROOT + '/factories';
-});
-
-Router.registerRoute(__WEBPACK_IMPORTED_MODULE_0__constants_js__["a" /* BALANCE_PRODUCTION */], function (args) {
-  return ROOT + '/productionline/' + args.id + '/balance';
-});
-
-Router.registerRoute(__WEBPACK_IMPORTED_MODULE_0__constants_js__["c" /* GET_PRODUCT_PRODUCTION_LINES */], function (args) {
-  return ROOT + '/product/' + args.id + '/productionlines';
-});
-
-Router.registerRoute(__WEBPACK_IMPORTED_MODULE_0__constants_js__["g" /* RE_CALCULATE_PRODUCTION */], function (args) {
-  return ROOT + '/productionline/' + args.id + '/recalculate';
-});
-
-Router.registerMethod('POST', function (data) {
-  return {
-    method: 'POST',
-    headers: HEADERS,
-    body: JSON.stringify(data)
-  };
-});
-
-Router.registerMethod('GET', function (data) {
-  return {
-    method: 'GET',
-    headers: HEADERS,
-    body: JSON.stringify(data)
-  };
-});
-
-/* harmony default export */ __webpack_exports__["default"] = (Router);
+/* harmony default export */ __webpack_exports__["a"] = (new Router());
 
 /***/ })
 /******/ ]);
