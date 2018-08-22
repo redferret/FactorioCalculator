@@ -1313,7 +1313,7 @@ var GET_PRODUCT_PRODUCTION_LINES = 'get-product-production-lines';
 var GET_PRODUCTS = 'get-products';
 
 var RE_CALCULATE_PRODUCTION = 're-calculate-production';
-var ROOT_URL = document.head.querySelector('meta[name="rootURL"]').content;
+var ROOT_URL = 'root-url';
 
 /***/ }),
 /* 17 */
@@ -78617,20 +78617,26 @@ var Routes = function () {
 
 var Router = new Routes();
 
+Router.registerRoute(__WEBPACK_IMPORTED_MODULE_0__constants_js__["h" /* ROOT_URL */], function (args) {
+  return document.head.querySelector('meta[name="rootURL"]').content;
+});
+
+var ROOT = Router.route(__WEBPACK_IMPORTED_MODULE_0__constants_js__["h" /* ROOT_URL */]);
+
 Router.registerRoute(__WEBPACK_IMPORTED_MODULE_0__constants_js__["b" /* GET_FACTORIES */], function (args) {
-  return __WEBPACK_IMPORTED_MODULE_0__constants_js__["h" /* ROOT_URL */] + '/factories';
+  return ROOT + '/factories';
 });
 
 Router.registerRoute(__WEBPACK_IMPORTED_MODULE_0__constants_js__["a" /* BALANCE_PRODUCTION */], function (args) {
-  return __WEBPACK_IMPORTED_MODULE_0__constants_js__["h" /* ROOT_URL */] + '/productionline/' + args.id + '/balance';
+  return ROOT + '/productionline/' + args.id + '/balance';
 });
 
 Router.registerRoute(__WEBPACK_IMPORTED_MODULE_0__constants_js__["c" /* GET_PRODUCT_PRODUCTION_LINES */], function (args) {
-  return __WEBPACK_IMPORTED_MODULE_0__constants_js__["h" /* ROOT_URL */] + '/product/' + args.id + '/productionlines';
+  return ROOT + '/product/' + args.id + '/productionlines';
 });
 
 Router.registerRoute(__WEBPACK_IMPORTED_MODULE_0__constants_js__["g" /* RE_CALCULATE_PRODUCTION */], function (args) {
-  return __WEBPACK_IMPORTED_MODULE_0__constants_js__["h" /* ROOT_URL */] + '/productionline/' + args.id + '/recalculate';
+  return ROOT + '/productionline/' + args.id + '/recalculate';
 });
 
 Router.registerMethod('POST', function (data) {

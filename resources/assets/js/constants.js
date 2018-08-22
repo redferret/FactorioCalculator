@@ -29,4 +29,4 @@ export const GET_PRODUCT_PRODUCTION_LINES = 'get-product-production-lines';
 export const GET_PRODUCTS                 = 'get-products';
 
 export const RE_CALCULATE_PRODUCTION      = 're-calculate-production';
-export const ROOT_URL                     = document.head.querySelector('meta[name="rootURL"]').content;
+export const ROOT_URL                     = 'root-url';

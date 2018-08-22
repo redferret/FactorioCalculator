@@ -33,20 +33,26 @@ class Routes {
 
 let Router = new Routes();
 
+Router.registerRoute(Constants.ROOT_URL, args => {
+  return document.head.querySelector('meta[name="rootURL"]').content;
+})
+
+const ROOT = Router.route(Constants.ROOT_URL);
+
 Router.registerRoute(Constants.GET_FACTORIES, args => {
-  return Constants.ROOT_URL + '/factories';
+  return ROOT + '/factories';
 });
 
 Router.registerRoute(Constants.BALANCE_PRODUCTION, args => {
-  return Constants.ROOT_URL + '/productionline/'+args.id+'/balance';
+  return ROOT + '/productionline/'+args.id+'/balance';
 });
 
 Router.registerRoute(Constants.GET_PRODUCT_PRODUCTION_LINES, args => {
-  return Constants.ROOT_URL + '/product/'+args.id+'/productionlines';
+  return ROOT + '/product/'+args.id+'/productionlines';
 });
 
 Router.registerRoute(Constants.RE_CALCULATE_PRODUCTION, args => {
-  return Constants.ROOT_URL + '/productionline/'+args.id+'/recalculate';
+  return ROOT + '/productionline/'+args.id+'/recalculate';
 });
 
 Router.registerMethod('POST', data => {
