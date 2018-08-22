@@ -1,12 +1,20 @@
-import React from 'react';
-import { Table, Button, Alert, ButtonToolbar } from 'react-bootstrap';
+import AppDispatcher from '../dispatcher.js';
 import BalanceProductionButton from './balance-production-button.js';
 import ProductModalStore from '../stores/product-modal-store.js';
-import AppDispatcher from '../dispatcher.js';
+import React from 'react';
 
-import { MODAL_ID } from '../constants.js';
-import * as Actions from '../actions.js';
-import * as Consts from '../constants.js';
+import {
+  Alert,
+  Button,
+  ButtonToolbar,
+  Table,
+} from 'react-bootstrap';
+
+import {
+  MODAL_ID,
+  GET_PRODUCT_PRODUCTION_LINES,
+  RE_CALCULATE_PRODUCTION,
+} from '../constants.js';
 
 export default class ProductionLineDetails extends React.Component {
   constructor(props, context) {
@@ -28,7 +36,7 @@ export default class ProductionLineDetails extends React.Component {
     ProductModalStore.setSelectedProduct(this.props.produces);
     ProductModalStore.setSelectedProductionLine(this.props);
     AppDispatcher.dispatch({
-      action: Actions.GET_PRODUCT_PRODUCTION_LINES,
+      action: GET_PRODUCT_PRODUCTION_LINES,
       data: {
         id: this.props.produces.id,
         componentId: MODAL_ID
@@ -42,7 +50,7 @@ export default class ProductionLineDetails extends React.Component {
       itemsPerSecond: event.target.value
     });
     AppDispatcher.dispatch({
-      action: Actions.RE_CALCULATE_PRODUCTION,
+      action: RE_CALCULATE_PRODUCTION,
       data: {
         id: this.props.id,
         itemsPerSecond: this.state.itemsPerSecond,

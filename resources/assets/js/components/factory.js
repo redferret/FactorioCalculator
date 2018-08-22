@@ -1,9 +1,18 @@
 
+import FactoryStore from '../stores/factory-store.js';
+import ProductionLinePanel from './production-line-panel.js';
 import React from 'react';
 
-import { Panel, PanelGroup, Alert, Label, ButtonToolbar, Button, Table } from 'react-bootstrap';
-import ProductionLinePanel from './production-line-panel.js';
-import FactoryStore from '../stores/factory-store.js';
+import {
+  Alert,
+  Button,
+  ButtonToolbar,
+  Label,
+  Panel,
+  PanelGroup,
+  Table,
+} from 'react-bootstrap';
+
 
 export default class Factory extends React.Component {
 

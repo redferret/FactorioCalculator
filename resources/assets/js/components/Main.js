@@ -1,14 +1,27 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
-import { Panel, PanelGroup, Alert, Label } from 'react-bootstrap';
+import AppDispatcher from '../dispatcher.js';
 import Factory from './factory.js';
 import FactoryStore from '../stores/factory-store.js';
 import ProductModal from './product-modal.js';
-import AppDispatcher from '../dispatcher.js';
-import * as Actions from '../actions.js';
+
+import {
+  Alert,
+  Label,
+  Panel,
+  PanelGroup
+} from 'react-bootstrap';
+
 import { RootElement } from '../bootstrap.js';
-import { MAIN_ID } from '../constants.js';
+
+import {
+  GET_FACTORIES,
+  MAIN_ID,
+} from '../constants.js';
+
+
+
 
 class Main extends Component {
 
@@ -34,7 +47,7 @@ class Main extends Component {
   componentDidMount() {
     FactoryStore.on(MAIN_ID, this._onLoadedFactories.bind(this));
     AppDispatcher.dispatch({
-      action: Actions.GET_FACTORIES,
+      action: GET_FACTORIES,
       data: {
         componentId: MAIN_ID
       }
