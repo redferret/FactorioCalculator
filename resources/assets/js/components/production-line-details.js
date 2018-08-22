@@ -17,6 +17,7 @@ import {
 } from '../constants.js';
 
 export default class ProductionLineDetails extends React.Component {
+
   constructor(props, context) {
     super(props, context);
     this.addProductToProduction = this.addProductToProduction.bind(this);

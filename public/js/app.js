@@ -78564,15 +78564,15 @@ var Actions = function () {
 
   _createClass(Actions, [{
     key: "register",
-    value: function register(actionName, callback) {
-      this._actions.set(actionName, callback);
+    value: function register(actionName, action) {
+      this._actions.set(actionName, action);
     }
   }, {
     key: "call",
     value: function call(actionName, data) {
-      var callback = this._actions.get(actionName);
-      if (callback instanceof Function) {
-        callback(data);
+      var action = this._actions.get(actionName);
+      if (action instanceof Function) {
+        action(data);
       }
     }
   }]);

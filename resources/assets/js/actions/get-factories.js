@@ -4,7 +4,7 @@ import * as Routes from '../routes.js';
 import { GET_FACTORIES } from '../constants.js';
 import FactoryStore from '../stores/factory-store.js';
 
-Actions.register(GET_FACTORIES, (data) => {
+Actions.register(GET_FACTORIES, data => {
   fetch(Routes.GET_FACTORIES).then(response => {
     return response.json();
   }).then(factories => {

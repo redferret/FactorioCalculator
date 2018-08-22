@@ -3,13 +3,13 @@ class Actions {
   constructor() {
     this._actions = new Map();
   }
-  register(actionName, callback) {
-    this._actions.set(actionName, callback);
+  register(actionName, action) {
+    this._actions.set(actionName, action);
   }
   call(actionName, data) {
-    let callback = this._actions.get(actionName);
-    if (callback instanceof Function) {
-      callback(data);
+    let action = this._actions.get(actionName);
+    if (action instanceof Function) {
+      action(data);
     }
   }
 }

@@ -13,7 +13,6 @@ import {
   Table,
 } from 'react-bootstrap';
 
-
 export default class Factory extends React.Component {
 
   constructor(props, context) {

@@ -12,6 +12,7 @@ import {
 } from '../constants.js';
 
 export default class BalanceProductionButton extends React.Component {
+
   constructor(props, context) {
     super(props, context);
     this.handleSelect = this.handleSelect.bind(this);

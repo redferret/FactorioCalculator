@@ -20,9 +20,6 @@ import {
   MAIN_ID,
 } from '../constants.js';
 
-
-
-
 class Main extends Component {
 
   constructor(props, context) {
