@@ -1580,11 +1580,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
-var HEADERS = {
-  'Accept': 'application/json',
-  'Content-Type': 'application/json'
-};
-
 __WEBPACK_IMPORTED_MODULE_1__router_js__["a" /* default */].registerRoute(__WEBPACK_IMPORTED_MODULE_0__constants_js__["h" /* ROOT_URL */], function (args) {
   return document.head.querySelector('meta[name="rootURL"]').content;
 });
@@ -1605,22 +1600,6 @@ __WEBPACK_IMPORTED_MODULE_1__router_js__["a" /* default */].registerRoute(__WEBP
 
 __WEBPACK_IMPORTED_MODULE_1__router_js__["a" /* default */].registerRoute(__WEBPACK_IMPORTED_MODULE_0__constants_js__["g" /* RE_CALCULATE_PRODUCTION */], function (args) {
   return ROOT + '/productionline/' + args.id + '/recalculate';
-});
-
-__WEBPACK_IMPORTED_MODULE_1__router_js__["a" /* default */].registerMethod('POST', function (data) {
-  return {
-    method: 'POST',
-    headers: HEADERS,
-    body: JSON.stringify(data)
-  };
-});
-
-__WEBPACK_IMPORTED_MODULE_1__router_js__["a" /* default */].registerMethod('GET', function (data) {
-  return {
-    method: 'GET',
-    headers: HEADERS,
-    body: JSON.stringify(data)
-  };
 });
 
 /***/ }),
@@ -78624,42 +78603,65 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var Router = function () {
-  function Router() {
-    _classCallCheck(this, Router);
+var WebRouter = function () {
+  function WebRouter() {
+    _classCallCheck(this, WebRouter);
 
     this._routes = new Map();
     this._methods = new Map();
   }
 
-  _createClass(Router, [{
-    key: "registerRoute",
+  _createClass(WebRouter, [{
+    key: 'registerRoute',
     value: function registerRoute(name, route) {
       this._routes.set(name, route);
     }
   }, {
-    key: "registerMethod",
+    key: 'registerMethod',
     value: function registerMethod(name, method) {
       this._methods.set(name, method);
     }
   }, {
-    key: "route",
+    key: 'route',
     value: function route(name, args) {
       var route = this._routes.get(name);
       return route(args);
     }
   }, {
-    key: "method",
+    key: 'method',
     value: function method(name, data) {
       var method = this._methods.get(name);
       return method(data);
     }
   }]);
 
-  return Router;
+  return WebRouter;
 }();
 
-/* harmony default export */ __webpack_exports__["a"] = (new Router());
+var Router = new WebRouter();
+
+var HEADERS = {
+  'Accept': 'application/json',
+  'Content-Type': 'application/json'
+};
+
+Router.registerMethod('POST', function (data) {
+  return {
+    method: 'POST',
+    headers: HEADERS,
+    body: JSON.stringify(data)
+  };
+});
+
+Router.registerMethod('GET', function (data) {
+  return {
+    method: 'GET',
+    headers: HEADERS,
+    body: JSON.stringify(data)
+  };
+});
+
+/* harmony default export */ __webpack_exports__["a"] = (Router);
 
 /***/ })
 /******/ ]);

@@ -1,5 +1,5 @@
 
-class Router {
+class WebRouter {
   constructor() {
     this._routes = new Map();
     this._methods = new Map();
@@ -24,4 +24,27 @@ class Router {
   }
 }
 
-export default new Router();
+let Router = new WebRouter();
+
+const HEADERS = {
+  'Accept': 'application/json',
+  'Content-Type': 'application/json'
+};
+
+Router.registerMethod('POST', data => {
+  return {
+    method: 'POST',
+    headers: HEADERS,
+    body: JSON.stringify(data)
+  };
+});
+
+Router.registerMethod('GET', data => {
+  return {
+    method: 'GET',
+    headers: HEADERS,
+    body: JSON.stringify(data)
+  };
+});
+
+export default Router;
