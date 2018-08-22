@@ -14,12 +14,6 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
 
-function updateDependents(App\Product $parent) {
-  foreach($parent->products as $input) {
-    $input->items_per_second;
-  }
-}
-
 Route::get('/product/{id}/productionlines', 'ProductController@getProductionLines');
 Route::resource('products', 'ProductController')->only([
   'store', 'update', 'destroy'
