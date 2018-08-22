@@ -1,8 +1,17 @@
-import React from 'react';
-import { Panel, Label, Well, Table, Button, Alert, ButtonToolbar } from 'react-bootstrap';
 import ProductionLineDetails from './production-line-details.js';
 import ProductionLineStore from '../stores/production-line-store.js';
+import React from 'react';
+
 import { PRODUCTION_LINE_ID } from '../constants.js';
+import {
+  Alert,
+  Button,
+  ButtonToolbar,
+  Label,
+  Panel,
+  Table,
+  Well,
+} from 'react-bootstrap';
 
 export default class ProductionLinePanel extends React.Component {
 
@@ -14,12 +23,12 @@ export default class ProductionLinePanel extends React.Component {
     };
   }
 
-  handleEditProduction(e) {
-    alert("Edit Production "+this.props.id);
-  }
-
   _onChange() {
     this.setState({productionLine: ProductionLineStore.getProductionLine()});
+  }
+
+  handleEditProduction(e) {
+    alert("Edit Production "+this.props.id);
   }
 
   componentDidMount() {

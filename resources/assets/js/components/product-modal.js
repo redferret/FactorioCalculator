@@ -1,11 +1,24 @@
 
 import React from 'react';
-import { Modal, Button, ButtonToolbar, Alert, Table, Well, Label} from 'react-bootstrap';
+
+import AppDispatcher from '../dispatcher.js';
 import ProductModalStore from '../stores/product-modal-store.js';
 import ProductStore from '../stores/product-store.js';
-import AppDispatcher from '../dispatcher.js';
-import * as Actions from '../actions.js';
-import { MODAL_ID } from '../constants.js';
+
+import {
+  Alert,
+  Button,
+  ButtonToolbar,
+  Label,
+  Modal,
+  Table,
+  Well,
+} from 'react-bootstrap';
+
+import {
+  MODAL_ID,
+  GET_PRODUCT_PRODUCTION_LINES,
+} from '../constants.js';
 
 export default class ProductModal extends React.Component {
 
@@ -24,6 +37,31 @@ export default class ProductModal extends React.Component {
       productionLineStack: [],
       show: false
     }
+  }
+
+  _onSelectProduct() {
+    this.setState({selectedProduct: ProductStore.getProduct()});
+  }
+
+  /**
+   * When the modal store emits a change on MODAL_ID
+   */
+  _onChange() {
+    this.setState({
+      selectedProduct: ProductModalStore.getSelectedProduct(),
+      selectedProductionLine: ProductModalStore.getSelectedProductionLine(),
+      show: ProductModalStore.shouldShow()
+    });
+  }
+
+  _fetchProductionLines(product) {
+    AppDispatcher.dispatch({
+      action: GET_PRODUCT_PRODUCTION_LINES,
+      data: {
+        id: product.id,
+        componentId: MODAL_ID
+      }
+    });
   }
 
   componentDidMount() {
@@ -46,31 +84,6 @@ export default class ProductModal extends React.Component {
       productionLineStack: []
     });
     ProductModalStore.hideModal();
-  }
-
-  _onSelectProduct() {
-    this.setState({selectedProduct: ProductStore.getProduct()});
-  }
-
-  /**
-   * When the modal store emits a change on MODAL_ID
-   */
-  _onChange() {
-    this.setState({
-      selectedProduct: ProductModalStore.getSelectedProduct(),
-      selectedProductionLine: ProductModalStore.getSelectedProductionLine(),
-      show: ProductModalStore.shouldShow()
-    });
-  }
-
-  _fetchProductionLines(product) {
-    AppDispatcher.dispatch({
-      action: Actions.GET_PRODUCT_PRODUCTION_LINES,
-      data: {
-        id: product.id,
-        componentId: MODAL_ID
-      }
-    });
   }
 
   handleSelectInput(product, productionLine) {
