@@ -5,7 +5,7 @@ import { BALANCE_PRODUCTION } from '../constants.js';
 import ProductionLineStore from '../stores/production-line-store.js';
 
 Actions.register(BALANCE_PRODUCTION, data => {
-  fetch(Router.route(BALANCE_PRODUCTION, data),
+  fetch(Router.route(BALANCE_PRODUCTION, {id: data.id}),
     Router.method('GET')
   ).then(response => {
     return response.json();

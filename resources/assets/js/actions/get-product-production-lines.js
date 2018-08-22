@@ -5,7 +5,7 @@ import { GET_PRODUCT_PRODUCTION_LINES } from '../constants.js';
 import ProductModalStore from '../stores/product-modal-store.js';
 
 Actions.register(GET_PRODUCT_PRODUCTION_LINES, data => {
-  fetch(Router.route(GET_PRODUCT_PRODUCTION_LINES, data)).then(response => {
+  fetch(Router.route(GET_PRODUCT_PRODUCTION_LINES, {id: data.id})).then(response => {
     return response.json();
   }).then(productionLines => {
     ProductModalStore.setProductProductionLines(productionLines);

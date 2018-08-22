@@ -65160,7 +65160,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 __WEBPACK_IMPORTED_MODULE_0__app_actions_js__["a" /* default */].register(__WEBPACK_IMPORTED_MODULE_2__constants_js__["e" /* BALANCE_PRODUCTION */], function (data) {
-  fetch(__WEBPACK_IMPORTED_MODULE_1__router_js__["a" /* default */].route(__WEBPACK_IMPORTED_MODULE_2__constants_js__["e" /* BALANCE_PRODUCTION */], data), __WEBPACK_IMPORTED_MODULE_1__router_js__["a" /* default */].method('GET')).then(function (response) {
+  fetch(__WEBPACK_IMPORTED_MODULE_1__router_js__["a" /* default */].route(__WEBPACK_IMPORTED_MODULE_2__constants_js__["e" /* BALANCE_PRODUCTION */], { id: data.id }), __WEBPACK_IMPORTED_MODULE_1__router_js__["a" /* default */].method('GET')).then(function (response) {
     return response.json();
   }).then(function (productionLine) {
     __WEBPACK_IMPORTED_MODULE_3__stores_production_line_store_js__["a" /* default */].setProductionLine(productionLine);
@@ -65210,7 +65210,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 __WEBPACK_IMPORTED_MODULE_0__app_actions_js__["a" /* default */].register(__WEBPACK_IMPORTED_MODULE_2__constants_js__["q" /* GET_PRODUCT_PRODUCTION_LINES */], function (data) {
-  fetch(__WEBPACK_IMPORTED_MODULE_1__router_js__["a" /* default */].route(__WEBPACK_IMPORTED_MODULE_2__constants_js__["q" /* GET_PRODUCT_PRODUCTION_LINES */], data)).then(function (response) {
+  fetch(__WEBPACK_IMPORTED_MODULE_1__router_js__["a" /* default */].route(__WEBPACK_IMPORTED_MODULE_2__constants_js__["q" /* GET_PRODUCT_PRODUCTION_LINES */], { id: data.id })).then(function (response) {
     return response.json();
   }).then(function (productionLines) {
     __WEBPACK_IMPORTED_MODULE_3__stores_product_modal_store_js__["a" /* default */].setProductProductionLines(productionLines);
