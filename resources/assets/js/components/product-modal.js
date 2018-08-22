@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Modal, Button, ButtonToolbar, Alert, Table, Well} from 'react-bootstrap';
+import { Modal, Button, ButtonToolbar, Alert, Table, Well, Label} from 'react-bootstrap';
 import ProductModalStore from '../stores/product-modal-store.js';
 import ProductStore from '../stores/product-store.js';
 import AppDispatcher from '../dispatcher.js';
@@ -19,7 +19,9 @@ export default class ProductModal extends React.Component {
 
     this.state = {
       selectedProduct: ProductModalStore.getSelectedProduct(),
+      selectedProductionLine: ProductModalStore.getSelectedProductionLine(),
       productStack: [],
+      productionLineStack: [],
       show: false
     }
   }
@@ -39,7 +41,10 @@ export default class ProductModal extends React.Component {
   }
 
   handleHideProductModal() {
-    this.setState({productStack: []});
+    this.setState({
+      productStack: [],
+      productionLineStack: []
+    });
     ProductModalStore.hideModal();
   }
 
@@ -47,14 +52,20 @@ export default class ProductModal extends React.Component {
     this.setState({selectedProduct: ProductStore.getProduct()});
   }
 
+  /**
+   * When the modal store emits a change on MODAL_ID
+   */
   _onChange() {
-    this.setState({selectedProduct: ProductModalStore.getSelectedProduct()});
-    this.setState({show: ProductModalStore.shouldShow()})
+    this.setState({
+      selectedProduct: ProductModalStore.getSelectedProduct(),
+      selectedProductionLine: ProductModalStore.getSelectedProductionLine(),
+      show: ProductModalStore.shouldShow()
+    });
   }
 
-  _fetchProduct(product) {
+  _fetchProductionLines(product) {
     AppDispatcher.dispatch({
-      action: Actions.GET_PRODUCT,
+      action: Actions.GET_PRODUCT_PRODUCTION_LINES,
       data: {
         id: product.id,
         componentId: MODAL_ID
@@ -62,18 +73,21 @@ export default class ProductModal extends React.Component {
     });
   }
 
-  handleSelectInput(product) {
+  handleSelectInput(product, productionLine) {
     this.state.productStack.unshift(this.state.selectedProduct);
-    if (product.products === null || product.products === undefined) {
-      this._fetchProduct(product);
-    } else {
-      this.setState({selectedProduct: product});
-    }
+    this.state.productionLineStack.unshift(this.state.selectedProductionLine);
+    ProductModalStore.setSelectedProduct(product);
+    ProductModalStore.setSelectedProductionLine(productionLine);
+    this._fetchProductionLines(product);
   }
 
   handleBackSelect() {
-    if (this.state.productStack.peek() !== undefined) {
-      this.setState({selectedProduct: this.state.productStack.shift()});
+    if (this.state.productStack.peek() !== undefined &&
+        this.state.productionLineStack.peek() !== undefined) {
+      let product = this.state.productStack.shift();
+      ProductModalStore.setSelectedProduct(product);
+      ProductModalStore.setSelectedProductionLine(this.state.productionLineStack.shift());
+      this._fetchProductionLines(product);
     }
   }
 
@@ -94,13 +108,14 @@ export default class ProductModal extends React.Component {
     );
   }
 
-  renderModalBody(products) {
+  renderModalBody() {
+    let productionLines = ProductModalStore.getProductProductionLines();
 
-    if (products.length === 0) {
+    if (productionLines.length === 0) {
       return (
         <Modal.Body>
           {this.renderOutputProductDetails()}
-          <Alert bsStyle='warning'>There are no defined Inputs</Alert>
+          <Alert bsStyle='warning'>This is a Primary Resource</Alert>
         </Modal.Body>
       );
     }
@@ -108,32 +123,39 @@ export default class ProductModal extends React.Component {
     return (
       <Modal.Body>
         {this.renderOutputProductDetails()}
+        <h4><Label bsStyle='success'>Product Inputs</Label></h4>
         <Well>
-          <div className='list-group'>
-            {products.map(product =>
-              <a key={product.id}
-                onClick={this.handleSelectInput.bind(this, product)}
-                className='list-group-item list-group-item-action'
-              >
-                <h4>{product.name}</h4>
-                <Table>
-                  <thead><tr>
-                    <th>Assemblers Needed</th>
-                    <th>Crafting Time Per Item</th>
-                    <th>Items Needed / Sec</th>
-                    <th>Actual Production (Items/Sec)</th>
-                    <th>Surplus/Deficit (Items/Sec)</th>
-                  </tr></thead>
-                  <tbody><tr>
-                    <td>{product.desired_assembly_count}</td>
-                    <td>{product.crafting_time}</td>
-                    <td>{product.items_per_second}</td>
-                    <td>Not Implemented Yet</td>
-                    <td>Not Implemented Yet</td>
-                  </tr></tbody>
-                </Table>
-              </a>
-            )}
+          <div className='list-group'> {
+            productionLines.map(productionLine => {
+              let product = productionLine.produces;
+              return (
+                <div key={product.id}>
+                  <Label>Production Line: {productionLine.name}</Label>
+                  <a
+                  onClick={this.handleSelectInput.bind(this, product, productionLine)}
+                  className='list-group-item list-group-item-action'
+                  >
+                    <h4>{product.name}</h4>
+                    <Table>
+                      <thead><tr>
+                        <th>Assemblers Needed</th>
+                        <th>Crafting Time Per Item</th>
+                        <th>Items Needed / Sec</th>
+                        <th>Actual Production (Items/Sec)</th>
+                        <th>Surplus/Deficit (Items/Sec)</th>
+                      </tr></thead>
+                      <tbody><tr>
+                        <td>{product.desired_assembly_count}</td>
+                        <td>{product.crafting_time}</td>
+                        <td>{product.items_per_second}</td>
+                        <td>Not Implemented Yet</td>
+                        <td>Not Implemented Yet</td>
+                      </tr></tbody>
+                    </Table>
+                  </a>
+                </div>
+              );
+            })}
           </div>
         </Well>
       </Modal.Body>
@@ -142,20 +164,21 @@ export default class ProductModal extends React.Component {
 
   render() {
 
-    let products = [];
-
     if (this.state.selectedProduct === null) {
       return <div></div>;
-    }
-
-    if (this.state.selectedProduct.products !== undefined) {
-      products = this.state.selectedProduct.products;
     }
 
     let backButton = '';
 
     if (this.state.productStack.length > 0) {
       backButton = <Button onClick={this.handleBackSelect}>Back</Button>;
+    }
+
+    var modalTitleIfInput = <Label bsStyle='danger'>Output</Label>;
+
+    let isInput = this.state.selectedProductionLine.product_id !== null;
+    if (isInput) {
+      modalTitleIfInput = <Label bsStyle='success'>Input</Label>;
     }
 
     return (
@@ -166,11 +189,11 @@ export default class ProductModal extends React.Component {
         >
         <Modal.Header>
           <Modal.Title>
-            {this.state.selectedProduct.name} Inputs
+            {this.state.selectedProduct.name} {modalTitleIfInput}
           </Modal.Title>
         </Modal.Header>
 
-        {this.renderModalBody(products)}
+        {this.renderModalBody()}
 
         <Modal.Footer>
           <ButtonToolbar>

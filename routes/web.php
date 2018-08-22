@@ -25,7 +25,7 @@ Route::get('/factories/{id}', function($id){
         $producer = $product->producer;
         $product->seconds_per_item = round($product->items_per_second / $producer->speed, 2);
         $product->assembly_count = round(($product->items_per_second * $product->seconds_per_item) / $product->stock_size, 2);
-        $product->products;
+        $product->productionLines;
         // Update inputs for this product
 
       }
@@ -52,7 +52,7 @@ Route::get('/factories', function(){
         $producer = $product->producer;
         $product->seconds_per_item = round($product->items_per_second / $producer->speed, 2);
         $product->assembly_count = round(($product->items_per_second * $product->seconds_per_item) / $product->stock_size, 2);
-        $product->products;
+        $product->productionLines;
         // Update inputs for this product
 
       }
@@ -74,17 +74,26 @@ Route::get('/balance/{id}', function($id) {
 
     $product->assembly_count = $assembly_count;
     $product->seconds_per_item = $seconds_per_item;
-    $product->products;
-
+    $product->productionLines;
     // Update inputs for this product
   }
 
   return $productionLine;
 });
 
+Route::get('/product/{id}/productionLines', function($id){
+  $product = Auth::user()->products()->find($id);
+  $productionLines = $product->productionLines;
+  foreach($productionLines as $productionLine) {
+    $productionLine->produces;
+    $productionLine->consumer;
+  }
+  return $productionLines;
+});
+
 Route::get('/product/{id}', function($id) {
   $product = Auth::user()->products()->find($id);
-  $product->products; // Get the inputs for this product
+  $product->productionLines; // Get the inputs for this product
   $product->producer;
   return $product;
 });

@@ -6,6 +6,7 @@ import * as Actions from './actions.js';
 import ProductionLineStore from './stores/production-line-store.js';
 import ProductStore from './stores/product-store.js';
 import FactoryStore from './stores/factory-store.js';
+import ProductModalStore from './stores/product-modal-store.js';
 
 // Register callback with AppDispatcher
 AppDispatcher.register((payload) => {
@@ -15,7 +16,7 @@ AppDispatcher.register((payload) => {
 
   switch(action) {
     case Actions.BALANCE_PRODUCTION:
-      fetch(Routes.BALANCE_PRODUCTION + data.id).then(response => {
+      fetch(Routes.BALANCE_PRODUCTION(data.id)).then(response => {
         return response.json();
       }).then(productionLine => {
         ProductionLineStore.setProductionLine(productionLine);
@@ -24,7 +25,7 @@ AppDispatcher.register((payload) => {
       break;
 
     case Actions.GET_PRODUCT:
-      fetch(Routes.GET_PRODUCT + data.id).then(response => {
+      fetch(Routes.GET_PRODUCT(data.id)).then(response => {
         return response.json();
       }).then(product => {
         ProductStore.setProduct(product);
@@ -38,7 +39,16 @@ AppDispatcher.register((payload) => {
       }).then(factories => {
         FactoryStore.setFactories(factories);
         FactoryStore.emitChange(data.componentId);
-      })
+      });
+      break;
+
+    case Actions.GET_PRODUCT_PRODUCTION_LINES:
+      fetch(Routes.GET_PRODUCT_PRODUCTION_LINES(data.id)).then(response => {
+        return response.json();
+      }).then(productionLines => {
+        ProductModalStore.setProductProductionLines(productionLines);
+        ProductModalStore.emitChange(data.componentId);
+      });
   }
   return true;
 });

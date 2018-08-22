@@ -40,6 +40,18 @@ class BasicSeeder extends Seeder {
       ])
     );
 
+    $copperOreProduction = $user->productionLines()->save(
+      App\ProductionLine::create([
+        'name' => 'Copper Ore Production'
+      ])
+    );
+
+    $ironOreProduction = $user->productionLines()->save(
+      App\ProductionLine::create([
+        'name' => 'Iron Ore Production'
+      ])
+    );
+
     $copperWireProduction = $user->productionLines()->save(
       App\ProductionLine::create([
         'name' => 'Copper Wire Production'
@@ -56,6 +68,8 @@ class BasicSeeder extends Seeder {
     $factory->productionLines()->save($copperProduction);
     $factory->productionLines()->save($ironProduction);
     $factory->productionLines()->save($emptyProduction);
+    $factory->productionLines()->save($ironOreProduction);
+    $factory->productionLines()->save($copperOreProduction);
 
     $copperWire = $user->products()->save(App\Product::create([
       'name' => 'Copper Wire',
@@ -77,8 +91,6 @@ class BasicSeeder extends Seeder {
       'speed' => 0.75,
     ]));
 
-    $copperWire->products()->save($copperPlate);
-
     $copperOre = $user->products()->save(App\Product::create([
       'name' => 'Copper Ore',
       'crafting_time' => 2,
@@ -91,8 +103,6 @@ class BasicSeeder extends Seeder {
       'speed' => 0.5,
       'power' => 3
     ]));
-
-    $copperPlate->products()->save($copperOre);
 
     $ironPlate = $user->products()->save(App\Product::create([
       'name' => 'Iron Plate',
@@ -117,10 +127,14 @@ class BasicSeeder extends Seeder {
       'power' => 3
     ]));
 
-    $ironPlate->products()->save($ironOre);
-
     $copperWireProduction->produces()->save($copperWire);
     $copperProduction->produces()->save($copperPlate);
     $ironProduction->produces()->save($ironPlate);
+    $copperOreProduction->produces()->save($copperOre);
+    $ironOreProduction->produces()->save($ironOre);
+
+    $copperWire->productionLines()->save($copperProduction);
+    $copperPlate->productionLines()->save($copperOreProduction);
+    $ironPlate->productionLines()->save($ironOreProduction);
   }
 }

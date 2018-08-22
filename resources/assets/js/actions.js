@@ -4,6 +4,7 @@ export const BALANCE_PRODUCTION     = 'balance-production-line';
 export const GET_FACTORIES          = 'get-factories';
 export const GET_PRODUCTS           = 'get-products';
 export const GET_PRODUCT            = 'get-product';
+export const GET_PRODUCT_PRODUCTION_LINES = 'get-product-production-lines';
 export const GET_PRODUCTION_LINES   = 'get-production-lines';
 export const GET_PRODUCERS          = 'get-producers';
 

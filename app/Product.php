@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-    protected $fillable = ['crafting_time', 'name', 'user_id', 'product_id',
+    protected $fillable = ['crafting_time', 'name', 'user_id',
         'production_line_id', 'desired_assembly_count',
         'items_per_second', 'stock_size', 'consumption_count', 'hardness'];
 
@@ -16,18 +16,12 @@ class Product extends Model
     public function productionLine() {
       return $this->belongsTo(ProductionLine::class);
     }
-    /**
-     * If this product is an input
-     */
-    public function product() {
-      return $this->belongsTo(Product::class);
-    }
 
     /**
      * The inputs for this product
      */
-    public function products() {
-      return $this->hasMany(Product::class);
+    public function productionLines() {
+      return $this->hasMany(ProductionLine::class);
     }
 
     /**

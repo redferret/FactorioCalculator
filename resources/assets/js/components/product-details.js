@@ -2,6 +2,10 @@ import React from 'react';
 import { Table, Button, Alert, ButtonToolbar } from 'react-bootstrap';
 import BalanceProductionButton from './balance-production-button.js';
 import ProductModalStore from '../stores/product-modal-store.js';
+import AppDispatcher from '../dispatcher.js';
+
+import { MODAL_ID } from '../constants.js';
+import * as Actions from '../actions.js';
 
 export default class ProductDetails extends React.Component {
   constructor(props, context) {
@@ -13,6 +17,14 @@ export default class ProductDetails extends React.Component {
 
   handleShowProductModal() {
     ProductModalStore.setSelectedProduct(this.props.produces);
+    ProductModalStore.setSelectedProductionLine(this.props);
+    AppDispatcher.dispatch({
+      action: Actions.GET_PRODUCT_PRODUCTION_LINES,
+      data: {
+        id: this.props.produces.id,
+        componentId: MODAL_ID
+      }
+    });
     ProductModalStore.showModal();
   }
 

@@ -10,15 +10,11 @@ class ProductModalStore extends EventEmitter {
       selectedProduct: null,
       show: false
     };
-  }
-
-  getProduct(id) {
-    this.productPromise = fetch(Routes.GET_PRODUCT + id).then(response => response.json());
+    this._productProductionLines = [];
   }
 
   showModal() {
     this.state.show = true;
-    this.emitChange(MODAL_ID);
   }
 
   hideModal() {
@@ -39,6 +35,22 @@ class ProductModalStore extends EventEmitter {
 
   getSelectedProduct() {
     return this.state.selectedProduct;
+  }
+
+  setSelectedProductionLine(selectedProductionLine) {
+    this._selectedProductionLine = selectedProductionLine;
+  }
+
+  getSelectedProductionLine(selectedProductionLine) {
+    return this._selectedProductionLine;
+  }
+
+  setProductProductionLines(productionLines) {
+    this._productProductionLines = productionLines;
+  }
+
+  getProductProductionLines() {
+    return this._productProductionLines;
   }
 
   emitChange(id) {
