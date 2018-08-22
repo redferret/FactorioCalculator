@@ -31,6 +31,22 @@ const HEADERS = {
   'Content-Type': 'application/json'
 };
 
+Router.registerMethod('DELETE', data => {
+  return {
+    method: 'DELETE',
+    headers: HEADERS,
+    body: JSON.stringify(data)
+  }
+});
+
+Router.registerMethod('PUT', data => {
+  return {
+    method: 'PUT',
+    headers: HEADERS,
+    body: JSON.stringify(data)
+  }
+});
+
 Router.registerMethod('POST', data => {
   return {
     method: 'POST',
