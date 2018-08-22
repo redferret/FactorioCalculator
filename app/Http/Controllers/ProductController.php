@@ -11,6 +11,10 @@ class ProductController extends Controller {
     $this->middleware('auth');
   }
 
+  public function getAll() {
+    return Auth::user()->products;
+  }
+
   public function getProductionLines($id) {
     $product = Auth::user()->products()->find($id);
     $productionLines = $product->productionLines;

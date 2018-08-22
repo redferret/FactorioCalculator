@@ -15,6 +15,7 @@ Auth::routes();
 Route::get('/', 'HomeController@index')->name('home');
 
 Route::get('/product/{id}/productionlines', 'ProductController@getProductionLines');
+Route::get('/products', 'ProductController@getAll');
 Route::resource('products', 'ProductController')->only([
   'store', 'update', 'destroy'
 ]);
