@@ -24,7 +24,7 @@ Route::resource('factories', 'FactoryController')->only([
   'store', 'update', 'destroy'
 ]);
 
-Route::get('/productionline/{id}/recalculate', 'ProductionLineController@recalculate');
+Route::post('/productionline/{id}/recalculate', 'ProductionLineController@recalculate');
 Route::get('/productionline/{id}/balance', 'ProductionLineController@balance');
 Route::resource('productionlines', 'ProductionLineController')->only([
   'store', 'update', 'destroy'

@@ -9,49 +9,59 @@ const HEADERS = {
 class Routes {
   constructor() {
     this._routes = new Map();
+    this._methods = new Map();
   }
-  register(name, route) {
+
+  registerRoute(name, route) {
     this._routes.set(name, route);
   }
+
+  registerMethod(name, method) {
+    this._methods.set(name, method);
+  }
+
   route(name, args) {
     let route = this._routes.get(name);
-    if (route instanceof Function) {
-      return route(args);
-    }
+    return route(args);
+  }
+
+  method(name, data) {
+    let method = this._methods.get(name);
+    return method(data);
   }
 }
 
 let Router = new Routes();
 
-Router.register(Constants.GET_FACTORIES, args => {
+Router.registerRoute(Constants.GET_FACTORIES, args => {
   return Constants.ROOT_URL + '/factories';
 });
 
-Router.register(Constants.BALANCE_PRODUCTION, args => {
+Router.registerRoute(Constants.BALANCE_PRODUCTION, args => {
   return Constants.ROOT_URL + '/productionline/'+args.id+'/balance';
 });
 
-Router.register(Constants.GET_PRODUCT_PRODUCTION_LINES, args => {
+Router.registerRoute(Constants.GET_PRODUCT_PRODUCTION_LINES, args => {
   return Constants.ROOT_URL + '/product/'+args.id+'/productionlines';
 });
 
-Router.register(Constants.RE_CALCULATE_PRODUCTION, args => {
+Router.registerRoute(Constants.RE_CALCULATE_PRODUCTION, args => {
   return Constants.ROOT_URL + '/productionline/'+args.id+'/recalculate';
 });
 
-Router.register(Constants.POST, args => {
+Router.registerMethod('POST', data => {
   return {
-    method: Constants.POST,
+    method: 'POST',
     headers: HEADERS,
-    body: JSON.stringify(args)
+    body: JSON.stringify(data)
   };
 });
 
-Router.register(Constants.GET, args => {
+Router.registerMethod('GET', data => {
   return {
-    method: Constants.GET,
+    method: 'GET',
     headers: HEADERS,
-    body: JSON.stringify(args)
+    body: JSON.stringify(data)
   };
 });
 

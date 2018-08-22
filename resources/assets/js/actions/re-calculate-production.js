@@ -5,8 +5,11 @@ import { RE_CALCULATE_PRODUCTION } from '../constants.js';
 import FactoryStore from '../stores/factory-store.js';
 
 Actions.register(RE_CALCULATE_PRODUCTION, data => {
-  fetch(Router.route(RE_CALCULATE_PRODUCTION, data),
-    Router.route(POST, {
+  let args = {
+    id: data.id
+  }
+  fetch(Router.route(RE_CALCULATE_PRODUCTION, args),
+    Router.method('POST', {
       itemsPerSecond: data.itemsPerSecond
     })
   ).then(response => {
