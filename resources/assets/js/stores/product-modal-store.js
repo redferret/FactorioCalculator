@@ -7,7 +7,6 @@ class ProductModalStore extends EventEmitter {
   constructor() {
     super();
     this.state = {
-      selectedProduct: null,
       show: false
     };
     this._productProductionLines = [];
@@ -18,23 +17,12 @@ class ProductModalStore extends EventEmitter {
   }
 
   hideModal() {
-    this.state = {
-      selectedProduct: null,
-      show: false
-    };
+    this.state.show = false;
     this.emitChange(MODAL_ID);
   }
 
   shouldShow() {
     return this.state.show;
-  }
-
-  setSelectedProduct(product) {
-    this.state.selectedProduct = product;
-  }
-
-  getSelectedProduct() {
-    return this.state.selectedProduct;
   }
 
   setSelectedProductionLine(selectedProductionLine) {

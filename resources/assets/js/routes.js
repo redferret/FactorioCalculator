@@ -1,20 +1,28 @@
 
-export const ROOT          = document.head.querySelector('meta[name="rootURL"]').content;
-export const GET_FACTORIES = ROOT + '/factories';
+export const ROOT = document.head.querySelector('meta[name="rootURL"]').content;
 
-export function BALANCE_PRODUCTION(id) {
+export function getFactories() {
+  return ROOT + '/factories';
+}
+
+export function balanceProductionLine(id) {
   return ROOT + '/productionline/'+id+'/balance';
 }
 
-export function GET_PRODUCT(id) {
-  return ROOT + '/product/' + id;
-}
-export function GET_PRODUCT_PRODUCTION_LINES(id) {
+export function getProductProductionLines(id) {
   return ROOT + '/product/'+id+'/productionlines';
 }
 
-export function RE_CALCULATE_PRODUCTION(id) {
+export function recalculateProductionLine(id) {
   return ROOT + '/productionline/'+id+'/recalculate';
+}
+
+export function GET(data) {
+  return {
+    method: 'GET',
+    headers: Routes.HEADERS,
+    body: JSON.stringify(data)
+  };
 }
 
 export function POST(data) {

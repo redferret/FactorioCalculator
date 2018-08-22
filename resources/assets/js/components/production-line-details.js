@@ -34,7 +34,6 @@ export default class ProductionLineDetails extends React.Component {
   }
 
   handleShowProductModal() {
-    ProductModalStore.setSelectedProduct(this.props.produces);
     ProductModalStore.setSelectedProductionLine(this.props);
     AppDispatcher.dispatch({
       action: GET_PRODUCT_PRODUCTION_LINES,

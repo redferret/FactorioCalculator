@@ -5,7 +5,7 @@ import { BALANCE_PRODUCTION } from '../constants.js';
 import ProductionLineStore from '../stores/production-line-store.js';
 
 Actions.register(BALANCE_PRODUCTION, data => {
-  fetch(Routes.BALANCE_PRODUCTION(data.id)).then(response => {
+  fetch(Routes.balanceProductionLine(data.id)).then(response => {
     return response.json();
   }).then(productionLine => {
     ProductionLineStore.setProductionLine(productionLine);
