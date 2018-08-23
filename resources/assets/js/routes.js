@@ -5,7 +5,7 @@ import Router from './router.js';
  * Root route for the application
  */
 Router.registerRoute(Constants.ROOT_URL, args => {
-  return document.head.querySelector('meta[name="rootURL"]').content;
+  return $('meta[name="rootURL"]').attr('content');
 })
 const ROOT = Router.route(Constants.ROOT_URL);
 

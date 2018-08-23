@@ -20,6 +20,7 @@ class ProductController extends Controller {
     $productionLines = $product->productionLines;
     foreach($productionLines as $productionLine) {
       $productionLine->produces;
+      $productionLine->produces->producer;
       $productionLine->consumer;
     }
     return $productionLines;

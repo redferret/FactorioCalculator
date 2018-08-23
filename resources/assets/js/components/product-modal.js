@@ -91,20 +91,47 @@ export default class ProductModal extends React.Component {
 
   renderOutputProductDetails() {
     let product = this.state.selectedProductionLine.produces;
-    return (
-      <Table>
-        <thead><tr>
-          <th>Crafting Time Per Item</th>
-          <th>Actual Production (Items/Sec)</th>
-          <th>Surplus/Deficit (Items/Sec)</th>
-        </tr></thead>
-        <tbody><tr>
-          <td>{product.crafting_time}</td>
-          <td>Not Implemented Yet</td>
-          <td>Not Implemented Yet</td>
-        </tr></tbody>
-      </Table>
-    );
+    let isMiner = product.producer.is_miner;
+
+    if (isMiner) {
+      return (
+        <Table>
+          <thead><tr>
+            <th>Crafting Time Per Item</th>
+            <th>Miner Speed</th>
+            <th>Miner Power</th>
+            <th>Item Hardness</th>
+            <th>Actual Production (Items/Sec)</th>
+            <th>Surplus/Deficit (Items/Sec)</th>
+          </tr></thead>
+          <tbody><tr>
+            <td>{product.crafting_time}</td>// Always can edit
+            <td>{product.producer.speed}</td>// Always can edit
+            <td>{product.producer.power}</td>// Always can edit
+            <td>{product.hardness}</td>// Always can edit
+            <td>Not Implemented Yet</td>
+            <td>Not Implemented Yet</td>
+          </tr></tbody>
+        </Table>
+      );
+    } else {
+      return (
+        <Table>
+          <thead><tr>
+            <th>Crafting Time Per Item</th>
+            <th>Assember Speed</th>
+            <th>Actual Production (Items/Sec)</th>
+            <th>Surplus/Deficit (Items/Sec)</th>
+          </tr></thead>
+          <tbody><tr>
+            <td>{product.crafting_time}</td>// Always can edit
+            <th>{product.producer.speed}</th>// Always can edit
+            <td>Not Implemented Yet</td>
+            <td>Not Implemented Yet</td>
+          </tr></tbody>
+        </Table>
+      );
+    }
   }
 
   renderModalBody() {
