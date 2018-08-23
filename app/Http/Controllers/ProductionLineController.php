@@ -25,9 +25,9 @@ class ProductionLineController extends Controller {
   public function recalculate($id) {
 
     $productionLine = Auth::user()->productionLines()->find($id);
-    $product = $productionLine->produces;
-    $product->items_per_second = Input::get('itemsPerSecond');
-    $product->save();
+    $productionLine->produces;
+    $productionLine->items_per_second = Input::get('itemsPerSecond');
+    $productionLine->save();
     $this->cascadeUpdateProductionLines($productionLine);
 
     $factories = Auth::user()->factories;

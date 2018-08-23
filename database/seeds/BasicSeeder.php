@@ -36,7 +36,8 @@ class BasicSeeder extends Seeder {
     );
     $ironProduction = $user->productionLines()->save(
       App\ProductionLine::create([
-        'name' => 'Iron Production 1'
+        'name' => 'Iron Production 1',
+        'items_per_second' => 8
       ])
     );
     $copperOreProduction = $user->productionLines()->save(
@@ -51,7 +52,8 @@ class BasicSeeder extends Seeder {
     );
     $copperWireProduction = $user->productionLines()->save(
       App\ProductionLine::create([
-        'name' => 'Copper Wire Production'
+        'name' => 'Copper Wire Production',
+        'items_per_second' => 8
       ])
     );
     $emptyProduction = $user->productionLines()->save(
@@ -92,13 +94,11 @@ class BasicSeeder extends Seeder {
     // Products
     $copperWire = $user->products()->save(App\Product::create([
       'name' => 'Copper Wire',
-      'crafting_time' => 0.5,
-      'items_per_second' => 8
+      'crafting_time' => 0.5
     ]));
     $copperPlate = $user->products()->save(App\Product::create([
       'name' => 'Copper Plate',
-      'crafting_time' => 3.5,
-      'items_per_second' => 2
+      'crafting_time' => 3.5
     ]));
     $copperOre = $user->products()->save(App\Product::create([
       'name' => 'Copper Ore',
@@ -108,8 +108,7 @@ class BasicSeeder extends Seeder {
     ]));
     $ironPlate = $user->products()->save(App\Product::create([
       'name' => 'Iron Plate',
-      'crafting_time' => 3.5,
-      'items_per_second' => 2
+      'crafting_time' => 3.5
     ]));
     $ironOre = $user->products()->save(App\Product::create([
       'name' => 'Iron Ore',

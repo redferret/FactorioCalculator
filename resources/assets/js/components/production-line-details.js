@@ -68,7 +68,7 @@ export default class ProductionLineDetails extends React.Component {
 
       let isOutput = this.props.production_line_id === null;
 
-      let inputValue = this.props.produces.items_per_second;
+      let inputValue = this.props.items_per_second;
       let itemsPerSecond = isOutput ?
         <Input type='number' name='itemsPerSecond'
           callback={this.dispatchMessage}

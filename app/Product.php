@@ -8,7 +8,7 @@ class Product extends Model
 {
     protected $fillable = ['crafting_time', 'name', 'user_id',
         'production_line_id', 'desired_assembly_count',
-        'items_per_second', 'stock_size', 'consumption_count', 'hardness'];
+        'stock_size', 'consumption_count', 'hardness'];
 
     /**
      * The production line that produces this product

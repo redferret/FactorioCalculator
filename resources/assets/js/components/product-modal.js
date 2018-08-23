@@ -180,7 +180,7 @@ export default class ProductModal extends React.Component {
     return (
       <Modal.Body>
         {this.renderOutputProductDetails()}
-        <h4><Label bsStyle='success'>Product Inputs</Label></h4>
+        <h4><Label bsStyle='success'>Production Inputs</Label></h4>
         <Well>
           <div className='list-group'> {
             productionLines.map(productionLine => {
@@ -234,7 +234,7 @@ export default class ProductModal extends React.Component {
 
     var modalTitleIfInput = <Label bsStyle='danger'>Output</Label>;
 
-    let isInput = this.state.selectedProductionLine.product_id !== null;
+    let isInput = this.state.selectedProductionLine.production_line_id !== null;
     if (isInput) {
       modalTitleIfInput = <Label bsStyle='success'>Input</Label>;
     }

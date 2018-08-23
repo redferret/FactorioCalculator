@@ -65760,7 +65760,7 @@ var ProductionLineDetails = function (_React$Component) {
 
         var isOutput = this.props.production_line_id === null;
 
-        var inputValue = this.props.produces.items_per_second;
+        var inputValue = this.props.items_per_second;
         var itemsPerSecond = isOutput ? __WEBPACK_IMPORTED_MODULE_2_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__input_js__["a" /* default */], { type: 'number', name: 'itemsPerSecond',
           callback: this.dispatchMessage,
           initialValue: inputValue }) : __WEBPACK_IMPORTED_MODULE_2_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__input_js__["a" /* default */], { type: 'number', name: 'itemsPerSecond',
@@ -78578,7 +78578,7 @@ var ProductModal = function (_React$Component) {
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             __WEBPACK_IMPORTED_MODULE_4_react_bootstrap__["f" /* Label */],
             { bsStyle: 'success' },
-            'Product Inputs'
+            'Production Inputs'
           )
         ),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -78711,7 +78711,7 @@ var ProductModal = function (_React$Component) {
         'Output'
       );
 
-      var isInput = this.state.selectedProductionLine.product_id !== null;
+      var isInput = this.state.selectedProductionLine.production_line_id !== null;
       if (isInput) {
         modalTitleIfInput = __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           __WEBPACK_IMPORTED_MODULE_4_react_bootstrap__["f" /* Label */],
