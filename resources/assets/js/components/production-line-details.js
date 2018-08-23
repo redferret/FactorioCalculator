@@ -11,6 +11,7 @@ import {
 } from 'react-bootstrap';
 
 import {
+  MAIN_ID,
   MODAL_ID,
   GET_PRODUCT_PRODUCTION_LINES,
   RE_CALCULATE_PRODUCTION,

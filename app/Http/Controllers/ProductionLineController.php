@@ -12,7 +12,7 @@ class ProductionLineController extends Controller {
   }
 
   public function recalculate() {
-
+    return '';
   }
 
   public function balance($id) {
