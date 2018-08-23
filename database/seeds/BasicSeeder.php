@@ -16,54 +16,51 @@ class BasicSeeder extends Seeder {
       'password' => bcrypt('secret')
     ]);
 
+    // Factories
     $factory = $user->factories()->save(
       App\Factory::create([
         'name' => 'Metal Plate Factory'
       ])
     );
-
     $user->factories()->save(
       App\Factory::create([
         'name' => 'Empty Factory Example'
       ])
     );
 
+    // Production lines
     $copperProduction = $user->productionLines()->save(
       App\ProductionLine::create([
         'name' => 'Copper Production 1'
       ])
     );
-
     $ironProduction = $user->productionLines()->save(
       App\ProductionLine::create([
         'name' => 'Iron Production 1'
       ])
     );
-
     $copperOreProduction = $user->productionLines()->save(
       App\ProductionLine::create([
         'name' => 'Copper Ore Production'
       ])
     );
-
     $ironOreProduction = $user->productionLines()->save(
       App\ProductionLine::create([
         'name' => 'Iron Ore Production'
       ])
     );
-
     $copperWireProduction = $user->productionLines()->save(
       App\ProductionLine::create([
         'name' => 'Copper Wire Production'
       ])
     );
-
     $emptyProduction = $user->productionLines()->save(
       App\ProductionLine::create([
         'name' => 'Empty Production Example'
       ])
     );
 
+    // Connect production lines with a factory
     $factory->productionLines()->save($copperWireProduction);
     $factory->productionLines()->save($copperProduction);
     $factory->productionLines()->save($ironProduction);
@@ -71,49 +68,49 @@ class BasicSeeder extends Seeder {
     $factory->productionLines()->save($ironOreProduction);
     $factory->productionLines()->save($copperOreProduction);
 
+    // Producers for production lines
+    $copperWireProduction->producer()->save(App\Producer::create([
+      'speed' => 0.75,
+    ]));
+    $copperProduction->producer()->save(App\Producer::create([
+      'speed' => 0.75,
+    ]));
+    $copperOreProduction->producer()->save(App\Producer::create([
+      'is_miner' => true,
+      'speed' => 0.5,
+      'power' => 3
+    ]));
+    $ironProduction->producer()->save(App\Producer::create([
+      'speed' => 0.75,
+    ]));
+    $ironOreProduction->producer()->save(App\Producer::create([
+      'is_miner' => true,
+      'speed' => 0.5,
+      'power' => 3
+    ]));
+
+    // Products
     $copperWire = $user->products()->save(App\Product::create([
       'name' => 'Copper Wire',
       'crafting_time' => 0.5,
       'items_per_second' => 8
     ]));
-
-    $copperWire->producer()->save(App\Producer::create([
-      'speed' => 0.75,
-    ]));
-
     $copperPlate = $user->products()->save(App\Product::create([
       'name' => 'Copper Plate',
       'crafting_time' => 3.5,
       'items_per_second' => 2
     ]));
-
-    $copperPlate->producer()->save(App\Producer::create([
-      'speed' => 0.75,
-    ]));
-
     $copperOre = $user->products()->save(App\Product::create([
       'name' => 'Copper Ore',
       'crafting_time' => 2,
       'consumption_count' => 1,
       'hardness' => 0.9
     ]));
-
-    $copperOre->producer()->save(App\Producer::create([
-      'is_miner' => true,
-      'speed' => 0.5,
-      'power' => 3
-    ]));
-
     $ironPlate = $user->products()->save(App\Product::create([
       'name' => 'Iron Plate',
       'crafting_time' => 3.5,
       'items_per_second' => 2
     ]));
-
-    $ironPlate->producer()->save(App\Producer::create([
-      'speed' => 0.75,
-    ]));
-
     $ironOre = $user->products()->save(App\Product::create([
       'name' => 'Iron Ore',
       'crafting_time' => 2,
@@ -121,20 +118,16 @@ class BasicSeeder extends Seeder {
       'hardness' => 0.9
     ]));
 
-    $ironOre->producer()->save(App\Producer::create([
-      'is_miner' => true,
-      'speed' => 0.5,
-      'power' => 3
-    ]));
-
+    // Connect a product with a production line
     $copperWireProduction->produces()->save($copperWire);
     $copperProduction->produces()->save($copperPlate);
     $ironProduction->produces()->save($ironPlate);
     $copperOreProduction->produces()->save($copperOre);
     $ironOreProduction->produces()->save($ironOre);
 
-    $copperWire->productionLines()->save($copperProduction);
-    $copperPlate->productionLines()->save($copperOreProduction);
-    $ironPlate->productionLines()->save($ironOreProduction);
+    // Connect consumption needs to production lines
+    $copperWireProduction->productionLines()->save($copperProduction);
+    $copperProduction->productionLines()->save($copperOreProduction);
+    $ironProduction->productionLines()->save($ironOreProduction);
   }
 }

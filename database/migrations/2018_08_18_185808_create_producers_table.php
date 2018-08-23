@@ -17,8 +17,7 @@ class CreateProducersTable extends Migration {
       $table->boolean('is_miner')->default(false);
       $table->float('speed')->default(0.5);
       $table->float('power')->default(2);
-      $table->float('hardness')->default(1);
-      $table->integer('product_id')->unsigned()->nullable();
+      $table->integer('production_line_id')->unsigned()->nullable();
       $table->timestamps();
     });
   }

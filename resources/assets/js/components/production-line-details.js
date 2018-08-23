@@ -1,5 +1,4 @@
 import AppDispatcher from '../dispatcher.js';
-import BalanceProductionButton from './balance-production-button.js';
 import ProductModalStore from '../stores/product-modal-store.js';
 import React from 'react';
 import Input from './input.js';
@@ -14,7 +13,7 @@ import {
 import {
   MAIN_ID,
   MODAL_ID,
-  GET_PRODUCT_PRODUCTION_LINES,
+  GET_PRODUCTION_LINES,
   RE_CALCULATE_PRODUCTION,
 } from '../constants.js';
 
@@ -31,9 +30,9 @@ export default class ProductionLineDetails extends React.Component {
   handleShowProductModal() {
     ProductModalStore.setSelectedProductionLine(this.props);
     AppDispatcher.dispatch({
-      action: GET_PRODUCT_PRODUCTION_LINES,
+      action: GET_PRODUCTION_LINES,
       data: {
-        id: this.props.produces.id,
+        id: this.props.id,
         componentId: MODAL_ID
       }
     });
@@ -63,12 +62,11 @@ export default class ProductionLineDetails extends React.Component {
     if (this.props.produces !== null) {
 
       let assemblyCountTitle = 'Number of Assemblers';
-      if (this.props.produces.producer.is_miner) {
+      if (this.props.producer.is_miner) {
         assemblyCountTitle = 'Number of Miners';
       }
 
-      let isOutput = this.props.product_id === null;
-      let balanced = this.props.produces.assembly_count === this.props.produces.desired_assembly_count;
+      let isOutput = this.props.production_line_id === null;
 
       let inputValue = this.props.produces.items_per_second;
       let itemsPerSecond = isOutput ?
@@ -81,10 +79,6 @@ export default class ProductionLineDetails extends React.Component {
 
       return (
         <div>
-          <BalanceProductionButton
-            balanced={balanced}
-            {...this.props}
-          />
           <Table>
             <thead>
               <tr>
@@ -106,7 +100,7 @@ export default class ProductionLineDetails extends React.Component {
             </tbody>
           </Table>
           <ButtonToolbar>
-            <Button onClick={this.handleShowProductModal} bsStyle='primary' bsSize='small'>Select Product</Button>{' '}
+            <Button onClick={this.handleShowProductModal} bsStyle='primary' bsSize='small'>Select Production Line</Button>{' '}
             <Button onClick={this.removeFromProduction} bsSize='small'>Remove Product from Production Line</Button>
           </ButtonToolbar>
         </div>

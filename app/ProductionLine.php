@@ -6,14 +6,28 @@ use Illuminate\Database\Eloquent\Model;
 
 class ProductionLine extends Model
 {
-  protected $fillable = ['name', 'user_id', 'factory_id'];
+  protected $fillable = ['name', 'user_id', 'factory_id', 'production_line_id'];
 
   public function produces() {
     return $this->hasOne(Product::class);
   }
 
+  /**
+   * The inputs for this production line
+   */
+  public function productionLines() {
+    return $this->hasMany(ProductionLine::class);
+  }
+
   public function consumer() {
-    return $this->belongsTo(Product::class);
+    return $this->belongsTo(ProductionLine::class);
+  }
+
+  /**
+   * The assemply machine or miner for this production line
+   */
+  public function producer() {
+    return $this->hasOne(Producer::class);
   }
 
   public function factory() {

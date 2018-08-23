@@ -17,7 +17,7 @@ import {
 
 import {
   MODAL_ID,
-  GET_PRODUCT_PRODUCTION_LINES,
+  GET_PRODUCTION_LINES,
 } from '../constants.js';
 
 export default class ProductModal extends React.Component {
@@ -50,7 +50,7 @@ export default class ProductModal extends React.Component {
 
   _fetchProductionLines(id) {
     AppDispatcher.dispatch({
-      action: GET_PRODUCT_PRODUCTION_LINES,
+      action: GET_PRODUCTION_LINES,
       data: {
         id: id,
         componentId: MODAL_ID
@@ -80,14 +80,14 @@ export default class ProductModal extends React.Component {
   handleSelectInput(productionLine) {
     this.state.productionLineStack.unshift(this.state.selectedProductionLine);
     ProductModalStore.setSelectedProductionLine(productionLine);
-    this._fetchProductionLines(productionLine.produces.id);
+    this._fetchProductionLines(productionLine.id);
   }
 
   handleBackSelect() {
     if (this.state.productionLineStack.peek() !== undefined) {
       let productionLine = this.state.productionLineStack.shift();
       ProductModalStore.setSelectedProductionLine(productionLine);
-      this._fetchProductionLines(productionLine.produces.id);
+      this._fetchProductionLines(productionLine.id);
     }
   }
 
@@ -96,16 +96,17 @@ export default class ProductModal extends React.Component {
   }
 
   renderOutputProductDetails() {
+    let producer = this.state.selectedProductionLine.producer;
     let product = this.state.selectedProductionLine.produces;
-    let isMiner = product.producer.is_miner;
+    let isMiner = this.state.selectedProductionLine.producer.is_miner;
 
     if (isMiner) {
       return (
         <Table>
           <thead><tr>
             <th>Crafting Time Per Item</th>
-            <th>Miner Speed</th>
-            <th>Miner Power</th>
+            <th>Miner(s) Speed</th>
+            <th>Miner(s) Power</th>
             <th>Item Hardness</th>
             <th>Actual Production (Items/Sec)</th>
             <th>Surplus/Deficit (Items/Sec)</th>
@@ -119,17 +120,17 @@ export default class ProductModal extends React.Component {
             <td>
               <Input type='number' name='speed'
               callback={this.dispatchInputChanged}
-              initialValue={product.producer.speed} />
+              initialValue={producer.speed} />
             </td>
             <td>
               <Input type='number' name='power'
               callback={this.dispatchInputChanged}
-              initialValue={product.producer.power} />
+              initialValue={producer.power} />
             </td>
             <td>
               <Input type='number' name='hardness'
               callback={this.dispatchInputChanged}
-              initialValue={product.producer.hardness} />
+              initialValue={producer.hardness} />
             </td>
             <td>Not Implemented Yet</td>
             <td>Not Implemented Yet</td>
@@ -141,7 +142,7 @@ export default class ProductModal extends React.Component {
         <Table>
           <thead><tr>
             <th>Crafting Time Per Item</th>
-            <th>Assember Speed</th>
+            <th>Assember(s) Speed</th>
             <th>Actual Production (Items/Sec)</th>
             <th>Surplus/Deficit (Items/Sec)</th>
           </tr></thead>
@@ -154,7 +155,7 @@ export default class ProductModal extends React.Component {
             <td>
               <Input type='number' name='speed'
               callback={this.dispatchInputChanged}
-              initialValue={product.producer.speed} />
+              initialValue={producer.speed} />
             </td>
             <td>Not Implemented Yet</td>
             <td>Not Implemented Yet</td>
@@ -165,7 +166,7 @@ export default class ProductModal extends React.Component {
   }
 
   renderModalBody() {
-    let productionLines = ProductModalStore.getProductProductionLines();
+    let productionLines = ProductModalStore.getProductionLines();
 
     if (productionLines.length === 0) {
       return (

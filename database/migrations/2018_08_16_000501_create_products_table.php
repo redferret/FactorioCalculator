@@ -22,7 +22,6 @@ class CreateProductsTable extends Migration {
       $table->float('crafting_time')->default(1);
       $table->float('hardness')->nullable();
       
-      $table->integer('product_id')->unsigned()->nullable();
       $table->integer('production_line_id')->unsigned()->nullable();
       $table->integer('user_id')->unsigned()->nullable();
       $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

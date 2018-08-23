@@ -14,7 +14,6 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
 
-Route::get('/product/{id}/productionlines', 'ProductController@getProductionLines');
 Route::get('/products', 'ProductController@getAll');
 Route::resource('products', 'ProductController')->only([
   'store', 'update', 'destroy'
@@ -25,6 +24,7 @@ Route::resource('factories', 'FactoryController')->only([
   'store', 'update', 'destroy'
 ]);
 
+Route::get('/productionline/{id}/productionlines', 'ProductionLineController@getProductionLines');
 Route::post('/productionline/{id}/recalculate', 'ProductionLineController@recalculate');
 Route::get('/productionline/{id}/balance', 'ProductionLineController@balance');
 Route::resource('productionlines', 'ProductionLineController')->only([

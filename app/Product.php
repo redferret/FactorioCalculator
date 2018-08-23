@@ -17,20 +17,6 @@ class Product extends Model
       return $this->belongsTo(ProductionLine::class);
     }
 
-    /**
-     * The inputs for this product
-     */
-    public function productionLines() {
-      return $this->hasMany(ProductionLine::class);
-    }
-
-    /**
-     * The assemply machine or miner for this product
-     */
-    public function producer() {
-      return $this->hasOne(Producer::class);
-    }
-
     public function user() {
       return $this->belongsTo(User::class);
     }

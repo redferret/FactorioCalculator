@@ -15,17 +15,6 @@ class ProductController extends Controller {
     return Auth::user()->products;
   }
 
-  public function getProductionLines($id) {
-    $product = Auth::user()->products()->find($id);
-    $productionLines = $product->productionLines;
-    foreach($productionLines as $productionLine) {
-      $productionLine->produces;
-      $productionLine->produces->producer;
-      $productionLine->consumer;
-    }
-    return $productionLines;
-  }
-
   /**
    * Store a newly created resource in storage.
    *

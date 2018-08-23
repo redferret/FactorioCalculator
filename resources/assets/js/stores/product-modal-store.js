@@ -8,7 +8,7 @@ class ProductModalStore extends EventEmitter {
     this.state = {
       show: false
     };
-    this._productProductionLines = [];
+    this._productionLines = [];
   }
 
   showModal() {
@@ -32,12 +32,12 @@ class ProductModalStore extends EventEmitter {
     return this._selectedProductionLine;
   }
 
-  setProductProductionLines(productionLines) {
-    this._productProductionLines = productionLines;
+  setProductionLines(productionLines) {
+    this._productionLines = productionLines;
   }
 
-  getProductProductionLines() {
-    return this._productProductionLines;
+  getProductionLines() {
+    return this._productionLines;
   }
 
   emitChange(id) {

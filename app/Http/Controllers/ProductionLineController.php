@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 use Auth;
+use App\ProductionLine;
 
 class ProductionLineController extends Controller {
 
@@ -11,27 +13,52 @@ class ProductionLineController extends Controller {
     $this->middleware('auth');
   }
 
-  public function recalculate() {
-    return '';
+  private function cascadeUpdateProductionLines(ProductionLine $parent) {
+    $product = $parent->produces;
+    $producer = $product->producer;
+    $seconds_per_item = round($product->items_per_second / $producer->speed, 2);
+    $numberOfProducers = round(($product->items_per_second * $seconds_per_item) / $product->stock_size, 2);
+    $numberOfProducers = ceil($numberOfProducers); // Auto Balance
+    // Update inputs
   }
 
-  public function balance($id) {
-    $productionLine = Auth::user()->productionLines->find($id);
-    $product = $productionLine->produces; // Get the product this line produces
-    if ($product != null) {
-      $producer = $product->producer;
-      $seconds_per_item = round($product->items_per_second / $producer->speed, 2);
-      $assembly_count = ceil(($product->items_per_second * $seconds_per_item) / $product->stock_size);
-      $product->desired_assembly_count = $assembly_count;
-      $productionLine->produces()->save($product);
+  public function recalculate($id) {
 
-      $product->assembly_count = $assembly_count;
-      $product->seconds_per_item = $seconds_per_item;
-      $product->productionLines;
-      // Update inputs for this product
+    $productionLine = Auth::user()->productionLines()->find($id);
+    $product = $productionLine->produces;
+    $product->items_per_second = Input::get('itemsPerSecond');
+    $product->save();
+    $this->cascadeUpdateProductionLines($productionLine);
+
+    $factories = Auth::user()->factories;
+    foreach($factories as $factory) {
+      $totalItems = 0;
+      foreach($factory->productionLines as $productionLine) {
+        $product = $productionLine->produces; // Get the product this line produces
+        if ($product != null) {
+          $totalItems += $product->items_per_second;
+          $producer = $product->producer;
+          $product->seconds_per_item = round($product->items_per_second / $producer->speed, 2);
+          $product->assembly_count = round(($product->items_per_second * $product->seconds_per_item) / $product->stock_size, 2);
+          $product->productionLines;
+          // Update inputs for this product
+
+        }
+      }
+      $factory->total_items = round($totalItems, 2);
     }
+    return $factories;
+  }
 
-    return $productionLine;
+  public function getProductionLines($id) {
+    $productionLine = Auth::user()->productionLines()->find($id);
+    $productionLines = $productionLine->productionLines;
+    foreach($productionLines as $productionLine) {
+      $productionLine->produces;
+      $productionLine->producer;
+      $productionLine->consumer;
+    }
+    return $productionLines;
   }
 
   /**

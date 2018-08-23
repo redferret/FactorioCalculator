@@ -19,12 +19,10 @@ class FactoryController extends Controller {
         $product = $productionLine->produces; // Get the product this line produces
         if ($product != null) {
           $totalItems += $product->items_per_second;
-          $producer = $product->producer;
+          $producer = $productionLine->producer;
           $product->seconds_per_item = round($product->items_per_second / $producer->speed, 2);
           $product->assembly_count = round(($product->items_per_second * $product->seconds_per_item) / $product->stock_size, 2);
           $product->productionLines;
-          // Update inputs for this product
-
         }
       }
       $factory->total_items = round($totalItems, 2);

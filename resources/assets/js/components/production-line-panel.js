@@ -5,8 +5,6 @@ import React from 'react';
 import { PRODUCTION_LINE_ID } from '../constants.js';
 import {
   Alert,
-  Button,
-  ButtonToolbar,
   Label,
   Panel,
   Table,
@@ -17,7 +15,6 @@ export default class ProductionLinePanel extends React.Component {
 
   constructor(props, context) {
     super(props, context);
-    this.handleEditProduction = this.handleEditProduction.bind(this);
     this.state = {
       productionLine: this.props
     };
@@ -25,10 +22,6 @@ export default class ProductionLinePanel extends React.Component {
 
   _onChange() {
     this.setState({productionLine: ProductionLineStore.getProductionLine()});
-  }
-
-  handleEditProduction(e) {
-    alert("Edit Production "+this.props.id);
   }
 
   componentDidMount() {
@@ -48,7 +41,6 @@ export default class ProductionLinePanel extends React.Component {
           </Panel.Title>
         </Panel.Heading>
         <Panel.Body collapsible>
-          <Button onClick={this.handleEditProduction} bsSize='xsmall'>Edit Production Line</Button>
           <ProductionLineDetails
             {...this.state.productionLine}
           />
