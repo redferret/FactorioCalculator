@@ -13,7 +13,7 @@ class Input extends React.Component {
     super(props, context);
     this.state = {
       value: this.props.initialValue,
-      isValid: 'success'
+      isValid: true
     };
     this.ignoreBlur = true;
   }
@@ -49,18 +49,21 @@ class Input extends React.Component {
     }
 
     return (
-      <FormGroup controlId="inputFormGroup" validationState={validationState}>
-        <FormControl type={this.props.type} name={this.props.name}
-          onBlur={this.handleChange.bind(this)}
-          onKeyPress={this.handleChange.bind(this)}
-          onChange={(event) => {
-            this.ignoreBlur = false;
-            this.setState({
-              value: event.target.value
-            });
-          }}
-          inputRef={(reference) => this.DOMRef = reference}
-          value={this.state.value} />
+      <FormGroup
+        controlId="inputFormGroup"
+        validationState={validationState}
+      >
+      <FormControl type={this.props.type} name={this.props.name}
+        onBlur={this.handleChange.bind(this)}
+        onKeyPress={this.handleChange.bind(this)}
+        onChange={(event) => {
+          this.ignoreBlur = false;
+          this.setState({
+            value: event.target.value
+          });
+        }}
+        inputRef={(reference) => this.DOMRef = reference}
+        value={this.state.value} />
       </FormGroup>
     );
   }

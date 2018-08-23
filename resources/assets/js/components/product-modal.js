@@ -2,6 +2,7 @@
 import React from 'react';
 
 import AppDispatcher from '../dispatcher.js';
+import Input from './input.js';
 import ProductModalStore from '../stores/product-modal-store.js';
 
 import {
@@ -28,6 +29,7 @@ export default class ProductModal extends React.Component {
     this.handleBackSelect = this.handleBackSelect.bind(this);
     this.handleShowProductModal = this.handleShowProductModal.bind(this);
     this.handleHideProductModal = this.handleHideProductModal.bind(this);
+    this.dispatchInputChanged = this.dispatchInputChanged.bind(this);
 
     this.state = {
       selectedProductionLine: ProductModalStore.getSelectedProductionLine(),
@@ -89,6 +91,10 @@ export default class ProductModal extends React.Component {
     }
   }
 
+  dispatchInputChanged(event) {
+    console.log(event.target.value);
+  }
+
   renderOutputProductDetails() {
     let product = this.state.selectedProductionLine.produces;
     let isMiner = product.producer.is_miner;
@@ -105,10 +111,26 @@ export default class ProductModal extends React.Component {
             <th>Surplus/Deficit (Items/Sec)</th>
           </tr></thead>
           <tbody><tr>
-            <td>{product.crafting_time}</td>// Always can edit
-            <td>{product.producer.speed}</td>// Always can edit
-            <td>{product.producer.power}</td>// Always can edit
-            <td>{product.hardness}</td>// Always can edit
+            <td>
+              <Input type='number' name='itemsPerSecond'
+              callback={this.dispatchInputChanged}
+              initialValue={product.crafting_time} />
+            </td>
+            <td>
+              <Input type='number' name='speed'
+              callback={this.dispatchInputChanged}
+              initialValue={product.producer.speed} />
+            </td>
+            <td>
+              <Input type='number' name='power'
+              callback={this.dispatchInputChanged}
+              initialValue={product.producer.power} />
+            </td>
+            <td>
+              <Input type='number' name='hardness'
+              callback={this.dispatchInputChanged}
+              initialValue={product.producer.hardness} />
+            </td>
             <td>Not Implemented Yet</td>
             <td>Not Implemented Yet</td>
           </tr></tbody>
@@ -124,8 +146,16 @@ export default class ProductModal extends React.Component {
             <th>Surplus/Deficit (Items/Sec)</th>
           </tr></thead>
           <tbody><tr>
-            <td>{product.crafting_time}</td>// Always can edit
-            <th>{product.producer.speed}</th>// Always can edit
+            <td>
+              <Input type='number' name='itemsPerSecond'
+              callback={this.dispatchInputChanged}
+              initialValue={product.crafting_time} />
+            </td>
+            <td>
+              <Input type='number' name='speed'
+              callback={this.dispatchInputChanged}
+              initialValue={product.producer.speed} />
+            </td>
             <td>Not Implemented Yet</td>
             <td>Not Implemented Yet</td>
           </tr></tbody>

@@ -78340,9 +78340,10 @@ var Well = function (_React$Component) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__dispatcher_js__ = __webpack_require__(45);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__stores_product_modal_store_js__ = __webpack_require__(66);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_react_bootstrap__ = __webpack_require__(27);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__constants_js__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__input_js__ = __webpack_require__(357);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__stores_product_modal_store_js__ = __webpack_require__(66);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_react_bootstrap__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__constants_js__ = __webpack_require__(16);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -78350,6 +78351,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
 
 
 
@@ -78372,9 +78374,10 @@ var ProductModal = function (_React$Component) {
     _this.handleBackSelect = _this.handleBackSelect.bind(_this);
     _this.handleShowProductModal = _this.handleShowProductModal.bind(_this);
     _this.handleHideProductModal = _this.handleHideProductModal.bind(_this);
+    _this.dispatchInputChanged = _this.dispatchInputChanged.bind(_this);
 
     _this.state = {
-      selectedProductionLine: __WEBPACK_IMPORTED_MODULE_2__stores_product_modal_store_js__["a" /* default */].getSelectedProductionLine(),
+      selectedProductionLine: __WEBPACK_IMPORTED_MODULE_3__stores_product_modal_store_js__["a" /* default */].getSelectedProductionLine(),
       productionLineStack: [],
       show: false
     };
@@ -78390,35 +78393,35 @@ var ProductModal = function (_React$Component) {
     key: '_onChange',
     value: function _onChange() {
       this.setState({
-        selectedProductionLine: __WEBPACK_IMPORTED_MODULE_2__stores_product_modal_store_js__["a" /* default */].getSelectedProductionLine(),
-        show: __WEBPACK_IMPORTED_MODULE_2__stores_product_modal_store_js__["a" /* default */].shouldShow()
+        selectedProductionLine: __WEBPACK_IMPORTED_MODULE_3__stores_product_modal_store_js__["a" /* default */].getSelectedProductionLine(),
+        show: __WEBPACK_IMPORTED_MODULE_3__stores_product_modal_store_js__["a" /* default */].shouldShow()
       });
     }
   }, {
     key: '_fetchProductionLines',
     value: function _fetchProductionLines(id) {
       __WEBPACK_IMPORTED_MODULE_1__dispatcher_js__["a" /* default */].dispatch({
-        action: __WEBPACK_IMPORTED_MODULE_4__constants_js__["q" /* GET_PRODUCT_PRODUCTION_LINES */],
+        action: __WEBPACK_IMPORTED_MODULE_5__constants_js__["q" /* GET_PRODUCT_PRODUCTION_LINES */],
         data: {
           id: id,
-          componentId: __WEBPACK_IMPORTED_MODULE_4__constants_js__["s" /* MODAL_ID */]
+          componentId: __WEBPACK_IMPORTED_MODULE_5__constants_js__["s" /* MODAL_ID */]
         }
       });
     }
   }, {
     key: 'componentDidMount',
     value: function componentDidMount() {
-      __WEBPACK_IMPORTED_MODULE_2__stores_product_modal_store_js__["a" /* default */].on(__WEBPACK_IMPORTED_MODULE_4__constants_js__["s" /* MODAL_ID */], this._onChange.bind(this));
+      __WEBPACK_IMPORTED_MODULE_3__stores_product_modal_store_js__["a" /* default */].on(__WEBPACK_IMPORTED_MODULE_5__constants_js__["s" /* MODAL_ID */], this._onChange.bind(this));
     }
   }, {
     key: 'componentWillUnmount',
     value: function componentWillUnmount() {
-      __WEBPACK_IMPORTED_MODULE_2__stores_product_modal_store_js__["a" /* default */].removeListener(__WEBPACK_IMPORTED_MODULE_4__constants_js__["s" /* MODAL_ID */], this._onChange.bind(this));
+      __WEBPACK_IMPORTED_MODULE_3__stores_product_modal_store_js__["a" /* default */].removeListener(__WEBPACK_IMPORTED_MODULE_5__constants_js__["s" /* MODAL_ID */], this._onChange.bind(this));
     }
   }, {
     key: 'handleShowProductModal',
     value: function handleShowProductModal(e) {
-      __WEBPACK_IMPORTED_MODULE_2__stores_product_modal_store_js__["a" /* default */].showModal();
+      __WEBPACK_IMPORTED_MODULE_3__stores_product_modal_store_js__["a" /* default */].showModal();
     }
   }, {
     key: 'handleHideProductModal',
@@ -78426,13 +78429,13 @@ var ProductModal = function (_React$Component) {
       this.setState({
         productionLineStack: []
       });
-      __WEBPACK_IMPORTED_MODULE_2__stores_product_modal_store_js__["a" /* default */].hideModal();
+      __WEBPACK_IMPORTED_MODULE_3__stores_product_modal_store_js__["a" /* default */].hideModal();
     }
   }, {
     key: 'handleSelectInput',
     value: function handleSelectInput(productionLine) {
       this.state.productionLineStack.unshift(this.state.selectedProductionLine);
-      __WEBPACK_IMPORTED_MODULE_2__stores_product_modal_store_js__["a" /* default */].setSelectedProductionLine(productionLine);
+      __WEBPACK_IMPORTED_MODULE_3__stores_product_modal_store_js__["a" /* default */].setSelectedProductionLine(productionLine);
       this._fetchProductionLines(productionLine.produces.id);
     }
   }, {
@@ -78440,9 +78443,14 @@ var ProductModal = function (_React$Component) {
     value: function handleBackSelect() {
       if (this.state.productionLineStack.peek() !== undefined) {
         var productionLine = this.state.productionLineStack.shift();
-        __WEBPACK_IMPORTED_MODULE_2__stores_product_modal_store_js__["a" /* default */].setSelectedProductionLine(productionLine);
+        __WEBPACK_IMPORTED_MODULE_3__stores_product_modal_store_js__["a" /* default */].setSelectedProductionLine(productionLine);
         this._fetchProductionLines(productionLine.produces.id);
       }
+    }
+  }, {
+    key: 'dispatchInputChanged',
+    value: function dispatchInputChanged(event) {
+      console.log(event.target.value);
     }
   }, {
     key: 'renderOutputProductDetails',
@@ -78452,7 +78460,7 @@ var ProductModal = function (_React$Component) {
 
       if (isMiner) {
         return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          __WEBPACK_IMPORTED_MODULE_3_react_bootstrap__["j" /* Table */],
+          __WEBPACK_IMPORTED_MODULE_4_react_bootstrap__["j" /* Table */],
           null,
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'thead',
@@ -78501,27 +78509,31 @@ var ProductModal = function (_React$Component) {
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'td',
                 null,
-                product.crafting_time
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__input_js__["a" /* default */], { type: 'number', name: 'itemsPerSecond',
+                  callback: this.dispatchInputChanged,
+                  initialValue: product.crafting_time })
               ),
-              '// Always can edit',
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'td',
                 null,
-                product.producer.speed
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__input_js__["a" /* default */], { type: 'number', name: 'speed',
+                  callback: this.dispatchInputChanged,
+                  initialValue: product.producer.speed })
               ),
-              '// Always can edit',
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'td',
                 null,
-                product.producer.power
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__input_js__["a" /* default */], { type: 'number', name: 'power',
+                  callback: this.dispatchInputChanged,
+                  initialValue: product.producer.power })
               ),
-              '// Always can edit',
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'td',
                 null,
-                product.hardness
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__input_js__["a" /* default */], { type: 'number', name: 'hardness',
+                  callback: this.dispatchInputChanged,
+                  initialValue: product.producer.hardness })
               ),
-              '// Always can edit',
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'td',
                 null,
@@ -78537,7 +78549,7 @@ var ProductModal = function (_React$Component) {
         );
       } else {
         return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          __WEBPACK_IMPORTED_MODULE_3_react_bootstrap__["j" /* Table */],
+          __WEBPACK_IMPORTED_MODULE_4_react_bootstrap__["j" /* Table */],
           null,
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'thead',
@@ -78576,15 +78588,17 @@ var ProductModal = function (_React$Component) {
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'td',
                 null,
-                product.crafting_time
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__input_js__["a" /* default */], { type: 'number', name: 'itemsPerSecond',
+                  callback: this.dispatchInputChanged,
+                  initialValue: product.crafting_time })
               ),
-              '// Always can edit',
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                'th',
+                'td',
                 null,
-                product.producer.speed
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__input_js__["a" /* default */], { type: 'number', name: 'speed',
+                  callback: this.dispatchInputChanged,
+                  initialValue: product.producer.speed })
               ),
-              '// Always can edit',
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'td',
                 null,
@@ -78605,15 +78619,15 @@ var ProductModal = function (_React$Component) {
     value: function renderModalBody() {
       var _this2 = this;
 
-      var productionLines = __WEBPACK_IMPORTED_MODULE_2__stores_product_modal_store_js__["a" /* default */].getProductProductionLines();
+      var productionLines = __WEBPACK_IMPORTED_MODULE_3__stores_product_modal_store_js__["a" /* default */].getProductProductionLines();
 
       if (productionLines.length === 0) {
         return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          __WEBPACK_IMPORTED_MODULE_3_react_bootstrap__["g" /* Modal */].Body,
+          __WEBPACK_IMPORTED_MODULE_4_react_bootstrap__["g" /* Modal */].Body,
           null,
           this.renderOutputProductDetails(),
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            __WEBPACK_IMPORTED_MODULE_3_react_bootstrap__["a" /* Alert */],
+            __WEBPACK_IMPORTED_MODULE_4_react_bootstrap__["a" /* Alert */],
             { bsStyle: 'warning' },
             'This is a Primary Resource'
           )
@@ -78621,20 +78635,20 @@ var ProductModal = function (_React$Component) {
       }
 
       return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-        __WEBPACK_IMPORTED_MODULE_3_react_bootstrap__["g" /* Modal */].Body,
+        __WEBPACK_IMPORTED_MODULE_4_react_bootstrap__["g" /* Modal */].Body,
         null,
         this.renderOutputProductDetails(),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           'h4',
           null,
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            __WEBPACK_IMPORTED_MODULE_3_react_bootstrap__["f" /* Label */],
+            __WEBPACK_IMPORTED_MODULE_4_react_bootstrap__["f" /* Label */],
             { bsStyle: 'success' },
             'Product Inputs'
           )
         ),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          __WEBPACK_IMPORTED_MODULE_3_react_bootstrap__["k" /* Well */],
+          __WEBPACK_IMPORTED_MODULE_4_react_bootstrap__["k" /* Well */],
           null,
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'div',
@@ -78646,7 +78660,7 @@ var ProductModal = function (_React$Component) {
                 'div',
                 { key: product.id },
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                  __WEBPACK_IMPORTED_MODULE_3_react_bootstrap__["f" /* Label */],
+                  __WEBPACK_IMPORTED_MODULE_4_react_bootstrap__["f" /* Label */],
                   null,
                   'Production Line: ',
                   productionLine.name
@@ -78663,7 +78677,7 @@ var ProductModal = function (_React$Component) {
                     product.name
                   ),
                   __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    __WEBPACK_IMPORTED_MODULE_3_react_bootstrap__["j" /* Table */],
+                    __WEBPACK_IMPORTED_MODULE_4_react_bootstrap__["j" /* Table */],
                     null,
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                       'thead',
@@ -78751,14 +78765,14 @@ var ProductModal = function (_React$Component) {
 
       if (this.state.productionLineStack.length > 0) {
         backButton = __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          __WEBPACK_IMPORTED_MODULE_3_react_bootstrap__["b" /* Button */],
+          __WEBPACK_IMPORTED_MODULE_4_react_bootstrap__["b" /* Button */],
           { onClick: this.handleBackSelect },
           'Back'
         );
       }
 
       var modalTitleIfInput = __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-        __WEBPACK_IMPORTED_MODULE_3_react_bootstrap__["f" /* Label */],
+        __WEBPACK_IMPORTED_MODULE_4_react_bootstrap__["f" /* Label */],
         { bsStyle: 'danger' },
         'Output'
       );
@@ -78766,24 +78780,24 @@ var ProductModal = function (_React$Component) {
       var isInput = this.state.selectedProductionLine.product_id !== null;
       if (isInput) {
         modalTitleIfInput = __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          __WEBPACK_IMPORTED_MODULE_3_react_bootstrap__["f" /* Label */],
+          __WEBPACK_IMPORTED_MODULE_4_react_bootstrap__["f" /* Label */],
           { bsStyle: 'success' },
           'Input'
         );
       }
 
       return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-        __WEBPACK_IMPORTED_MODULE_3_react_bootstrap__["g" /* Modal */],
+        __WEBPACK_IMPORTED_MODULE_4_react_bootstrap__["g" /* Modal */],
         {
           show: this.state.show,
           onHide: this.handleHideProductModal,
           bsSize: 'large'
         },
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          __WEBPACK_IMPORTED_MODULE_3_react_bootstrap__["g" /* Modal */].Header,
+          __WEBPACK_IMPORTED_MODULE_4_react_bootstrap__["g" /* Modal */].Header,
           null,
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            __WEBPACK_IMPORTED_MODULE_3_react_bootstrap__["g" /* Modal */].Title,
+            __WEBPACK_IMPORTED_MODULE_4_react_bootstrap__["g" /* Modal */].Title,
             null,
             this.state.selectedProductionLine.produces.name,
             ' ',
@@ -78792,19 +78806,19 @@ var ProductModal = function (_React$Component) {
         ),
         this.renderModalBody(),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          __WEBPACK_IMPORTED_MODULE_3_react_bootstrap__["g" /* Modal */].Footer,
+          __WEBPACK_IMPORTED_MODULE_4_react_bootstrap__["g" /* Modal */].Footer,
           null,
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            __WEBPACK_IMPORTED_MODULE_3_react_bootstrap__["c" /* ButtonToolbar */],
+            __WEBPACK_IMPORTED_MODULE_4_react_bootstrap__["c" /* ButtonToolbar */],
             null,
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              __WEBPACK_IMPORTED_MODULE_3_react_bootstrap__["b" /* Button */],
+              __WEBPACK_IMPORTED_MODULE_4_react_bootstrap__["b" /* Button */],
               { bsStyle: 'primary' },
               'Add Input'
             ),
             backButton,
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              __WEBPACK_IMPORTED_MODULE_3_react_bootstrap__["b" /* Button */],
+              __WEBPACK_IMPORTED_MODULE_4_react_bootstrap__["b" /* Button */],
               { onClick: this.handleHideProductModal },
               'Close'
             )
@@ -78859,7 +78873,7 @@ var Input = function (_React$Component) {
 
     _this.state = {
       value: _this.props.initialValue,
-      isValid: 'success'
+      isValid: true
     };
     _this.ignoreBlur = true;
     return _this;
@@ -78905,7 +78919,10 @@ var Input = function (_React$Component) {
 
       return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["e" /* FormGroup */],
-        { controlId: 'inputFormGroup', validationState: validationState },
+        {
+          controlId: 'inputFormGroup',
+          validationState: validationState
+        },
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["d" /* FormControl */], { type: this.props.type, name: this.props.name,
           onBlur: this.handleChange.bind(this),
           onKeyPress: this.handleChange.bind(this),
