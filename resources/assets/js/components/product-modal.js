@@ -92,7 +92,7 @@ export default class ProductModal extends React.Component {
   }
 
   dispatchInputChanged(event) {
-    console.log(event.target.value);
+    console.log(event.target.name ,event.target.value);
   }
 
   renderOutputProductDetails() {
@@ -102,13 +102,13 @@ export default class ProductModal extends React.Component {
     let isInput = this.state.selectedProductionLine.production_line_id !== null;
 
     let consumerRequirementTH = isInput ?
-      <th>Consumer Requirement</th> : '';
+      <th>Consumer Requirement</th> : <th></th>;
     let consumerRequirementTD = isInput ?
       <td>
         <Input type='number' name='consumerRequirement'
         callback={this.dispatchInputChanged}
         initialValue={this.state.selectedProductionLine.consumer_requirement} />
-      </td> : '';
+      </td> : <td></td>;
 
     if (isMiner) {
       return (

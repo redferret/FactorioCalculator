@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\ProductionLine;
+use App\Utility;
+use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
-use Auth;
-use App\ProductionLine;
 
 class ProductionLineController extends Controller {
 
@@ -13,35 +14,28 @@ class ProductionLineController extends Controller {
     $this->middleware('auth');
   }
 
-  private function updateProductionLines(ProductionLine $parent) {
-    $productionLine = $parent->productionLine;
-    $producer = $product->producer;
-    $seconds_per_item = round($productionLine->items_per_second / $producer->speed, 2);
-    $numberOfProducers = round(($productionLine->items_per_second * $seconds_per_item) / $product->stock_size, 2);
-    $numberOfProducers = ceil($numberOfProducers); // Auto Balance
-    $productionLine->assembly_count = $numberOfProducers;
-    $productionLine->seconds_per_item = $seconds_per_item;
-    
-  }
-
-  public function recalculate($id) {
-
+  public static function recalculate($id) {
     $productionLine = Auth::user()->productionLines()->find($id);
-    $productionLine->produces;
     $productionLine->items_per_second = Input::get('itemsPerSecond');
-    $productionLine->save();
-    $this->updateProductionLines($productionLine);
+    Utility::updateOutput($productionLine);
 
     return array('message'=>'success');
+  }
+
+  public static function update(Productionline $productionLine) {
+    $consumer = $productionLine->consumer;
+    if ($consumer != null) {
+      Utility::updateInput($productionLine);
+    } else {
+      Utility::updateOutput($productionLine);
+    }
   }
 
   public function getProductionLines($id) {
     $productionLine = Auth::user()->productionLines()->find($id);
     $productionLines = $productionLine->productionLines;
     foreach($productionLines as $productionLine) {
-      $productionLine->produces;
-      $productionLine->producer;
-      $productionLine->productionLine;
+      Utility::update($productionLine);
     }
     return $productionLines;
   }

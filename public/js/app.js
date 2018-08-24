@@ -78407,7 +78407,7 @@ var ProductModal = function (_React$Component) {
   }, {
     key: 'dispatchInputChanged',
     value: function dispatchInputChanged(event) {
-      console.log(event.target.value);
+      console.log(event.target.name, event.target.value);
     }
   }, {
     key: 'renderOutputProductDetails',
@@ -78421,14 +78421,14 @@ var ProductModal = function (_React$Component) {
         'th',
         null,
         'Consumer Requirement'
-      ) : '';
+      ) : __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('th', null);
       var consumerRequirementTD = isInput ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         'td',
         null,
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__input_js__["a" /* default */], { type: 'number', name: 'consumerRequirement',
           callback: this.dispatchInputChanged,
           initialValue: this.state.selectedProductionLine.consumer_requirement })
-      ) : '';
+      ) : __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('td', null);
 
       if (isMiner) {
         return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(

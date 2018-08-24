@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Utility;
 use Auth;
+use Illuminate\Http\Request;
 
 class FactoryController extends Controller {
 
@@ -16,14 +17,8 @@ class FactoryController extends Controller {
     foreach($factories as $factory) {
       $totalItems = 0;
       foreach($factory->productionLines as $productionLine) {
-        $product = $productionLine->produces; // Get the product this line produces
-        if ($product != null) {
-          $totalItems += $product->items_per_second;
-          $producer = $productionLine->producer;
-          $product->seconds_per_item = round($product->items_per_second / $producer->speed, 2);
-          $product->assembly_count = round(($product->items_per_second * $product->seconds_per_item) / $product->stock_size, 2);
-          $product->productionLines;
-        }
+        Utility::update($productionLine);
+        $totalItems += $productionLine->items_per_second;
       }
       $factory->total_items = round($totalItems, 2);
     }
