@@ -43,7 +43,7 @@ class Input extends React.Component {
     if (this.props.isStatic) {
       return (
         <FormGroup controlId="inputFormGroup" validationState={validationState}>
-          <FormControl.Static>{this.state.value}</FormControl.Static>
+          <FormControl.Static>{this.props.initialValue}</FormControl.Static>
         </FormGroup>
       );
     }

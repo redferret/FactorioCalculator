@@ -13,20 +13,7 @@ class FactoryController extends Controller {
   }
 
   public function getAll() {
-    $factories = Auth::user()->factories;
-    foreach($factories as $factory) {
-      $totalItems = 0;
-      foreach($factory->productionLines as $productionLine) {
-        Utility::update($productionLine);
-        if ($productionLine->productionLine == null) {
-          $totalItems += $productionLine->items_per_second;
-          $productionLine->assembly_count = round($productionLine->assembly_count, 2);
-          $productionLine->seconds_per_item = round($productionLine->seconds_per_item, 2);
-        }
-      }
-      $factory->total_items = round($totalItems, 2);
-    }
-    return $factories;
+    return Utility::getAllFactories();
   }
 
   /**

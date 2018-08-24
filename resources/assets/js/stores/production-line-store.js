@@ -7,11 +7,11 @@ class ProductionLineStore extends EventEmitter {
     super();
   }
 
-  setProductionLine(data) {
+  setUpdatedProductionLine(data) {
     this._productionLine = data;
   }
 
-  getProductionLine() {
+  getUpdatedProductionLine() {
     return this._productionLine;
   }
 

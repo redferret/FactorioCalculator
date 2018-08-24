@@ -17,18 +17,18 @@ class ProductionLineController extends Controller {
   public function recalculate($id) {
     $productionLine = Auth::user()->productionLines()->find($id);
     $productionLine->items_per_second = Input::get('itemsPerSecond');
+    $productionLine->save();
     Utility::updateOutput($productionLine);
 
-    return array('message'=>'success');
+    return Utility::getAllFactories();
   }
 
   public function getProductionLines($id) {
     $productionLine = Auth::user()->productionLines()->find($id);
     $productionLines = $productionLine->productionLines;
-    foreach($productionLines as $productionLine) {
-      Utility::update($productionLine);
-      $productionLine->produces->assembly_count = round($productionLine->assembly_count, 2);
-      $productionLine->produces->items_per_second = round($productionLine->items_per_second, 2);
+    foreach($productionLines as $pl) {
+      $pl->produces;
+      $pl->producer;
     }
     return $productionLines;
   }

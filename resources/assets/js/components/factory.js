@@ -62,11 +62,11 @@ export default class Factory extends React.Component {
           activeKey={this.state.activeKey}
           onSelect={this.handleSelectProductionLine}
         >
-        {this.props.production_lines.map(panel =>
+        {this.props.production_lines.map(productionLine =>
           <ProductionLinePanel
-            {...panel}
-            key={panel.id}
-            eventKey={panel.id}
+            {...productionLine}
+            key={productionLine.id}
+            eventKey={productionLine.id}
           />
         )}
         </PanelGroup>

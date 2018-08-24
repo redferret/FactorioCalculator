@@ -34,7 +34,9 @@ class Main extends Component {
   }
 
   _onLoadedFactories() {
-    this.setState({factories: FactoryStore.getFactories()});
+    this.setState({
+      factories: FactoryStore.getFactories()
+    });
   }
 
   handleFactorySelect(activeKey) {

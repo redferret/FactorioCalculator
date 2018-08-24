@@ -11,9 +11,9 @@ import {
 } from 'react-bootstrap';
 
 import {
+  GET_PRODUCTION_LINES,
   MAIN_ID,
   MODAL_ID,
-  GET_PRODUCTION_LINES,
   RE_CALCULATE_PRODUCTION,
 } from '../constants.js';
 
@@ -24,7 +24,7 @@ export default class ProductionLineDetails extends React.Component {
     this.addProductToProduction = this.addProductToProduction.bind(this);
     this.handleShowProductModal = this.handleShowProductModal.bind(this);
     this.removeFromProduction = this.removeFromProduction.bind(this);
-    this.dispatchMessage = this.dispatchMessage.bind(this);
+    this.itemsPerSecondChanged = this.itemsPerSecondChanged.bind(this);
   }
 
   handleShowProductModal() {
@@ -39,7 +39,7 @@ export default class ProductionLineDetails extends React.Component {
     ProductModalStore.showModal();
   }
 
-  dispatchMessage(event) {
+  itemsPerSecondChanged(event) {
     AppDispatcher.dispatch({
       action: RE_CALCULATE_PRODUCTION,
       data: {
@@ -71,7 +71,7 @@ export default class ProductionLineDetails extends React.Component {
       let inputValue = this.props.items_per_second;
       let itemsPerSecond = isOutput ?
         <Input type='number' name='itemsPerSecond'
-          callback={this.dispatchMessage}
+          callback={this.itemsPerSecondChanged}
           initialValue={inputValue} /> :
         <Input type='number' name='itemsPerSecond'
           initialValue={inputValue}

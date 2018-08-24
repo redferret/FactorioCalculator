@@ -15,7 +15,6 @@ class CreateProductsTable extends Migration {
     Schema::create('products', function (Blueprint $table) {
       $table->increments('id');
       $table->string('name')->default('New Product');
-      $table->integer('desired_assembly_count')->default(0);
       $table->integer('stock_size')->default(1);
       $table->float('crafting_time')->default(1);
       $table->float('hardness')->nullable();

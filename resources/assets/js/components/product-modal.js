@@ -198,15 +198,16 @@ export default class ProductModal extends React.Component {
         <Well>
           <div className='list-group'> {
             productionLines.map(productionLine => {
-              let product = productionLine.produces;
+              let produces = productionLine.produces;
+              console.log('Produces ', produces);
               return (
-                <div key={product.id}>
+                <div key={produces.id}>
                   <Label>Production Line: {productionLine.name}</Label>
                   <a
                   onClick={this.handleSelectInput.bind(this,productionLine)}
                   className='list-group-item list-group-item-action'
                   >
-                    <h4>{product.name}</h4>
+                    <h4>{produces.name}</h4>
                     <Table>
                       <thead><tr>
                         <th>Assemblers Needed</th>
@@ -216,9 +217,9 @@ export default class ProductModal extends React.Component {
                         <th>Surplus/Deficit (Items/Sec)</th>
                       </tr></thead>
                       <tbody><tr>
-                        <td>{product.assembly_count}</td>
-                        <td>{product.crafting_time}</td>
-                        <td>{product.items_per_second}</td>
+                        <td>{productionLine.assembly_count}</td>
+                        <td>{produces.crafting_time}</td>
+                        <td>{productionLine.items_per_second}</td>
                         <td>Not Implemented Yet</td>
                         <td>Not Implemented Yet</td>
                       </tr></tbody>
