@@ -65428,7 +65428,6 @@ __WEBPACK_IMPORTED_MODULE_0__app_actions_js__["a" /* default */].register(__WEBP
   }).then(function (updatedFactories) {
     __WEBPACK_IMPORTED_MODULE_3__stores_factory_store_js__["a" /* default */].setFactories(updatedFactories);
     __WEBPACK_IMPORTED_MODULE_3__stores_factory_store_js__["a" /* default */].emitChange(data.componentId);
-    console.log('Updated Factories', updatedFactories);
   });
 });
 

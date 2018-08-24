@@ -18,7 +18,7 @@ class ProductionLineController extends Controller {
     $productionLine = Auth::user()->productionLines()->find($id);
     $productionLine->items_per_second = Input::get('itemsPerSecond');
     $productionLine->save();
-    Utility::updateOutput($productionLine);
+    Utility::update($productionLine);
 
     return Utility::getAllFactories();
   }

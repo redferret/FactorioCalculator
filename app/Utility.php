@@ -12,10 +12,13 @@ class Utility {
     foreach($factories as $factory) {
       $totalItems = 0;
       foreach($factory->productionLines as $productionLine) {
-        Utility::update($productionLine);
-        // If this production line is an output only
+        // If this production line is an output
         if ($productionLine->productionLine == null) {
+          Utility::update($productionLine);
           $totalItems += $productionLine->items_per_second;
+        } else {
+          $productionLine->producer;
+          $productionLine->produces;
         }
       }
       $factory->total_items = round($totalItems);
@@ -23,15 +26,14 @@ class Utility {
     return $factories;
   }
 
+  /**
+   * Updates the production line by recalculating the number of assemblers,
+   * the seconds per item, and will also update all the input lines for this
+   * production line.
+   * @param type $productionLine
+   * @return type The production line instance
+   */
   public static function update($productionLine) {
-    $consumer = $productionLine->consumer;
-    if ($consumer == null) {
-      Utility::updateOutput($productionLine);
-    }
-    return $productionLine;
-  }
-
-  public static function updateOutput($productionLine) {
     $producer = $productionLine->producer;
     $product = $productionLine->produces;
 
@@ -53,9 +55,19 @@ class Utility {
     return $productionLine;
   }
 
+  /**
+   * 
+   * @param type $productionLine
+   * @return type
+   */
   public static function updateInput($productionLine) {
     // Naming is strange but this is the production line that consumes this production lines product
     $consumer = $productionLine->productionLine;
+    
+    if ($consumer == null) {
+      throw new Exception("Production line '".$productionLine->name."' must be an input");
+    }
+    
     $producer = $productionLine->producer;
 
     $productionLine->items_per_second = ($consumer->consumer_requirement / $consumer->seconds_per_item) * $consumer->assembly_count;

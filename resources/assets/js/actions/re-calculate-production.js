@@ -14,6 +14,5 @@ Actions.register(RE_CALCULATE_PRODUCTION, data => {
   }).then(updatedFactories => {
     FactoryStore.setFactories(updatedFactories);
     FactoryStore.emitChange(data.componentId);
-    console.log('Updated Factories', updatedFactories);
   });
 });
