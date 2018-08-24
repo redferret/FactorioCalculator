@@ -95,7 +95,7 @@ export default class ProductionLineDetails extends React.Component {
                 <th>{assemblyCountTitle}</th>
                 <th>Items Produced</th>
                 <th>Items Consumed</th>
-                <th>Seconds Per Item Produced</th>
+                <th>Seconds Per Item</th>
               </tr>
             </thead>
             <tbody>
