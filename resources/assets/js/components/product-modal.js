@@ -216,7 +216,7 @@ export default class ProductModal extends React.Component {
                         <th>Surplus/Deficit (Items/Sec)</th>
                       </tr></thead>
                       <tbody><tr>
-                        <td>{product.desired_assembly_count}</td>
+                        <td>{product.assembly_count}</td>
                         <td>{product.crafting_time}</td>
                         <td>{product.items_per_second}</td>
                         <td>Not Implemented Yet</td>

@@ -20,6 +20,8 @@ class FactoryController extends Controller {
         Utility::update($productionLine);
         if ($productionLine->productionLine == null) {
           $totalItems += $productionLine->items_per_second;
+          $productionLine->assembly_count = round($productionLine->assembly_count, 2);
+          $productionLine->seconds_per_item = round($productionLine->seconds_per_item, 2);
         }
       }
       $factory->total_items = round($totalItems, 2);

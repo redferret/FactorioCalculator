@@ -27,6 +27,8 @@ class ProductionLineController extends Controller {
     $productionLines = $productionLine->productionLines;
     foreach($productionLines as $productionLine) {
       Utility::update($productionLine);
+      $productionLine->produces->assembly_count = round($productionLine->assembly_count, 2);
+      $productionLine->produces->items_per_second = round($productionLine->items_per_second, 2);
     }
     return $productionLines;
   }

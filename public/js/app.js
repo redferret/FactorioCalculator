@@ -78697,7 +78697,7 @@ var ProductModal = function (_React$Component) {
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                           'td',
                           null,
-                          product.desired_assembly_count
+                          product.assembly_count
                         ),
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                           'td',
