@@ -1,6 +1,6 @@
 
 import FactoryStore from '../stores/factory-store.js';
-import ProductionLinePanel from './production-line-panel.js';
+import ProductionLineDetails from './production-line-details.js';
 import React from 'react';
 
 import {
@@ -63,7 +63,7 @@ export default class Factory extends React.Component {
           onSelect={this.handleSelectProductionLine}
         >
         {this.props.production_lines.map(productionLine =>
-          <ProductionLinePanel
+          <ProductionLineDetails
             {...productionLine}
             key={productionLine.id}
             eventKey={productionLine.id}

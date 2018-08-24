@@ -7,6 +7,7 @@ import {
   Alert,
   Button,
   ButtonToolbar,
+  Panel,
   Table,
 } from 'react-bootstrap';
 
@@ -58,7 +59,7 @@ export default class ProductionLineDetails extends React.Component {
     alert("Add Product to Production "+ this.props.id);
   }
 
-  render() {
+  renderProductionDetails() {
     if (this.props.produces !== null) {
 
       let assemblyCountTitle = 'undefined';
@@ -125,4 +126,20 @@ export default class ProductionLineDetails extends React.Component {
       </div>
     );
   }
+
+  render() {
+    return (
+      <Panel bsStyle='info' eventKey={this.props.eventKey}>
+        <Panel.Heading>
+          <Panel.Title toggle>
+            {this.props.name}
+          </Panel.Title>
+        </Panel.Heading>
+        <Panel.Body collapsible>
+          {this.renderProductionDetails()}
+        </Panel.Body>
+      </Panel>
+    )
+  }
+
 }
