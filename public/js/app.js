@@ -65760,9 +65760,17 @@ var ProductionLineDetails = function (_React$Component) {
     value: function render() {
       if (this.props.produces !== null) {
 
-        var assemblyCountTitle = 'Number of Assemblers';
-        if (this.props.producer.is_miner) {
-          assemblyCountTitle = 'Number of Miners';
+        var assemblyCountTitle = 'undefined';
+        switch (this.props.producer.producer_type) {
+          case 0:
+            assemblyCountTitle = 'Number of Miners';
+            break;
+          case 1:
+            assemblyCountTitle = 'Number of Assemblers';
+            break;
+          case 2:
+            assemblyCountTitle = 'Number of Furnaces';
+            break;
         }
 
         var isOutput = this.props.production_line_id === null;
@@ -78351,7 +78359,7 @@ var ProductModal = function (_React$Component) {
     value: function renderOutputProductDetails() {
       var producer = this.state.selectedProductionLine.producer;
       var product = this.state.selectedProductionLine.produces;
-      var isMiner = this.state.selectedProductionLine.producer.is_miner;
+      var isMiner = this.state.selectedProductionLine.producer.producer_type === 0;
       var isInput = this.state.selectedProductionLine.production_line_id !== null;
 
       var consumerRequirementTH = isInput ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(

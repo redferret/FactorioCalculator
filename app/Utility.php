@@ -12,12 +12,7 @@ class Utility {
     foreach($factories as $factory) {
       $totalItems = 0;
       foreach($factory->productionLines as $productionLine) {
-        $productionLine->produces;
-        $productionLine->producer;
-        $productionLine->assembly_count = round($productionLine->assembly_count, 2);
-        $productionLine->seconds_per_item = round($productionLine->seconds_per_item, 2);
-        $productionLine->items_per_second = round($productionLine->items_per_second, 2);
-
+        Utility::update($productionLine);
         // If this production line is an output only
         if ($productionLine->productionLine == null) {
           $totalItems += $productionLine->items_per_second;

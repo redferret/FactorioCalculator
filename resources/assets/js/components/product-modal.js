@@ -98,7 +98,7 @@ export default class ProductModal extends React.Component {
   renderOutputProductDetails() {
     let producer = this.state.selectedProductionLine.producer;
     let product = this.state.selectedProductionLine.produces;
-    let isMiner = this.state.selectedProductionLine.producer.is_miner;
+    let isMiner = this.state.selectedProductionLine.producer.producer_type === 0;
     let isInput = this.state.selectedProductionLine.production_line_id !== null;
 
     let consumerRequirementTH = isInput ?
@@ -109,6 +109,7 @@ export default class ProductModal extends React.Component {
         callback={this.dispatchInputChanged}
         initialValue={this.state.selectedProductionLine.consumer_requirement} />
       </td> : <td></td>;
+
 
     if (isMiner) {
       return (

@@ -14,7 +14,7 @@ class CreateProducersTable extends Migration {
   public function up() {
     Schema::create('producers', function (Blueprint $table) {
       $table->increments('id');
-      $table->boolean('is_miner')->default(false);
+      $table->boolean('producer_type')->default(1);
       $table->float('speed')->default(0.5);
       $table->float('power')->default(2);
       $table->integer('production_line_id')->unsigned()->nullable();

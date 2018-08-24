@@ -70,17 +70,19 @@ class BasicSeeder extends Seeder {
     ]));
     $copperProduction->producer()->save(App\Producer::create([
       'speed' => 1,
+      'producer_type' => 2
     ]));
     $copperOreProduction->producer()->save(App\Producer::create([
-      'is_miner' => true,
+      'producer_type' => 0,
       'speed' => 0.5,
       'power' => 3
     ]));
     $ironProduction->producer()->save(App\Producer::create([
       'speed' => 1,
+      'producer_type' => 2
     ]));
     $ironOreProduction->producer()->save(App\Producer::create([
-      'is_miner' => true,
+      'producer_type' => 0,
       'speed' => 0.5,
       'power' => 3
     ]));

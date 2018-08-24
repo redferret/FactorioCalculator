@@ -61,9 +61,17 @@ export default class ProductionLineDetails extends React.Component {
   render() {
     if (this.props.produces !== null) {
 
-      let assemblyCountTitle = 'Number of Assemblers';
-      if (this.props.producer.is_miner) {
-        assemblyCountTitle = 'Number of Miners';
+      let assemblyCountTitle = 'undefined';
+      switch(this.props.producer.producer_type) {
+        case 0:
+          assemblyCountTitle = 'Number of Miners';
+          break;
+        case 1:
+          assemblyCountTitle = 'Number of Assemblers';
+          break;
+        case 2:
+          assemblyCountTitle = 'Number of Furnaces';
+          break;
       }
 
       let isOutput = this.props.production_line_id === null;
