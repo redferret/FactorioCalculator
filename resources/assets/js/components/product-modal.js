@@ -126,8 +126,16 @@ export default class ProductModal extends React.Component {
           </tr></thead>
           <tbody><tr>
             {consumerRequirementTD}
-            <td>{product.crafting_time}</td>
-            <td>{product.stock_size}</td>
+            <td>
+              <Input type='number' name='hardness' isStatic={true}
+              callback={this.dispatchInputChanged}
+              initialValue={product.crafting_time} />
+            </td>
+            <td>
+              <Input type='number' name='hardness' isStatic={true}
+              callback={this.dispatchInputChanged}
+              initialValue={product.stock_size} />
+            </td>
             <td>
               <Input type='number' name='speed'
               callback={this.dispatchInputChanged}
@@ -139,9 +147,9 @@ export default class ProductModal extends React.Component {
               initialValue={producer.power} />
             </td>
             <td>
-              <Input type='number' name='hardness'
+              <Input type='number' name='hardness' isStatic={true}
               callback={this.dispatchInputChanged}
-              initialValue={producer.hardness} />
+              initialValue={product.hardness} />
             </td>
             <td>Not Implemented Yet</td>
             <td>Not Implemented Yet</td>

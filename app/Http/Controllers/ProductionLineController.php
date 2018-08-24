@@ -29,6 +29,9 @@ class ProductionLineController extends Controller {
     foreach($productionLines as $pl) {
       $pl->produces;
       $pl->producer;
+      $pl->assembly_count = round($pl->assembly_count, 2);
+      $pl->items_per_second = round($pl->items_per_second, 2);
+      $pl->seconds_per_item = round($pl->seconds_per_item, 2);
     }
     return $productionLines;
   }

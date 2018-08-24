@@ -28,9 +28,6 @@ class Utility {
     if ($consumer == null) {
       Utility::updateOutput($productionLine);
     }
-    $productionLine->assembly_count = round($productionLine->assembly_count, 2);
-    $productionLine->items_per_second = round($productionLine->items_per_second, 2);
-    $productionLine->seconds_per_item = round($productionLine->seconds_per_item, 2);
     return $productionLine;
   }
 
@@ -45,12 +42,13 @@ class Utility {
     $productionLine->seconds_per_item = $seconds_per_item;
     $productionLine->save();
 
-    foreach($productionLine->productionLines as $key => $pl) {
+    foreach($productionLine->productionLines as $pl) {
       Utility::updateInput($pl);
-      $pl->assembly_count = round($pl->assembly_count, 2);
-      $pl->items_per_second = round($pl->items_per_second, 2);
-      $pl->seconds_per_item = round($pl->seconds_per_item, 2);
     }
+
+    $productionLine->assembly_count = round($productionLine->assembly_count, 2);
+    $productionLine->items_per_second = round($productionLine->items_per_second, 2);
+    $productionLine->seconds_per_item = round($productionLine->seconds_per_item, 2);
 
     return $productionLine;
   }
@@ -70,12 +68,13 @@ class Utility {
     $productionLine->seconds_per_item = $seconds_per_item;
     $productionLine->save();
 
-    foreach($productionLine->productionLines as $key => $pl) {
+    foreach($productionLine->productionLines as $pl) {
       Utility::updateInput($pl);
-      $pl->assembly_count = round($pl->assembly_count, 2);
-      $pl->items_per_second = round($pl->items_per_second, 2);
-      $pl->seconds_per_item = round($pl->seconds_per_item, 2);
     }
+
+    $productionLine->assembly_count = round($productionLine->assembly_count, 2);
+    $productionLine->items_per_second = round($productionLine->items_per_second, 2);
+    $productionLine->seconds_per_item = round($productionLine->seconds_per_item, 2);
 
     return $productionLine;
   }
