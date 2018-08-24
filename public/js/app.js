@@ -78487,12 +78487,16 @@ var ProductModal = function (_React$Component) {
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'td',
                 null,
-                product.crafting_time
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__input_js__["a" /* default */], { type: 'number', name: 'hardness', isStatic: true,
+                  callback: this.dispatchInputChanged,
+                  initialValue: product.crafting_time })
               ),
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'td',
                 null,
-                product.stock_size
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__input_js__["a" /* default */], { type: 'number', name: 'hardness', isStatic: true,
+                  callback: this.dispatchInputChanged,
+                  initialValue: product.stock_size })
               ),
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'td',
@@ -78558,7 +78562,6 @@ var ProductModal = function (_React$Component) {
             ' ',
             productionLines.map(function (productionLine) {
               var produces = productionLine.produces;
-              console.log('Produces ', produces);
               return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'div',
                 { key: produces.id },
@@ -78624,17 +78627,23 @@ var ProductModal = function (_React$Component) {
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                           'td',
                           null,
-                          productionLine.assembly_count
+                          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__input_js__["a" /* default */], { type: 'number', name: 'hardness', isStatic: true,
+                            callback: _this2.dispatchInputChanged,
+                            initialValue: productionLine.assembly_count })
                         ),
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                           'td',
                           null,
-                          produces.crafting_time
+                          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__input_js__["a" /* default */], { type: 'number', name: 'hardness', isStatic: true,
+                            callback: _this2.dispatchInputChanged,
+                            initialValue: produces.crafting_time })
                         ),
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                           'td',
                           null,
-                          productionLine.items_per_second
+                          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__input_js__["a" /* default */], { type: 'number', name: 'hardness', isStatic: true,
+                            callback: _this2.dispatchInputChanged,
+                            initialValue: productionLine.items_per_second })
                         ),
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                           'td',

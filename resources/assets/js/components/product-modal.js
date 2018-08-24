@@ -169,8 +169,16 @@ export default class ProductModal extends React.Component {
           </tr></thead>
           <tbody><tr>
             {consumerRequirementTD}
-            <td>{product.crafting_time}</td>
-            <td>{product.stock_size}</td>
+            <td>
+              <Input type='number' name='hardness' isStatic={true}
+              callback={this.dispatchInputChanged}
+              initialValue={product.crafting_time} />
+            </td>
+            <td>
+              <Input type='number' name='hardness' isStatic={true}
+              callback={this.dispatchInputChanged}
+              initialValue={product.stock_size} />
+            </td>
             <td>
               <Input type='number' name='speed'
               callback={this.dispatchInputChanged}
@@ -204,7 +212,6 @@ export default class ProductModal extends React.Component {
           <div className='list-group'> {
             productionLines.map(productionLine => {
               let produces = productionLine.produces;
-              console.log('Produces ', produces);
               return (
                 <div key={produces.id}>
                   <Label>Production Line: {productionLine.name}</Label>
@@ -222,9 +229,21 @@ export default class ProductModal extends React.Component {
                         <th>Surplus/Deficit (Items/Sec)</th>
                       </tr></thead>
                       <tbody><tr>
-                        <td>{productionLine.assembly_count}</td>
-                        <td>{produces.crafting_time}</td>
-                        <td>{productionLine.items_per_second}</td>
+                        <td>
+                          <Input type='number' name='hardness' isStatic={true}
+                          callback={this.dispatchInputChanged}
+                          initialValue={productionLine.assembly_count} />
+                        </td>
+                        <td>
+                          <Input type='number' name='hardness' isStatic={true}
+                          callback={this.dispatchInputChanged}
+                          initialValue={produces.crafting_time} />
+                        </td>
+                        <td>
+                          <Input type='number' name='hardness' isStatic={true}
+                          callback={this.dispatchInputChanged}
+                          initialValue={productionLine.items_per_second} />
+                        </td>
                         <td>Not Implemented Yet</td>
                         <td>Not Implemented Yet</td>
                       </tr></tbody>

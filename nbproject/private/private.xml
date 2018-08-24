@@ -11,10 +11,11 @@
             <file>file:/E:/xampp/apps/FactorioCalculator/app/Product.php</file>
             <file>file:/E:/xampp/apps/FactorioCalculator/database/seeds/BasicSeeder.php</file>
             <file>file:/E:/xampp/apps/FactorioCalculator/resources/views/layouts/app.blade.php</file>
-            <file>file:/E:/xampp/apps/FactorioCalculator/app/User.php</file>
             <file>file:/E:/xampp/apps/FactorioCalculator/database/migrations/2018_08_16_000501_create_products_table.php</file>
             <file>file:/E:/xampp/apps/FactorioCalculator/app/ProductionLine.php</file>
             <file>file:/E:/xampp/apps/FactorioCalculator/resources/views/auth/login.blade.php</file>
+            <file>file:/E:/xampp/apps/FactorioCalculator/app/Utility.php</file>
+            <file>file:/E:/xampp/apps/FactorioCalculator/app/Http/Controllers/ProductionLineController.php</file>
             <file>file:/E:/xampp/apps/FactorioCalculator/database/migrations/2018_08_18_185808_create_producers_table.php</file>
         </group>
     </open-files>
