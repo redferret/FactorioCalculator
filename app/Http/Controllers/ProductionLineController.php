@@ -14,21 +14,12 @@ class ProductionLineController extends Controller {
     $this->middleware('auth');
   }
 
-  public static function recalculate($id) {
+  public function recalculate($id) {
     $productionLine = Auth::user()->productionLines()->find($id);
     $productionLine->items_per_second = Input::get('itemsPerSecond');
     Utility::updateOutput($productionLine);
 
     return array('message'=>'success');
-  }
-
-  public static function update(Productionline $productionLine) {
-    $consumer = $productionLine->consumer;
-    if ($consumer != null) {
-      Utility::updateInput($productionLine);
-    } else {
-      Utility::updateOutput($productionLine);
-    }
   }
 
   public function getProductionLines($id) {

@@ -18,7 +18,9 @@ class FactoryController extends Controller {
       $totalItems = 0;
       foreach($factory->productionLines as $productionLine) {
         Utility::update($productionLine);
-        $totalItems += $productionLine->items_per_second;
+        if ($productionLine->productionLine == null) {
+          $totalItems += $productionLine->items_per_second;
+        }
       }
       $factory->total_items = round($totalItems, 2);
     }

@@ -56,17 +56,11 @@ class BasicSeeder extends Seeder {
         'items_per_second' => 8
       ])
     );
-    $emptyProduction = $user->productionLines()->save(
-      App\ProductionLine::create([
-        'name' => 'Empty Production Example'
-      ])
-    );
 
     // Connect production lines with a factory
     $factory->productionLines()->save($copperWireProduction);
     $factory->productionLines()->save($copperProduction);
     $factory->productionLines()->save($ironProduction);
-    $factory->productionLines()->save($emptyProduction);
     $factory->productionLines()->save($ironOreProduction);
     $factory->productionLines()->save($copperOreProduction);
 
@@ -75,7 +69,7 @@ class BasicSeeder extends Seeder {
       'speed' => 0.75,
     ]));
     $copperProduction->producer()->save(App\Producer::create([
-      'speed' => 0.75,
+      'speed' => 1,
     ]));
     $copperOreProduction->producer()->save(App\Producer::create([
       'is_miner' => true,
@@ -83,7 +77,7 @@ class BasicSeeder extends Seeder {
       'power' => 3
     ]));
     $ironProduction->producer()->save(App\Producer::create([
-      'speed' => 0.75,
+      'speed' => 1,
     ]));
     $ironOreProduction->producer()->save(App\Producer::create([
       'is_miner' => true,
