@@ -78394,6 +78394,11 @@ var ProductModal = function (_React$Component) {
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'th',
                 null,
+                'Stock Count'
+              ),
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'th',
+                null,
                 'Miner(s) Speed'
               ),
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -78428,9 +78433,12 @@ var ProductModal = function (_React$Component) {
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'td',
                 null,
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__input_js__["a" /* default */], { type: 'number', name: 'itemsPerSecond',
-                  callback: this.dispatchInputChanged,
-                  initialValue: product.crafting_time })
+                product.crafting_time
+              ),
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'td',
+                null,
+                product.stock_size
               ),
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'td',
@@ -78485,6 +78493,11 @@ var ProductModal = function (_React$Component) {
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'th',
                 null,
+                'Stock Count'
+              ),
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'th',
+                null,
                 'Assember(s) Speed'
               ),
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -78509,9 +78522,12 @@ var ProductModal = function (_React$Component) {
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'td',
                 null,
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__input_js__["a" /* default */], { type: 'number', name: 'itemsPerSecond',
-                  callback: this.dispatchInputChanged,
-                  initialValue: product.crafting_time })
+                product.crafting_time
+              ),
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'td',
+                null,
+                product.stock_size
               ),
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'td',

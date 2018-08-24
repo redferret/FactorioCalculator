@@ -117,6 +117,7 @@ export default class ProductModal extends React.Component {
           <thead><tr>
             {consumerRequirementTH}
             <th>Crafting Time Per Item</th>
+            <th>Stock Count</th>
             <th>Miner(s) Speed</th>
             <th>Miner(s) Power</th>
             <th>Item Hardness</th>
@@ -125,11 +126,8 @@ export default class ProductModal extends React.Component {
           </tr></thead>
           <tbody><tr>
             {consumerRequirementTD}
-            <td>
-              <Input type='number' name='itemsPerSecond'
-              callback={this.dispatchInputChanged}
-              initialValue={product.crafting_time} />
-            </td>
+            <td>{product.crafting_time}</td>
+            <td>{product.stock_size}</td>
             <td>
               <Input type='number' name='speed'
               callback={this.dispatchInputChanged}
@@ -156,17 +154,15 @@ export default class ProductModal extends React.Component {
           <thead><tr>
             {consumerRequirementTH}
             <th>Crafting Time Per Item</th>
+            <th>Stock Count</th>
             <th>Assember(s) Speed</th>
             <th>Actual Production (Items/Sec)</th>
             <th>Surplus/Deficit (Items/Sec)</th>
           </tr></thead>
           <tbody><tr>
             {consumerRequirementTD}
-            <td>
-              <Input type='number' name='itemsPerSecond'
-              callback={this.dispatchInputChanged}
-              initialValue={product.crafting_time} />
-            </td>
+            <td>{product.crafting_time}</td>
+            <td>{product.stock_size}</td>
             <td>
               <Input type='number' name='speed'
               callback={this.dispatchInputChanged}
