@@ -16,9 +16,9 @@ class CreateProductionLinesTable extends Migration {
       $table->increments('id');
       $table->string('name')->default('New Production Line');
       $table->float('items_per_second')->default(0);
+      $table->float('consumer_requirement')->default(1);
       $table->integer('factory_id')->unsigned()->nullable();
       $table->integer('production_line_id')->unsigned()->nullable();
-      $table->integer('product_id')->unsigned()->nullable();
       $table->integer('user_id')->unsigned()->nullable();
       $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
       $table->timestamps();

@@ -92,10 +92,10 @@ export default class ProductionLineDetails extends React.Component {
             <tbody>
               <tr>
                 <td>{this.props.produces.name}</td>
-                <td>{this.props.produces.assembly_count}</td>
+                <td>{this.props.assembly_count}</td>
                 <td>{itemsPerSecond}</td>
                 <td>#</td>
-                <td>{this.props.produces.seconds_per_item}</td>
+                <td>{this.props.seconds_per_item}</td>
               </tr>
             </tbody>
           </Table>

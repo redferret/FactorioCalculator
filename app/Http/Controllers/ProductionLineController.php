@@ -13,13 +13,15 @@ class ProductionLineController extends Controller {
     $this->middleware('auth');
   }
 
-  private function cascadeUpdateProductionLines(ProductionLine $parent) {
-    $product = $parent->produces;
+  private function updateProductionLines(ProductionLine $parent) {
+    $productionLine = $parent->productionLine;
     $producer = $product->producer;
-    $seconds_per_item = round($product->items_per_second / $producer->speed, 2);
-    $numberOfProducers = round(($product->items_per_second * $seconds_per_item) / $product->stock_size, 2);
+    $seconds_per_item = round($productionLine->items_per_second / $producer->speed, 2);
+    $numberOfProducers = round(($productionLine->items_per_second * $seconds_per_item) / $product->stock_size, 2);
     $numberOfProducers = ceil($numberOfProducers); // Auto Balance
-    // Update inputs
+    $productionLine->assembly_count = $numberOfProducers;
+    $productionLine->seconds_per_item = $seconds_per_item;
+    
   }
 
   public function recalculate($id) {
@@ -28,26 +30,9 @@ class ProductionLineController extends Controller {
     $productionLine->produces;
     $productionLine->items_per_second = Input::get('itemsPerSecond');
     $productionLine->save();
-    $this->cascadeUpdateProductionLines($productionLine);
+    $this->updateProductionLines($productionLine);
 
-    $factories = Auth::user()->factories;
-    foreach($factories as $factory) {
-      $totalItems = 0;
-      foreach($factory->productionLines as $productionLine) {
-        $product = $productionLine->produces; // Get the product this line produces
-        if ($product != null) {
-          $totalItems += $product->items_per_second;
-          $producer = $product->producer;
-          $product->seconds_per_item = round($product->items_per_second / $producer->speed, 2);
-          $product->assembly_count = round(($product->items_per_second * $product->seconds_per_item) / $product->stock_size, 2);
-          $product->productionLines;
-          // Update inputs for this product
-
-        }
-      }
-      $factory->total_items = round($totalItems, 2);
-    }
-    return $factories;
+    return array('message'=>'success');
   }
 
   public function getProductionLines($id) {
@@ -56,7 +41,7 @@ class ProductionLineController extends Controller {
     foreach($productionLines as $productionLine) {
       $productionLine->produces;
       $productionLine->producer;
-      $productionLine->consumer;
+      $productionLine->productionLine;
     }
     return $productionLines;
   }

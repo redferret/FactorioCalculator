@@ -99,11 +99,22 @@ export default class ProductModal extends React.Component {
     let producer = this.state.selectedProductionLine.producer;
     let product = this.state.selectedProductionLine.produces;
     let isMiner = this.state.selectedProductionLine.producer.is_miner;
+    let isInput = this.state.selectedProductionLine.production_line_id !== null;
+
+    let consumerRequirementTH = isInput ?
+      <th>Consumer Requirement</th> : '';
+    let consumerRequirementTD = isInput ?
+      <td>
+        <Input type='number' name='consumerRequirement'
+        callback={this.dispatchInputChanged}
+        initialValue={this.state.selectedProductionLine.consumer_requirement} />
+      </td> : '';
 
     if (isMiner) {
       return (
         <Table>
           <thead><tr>
+            {consumerRequirementTH}
             <th>Crafting Time Per Item</th>
             <th>Miner(s) Speed</th>
             <th>Miner(s) Power</th>
@@ -112,6 +123,7 @@ export default class ProductModal extends React.Component {
             <th>Surplus/Deficit (Items/Sec)</th>
           </tr></thead>
           <tbody><tr>
+            {consumerRequirementTD}
             <td>
               <Input type='number' name='itemsPerSecond'
               callback={this.dispatchInputChanged}
@@ -141,12 +153,14 @@ export default class ProductModal extends React.Component {
       return (
         <Table>
           <thead><tr>
+            {consumerRequirementTH}
             <th>Crafting Time Per Item</th>
             <th>Assember(s) Speed</th>
             <th>Actual Production (Items/Sec)</th>
             <th>Surplus/Deficit (Items/Sec)</th>
           </tr></thead>
           <tbody><tr>
+            {consumerRequirementTD}
             <td>
               <Input type='number' name='itemsPerSecond'
               callback={this.dispatchInputChanged}

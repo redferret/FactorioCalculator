@@ -3836,7 +3836,7 @@ var AppDispatcher = new Dispatcher();
 
 
 __webpack_require__(193);
-__webpack_require__(356);
+__webpack_require__(194);
 __webpack_require__(195);
 
 AppDispatcher.register(function (payload) {
@@ -65377,7 +65377,31 @@ __WEBPACK_IMPORTED_MODULE_0__app_actions_js__["a" /* default */].register(__WEBP
 });
 
 /***/ }),
-/* 194 */,
+/* 194 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__app_actions_js__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__router_js__ = __webpack_require__(43);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__constants_js__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__stores_product_modal_store_js__ = __webpack_require__(66);
+
+
+
+
+
+
+__WEBPACK_IMPORTED_MODULE_0__app_actions_js__["a" /* default */].register(__WEBPACK_IMPORTED_MODULE_2__constants_js__["o" /* GET_PRODUCTION_LINES */], function (data) {
+  fetch(__WEBPACK_IMPORTED_MODULE_1__router_js__["a" /* default */].route(__WEBPACK_IMPORTED_MODULE_2__constants_js__["o" /* GET_PRODUCTION_LINES */], { id: data.id })).then(function (response) {
+    return response.json();
+  }).then(function (productionLines) {
+    __WEBPACK_IMPORTED_MODULE_3__stores_product_modal_store_js__["a" /* default */].setProductionLines(productionLines);
+    __WEBPACK_IMPORTED_MODULE_3__stores_product_modal_store_js__["a" /* default */].emitChange(data.componentId);
+  });
+});
+
+/***/ }),
 /* 195 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -65820,7 +65844,7 @@ var ProductionLineDetails = function (_React$Component) {
                 __WEBPACK_IMPORTED_MODULE_2_react___default.a.createElement(
                   'td',
                   null,
-                  this.props.produces.assembly_count
+                  this.props.assembly_count
                 ),
                 __WEBPACK_IMPORTED_MODULE_2_react___default.a.createElement(
                   'td',
@@ -65835,7 +65859,7 @@ var ProductionLineDetails = function (_React$Component) {
                 __WEBPACK_IMPORTED_MODULE_2_react___default.a.createElement(
                   'td',
                   null,
-                  this.props.produces.seconds_per_item
+                  this.props.seconds_per_item
                 )
               )
             )
@@ -78391,6 +78415,20 @@ var ProductModal = function (_React$Component) {
       var producer = this.state.selectedProductionLine.producer;
       var product = this.state.selectedProductionLine.produces;
       var isMiner = this.state.selectedProductionLine.producer.is_miner;
+      var isInput = this.state.selectedProductionLine.production_line_id !== null;
+
+      var consumerRequirementTH = isInput ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        'th',
+        null,
+        'Consumer Requirement'
+      ) : '';
+      var consumerRequirementTD = isInput ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        'td',
+        null,
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__input_js__["a" /* default */], { type: 'number', name: 'consumerRequirement',
+          callback: this.dispatchInputChanged,
+          initialValue: this.state.selectedProductionLine.consumer_requirement })
+      ) : '';
 
       if (isMiner) {
         return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -78402,6 +78440,7 @@ var ProductModal = function (_React$Component) {
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               'tr',
               null,
+              consumerRequirementTH,
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'th',
                 null,
@@ -78440,6 +78479,7 @@ var ProductModal = function (_React$Component) {
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               'tr',
               null,
+              consumerRequirementTD,
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'td',
                 null,
@@ -78491,6 +78531,7 @@ var ProductModal = function (_React$Component) {
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               'tr',
               null,
+              consumerRequirementTH,
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'th',
                 null,
@@ -78519,6 +78560,7 @@ var ProductModal = function (_React$Component) {
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               'tr',
               null,
+              consumerRequirementTD,
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'td',
                 null,
@@ -78772,35 +78814,6 @@ var ProductModal = function (_React$Component) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 352 */,
-/* 353 */,
-/* 354 */,
-/* 355 */,
-/* 356 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__app_actions_js__ = __webpack_require__(44);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__router_js__ = __webpack_require__(43);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__constants_js__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__stores_product_modal_store_js__ = __webpack_require__(66);
-
-
-
-
-
-
-__WEBPACK_IMPORTED_MODULE_0__app_actions_js__["a" /* default */].register(__WEBPACK_IMPORTED_MODULE_2__constants_js__["o" /* GET_PRODUCTION_LINES */], function (data) {
-  fetch(__WEBPACK_IMPORTED_MODULE_1__router_js__["a" /* default */].route(__WEBPACK_IMPORTED_MODULE_2__constants_js__["o" /* GET_PRODUCTION_LINES */], { id: data.id })).then(function (response) {
-    return response.json();
-  }).then(function (productionLines) {
-    __WEBPACK_IMPORTED_MODULE_3__stores_product_modal_store_js__["a" /* default */].setProductionLines(productionLines);
-    __WEBPACK_IMPORTED_MODULE_3__stores_product_modal_store_js__["a" /* default */].emitChange(data.componentId);
-  });
-});
 
 /***/ })
 /******/ ]);

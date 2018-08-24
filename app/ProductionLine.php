@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class ProductionLine extends Model
 {
   protected $fillable = ['name', 'items_per_second', 'user_id',
-    'factory_id', 'production_line_id'];
+    'factory_id', 'consumer_requirement', 'production_line_id'];
 
   public function produces() {
     return $this->hasOne(Product::class);
@@ -20,7 +20,7 @@ class ProductionLine extends Model
     return $this->hasMany(ProductionLine::class);
   }
 
-  public function consumer() {
+  public function productionLine() {
     return $this->belongsTo(ProductionLine::class);
   }
 
