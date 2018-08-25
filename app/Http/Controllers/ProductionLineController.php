@@ -25,7 +25,7 @@ class ProductionLineController extends Controller {
 
   public function getProductionLines($id) {
     $productionLine = Auth::user()->productionLines()->find($id);
-    $productionLines = $productionLine->productionLines;
+    $productionLines = $productionLine->producerProductionLines;
     foreach($productionLines as $pl) {
       $pl->produces;
       $pl->producer;

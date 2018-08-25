@@ -13,7 +13,7 @@ class Utility {
       $totalItems = 0;
       foreach($factory->productionLines as $productionLine) {
         // If this production line is an output
-        if ($productionLine->productionLine == null) {
+        if ($productionLine->consumerProductionLines()->first() == null) {
           Utility::update($productionLine);
           $totalItems += $productionLine->items_per_second;
         } else {
@@ -56,18 +56,18 @@ class Utility {
   }
 
   /**
-   * 
+   *
    * @param type $productionLine
    * @return type
    */
   public static function updateInput($productionLine) {
     // Naming is strange but this is the production line that consumes this production lines product
     $consumer = $productionLine->productionLine;
-    
+
     if ($consumer == null) {
       throw new Exception("Production line '".$productionLine->name."' must be an input");
     }
-    
+
     $producer = $productionLine->producer;
 
     $productionLine->items_per_second = ($consumer->consumer_requirement / $consumer->seconds_per_item) * $consumer->assembly_count;
