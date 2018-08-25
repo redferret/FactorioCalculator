@@ -21,6 +21,9 @@ class ProductionLine extends Model
     return $this->hasMany(ProductionLine::class);
   }
 
+  /**
+   * The consumer
+   */
   public function productionLine() {
     return $this->belongsTo(ProductionLine::class);
   }
