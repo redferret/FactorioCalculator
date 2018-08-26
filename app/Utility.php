@@ -38,9 +38,9 @@ class Utility {
     $product = $productionLine->produces;
 
     $seconds_per_item = $product->crafting_time / $producer->speed;
-    $numberOfProducers = ($productionLine->items_per_second * $seconds_per_item) / $product->stock_size;
+    $numberOfAssemblers = ($productionLine->items_per_second * $seconds_per_item) / $product->stock_size;
 
-    $productionLine->assembly_count = $numberOfProducers;
+    $productionLine->assembly_count = $numberOfAssemblers;
     $productionLine->seconds_per_item = $seconds_per_item;
     $productionLine->save();
 
@@ -62,21 +62,25 @@ class Utility {
    */
   public static function updateInput($productionLine) {
     // Naming is strange but this is the production line that consumes this production lines product
-    $consumer = $productionLine->consumerProductionLines()->first();
-
-    if ($consumer == null) {
+    if ($productionLine->consumerProductionLines()->first() == null) {
       throw new Exception("Production line '".$productionLine->name."' must be an input");
     }
 
+    $items_per_second = 0;
+
+    foreach($productionLine->consumerProductionLines as $consumer) {
+      $items_per_second += ($consumer->consumer_requirement / $consumer->seconds_per_item) * $consumer->assembly_count;
+    }
+
+    $productionLine->items_per_second = $items_per_second;
+
+    $product = $productionLine->produces;
     $producer = $productionLine->producer;
 
-    $productionLine->items_per_second = ($consumer->consumer_requirement / $consumer->seconds_per_item) * $consumer->assembly_count;
-    $product = $productionLine->produces;
-
     $seconds_per_item = $product->crafting_time / $producer->speed;
-    $numberOfProducers = ($productionLine->items_per_second * $seconds_per_item) / $product->stock_size;
+    $numberOfAssemblers = ($productionLine->items_per_second * $seconds_per_item) / $product->stock_size;
 
-    $productionLine->assembly_count = $numberOfProducers;
+    $productionLine->assembly_count = $numberOfAssemblers;
     $productionLine->seconds_per_item = $seconds_per_item;
     $productionLine->save();
 
