@@ -120,8 +120,8 @@ class BasicSeeder extends Seeder {
     $ironOreProduction->produces()->save($ironOre);
 
     // Connect consumption needs to production lines
-    $copperWireProduction->productionLines()->save($copperProduction);
-    $copperProduction->productionLines()->save($copperOreProduction);
-    $ironProduction->productionLines()->save($ironOreProduction);
+    $copperWireProduction->producerProductionLines()->save($copperProduction);
+    $copperProduction->producerProductionLines()->save($copperOreProduction);
+    $ironProduction->producerProductionLines()->save($ironOreProduction);
   }
 }

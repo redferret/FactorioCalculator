@@ -14,18 +14,14 @@ class ProductionLine extends Model
     return $this->hasOne(Product::class);
   }
 
-  /**
-   * The inputs for this production line
-   */
-  public function productionLines() {
-    return $this->hasMany(ProductionLine::class);
+  public function producerProductionLines() {
+    return $this->belongsToMany(ProductionLine::class, 'consumer_producer',
+      'consumer_production_line_id', 'producer_production_line_id');
   }
 
-  /**
-   * The consumer
-   */
-  public function productionLine() {
-    return $this->belongsTo(ProductionLine::class);
+  public function consumerProductionLines() {
+    return $this->belongsToMany(ProductionLine::class, 'consumer_producer',
+      'producer_production_line_id', 'consumer_production_line_id');
   }
 
   /**
