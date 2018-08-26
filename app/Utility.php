@@ -44,7 +44,7 @@ class Utility {
     $productionLine->seconds_per_item = $seconds_per_item;
     $productionLine->save();
 
-    foreach($productionLine->productionLines as $pl) {
+    foreach($productionLine->producerProductionLines as $pl) {
       Utility::updateInput($pl);
     }
 
@@ -62,7 +62,7 @@ class Utility {
    */
   public static function updateInput($productionLine) {
     // Naming is strange but this is the production line that consumes this production lines product
-    $consumer = $productionLine->productionLine;
+    $consumer = $productionLine->consumerProductionLines()->first();
 
     if ($consumer == null) {
       throw new Exception("Production line '".$productionLine->name."' must be an input");
@@ -80,7 +80,7 @@ class Utility {
     $productionLine->seconds_per_item = $seconds_per_item;
     $productionLine->save();
 
-    foreach($productionLine->productionLines as $pl) {
+    foreach($productionLine->producerProductionLines as $pl) {
       Utility::updateInput($pl);
     }
 
