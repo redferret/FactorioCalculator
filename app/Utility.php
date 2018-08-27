@@ -16,9 +16,11 @@ class Utility {
         if ($productionLine->consumerProductionLines()->first() == null) {
           Utility::update($productionLine);
           $totalItems += $productionLine->items_per_second;
+          $productionLine->is_output = true;
         } else {
           $productionLine->producer;
           $productionLine->produces;
+          $productionLine->is_output = false;
         }
       }
       $factory->total_items = round($totalItems);

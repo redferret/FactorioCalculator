@@ -19214,7 +19214,8 @@ var Input = function (_React$Component) {
           inputRef: function inputRef(reference) {
             return _this2.DOMRef = reference;
           },
-          value: this.state.value })
+          value: this.state.value,
+          style: this.props.width })
       );
     }
   }]);
@@ -19225,6 +19226,9 @@ var Input = function (_React$Component) {
 Input.defaultProps = {
   isStatic: false,
   type: 'text',
+  width: {
+    'width': 'auto'
+  },
   callback: function callback() {
     return console.warn('No Callback for Input');
   }
@@ -65722,10 +65726,8 @@ var ProductionLineDetails = function (_React$Component) {
             break;
         }
 
-        var isOutput = this.props.production_line_id === null;
-
         var inputValue = this.props.items_per_second;
-        var itemsPerSecond = isOutput ? __WEBPACK_IMPORTED_MODULE_2_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__input_js__["a" /* default */], { type: 'number', name: 'itemsPerSecond',
+        var itemsPerSecond = this.props.is_output ? __WEBPACK_IMPORTED_MODULE_2_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__input_js__["a" /* default */], { type: 'number', name: 'itemsPerSecond',
           callback: this.itemsPerSecondChanged,
           initialValue: inputValue }) : __WEBPACK_IMPORTED_MODULE_2_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__input_js__["a" /* default */], { type: 'number', name: 'itemsPerSecond',
           initialValue: inputValue,
@@ -78313,28 +78315,15 @@ var ProductModal = function (_React$Component) {
   }, {
     key: 'dispatchInputChanged',
     value: function dispatchInputChanged(event) {
-      console.log(event.target.name, event.target.value);
+      alert('Input Changed for ' + event.target.name + ' to ' + event.target.value);
     }
   }, {
-    key: 'renderOutputProductDetails',
-    value: function renderOutputProductDetails() {
+    key: 'renderProductDetails',
+    value: function renderProductDetails() {
       var producer = this.state.selectedProductionLine.producer;
       var product = this.state.selectedProductionLine.produces;
       var isMiner = this.state.selectedProductionLine.producer.producer_type === 0;
       var isInput = this.state.selectedProductionLine.production_line_id !== null;
-
-      var consumerRequirementTH = isInput ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-        'th',
-        null,
-        'Consumer Requirement'
-      ) : __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('th', null);
-      var consumerRequirementTD = isInput ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-        'td',
-        null,
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__input_js__["a" /* default */], { type: 'number', name: 'consumerRequirement',
-          callback: this.dispatchInputChanged,
-          initialValue: this.state.selectedProductionLine.consumer_requirement })
-      ) : __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('td', null);
 
       if (isMiner) {
         return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -78346,7 +78335,6 @@ var ProductModal = function (_React$Component) {
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               'tr',
               null,
-              consumerRequirementTH,
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'th',
                 null,
@@ -78390,7 +78378,6 @@ var ProductModal = function (_React$Component) {
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               'tr',
               null,
-              consumerRequirementTD,
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'td',
                 null,
@@ -78449,7 +78436,6 @@ var ProductModal = function (_React$Component) {
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               'tr',
               null,
-              consumerRequirementTH,
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'th',
                 null,
@@ -78483,7 +78469,6 @@ var ProductModal = function (_React$Component) {
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               'tr',
               null,
-              consumerRequirementTD,
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'td',
                 null,
@@ -78599,21 +78584,21 @@ var ProductModal = function (_React$Component) {
                       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         'td',
                         null,
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__input_js__["a" /* default */], { type: 'number', name: 'hardness', isStatic: true,
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__input_js__["a" /* default */], { type: 'number', name: 'assembly_count', isStatic: true,
                           callback: _this2.dispatchInputChanged,
                           initialValue: productionLine.assembly_count })
                       ),
                       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         'td',
                         null,
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__input_js__["a" /* default */], { type: 'number', name: 'hardness', isStatic: true,
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__input_js__["a" /* default */], { type: 'number', name: 'crafting_time', isStatic: true,
                           callback: _this2.dispatchInputChanged,
                           initialValue: produces.crafting_time })
                       ),
                       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         'td',
                         null,
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__input_js__["a" /* default */], { type: 'number', name: 'hardness', isStatic: true,
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__input_js__["a" /* default */], { type: 'number', name: 'items_per_second', isStatic: true,
                           callback: _this2.dispatchInputChanged,
                           initialValue: productionLine.items_per_second })
                       ),
@@ -78630,6 +78615,18 @@ var ProductModal = function (_React$Component) {
                     )
                   )
                 )
+              ),
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'div',
+                { className: 'list-group-item' },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                  __WEBPACK_IMPORTED_MODULE_4_react_bootstrap__["f" /* Label */],
+                  null,
+                  'Consumer Requirement'
+                ),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__input_js__["a" /* default */], { type: 'number', name: 'consumer_requirement',
+                  callback: _this2.dispatchInputChanged,
+                  initialValue: productionLine.consumer_requirement })
               )
             );
           })
@@ -78657,7 +78654,7 @@ var ProductModal = function (_React$Component) {
       return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         __WEBPACK_IMPORTED_MODULE_4_react_bootstrap__["g" /* Modal */].Body,
         null,
-        this.renderOutputProductDetails(),
+        this.renderProductDetails(),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           'h4',
           null,

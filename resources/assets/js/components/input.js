@@ -63,7 +63,8 @@ class Input extends React.Component {
           });
         }}
         inputRef={(reference) => this.DOMRef = reference}
-        value={this.state.value} />
+        value={this.state.value}
+        style={this.props.width}/>
       </FormGroup>
     );
   }
@@ -72,6 +73,9 @@ class Input extends React.Component {
 Input.defaultProps = {
   isStatic: false,
   type: 'text',
+  width: {
+    'width': 'auto'
+  },
   callback: () => console.warn('No Callback for Input')
 };
 

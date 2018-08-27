@@ -74,11 +74,9 @@ export default class ProductionLineDetails extends React.Component {
           assemblyCountTitle = 'Number of Furnaces';
           break;
       }
-
-      let isOutput = this.props.production_line_id === null;
-
+      
       let inputValue = this.props.items_per_second;
-      let itemsPerSecond = isOutput ?
+      let itemsPerSecond = this.props.is_output ?
         <Input type='number' name='itemsPerSecond'
           callback={this.itemsPerSecondChanged}
           initialValue={inputValue} /> :

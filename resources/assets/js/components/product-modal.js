@@ -83,30 +83,19 @@ export default class ProductModal extends React.Component {
   }
 
   dispatchInputChanged(event) {
-    console.log(event.target.name ,event.target.value);
+    alert('Input Changed for ' + event.target.name + ' to ' + event.target.value);
   }
 
-  renderOutputProductDetails() {
+  renderProductDetails() {
     let producer = this.state.selectedProductionLine.producer;
     let product = this.state.selectedProductionLine.produces;
     let isMiner = this.state.selectedProductionLine.producer.producer_type === 0;
     let isInput = this.state.selectedProductionLine.production_line_id !== null;
 
-    let consumerRequirementTH = isInput ?
-      <th>Consumer Requirement</th> : <th></th>;
-    let consumerRequirementTD = isInput ?
-      <td>
-        <Input type='number' name='consumerRequirement'
-        callback={this.dispatchInputChanged}
-        initialValue={this.state.selectedProductionLine.consumer_requirement} />
-      </td> : <td></td>;
-
-
     if (isMiner) {
       return (
         <Table>
           <thead><tr>
-            {consumerRequirementTH}
             <th>Crafting Time Per Item</th>
             <th>Stock Count</th>
             <th>Miner(s) Speed</th>
@@ -116,7 +105,6 @@ export default class ProductModal extends React.Component {
             <th>Surplus/Deficit (Items/Sec)</th>
           </tr></thead>
           <tbody><tr>
-            {consumerRequirementTD}
             <td>
               <Input type='number' name='hardness' isStatic={true}
               callback={this.dispatchInputChanged}
@@ -151,7 +139,6 @@ export default class ProductModal extends React.Component {
       return (
         <Table>
           <thead><tr>
-            {consumerRequirementTH}
             <th>Crafting Time Per Item</th>
             <th>Stock Count</th>
             <th>Assember(s) Speed</th>
@@ -159,7 +146,6 @@ export default class ProductModal extends React.Component {
             <th>Surplus/Deficit (Items/Sec)</th>
           </tr></thead>
           <tbody><tr>
-            {consumerRequirementTD}
             <td>
               <Input type='number' name='hardness' isStatic={true}
               callback={this.dispatchInputChanged}
@@ -207,17 +193,17 @@ export default class ProductModal extends React.Component {
                     </tr></thead>
                     <tbody><tr>
                       <td>
-                        <Input type='number' name='hardness' isStatic={true}
+                        <Input type='number' name='assembly_count' isStatic={true}
                         callback={this.dispatchInputChanged}
                         initialValue={productionLine.assembly_count} />
                       </td>
                       <td>
-                        <Input type='number' name='hardness' isStatic={true}
+                        <Input type='number' name='crafting_time' isStatic={true}
                         callback={this.dispatchInputChanged}
                         initialValue={produces.crafting_time} />
                       </td>
                       <td>
-                        <Input type='number' name='hardness' isStatic={true}
+                        <Input type='number' name='items_per_second' isStatic={true}
                         callback={this.dispatchInputChanged}
                         initialValue={productionLine.items_per_second} />
                       </td>
@@ -226,6 +212,12 @@ export default class ProductModal extends React.Component {
                     </tr></tbody>
                   </Table>
                 </a>
+                <div className='list-group-item'>
+                  <Label>Consumer Requirement</Label>
+                  <Input type='number' name='consumer_requirement'
+                  callback={this.dispatchInputChanged}
+                  initialValue={productionLine.consumer_requirement} />
+                </div>
               </div>
             );
           })}
@@ -248,7 +240,7 @@ export default class ProductModal extends React.Component {
 
     return (
       <Modal.Body>
-        {this.renderOutputProductDetails()}
+        {this.renderProductDetails()}
         <h4><Label bsStyle='primary'>Production Consumers</Label></h4>
         {outputElements}
         <h4><Label bsStyle='success'>Production Inputs</Label></h4>
