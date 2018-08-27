@@ -25,15 +25,28 @@ class ProductionLineController extends Controller {
 
   public function getProductionLines($id) {
     $productionLine = Auth::user()->productionLines()->find($id);
-    $productionLines = $productionLine->producerProductionLines;
-    foreach($productionLines as $pl) {
+    $inputProductionLines = $productionLine->producerProductionLines;
+    foreach($inputProductionLines as $pl) {
       $pl->produces;
       $pl->producer;
       $pl->assembly_count = round($pl->assembly_count, 2);
       $pl->items_per_second = round($pl->items_per_second, 2);
       $pl->seconds_per_item = round($pl->seconds_per_item, 2);
     }
-    return $productionLines;
+
+    $outputProductionLines = $productionLine->consumerProductionLines;
+    foreach($outputProductionLines as $pl) {
+      $pl->produces;
+      $pl->producer;
+      $pl->assembly_count = round($pl->assembly_count, 2);
+      $pl->items_per_second = round($pl->items_per_second, 2);
+      $pl->seconds_per_item = round($pl->seconds_per_item, 2);
+    }
+
+    return array(
+      'inputs'=>$inputProductionLines,
+      'outputs'=>$outputProductionLines
+    );
   }
 
   /**

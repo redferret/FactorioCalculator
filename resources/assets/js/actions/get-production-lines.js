@@ -8,7 +8,9 @@ Actions.register(GET_PRODUCTION_LINES, data => {
   fetch(Router.route(GET_PRODUCTION_LINES, {id: data.id})).then(response => {
     return response.json();
   }).then(productionLines => {
-    ProductModalStore.setProductionLines(productionLines);
+    console.log('Got Message ', productionLines);
+    ProductModalStore.setInputProductionLines(productionLines.inputs);
+    ProductModalStore.setOutputProductionLines(productionLines.outputs);
     ProductModalStore.emitChange(data.componentId);
   });
 });

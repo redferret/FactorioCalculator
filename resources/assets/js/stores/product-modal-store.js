@@ -32,12 +32,20 @@ class ProductModalStore extends EventEmitter {
     return this._selectedProductionLine;
   }
 
-  setProductionLines(productionLines) {
-    this._productionLines = productionLines;
+  setInputProductionLines(productionLines) {
+    this._inputProductionLines = productionLines;
   }
 
-  getProductionLines() {
-    return this._productionLines;
+  getInputProductionLines() {
+    return this._inputProductionLines;
+  }
+
+  setOutputProductionLines(productionLines) {
+    this._outputProductionLines = productionLines;
+  }
+
+  getOutputProductionLines() {
+    return this._outputProductionLines;
   }
 
   emitChange(id) {
