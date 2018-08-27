@@ -16,10 +16,7 @@ class ProductionLineController extends Controller {
 
   public function recalculate($id) {
     $productionLine = Auth::user()->productionLines()->find($id);
-    $productionLine->items_per_second = Input::get('itemsPerSecond');
-    $productionLine->save();
     Utility::update($productionLine);
-
     return Utility::getAllFactories();
   }
 
@@ -32,6 +29,7 @@ class ProductionLineController extends Controller {
       $pl->assembly_count = round($pl->assembly_count, 2);
       $pl->items_per_second = round($pl->items_per_second, 2);
       $pl->seconds_per_item = round($pl->seconds_per_item, 2);
+      $pl->is_output = false;
     }
 
     $outputProductionLines = $productionLine->consumerProductionLines;
@@ -41,6 +39,7 @@ class ProductionLineController extends Controller {
       $pl->assembly_count = round($pl->assembly_count, 2);
       $pl->items_per_second = round($pl->items_per_second, 2);
       $pl->seconds_per_item = round($pl->seconds_per_item, 2);
+      $pl->is_output = true;
     }
 
     return array(
@@ -67,7 +66,10 @@ class ProductionLineController extends Controller {
    * @return \Illuminate\Http\Response
    */
   public function update(Request $request, $id) {
-    //
+    $productionLine = Auth::user()->productionLines()->find($id);
+    $productionLine->fill([$request->input('name') => $request->input('value')]);
+    $productionLine->save();
+    return array('factories'=>$this->recalculate($id), 'productionLine'=>$productionLine);
   }
 
   /**

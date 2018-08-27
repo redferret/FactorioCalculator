@@ -10,13 +10,6 @@ Router.registerRoute(Constants.ROOT_URL, args => {
 const ROOT = Router.route(Constants.ROOT_URL);
 
 /**
- * Special Routes
- */
-Router.registerRoute(Constants.RE_CALCULATE_PRODUCTION, args => {
-  return ROOT + '/productionline/'+args.id+'/recalculate';
-});
-
-/**
  * Routes for getting data
  */
 Router.registerRoute(Constants.GET_FACTORIES, args => {
@@ -35,17 +28,17 @@ Router.registerRoute(Constants.GET_PRODUCERS, args => {
 /**
  * Routes for editing data
  */
-Router.registerRoute(Constants.EDIT_FACTORY, args => {
-  return ROOT + '/factory/'+args.id+'/edit';
+Router.registerRoute(Constants.UPDATE_FACTORY, args => {
+  return ROOT + '/factory/'+args.id;
 });
-Router.registerRoute(Constants.EDIT_PRODUCTION_LINE, args => {
-  return ROOT + '/productionline/'+args.id+'/edit';
+Router.registerRoute(Constants.UPDATE_PRODUCTION_LINE, args => {
+  return ROOT + '/productionline/'+args.id;
 });
-Router.registerRoute(Constants.EDIT_PRODUCT, args => {
-  return ROOT + '/product/'+args.id+'/edit';
+Router.registerRoute(Constants.UPDATE_PRODUCT, args => {
+  return ROOT + '/product/'+args.id;
 });
-Router.registerRoute(Constants.EDIT_PRODUCER, args => {
-  return ROOT + '/producer/'+args.id+'/edit';
+Router.registerRoute(Constants.UPDATE_PRODUCER, args => {
+  return ROOT + '/producer/'+args.id;
 });
 
 /**

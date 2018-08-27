@@ -14,19 +14,23 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
 
+Route::delete('/producer/{id}', 'ProducerController@destroy');
+Route::get('/producer', 'ProducerController@getAll');
+Route::post('/producer', 'ProducerController@store');
+Route::put('/producer/{id}', 'ProducerController@update');
+
+Route::delete('/products/{id}', 'ProductController@destroy');
 Route::get('/products', 'ProductController@getAll');
-Route::resource('products', 'ProductController')->only([
-  'store', 'update', 'destroy'
-]);
+Route::post('/products', 'ProductController@store');
+Route::put('/products/{id}', 'ProductController@update');
 
+Route::delete('/factories/{id}', 'FactoryController@destroy');
 Route::get('/factories', 'FactoryController@getAll');
-Route::resource('factories', 'FactoryController')->only([
-  'store', 'update', 'destroy'
-]);
+Route::post('/factories', 'FactoryController@store');
+Route::put('/factories/{id}', 'FactoryController@update');
 
-Route::get('/productionline/{id}/productionlines', 'ProductionLineController@getProductionLines');
-Route::post('/productionline/{id}/recalculate', 'ProductionLineController@recalculate');
+Route::delete('/productionline/{id}', 'ProductionLineController@destroy');
 Route::get('/productionline/{id}/balance', 'ProductionLineController@balance');
-Route::resource('productionlines', 'ProductionLineController')->only([
-  'store', 'update', 'destroy'
-]);
+Route::get('/productionline/{id}/productionlines', 'ProductionLineController@getProductionLines');
+Route::post('/productionline', 'ProductionLineController@store');
+Route::put('/productionline/{id}', 'ProductionLineController@update');

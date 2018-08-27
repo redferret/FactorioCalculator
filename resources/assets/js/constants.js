@@ -16,15 +16,14 @@ export const DELETE_PRODUCER              = 'delete-producer';
 export const DELETE_PRODUCT               = 'delete-product';
 export const DELETE_PRODUCTION_LINE       = 'delete-production-line';
 
-export const EDIT_FACTORY                 = 'edit-factory';
-export const EDIT_PRODUCER                = 'edit-producer';
-export const EDIT_PRODUCT                 = 'edit-product';
-export const EDIT_PRODUCTION_LINE         = 'edit-production-line';
-
 export const GET_FACTORIES                = 'get-factories';
 export const GET_PRODUCERS                = 'get-producers';
 export const GET_PRODUCTION_LINES         = 'get-production-lines';
 export const GET_PRODUCTS                 = 'get-products';
 
-export const RE_CALCULATE_PRODUCTION      = 're-calculate-production';
 export const ROOT_URL                     = 'root-url';
+
+export const UPDATE_FACTORY                 = 'update-factory';
+export const UPDATE_PRODUCER                = 'update-producer';
+export const UPDATE_PRODUCT                 = 'update-product';
+export const UPDATE_PRODUCTION_LINE         = 'update-production-line';

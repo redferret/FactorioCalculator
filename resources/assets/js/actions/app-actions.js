@@ -6,11 +6,19 @@ class Actions {
   register(actionName, action) {
     this._actions.set(actionName, action);
   }
-  call(actionName, data) {
-    let action = this._actions.get(actionName);
+  call(payload) {
+    let action = this._actions.get(payload.action);
     if (action instanceof Function) {
-      action(data);
+      action(payload);
     }
+  }
+  finish(payload) {
+    payload.emitOn.map(emitter => {
+      var store = emitter.store;
+      emitter.componentIds.map(id => {
+        store.emitChange(id);
+      })
+    });
   }
 }
 

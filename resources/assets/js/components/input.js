@@ -11,6 +11,9 @@ class Input extends React.Component {
 
   constructor(props, context) {
     super(props, context);
+
+    this.handleChange = this.handleChange.bind(this);
+
     this.state = {
       value: this.props.initialValue,
       isValid: true
@@ -54,8 +57,8 @@ class Input extends React.Component {
         validationState={validationState}
       >
       <FormControl type={this.props.type} name={this.props.name}
-        onBlur={this.handleChange.bind(this)}
-        onKeyPress={this.handleChange.bind(this)}
+        onBlur={(event) => this.handleChange(event)}
+        onKeyPress={(event) => this.handleChange(event)}
         onChange={(event) => {
           this.ignoreBlur = false;
           this.setState({
@@ -71,12 +74,13 @@ class Input extends React.Component {
 }
 
 Input.defaultProps = {
+  name: 'default',
   isStatic: false,
   type: 'text',
   width: {
     'width': 'auto'
   },
-  callback: () => console.warn('No Callback for Input')
+  callback: () => {}
 };
 
 export default Input;

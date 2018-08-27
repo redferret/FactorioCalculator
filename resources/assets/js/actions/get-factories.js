@@ -4,11 +4,11 @@ import Router from '../router.js';
 import { GET_FACTORIES } from '../constants.js';
 import FactoryStore from '../stores/factory-store.js';
 
-Actions.register(GET_FACTORIES, data => {
+Actions.register(GET_FACTORIES, payload => {
   fetch(Router.route(GET_FACTORIES)).then(response => {
     return response.json();
   }).then(factories => {
     FactoryStore.setFactories(factories);
-    FactoryStore.emitChange(data.componentId);
+    Actions.finish(payload);
   });
 });

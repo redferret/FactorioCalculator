@@ -4,6 +4,7 @@ import React from 'react';
 import AppDispatcher from '../dispatcher.js';
 import Input from './input.js';
 import ProductModalStore from '../stores/product-modal-store.js';
+import FactoryStore from '../stores/factory-store.js';
 
 import {
   Alert,
@@ -16,8 +17,11 @@ import {
 } from 'react-bootstrap';
 
 import {
-  MODAL_ID,
+  GET_FACTORIES,
   GET_PRODUCTION_LINES,
+  MAIN_ID,
+  MODAL_ID,
+  UPDATE_PRODUCER,
 } from '../constants.js';
 
 export default class ProductModal extends React.Component {
@@ -28,11 +32,10 @@ export default class ProductModal extends React.Component {
     this.renderModalBody = this.renderModalBody.bind(this);
     this.handleShowProductModal = this.handleShowProductModal.bind(this);
     this.handleHideProductModal = this.handleHideProductModal.bind(this);
-    this.dispatchInputChanged = this.dispatchInputChanged.bind(this);
+    this.dispatchProducerChanged = this.dispatchProducerChanged.bind(this);
 
     this.state = {
       selectedProductionLine: ProductModalStore.getSelectedProductionLine(),
-      productionLineStack: [],
       show: false
     }
   }
@@ -51,9 +54,12 @@ export default class ProductModal extends React.Component {
     AppDispatcher.dispatch({
       action: GET_PRODUCTION_LINES,
       data: {
-        id: id,
-        componentId: MODAL_ID
-      }
+        id: id
+      },
+      emitOn: [{
+        store: ProductModalStore,
+        componentIds: [MODAL_ID]
+      }]
     });
   }
 
@@ -82,8 +88,27 @@ export default class ProductModal extends React.Component {
     this._fetchProductionLines(productionLine.id);
   }
 
-  dispatchInputChanged(event) {
-    alert('Input Changed for ' + event.target.name + ' to ' + event.target.value);
+  dispatchProducerChanged(event, productionLineId) {
+    AppDispatcher.dispatch({
+      action: UPDATE_PRODUCER,
+      data: {
+        productionLineId: productionLineId,
+        name: event.target.name,
+        value: event.target.value
+      },
+      emitOn:[{
+        store: ProductModalStore,
+        componentIds: [MODAL_ID]
+      }]
+    });
+
+    AppDispatcher.dispatch({
+      action: GET_FACTORIES,
+      emitOn: [{
+        store: FactoryStore,
+        componentIds: [MAIN_ID]
+      }]
+    });
   }
 
   renderProductDetails() {
@@ -91,6 +116,7 @@ export default class ProductModal extends React.Component {
     let product = this.state.selectedProductionLine.produces;
     let isMiner = this.state.selectedProductionLine.producer.producer_type === 0;
     let isInput = this.state.selectedProductionLine.production_line_id !== null;
+    let productionId = this.state.selectedProductionLine.id;
 
     if (isMiner) {
       return (
@@ -106,28 +132,25 @@ export default class ProductModal extends React.Component {
           </tr></thead>
           <tbody><tr>
             <td>
-              <Input type='number' name='hardness' isStatic={true}
-              callback={this.dispatchInputChanged}
+              <Input type='number' isStatic={true}
               initialValue={product.crafting_time} />
             </td>
             <td>
-              <Input type='number' name='hardness' isStatic={true}
-              callback={this.dispatchInputChanged}
+              <Input type='number' isStatic={true}
               initialValue={product.stock_size} />
             </td>
             <td>
               <Input type='number' name='speed'
-              callback={this.dispatchInputChanged}
+              callback={(event) => this.dispatchProducerChanged(event, productionId)}
               initialValue={producer.speed} />
             </td>
             <td>
               <Input type='number' name='power'
-              callback={this.dispatchInputChanged}
+              callback={(event) => this.dispatchProducerChanged(event, productionId)}
               initialValue={producer.power} />
             </td>
             <td>
-              <Input type='number' name='hardness' isStatic={true}
-              callback={this.dispatchInputChanged}
+              <Input type='number' isStatic={true}
               initialValue={product.hardness} />
             </td>
             <td>Not Implemented Yet</td>
@@ -147,18 +170,16 @@ export default class ProductModal extends React.Component {
           </tr></thead>
           <tbody><tr>
             <td>
-              <Input type='number' name='hardness' isStatic={true}
-              callback={this.dispatchInputChanged}
+              <Input type='number' isStatic={true}
               initialValue={product.crafting_time} />
             </td>
             <td>
-              <Input type='number' name='hardness' isStatic={true}
-              callback={this.dispatchInputChanged}
+              <Input type='number' isStatic={true}
               initialValue={product.stock_size} />
             </td>
             <td>
               <Input type='number' name='speed'
-              callback={this.dispatchInputChanged}
+              callback={(event) => this.dispatchProducerChanged(event, productionId)}
               initialValue={producer.speed} />
             </td>
             <td>Not Implemented Yet</td>
@@ -170,11 +191,23 @@ export default class ProductModal extends React.Component {
   }
 
   renderProductionLines(productionLines) {
+
     return (
       <Well>
         <div className='list-group'> {
           productionLines.map(productionLine => {
+
             let produces = productionLine.produces;
+
+            let consumerRequirementElement = productionLine.is_output ?
+              <div className='list-group-item'>
+                <Label>{this.state.selectedProductionLine.produces.name} Requirement</Label>
+                <Input type='number' name='consumer_requirement'
+                callback={(event) => {console.log('Not Implemented Yet')}}
+                initialValue={productionLine.consumer_requirement} />
+              </div> :
+              <div></div>;
+
             return (
               <div key={produces.id}>
                 <Label>Production Line: {productionLine.name}</Label>
@@ -187,24 +220,21 @@ export default class ProductModal extends React.Component {
                     <thead><tr>
                       <th>Assemblers Needed</th>
                       <th>Crafting Time Per Item</th>
-                      <th>Items Needed / Sec</th>
+                      <th>Items Produced / Sec</th>
                       <th>Actual Production (Items/Sec)</th>
                       <th>Surplus/Deficit (Items/Sec)</th>
                     </tr></thead>
                     <tbody><tr>
                       <td>
-                        <Input type='number' name='assembly_count' isStatic={true}
-                        callback={this.dispatchInputChanged}
+                        <Input type='number' isStatic={true}
                         initialValue={productionLine.assembly_count} />
                       </td>
                       <td>
-                        <Input type='number' name='crafting_time' isStatic={true}
-                        callback={this.dispatchInputChanged}
+                        <Input type='number' isStatic={true}
                         initialValue={produces.crafting_time} />
                       </td>
                       <td>
-                        <Input type='number' name='items_per_second' isStatic={true}
-                        callback={this.dispatchInputChanged}
+                        <Input type='number' isStatic={true}
                         initialValue={productionLine.items_per_second} />
                       </td>
                       <td>Not Implemented Yet</td>
@@ -212,12 +242,7 @@ export default class ProductModal extends React.Component {
                     </tr></tbody>
                   </Table>
                 </a>
-                <div className='list-group-item'>
-                  <Label>Consumer Requirement</Label>
-                  <Input type='number' name='consumer_requirement'
-                  callback={this.dispatchInputChanged}
-                  initialValue={productionLine.consumer_requirement} />
-                </div>
+                {consumerRequirementElement}
               </div>
             );
           })}

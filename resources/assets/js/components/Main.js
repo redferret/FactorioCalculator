@@ -47,9 +47,10 @@ class Main extends Component {
     FactoryStore.on(MAIN_ID, this._onLoadedFactories.bind(this));
     AppDispatcher.dispatch({
       action: GET_FACTORIES,
-      data: {
-        componentId: MAIN_ID
-      }
+      emitOn: [{
+        store: FactoryStore,
+        componentIds: [MAIN_ID]
+      }]
     });
   }
 

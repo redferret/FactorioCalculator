@@ -1,5 +1,6 @@
 import AppDispatcher from '../dispatcher.js';
 import ProductModalStore from '../stores/product-modal-store.js';
+import FactoryStore from '../stores/factory-store.js';
 import React from 'react';
 import Input from './input.js';
 
@@ -15,7 +16,7 @@ import {
   GET_PRODUCTION_LINES,
   MAIN_ID,
   MODAL_ID,
-  RE_CALCULATE_PRODUCTION,
+  UPDATE_PRODUCTION_LINE,
 } from '../constants.js';
 
 export default class ProductionLineDetails extends React.Component {
@@ -33,21 +34,28 @@ export default class ProductionLineDetails extends React.Component {
     AppDispatcher.dispatch({
       action: GET_PRODUCTION_LINES,
       data: {
-        id: this.props.id,
-        componentId: MODAL_ID
-      }
+        id: this.props.id
+      },
+      emitOn: [{
+        store: ProductModalStore,
+        componentIds: [MODAL_ID]
+      }]
     });
     ProductModalStore.showModal();
   }
 
   itemsPerSecondChanged(event) {
     AppDispatcher.dispatch({
-      action: RE_CALCULATE_PRODUCTION,
+      action: UPDATE_PRODUCTION_LINE,
       data: {
-        id: this.props.id,
-        itemsPerSecond: event.target.value,
-        componentId: MAIN_ID
-      }
+        productionLineId: this.props.id,
+        name: event.target.name,
+        value: event.target.value,
+      },
+      emitOn: [{
+        store: FactoryStore,
+        componentIds: [MAIN_ID]
+      }]
     });
   }
 
@@ -74,15 +82,14 @@ export default class ProductionLineDetails extends React.Component {
           assemblyCountTitle = 'Number of Furnaces';
           break;
       }
-      
+
       let inputValue = this.props.items_per_second;
       let itemsPerSecond = this.props.is_output ?
-        <Input type='number' name='itemsPerSecond'
+        <Input type='number' name='items_per_second'
           callback={this.itemsPerSecondChanged}
           initialValue={inputValue} /> :
-        <Input type='number' name='itemsPerSecond'
-          initialValue={inputValue}
-          isStatic={true} />;
+        <Input type='number' isStatic={true}
+          initialValue={inputValue} />;
 
       return (
         <div>
