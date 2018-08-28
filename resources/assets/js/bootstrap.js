@@ -1,4 +1,6 @@
 
+import Actions from './actions/app-actions.js';
+
 window._ = require('lodash');
 window.Popper = require('popper.js').default;
 
@@ -45,7 +47,7 @@ export const RootElement = document.getElementById('root');
  * Pull in the utilities file
  */
 require('./util.js');
-
+require('./actions/action-repo.js');
 require('./routes.js');
 
 /**
