@@ -65776,7 +65776,7 @@ var ProductionLineDetails = function (_React$Component) {
                 __WEBPACK_IMPORTED_MODULE_3_react___default.a.createElement(
                   'th',
                   null,
-                  'Items Produced'
+                  'Items Produced / Second'
                 ),
                 __WEBPACK_IMPORTED_MODULE_3_react___default.a.createElement(
                   'th',

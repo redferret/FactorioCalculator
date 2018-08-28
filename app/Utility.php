@@ -12,14 +12,12 @@ class Utility {
     foreach($factories as $factory) {
       $totalItems = 0;
       foreach($factory->productionLines as $productionLine) {
+        Utility::update($productionLine);
         // If this production line is an output
         if ($productionLine->consumerProductionLines()->first() == null) {
-          Utility::update($productionLine);
           $totalItems += $productionLine->items_per_second;
           $productionLine->is_output = true;
         } else {
-          $productionLine->producer;
-          $productionLine->produces;
           $productionLine->is_output = false;
         }
       }
