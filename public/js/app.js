@@ -78330,7 +78330,6 @@ var ProductModal = function (_React$Component) {
   }, {
     key: 'handleSelectProductionLine',
     value: function handleSelectProductionLine(productionLine) {
-      this.state.productionLineStack.unshift(this.state.selectedProductionLine);
       __WEBPACK_IMPORTED_MODULE_3__stores_product_modal_store_js__["a" /* default */].setSelectedProductionLine(productionLine);
       this._fetchProductionLines(productionLine.id);
     }

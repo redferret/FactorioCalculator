@@ -83,7 +83,6 @@ export default class ProductModal extends React.Component {
   }
 
   handleSelectProductionLine(productionLine) {
-    this.state.productionLineStack.unshift(this.state.selectedProductionLine);
     ProductModalStore.setSelectedProductionLine(productionLine);
     this._fetchProductionLines(productionLine.id);
   }
