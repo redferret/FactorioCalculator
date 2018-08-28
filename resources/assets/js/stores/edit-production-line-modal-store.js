@@ -1,7 +1,7 @@
 var EventEmitter = require('events').EventEmitter;
-import { MODAL_ID } from '../constants.js';
+import { EDIT_PRODUCTION_LINE_MODAL_ID } from '../constants.js';
 
-class ProductModalStore extends EventEmitter {
+class EditProductionLineModalStore extends EventEmitter {
 
   constructor() {
     super();
@@ -17,7 +17,7 @@ class ProductModalStore extends EventEmitter {
 
   hideModal() {
     this.state.show = false;
-    this.emitChange(MODAL_ID);
+    this.emitChange(EDIT_PRODUCTION_LINE_MODAL_ID);
   }
 
   shouldShow() {
@@ -54,4 +54,4 @@ class ProductModalStore extends EventEmitter {
 
 }
 
-export default new ProductModalStore();
+export default new EditProductionLineModalStore();

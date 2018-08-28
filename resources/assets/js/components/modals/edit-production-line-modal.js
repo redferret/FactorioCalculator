@@ -1,10 +1,10 @@
 
 import React from 'react';
 
-import AppDispatcher from '../dispatcher.js';
-import Input from './input.js';
-import ProductModalStore from '../stores/product-modal-store.js';
-import FactoryStore from '../stores/factory-store.js';
+import AppDispatcher from '../../dispatcher.js';
+import Input from '../input.js';
+import EditProductionLineModalStore from '../../stores/edit-production-line-modal-store.js';
+import FactoryStore from '../../stores/factory-store.js';
 
 import {
   Alert,
@@ -20,11 +20,11 @@ import {
   GET_FACTORIES,
   GET_PRODUCTION_LINES,
   MAIN_ID,
-  MODAL_ID,
+  EDIT_PRODUCTION_LINE_MODAL_ID,
   UPDATE_PRODUCER,
-} from '../constants.js';
+} from '../../constants.js';
 
-export default class ProductModal extends React.Component {
+export default class EditProductionLineModal extends React.Component {
 
   constructor(props, context) {
     super(props, context);
@@ -35,7 +35,7 @@ export default class ProductModal extends React.Component {
     this.dispatchProducerChanged = this.dispatchProducerChanged.bind(this);
 
     this.state = {
-      selectedProductionLine: ProductModalStore.getSelectedProductionLine(),
+      selectedProductionLine: EditProductionLineModalStore.getSelectedProductionLine(),
       show: false
     }
   }
@@ -45,8 +45,8 @@ export default class ProductModal extends React.Component {
    */
   _onChange() {
     this.setState({
-      selectedProductionLine: ProductModalStore.getSelectedProductionLine(),
-      show: ProductModalStore.shouldShow()
+      selectedProductionLine: EditProductionLineModalStore.getSelectedProductionLine(),
+      show: EditProductionLineModalStore.shouldShow()
     });
   }
 
@@ -57,33 +57,33 @@ export default class ProductModal extends React.Component {
         id: id
       },
       emitOn: [{
-        store: ProductModalStore,
-        componentIds: [MODAL_ID]
+        store: EditProductionLineModalStore,
+        componentIds: [EDIT_PRODUCTION_LINE_MODAL_ID]
       }]
     });
   }
 
   componentDidMount() {
-    ProductModalStore.on(MODAL_ID, this._onChange.bind(this));
+    EditProductionLineModalStore.on(EDIT_PRODUCTION_LINE_MODAL_ID, this._onChange.bind(this));
   }
 
   componentWillUnmount() {
-    ProductModalStore.removeListener(MODAL_ID, this._onChange.bind(this));
+    EditProductionLineModalStore.removeListener(EDIT_PRODUCTION_LINE_MODAL_ID, this._onChange.bind(this));
   }
 
   handleShowProductModal(e) {
-    ProductModalStore.showModal();
+    EditProductionLineModalStore.showModal();
   }
 
   handleHideProductModal() {
     this.setState({
       productionLineStack: []
     });
-    ProductModalStore.hideModal();
+    EditProductionLineModalStore.hideModal();
   }
 
   handleSelectProductionLine(productionLine) {
-    ProductModalStore.setSelectedProductionLine(productionLine);
+    EditProductionLineModalStore.setSelectedProductionLine(productionLine);
     this._fetchProductionLines(productionLine.id);
   }
 
@@ -96,8 +96,8 @@ export default class ProductModal extends React.Component {
         value: event.target.value
       },
       emitOn:[{
-        store: ProductModalStore,
-        componentIds: [MODAL_ID]
+        store: EditProductionLineModalStore,
+        componentIds: [EDIT_PRODUCTION_LINE_MODAL_ID]
       }]
     });
 
@@ -251,8 +251,8 @@ export default class ProductModal extends React.Component {
   }
 
   renderModalBody() {
-    let inputProductionLines = ProductModalStore.getInputProductionLines();
-    let outputProductionLines = ProductModalStore.getOutputProductionLines();
+    let inputProductionLines = EditProductionLineModalStore.getInputProductionLines();
+    let outputProductionLines = EditProductionLineModalStore.getOutputProductionLines();
 
     let outputElements = outputProductionLines.length === 0 ?
       <Alert bsStyle='warning'>This is a Primary Output</Alert> :

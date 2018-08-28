@@ -4,7 +4,7 @@
 export const MAIN_ID                        = 'main-id';
 export const MODAL_ID                       = 'product-modal';
 export const PRODUCTION_LINE_ID             = 'production-line_';
-
+export const EDIT_PRODUCTION_LINE_MODAL_ID  = 'edit-production-line-modal-id';
 // Constants for Actions
 export const ADD_FACTORY                  = 'add-factory';
 export const ADD_PRODUCER                 = 'add-producer';

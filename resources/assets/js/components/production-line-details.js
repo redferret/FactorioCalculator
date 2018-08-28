@@ -1,5 +1,5 @@
 import AppDispatcher from '../dispatcher.js';
-import ProductModalStore from '../stores/product-modal-store.js';
+import EditProductionLineModalStore from '../stores/edit-production-line-modal-store.js';
 import FactoryStore from '../stores/factory-store.js';
 import React from 'react';
 import Input from './input.js';
@@ -15,7 +15,7 @@ import {
 import {
   GET_PRODUCTION_LINES,
   MAIN_ID,
-  MODAL_ID,
+  EDIT_PRODUCTION_LINE_MODAL_ID,
   UPDATE_PRODUCTION_LINE,
 } from '../constants.js';
 
@@ -30,18 +30,18 @@ export default class ProductionLineDetails extends React.Component {
   }
 
   handleShowProductModal() {
-    ProductModalStore.setSelectedProductionLine(this.props);
+    EditProductionLineModalStore.setSelectedProductionLine(this.props);
     AppDispatcher.dispatch({
       action: GET_PRODUCTION_LINES,
       data: {
         id: this.props.id
       },
       emitOn: [{
-        store: ProductModalStore,
-        componentIds: [MODAL_ID]
+        store: EditProductionLineModalStore,
+        componentIds: [EDIT_PRODUCTION_LINE_MODAL_ID]
       }]
     });
-    ProductModalStore.showModal();
+    EditProductionLineModalStore.showModal();
   }
 
   itemsPerSecondChanged(event) {

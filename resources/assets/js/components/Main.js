@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import AppDispatcher from '../dispatcher.js';
 import Factory from './factory.js';
 import FactoryStore from '../stores/factory-store.js';
-import ProductModal from './product-modal.js';
+import EditProductionLineModal from './modals/edit-production-line-modal.js';
 
 import {
   Alert,
@@ -66,7 +66,7 @@ class Main extends Component {
         activeKey={this.state.activeKey}
         onSelect={this.handleFactorySelect}
       >
-        <ProductModal />
+        <EditProductionLineModal />
         <div>
           <h3><Label bsStyle='primary'>Your Factories</Label></h3>
         </div>
