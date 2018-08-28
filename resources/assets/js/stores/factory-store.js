@@ -16,6 +16,14 @@ class FactoryStore extends EventEmitter {
     return this._factories;
   }
 
+  getFactory(id) {
+    return this._factories.find(factory => {
+      if (factory.id === id) {
+        return factory;
+      }
+    });
+  }
+
   emitChange(id) {
     this.emit(id);
   }

@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 
 import AppDispatcher from '../dispatcher.js';
 import Factory from './factory.js';
+import MainStore from '../stores/main-store.js';
 import FactoryStore from '../stores/factory-store.js';
 import EditProductionLineModal from './modals/edit-production-line-modal.js';
 
@@ -44,18 +45,18 @@ class Main extends Component {
   }
 
   componentDidMount() {
-    FactoryStore.on(MAIN_ID, this._onLoadedFactories.bind(this));
+    MainStore.on(MAIN_ID, this._onLoadedFactories.bind(this));
     AppDispatcher.dispatch({
       action: GET_FACTORIES,
       emitOn: [{
-        store: FactoryStore,
+        store: MainStore,
         componentIds: [MAIN_ID]
       }]
     });
   }
 
   componentWillUnmount() {
-    FactoryStore.removeListener(MAIN_ID, this._onLoadedFactories.bind(this));
+    MainStore.removeListener(MAIN_ID, this._onLoadedFactories.bind(this));
   }
 
   render() {
@@ -72,9 +73,9 @@ class Main extends Component {
         </div>
         {this.state.factories.map(factory =>
           <Factory
-            {...factory}
             key={factory.id}
             eventKey={factory.id}
+            id={factory.id}
           />
         )}
       </PanelGroup>

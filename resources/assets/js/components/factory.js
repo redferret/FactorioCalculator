@@ -1,4 +1,4 @@
-
+import AppDispatcher from '../dispatcher.js';
 import FactoryStore from '../stores/factory-store.js';
 import ProductionLineDetails from './production-line-details.js';
 import React from 'react';
@@ -13,6 +13,11 @@ import {
   Table,
 } from 'react-bootstrap';
 
+import {
+  LOAD_FACTORY,
+  FACTORY_PANEL_,
+} from '../constants.js';
+
 export default class Factory extends React.Component {
 
   constructor(props, context) {
@@ -21,8 +26,30 @@ export default class Factory extends React.Component {
     this.handleSelectProductionLine = this.handleSelectProductionLine.bind(this);
 
     this.state = {
+      factory: FactoryStore.getFactory(props.id),
       activeKey: '0',
     };
+  }
+
+  _onChange() {
+    this.setState({
+      factory: FactoryStore.getFactory(this.props.id)
+    });
+  }
+
+  componentDidMount() {
+    FactoryStore.on(FACTORY_PANEL_ + this.props.id, this._onChange.bind(this));
+    AppDispatcher.dispatch({
+      action: LOAD_FACTORY,
+      emitOn:[{
+        store: FactoryStore,
+        componentIds: [FACTORY_PANEL_ + this.props.id]
+      }]
+    })
+  }
+
+  componentWillUnmount() {
+    FactoryStore.removeListener(FACTORY_PANEL_ + this.props.id, this._onChange.bind(this));
   }
 
   handleSelectProductionLine(activeKey) {
@@ -30,6 +57,9 @@ export default class Factory extends React.Component {
   }
 
   renderFactoryDetails() {
+    if (this.state.factory.production_lines === undefined) {
+      return <div></div>;
+    }
     return (
       <div>
         <h4><Label bsStyle='success'>Factory Details</Label></h4>
@@ -43,8 +73,8 @@ export default class Factory extends React.Component {
           </thead>
           <tbody>
             <tr>
-              <td>{this.props.production_lines.length}</td>
-              <td>{this.props.total_items}</td>
+              <td>{this.state.factory.production_lines.length}</td>
+              <td>{this.state.factory.total_items}</td>
               <td>#</td>
             </tr>
           </tbody>
@@ -54,7 +84,10 @@ export default class Factory extends React.Component {
   }
 
   renderFactoryProductionLines() {
-    if (this.props.production_lines.length > 0) {
+    if (this.state.factory.production_lines === undefined) {
+      return <div></div>;
+    }
+    if (this.state.factory.production_lines.length > 0) {
       return (
         <PanelGroup
           accordion
@@ -62,7 +95,7 @@ export default class Factory extends React.Component {
           activeKey={this.state.activeKey}
           onSelect={this.handleSelectProductionLine}
         >
-        {this.props.production_lines.map(productionLine =>
+        {this.state.factory.production_lines.map(productionLine =>
           <ProductionLineDetails
             {...productionLine}
             key={productionLine.id}
@@ -84,7 +117,7 @@ export default class Factory extends React.Component {
       <Panel bsStyle='primary' eventKey={this.props.eventKey}>
         <Panel.Heading>
           <Panel.Title toggle>
-              {this.props.name}
+              {this.state.factory.name}
           </Panel.Title>
         </Panel.Heading>
         <Panel.Body collapsible>
