@@ -34,7 +34,8 @@ export default class ProductionLineDetails extends React.Component {
   }
 
   handleShowModal() {
-    ModalsStore.setCurrentModal(<EditProductionLineModal/>);
+    ModalsStore.setCurrentModal(EDIT_PRODUCTION_LINE_MODAL_ID);
+    ModalsStore.showModal();
     EditProductionLineModalStore.setSelectedProductionLine(this.props);
     AppDispatcher.dispatch({
       action: GET_PRODUCTION_LINES,
@@ -49,7 +50,6 @@ export default class ProductionLineDetails extends React.Component {
         componentIds: [EDIT_PRODUCTION_LINE_MODAL_ID]
       }]
     });
-    EditProductionLineModalStore.showModal();
   }
 
   itemsPerSecondChanged(event) {

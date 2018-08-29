@@ -5,23 +5,7 @@ class EditProductionLineModalStore extends EventEmitter {
 
   constructor() {
     super();
-    this.state = {
-      show: false
-    };
     this._productionLines = [];
-  }
-
-  showModal() {
-    this.state.show = true;
-  }
-
-  hideModal() {
-    this.state.show = false;
-    this.emitChange(EDIT_PRODUCTION_LINE_MODAL_ID);
-  }
-
-  shouldShow() {
-    return this.state.show;
   }
 
   setSelectedProductionLine(selectedProductionLine) {

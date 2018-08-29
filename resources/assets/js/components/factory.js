@@ -1,5 +1,9 @@
 import AppDispatcher from '../dispatcher.js';
 import FactoryStore from '../stores/factory-store.js';
+import MainStore from '../stores/main-store.js';
+import ModalsStore from '../stores/modals-store.js';
+import NewProductionLineModalStore from '../stores/new-production-line-modal-store.js';
+import NewProductionLineModal from './modals/new-production-line-modal.js';
 import ProductionLineDetails from './production-line-details.js';
 import React from 'react';
 
@@ -14,8 +18,11 @@ import {
 } from 'react-bootstrap';
 
 import {
-  LOAD_FACTORY,
   FACTORY_PANEL_,
+  LOAD_FACTORY,
+  MAIN_MODAL_CHANGE,
+  NEW_PRODUCTION_LINE_MODAL_ID,
+  RE_RENDER,
 } from '../constants.js';
 
 export default class Factory extends React.Component {
@@ -24,6 +31,7 @@ export default class Factory extends React.Component {
     super(props, context);
 
     this.handleSelectProductionLine = this.handleSelectProductionLine.bind(this);
+    this.handleAddProductionLine = this.handleAddProductionLine.bind(this);
 
     this.state = {
       factory: FactoryStore.getFactory(props.id),
@@ -54,6 +62,21 @@ export default class Factory extends React.Component {
 
   handleSelectProductionLine(activeKey) {
     this.setState({ activeKey });
+  }
+
+  handleAddProductionLine() {
+    ModalsStore.setCurrentModal(NEW_PRODUCTION_LINE_MODAL_ID);
+    ModalsStore.showModal();
+    AppDispatcher.dispatch({
+      action: RE_RENDER,
+      emitOn: [{
+        store: MainStore,
+        componentIds: [MAIN_MODAL_CHANGE]
+      }, {
+        store: NewProductionLineModalStore,
+        componentIds: [NEW_PRODUCTION_LINE_MODAL_ID]
+      }]
+    })
   }
 
   renderFactoryDetails() {
@@ -124,7 +147,7 @@ export default class Factory extends React.Component {
           {this.renderFactoryDetails()}
           {this.renderFactoryProductionLines()}
           <ButtonToolbar>
-            <Button bsStyle='primary'>Add Production Line</Button>
+            <Button bsStyle='primary' onClick={this.handleAddProductionLine}>Add Production Line</Button>
           </ButtonToolbar>
         </Panel.Body>
       </Panel>

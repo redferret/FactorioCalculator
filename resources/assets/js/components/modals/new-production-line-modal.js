@@ -1,5 +1,6 @@
 import AppDispatcher from '../../dispatcher.js';
 import Input from '../input.js';
+import ModalsStore from '../../stores/modals-store.js';
 import NewProductionLineModalStore from '../../stores/new-production-line-modal-store.js';
 import React from 'react';
 
@@ -22,36 +23,41 @@ export default class NewProductionLineModal extends React.Component {
     super(props, context);
 
     this.handleHideModal = this.handleHideModal.bind(this);
-
+    this._isMounted = false;
     this.state = {
-      show: false
+      show: ModalsStore.shouldShow()
     }
   }
 
   _onChange() {
-    this.setState({
-
-    });
+    if (this._isMounted) {
+      this.setState({
+        show: ModalsStore.shouldShow()
+      });
+    }
   }
 
   componentDidMount() {
+    this._isMounted = true;
+    ModalsStore.on(NEW_PRODUCTION_LINE_MODAL_ID, this._onChange.bind(this));
     NewProductionLineModalStore.on(NEW_PRODUCTION_LINE_MODAL_ID, this._onChange.bind(this));
   }
 
   componentWillUnmount() {
+    this._isMounted = false;
+    ModalsStore.removeListener(NEW_PRODUCTION_LINE_MODAL_ID, this._onChange.bind(this));
     NewProductionLineModalStore.removeListener(NEW_PRODUCTION_LINE_MODAL_ID, this._onChange.bind(this));
   }
 
   handleHideModal() {
-    this.setState({
-      show: false
-    })
+    ModalsStore.hideModal(NEW_PRODUCTION_LINE_MODAL_ID);
   }
 
   render() {
     return (
       <Modal
         show={this.state.show}
+        onHide={this.handleHideModal}
         bsSize='large'
         >
         <Modal.Header>

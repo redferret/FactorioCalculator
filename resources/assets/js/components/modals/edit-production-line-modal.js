@@ -1,5 +1,6 @@
 import AppDispatcher from '../../dispatcher.js';
 import EditProductionLineModalStore from '../../stores/edit-production-line-modal-store.js';
+import ModalsStore from '../../stores/modals-store.js';
 import FactoryStore from '../../stores/factory-store.js';
 import Input from '../input.js';
 import React from 'react';
@@ -28,13 +29,14 @@ export default class EditProductionLineModal extends React.Component {
     super(props, context);
 
     this.renderModalBody = this.renderModalBody.bind(this);
-    this.handleShowProductModal = this.handleShowProductModal.bind(this);
     this.handleHideProductModal = this.handleHideProductModal.bind(this);
     this.dispatchProducerChanged = this.dispatchProducerChanged.bind(this);
 
+    this._isMounted = false;
+
     this.state = {
       selectedProductionLine: EditProductionLineModalStore.getSelectedProductionLine(),
-      show: false
+      show: ModalsStore.shouldShow()
     }
   }
 
@@ -42,10 +44,12 @@ export default class EditProductionLineModal extends React.Component {
    * When the modal store emits a change on
    */
   _onChange() {
-    this.setState({
-      selectedProductionLine: EditProductionLineModalStore.getSelectedProductionLine(),
-      show: EditProductionLineModalStore.shouldShow()
-    });
+    if (this._isMounted) {
+      this.setState({
+        selectedProductionLine: EditProductionLineModalStore.getSelectedProductionLine(),
+        show: ModalsStore.shouldShow()
+      });
+    }
   }
 
   _fetchProductionLines(id) {
@@ -62,22 +66,22 @@ export default class EditProductionLineModal extends React.Component {
   }
 
   componentDidMount() {
+    this._isMounted = true;
+    ModalsStore.on(EDIT_PRODUCTION_LINE_MODAL_ID, this._onChange.bind(this));
     EditProductionLineModalStore.on(EDIT_PRODUCTION_LINE_MODAL_ID, this._onChange.bind(this));
   }
 
   componentWillUnmount() {
+    this._isMounted = false;
+    ModalsStore.removeListener(EDIT_PRODUCTION_LINE_MODAL_ID, this._onChange.bind(this));
     EditProductionLineModalStore.removeListener(EDIT_PRODUCTION_LINE_MODAL_ID, this._onChange.bind(this));
-  }
-
-  handleShowProductModal(e) {
-    EditProductionLineModalStore.showModal();
   }
 
   handleHideProductModal() {
     this.setState({
       productionLineStack: []
     });
-    EditProductionLineModalStore.hideModal();
+    ModalsStore.hideModal(EDIT_PRODUCTION_LINE_MODAL_ID);
   }
 
   handleSelectProductionLine(productionLine) {

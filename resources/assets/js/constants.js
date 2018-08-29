@@ -26,6 +26,7 @@ export const GET_PRODUCTION_LINES         = 'get-production-lines';
 export const GET_PRODUCTS                 = 'get-products';
 
 export const LOAD_FACTORY                 = 'load-factory';
+export const RE_RENDER                    = 're-render';
 export const ROOT_URL                     = 'root-url';
 
 export const UPDATE_FACTORY                 = 'update-factory';
