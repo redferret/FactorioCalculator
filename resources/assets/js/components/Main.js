@@ -4,6 +4,7 @@ import Factory from './factory.js';
 import FactoryStore from '../stores/factory-store.js';
 import MainStore from '../stores/main-store.js';
 import ModalsStore from '../stores/modals-store.js';
+import NewFactoryModalStore from '../stores/new-factory-modal-store.js';
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
@@ -22,6 +23,8 @@ import {
   GET_FACTORIES,
   MAIN_ID,
   MAIN_MODAL_CHANGE,
+  NEW_FACTORY_MODAL_ID,
+  RE_RENDER,
 } from '../constants.js';
 
 class Main extends Component {
@@ -51,7 +54,17 @@ class Main extends Component {
   }
 
   handleNewFactory() {
-
+    ModalsStore.showModal(NEW_FACTORY_MODAL_ID);
+    AppDispatcher.dispatch({
+      action: RE_RENDER,
+      emitOn: [{
+        store: MainStore,
+        componentIds: [MAIN_MODAL_CHANGE]
+      }, {
+        store: NewFactoryModalStore,
+        componentIds: [NEW_FACTORY_MODAL_ID]
+      }]
+    })
   }
 
   handleFactorySelect(activeKey) {

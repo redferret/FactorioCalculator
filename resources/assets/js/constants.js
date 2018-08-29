@@ -8,6 +8,9 @@ export const MODAL_ID                       = 'product-modal';
 export const NEW_PRODUCTION_LINE_MODAL_ID   = 'new-production-line-modal-id';
 export const PRODUCTION_LINE_ID             = 'production-line_';
 export const MAIN_MODAL_CHANGE              = 'main-modal-change';
+export const NEW_FACTORY_MODAL_ID           = 'new-factory-modal-id';
+export const NEW_PRODUCT_MODAL_ID           = 'new-product-modal-id';
+export const NEW_PRODUCER_MODAL_ID           = 'new-producer-modal-id';
 
 // Constants for Actions
 export const ADD_FACTORY                  = 'add-factory';
