@@ -1,8 +1,11 @@
 import AppDispatcher from '../dispatcher.js';
+import EditProductionLineModal from './modals/edit-production-line-modal.js';
 import EditProductionLineModalStore from '../stores/edit-production-line-modal-store.js';
 import FactoryStore from '../stores/factory-store.js';
-import React from 'react';
 import Input from './input.js';
+import MainStore from '../stores/main-store.js';
+import ModalsStore from '../stores/modals-store.js';
+import React from 'react';
 
 import {
   Alert,
@@ -15,6 +18,7 @@ import {
 import {
   GET_PRODUCTION_LINES,
   MAIN_ID,
+  MAIN_MODAL_CHANGE,
   EDIT_PRODUCTION_LINE_MODAL_ID,
   UPDATE_PRODUCTION_LINE,
 } from '../constants.js';
@@ -24,12 +28,13 @@ export default class ProductionLineDetails extends React.Component {
   constructor(props, context) {
     super(props, context);
     this.addProductToProduction = this.addProductToProduction.bind(this);
-    this.handleShowProductModal = this.handleShowProductModal.bind(this);
+    this.handleShowModal = this.handleShowModal.bind(this);
     this.removeFromProduction = this.removeFromProduction.bind(this);
     this.itemsPerSecondChanged = this.itemsPerSecondChanged.bind(this);
   }
 
-  handleShowProductModal() {
+  handleShowModal() {
+    ModalsStore.setCurrentModal(<EditProductionLineModal/>);
     EditProductionLineModalStore.setSelectedProductionLine(this.props);
     AppDispatcher.dispatch({
       action: GET_PRODUCTION_LINES,
@@ -37,6 +42,9 @@ export default class ProductionLineDetails extends React.Component {
         id: this.props.id
       },
       emitOn: [{
+        store: MainStore,
+        componentIds: [MAIN_MODAL_CHANGE]
+      }, {
         store: EditProductionLineModalStore,
         componentIds: [EDIT_PRODUCTION_LINE_MODAL_ID]
       }]
@@ -114,7 +122,7 @@ export default class ProductionLineDetails extends React.Component {
             </tbody>
           </Table>
           <ButtonToolbar>
-            <Button onClick={this.handleShowProductModal} bsStyle='primary' bsSize='small'>Select Production Line</Button>{' '}
+            <Button onClick={this.handleShowModal} bsStyle='primary' bsSize='small'>Select Production Line</Button>{' '}
             <Button onClick={this.removeFromProduction} bsSize='small'>Remove Product from Production Line</Button>
           </ButtonToolbar>
         </div>

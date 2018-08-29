@@ -1,11 +1,13 @@
 
 
 // Constants for Component Ids
-export const MAIN_ID                        = 'main-id';
-export const FACTORY_PANEL_                 = 'factory-panel-';
-export const MODAL_ID                       = 'product-modal';
-export const PRODUCTION_LINE_ID             = 'production-line_';
 export const EDIT_PRODUCTION_LINE_MODAL_ID  = 'edit-production-line-modal-id';
+export const FACTORY_PANEL_                 = 'factory-panel-';
+export const MAIN_ID                        = 'main-id';
+export const MODAL_ID                       = 'product-modal';
+export const NEW_PRODUCTION_LINE_MODAL_ID   = 'new-production-line-modal-id';
+export const PRODUCTION_LINE_ID             = 'production-line_';
+export const MAIN_MODAL_CHANGE              = 'main-modal-change';
 
 // Constants for Actions
 export const ADD_FACTORY                  = 'add-factory';

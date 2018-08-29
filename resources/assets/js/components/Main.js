@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 
 import AppDispatcher from '../dispatcher.js';
 import Factory from './factory.js';
-import MainStore from '../stores/main-store.js';
 import FactoryStore from '../stores/factory-store.js';
-import EditProductionLineModal from './modals/edit-production-line-modal.js';
+import MainStore from '../stores/main-store.js';
+import ModalsStore from '../stores/modals-store.js';
+import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 
 import {
   Alert,
@@ -19,6 +19,7 @@ import { RootElement } from '../bootstrap.js';
 import {
   GET_FACTORIES,
   MAIN_ID,
+  MAIN_MODAL_CHANGE,
 } from '../constants.js';
 
 class Main extends Component {
@@ -30,8 +31,15 @@ class Main extends Component {
 
     this.state = {
       activeKey: '0',
+      currentModal: ModalsStore.getCurrentModal(),
       factories: []
     };
+  }
+
+  _onModalChange() {
+    this.setState({
+      currentModal: ModalsStore.getCurrentModal()
+    })
   }
 
   _onLoadedFactories() {
@@ -45,6 +53,7 @@ class Main extends Component {
   }
 
   componentDidMount() {
+    MainStore.on(MAIN_MODAL_CHANGE, this._onModalChange.bind(this));
     MainStore.on(MAIN_ID, this._onLoadedFactories.bind(this));
     AppDispatcher.dispatch({
       action: GET_FACTORIES,
@@ -57,6 +66,7 @@ class Main extends Component {
 
   componentWillUnmount() {
     MainStore.removeListener(MAIN_ID, this._onLoadedFactories.bind(this));
+    MainStore.removeListener(MAIN_MODAL_CHANGE, this._onModalChange.bind(this));
   }
 
   render() {
@@ -67,7 +77,7 @@ class Main extends Component {
         activeKey={this.state.activeKey}
         onSelect={this.handleFactorySelect}
       >
-        <EditProductionLineModal />
+        {this.state.currentModal}
         <div>
           <h3><Label bsStyle='primary'>Your Factories</Label></h3>
         </div>

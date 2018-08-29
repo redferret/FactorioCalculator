@@ -1,6 +1,6 @@
 var EventEmitter = require('events').EventEmitter;
 
-class MainStore extends EventEmitter {
+class NewProductionLineModalStore extends EventEmitter {
   constructor() {
     super();
   }
@@ -10,4 +10,4 @@ class MainStore extends EventEmitter {
   }
 }
 
-export default new MainStore();
+export default new NewProductionLineModalStore();
