@@ -50,7 +50,7 @@ export default class NewProductionLineModal extends React.Component {
   }
 
   handleHideModal() {
-    ModalsStore.hideModal(NEW_PRODUCTION_LINE_MODAL_ID);
+    ModalsStore.hideModal();
   }
 
   render() {

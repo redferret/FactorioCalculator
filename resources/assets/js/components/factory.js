@@ -65,8 +65,7 @@ export default class Factory extends React.Component {
   }
 
   handleAddProductionLine() {
-    ModalsStore.setCurrentModal(NEW_PRODUCTION_LINE_MODAL_ID);
-    ModalsStore.showModal();
+    ModalsStore.showModal(NEW_PRODUCTION_LINE_MODAL_ID);
     AppDispatcher.dispatch({
       action: RE_RENDER,
       emitOn: [{

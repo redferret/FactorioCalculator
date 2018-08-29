@@ -16,25 +16,24 @@ class ModalsStore extends EventEmitter {
     this._modals.set(EDIT_PRODUCTION_LINE_MODAL_ID, <EditProductionLineModal/>);
     this._modals.set(NEW_PRODUCTION_LINE_MODAL_ID, <NewProductionLineModal/>);
 
+    this._currentModalId = '';
     this._currentModal = '';
     this._show = false;
   }
 
-  showModal() {
+  showModal(id) {
+    this._currentModal = this._modals.get(id);
+    this._currentModalId = id;
     this._show = true;
   }
 
-  hideModal(id) {
+  hideModal() {
     this._show = false;
-    this.emitChange(id);
+    this.emitChange(this._currentModalId);
   }
 
   shouldShow() {
     return this._show;
-  }
-
-  setCurrentModal(id) {
-    this._currentModal = this._modals.get(id);
   }
 
   getCurrentModal() {

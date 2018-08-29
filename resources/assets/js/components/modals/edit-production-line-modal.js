@@ -81,7 +81,7 @@ export default class EditProductionLineModal extends React.Component {
     this.setState({
       productionLineStack: []
     });
-    ModalsStore.hideModal(EDIT_PRODUCTION_LINE_MODAL_ID);
+    ModalsStore.hideModal();
   }
 
   handleSelectProductionLine(productionLine) {
