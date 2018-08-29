@@ -3,12 +3,12 @@ var EventEmitter = require('events').EventEmitter;
 class GameItemsStore extends EventEmitter {
   constructor() {
     super();
-    this._products = [];
+    this._productTypes = [];
     this._producers = [];
   }
 
-  setProducts(products) {
-    this._products = products;
+  setProductTypes(products) {
+    this._productTypes = products;
   }
 
   setProducers(producers) {
@@ -19,8 +19,8 @@ class GameItemsStore extends EventEmitter {
     return this._producers;
   }
 
-  getProducts() {
-    return this._products;
+  getProductTypes() {
+    return this._productTypes;
   }
 
   emitChange(id) {

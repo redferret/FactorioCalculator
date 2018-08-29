@@ -24,21 +24,23 @@ export default class GameItems extends React.Component {
     super(props, context);
 
     this.handleGameSelect = this.handleGameSelect.bind(this);
-    this.handleProductsSelect = this.handleProductsSelect.bind(this);
+    this.handleProductTypesSelect = this.handleProductTypesSelect.bind(this);
+    this.handleProductTypeSelect = this.handleProductTypeSelect.bind(this);
     this.handleProducersSelect = this.handleProducersSelect.bind(this);
 
     this.state = {
-      products: GameItemsStore.getProducts(),
+      productTypes: GameItemsStore.getProductTypes(),
       producers: GameItemsStore.getProducers(),
       gamePanelActiveKey: '0',
-      productsPanelActiveKey: '0',
+      productTypesPanelActiveKey: '0',
+      productTypePanelActiveKey: '0',
       producersPanelActiveKey: '0'
     }
   }
 
   _onChange() {
     this.setState({
-      products: GameItemsStore.getProducts(),
+      productTypes: GameItemsStore.getProductTypes(),
       producers: GameItemsStore.getProducers()
     })
   }
@@ -62,8 +64,12 @@ export default class GameItems extends React.Component {
     this.setState({gamePanelActiveKey});
   }
 
-  handleProductsSelect(productsPanelActiveKey) {
-    this.setState({productsPanelActiveKey});
+  handleProductTypesSelect(productTypesPanelActiveKey) {
+    this.setState({productTypesPanelActiveKey});
+  }
+
+  handleProductTypeSelect(productTypePanelActiveKey) {
+    this.setState({productTypePanelActiveKey});
   }
 
   handleProducersSelect(producersPanelActiveKey) {
@@ -86,32 +92,55 @@ export default class GameItems extends React.Component {
           <Panel.Body collapsible>
 
             <Well>
-              <PanelGroup accordion id='product-panel-group'
-                activeKey={this.state.productsPanelActiveKey}
-                onSelect={this.handleProductsSelect}
+              <PanelGroup accordion id='productTypes-panel-group'
+                activeKey={this.state.productTypesPanelActiveKey}
+                onSelect={this.handleProductTypesSelect}
                 >
                 <Panel eventKey='1' bsStyle='success'>
                   <Panel.Heading>
                     <Panel.Title toggle>
-                      Game Products
+                      Products
                     </Panel.Title>
                   </Panel.Heading>
 
                   <Panel.Body collapsible>
-                    <ListGroup>
-                      {this.state.products.map(product => {
-                        return <ListGroupItem key={product.id}>
-                          {product.name}
-                        </ListGroupItem>
-                      })}
-                    </ListGroup>
-                  </Panel.Body>
 
+                    <PanelGroup accordion id='productType-panel-group'
+                      activeKey={this.state.productTypePanelActiveKey}
+                      onSelect={this.handleProductTypeSelect}
+                      >
+                      {this.state.productTypes.map(productType =>
+                        <Panel key={productType.id} eventKey={productType.id} bsStyle='success'>
+                          <Panel.Heading>
+                            <Panel.Title toggle>
+                              {productType.name}
+                            </Panel.Title>
+                            <Panel.Body collapsible>
+                              <ListGroup>
+                                {productType.products.map(product =>
+                                  <ListGroupItem key={product.id}>
+                                    {product.name}
+                                  </ListGroupItem>
+                                )}
+                              </ListGroup>
+
+                              <ButtonToolbar>
+                                <Button bsStyle='primary'>Add Product</Button>
+                              </ButtonToolbar>
+
+                            </Panel.Body>
+                          </Panel.Heading>
+                        </Panel>
+                      )}
+                    </PanelGroup>
+
+                    <ButtonToolbar>
+                      <Button bsStyle='primary'>Add Product Type</Button>
+                    </ButtonToolbar>
+
+                  </Panel.Body>
                 </Panel>
               </PanelGroup>
-              <ButtonToolbar>
-                <Button>Add Product</Button>
-              </ButtonToolbar>
             </Well>
 
             <Well>
@@ -122,24 +151,24 @@ export default class GameItems extends React.Component {
                 <Panel eventKey='1' bsStyle='success'>
                   <Panel.Heading>
                     <Panel.Title toggle>
-                      Game Producers
+                      Producers
                     </Panel.Title>
                   </Panel.Heading>
 
                   <Panel.Body collapsible>
                     <ListGroup>
-                      {this.state.producers.map(producer => {
-                        return <ListGroupItem key={producer.id}>
+                      {this.state.producers.map(producer =>
+                        <ListGroupItem key={producer.id}>
                           {producer.name}
                         </ListGroupItem>
-                      })}
+                      )}
                     </ListGroup>
                   </Panel.Body>
 
                 </Panel>
               </PanelGroup>
               <ButtonToolbar>
-                <Button>Add Producer</Button>
+                <Button bsStyle='primary'>Add Producer</Button>
               </ButtonToolbar>
             </Well>
 

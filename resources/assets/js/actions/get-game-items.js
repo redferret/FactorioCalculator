@@ -5,7 +5,7 @@ import Router from '../router.js';
 import {
   GET_GAME_ITEMS,
   GET_PRODUCERS,
-  GET_PRODUCTS,
+  GET_PRODUCT_TYPES,
 } from '../constants.js';
 
 
@@ -14,11 +14,11 @@ Actions.register(GET_GAME_ITEMS,  payload => {
     return response.json()
   }).then(producers => {
     GameItemsStore.setProducers(producers);
-    return fetch(Router.route(GET_PRODUCTS));
+    return fetch(Router.route(GET_PRODUCT_TYPES));
   }).then(response => {
     return response.json();
-  }).then(products => {
-    GameItemsStore.setProducts(products);
+  }).then(productTypes => {
+    GameItemsStore.setProductTypes(productTypes);
     Actions.finish(payload);
   })
 });
