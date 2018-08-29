@@ -13,6 +13,10 @@ import {
   Well,
 } from 'react-bootstrap';
 
+import {
+  GAME_ITEMS_ID
+} from '../constants.js';
+
 export default class GameItems extends React.Component {
   constructor(props, context) {
     super(props, context);
@@ -29,11 +33,11 @@ export default class GameItems extends React.Component {
   }
 
   componentDidMount() {
-    GameItemsStore.on('', this._onChange.bind(this));
+    GameItemsStore.on(GAME_ITEMS_ID, this._onChange.bind(this));
   }
 
   componentWillUnmount() {
-    GameItemsStore.removeListener('', this._onChange.bind(this));
+    GameItemsStore.removeListener(GAME_ITEMS_ID, this._onChange.bind(this));
   }
 
   handleGameSelect(gamePanelActiveKey) {
