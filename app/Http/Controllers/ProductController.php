@@ -12,7 +12,11 @@ class ProductController extends Controller {
   }
 
   public function getAll() {
-    return Auth::user()->products;
+    $products = Auth::user()->products;
+    foreach($products as $product) {
+      $product->productionLine;
+    }
+    return $products;
   }
 
   /**

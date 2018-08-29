@@ -12,6 +12,14 @@ class ProducerController extends Controller {
     $this->middleware('auth');
   }
 
+  public function getAll() {
+    $producers = Auth::user()->producers;
+    foreach($producers as $producer) {
+      $producer->productionLine;
+    }
+    return $producers;
+  }
+
   /**
    * Store a newly created resource in storage.
    *

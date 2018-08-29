@@ -14,9 +14,12 @@ class CreateProducersTable extends Migration {
   public function up() {
     Schema::create('producers', function (Blueprint $table) {
       $table->increments('id');
+      $table->string('name')->default('New Producer');
       $table->boolean('producer_type')->default(1);
       $table->float('speed')->default(0.5);
       $table->float('power')->default(2);
+      $table->integer('user_id')->unsigned()->nullable();
+      $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
       $table->integer('production_line_id')->unsigned()->nullable();
       $table->foreign('production_line_id')->references('id')->on('production_lines')->onDelete('cascade');
       $table->timestamps();

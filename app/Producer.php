@@ -8,7 +8,11 @@ class Producer extends Model {
 
   protected $fillable = ['producer_type', 'speed', 'power', 'production_line_id'];
 
-  public function product() {
+  public function productionLine() {
     return $this->belongsTo(ProductionLine::class);
+  }
+
+  public function user() {
+    return $this->belongsTo(User::class);
   }
 }

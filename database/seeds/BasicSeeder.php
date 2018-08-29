@@ -64,28 +64,32 @@ class BasicSeeder extends Seeder {
     $factory->productionLines()->save($ironOreProduction);
     $factory->productionLines()->save($copperOreProduction);
 
+    // Producer Definitions for production lines
+    $assembler1 = $user->producers()->save(App\Producer::create([
+      'name' => 'Assembling Machine 1',
+      'speed' => 0.5
+    ]));
+    $assembler2 = $user->producers()->save(App\Producer::create([
+      'name' => 'Assembling Machine 2',
+      'speed' => 0.75
+    ]));
+    $assembler3 = $user->producers()->save(App\Producer::create([
+      'name' => 'Assembling Machine 3',
+      'speed' => 1.25
+    ]));
+
+    $miner = $user->producers()->save(App\Producer::create([
+      'name' => 'Miner',
+      'speed' => 1,
+      'power' => 3
+    ]));
+
     // Producers for production lines
-    $copperWireProduction->producer()->save(App\Producer::create([
-      'speed' => 0.75,
-    ]));
-    $copperProduction->producer()->save(App\Producer::create([
-      'speed' => 1,
-      'producer_type' => 2
-    ]));
-    $copperOreProduction->producer()->save(App\Producer::create([
-      'producer_type' => 0,
-      'speed' => 0.5,
-      'power' => 3
-    ]));
-    $ironProduction->producer()->save(App\Producer::create([
-      'speed' => 1,
-      'producer_type' => 2
-    ]));
-    $ironOreProduction->producer()->save(App\Producer::create([
-      'producer_type' => 0,
-      'speed' => 0.5,
-      'power' => 3
-    ]));
+    $copperWireProduction->producer()->save($assembler3->replicate());
+    $copperProduction->producer()->save($assembler2->replicate());
+    $copperOreProduction->producer()->save($miner->replicate());
+    $ironProduction->producer()->save($assembler1->replicate());
+    $ironOreProduction->producer()->save($miner->replicate());
 
     // Products
     $copperWire = $user->products()->save(App\Product::create([
