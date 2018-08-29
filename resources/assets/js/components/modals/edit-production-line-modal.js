@@ -41,7 +41,7 @@ export default class EditProductionLineModal extends React.Component {
   }
 
   /**
-   * When the modal store emits a change on MODAL_ID
+   * When the modal store emits a change on
    */
   _onChange() {
     this.setState({
