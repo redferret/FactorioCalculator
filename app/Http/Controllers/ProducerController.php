@@ -13,11 +13,7 @@ class ProducerController extends Controller {
   }
 
   public function getAll() {
-    $producers = Auth::user()->producers;
-    foreach($producers as $producer) {
-      $producer->productionLine;
-    }
-    return $producers;
+    return collect(Auth::user()->producers)->unique('name')->values()->all();
   }
 
   /**

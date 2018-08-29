@@ -1,7 +1,7 @@
 import AppDispatcher from '../dispatcher.js';
+import GameItemsStore from '../stores/game-items-store.js';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import GameItemsStore from '../stores/game-items-store.js';
 
 import {
   Button,
@@ -15,7 +15,8 @@ import {
 } from 'react-bootstrap';
 
 import {
-  GAME_ITEMS_ID
+  GAME_ITEMS_ID,
+  GET_GAME_ITEMS,
 } from '../constants.js';
 
 export default class GameItems extends React.Component {
@@ -99,7 +100,7 @@ export default class GameItems extends React.Component {
                   <Panel.Body collapsible>
                     <ListGroup>
                       {this.state.products.map(product => {
-                        return <ListGroupItem>
+                        return <ListGroupItem key={product.id}>
                           {product.name}
                         </ListGroupItem>
                       })}
@@ -128,7 +129,7 @@ export default class GameItems extends React.Component {
                   <Panel.Body collapsible>
                     <ListGroup>
                       {this.state.producers.map(producer => {
-                        return <ListGroupItem>
+                        return <ListGroupItem key={producer.id}>
                           {producer.name}
                         </ListGroupItem>
                       })}
