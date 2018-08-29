@@ -1,10 +1,8 @@
-
-import React from 'react';
-
 import AppDispatcher from '../../dispatcher.js';
-import Input from '../input.js';
 import EditProductionLineModalStore from '../../stores/edit-production-line-modal-store.js';
 import FactoryStore from '../../stores/factory-store.js';
+import Input from '../input.js';
+import React from 'react';
 
 import {
   Alert,
@@ -17,10 +15,10 @@ import {
 } from 'react-bootstrap';
 
 import {
+  EDIT_PRODUCTION_LINE_MODAL_ID,
   GET_FACTORIES,
   GET_PRODUCTION_LINES,
   MAIN_ID,
-  EDIT_PRODUCTION_LINE_MODAL_ID,
   UPDATE_PRODUCER,
 } from '../../constants.js';
 
