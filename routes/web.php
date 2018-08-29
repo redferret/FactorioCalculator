@@ -19,6 +19,11 @@ Route::get('/producers', 'ProducerController@getAll');
 Route::post('/producers', 'ProducerController@store');
 Route::put('/producers/{id}', 'ProducerController@update');
 
+Route::delete('/productTypes/{id}', 'ProductTypeController@destroy');
+Route::get('/productTypes', 'ProductTypeController@getAll');
+Route::post('/productTypes', 'ProductTypeController@store');
+Route::put('/productTypes/{id}', 'ProductTypeController@update');
+
 Route::delete('/products/{id}', 'ProductController@destroy');
 Route::get('/products', 'ProductController@getAll');
 Route::post('/products', 'ProductController@store');

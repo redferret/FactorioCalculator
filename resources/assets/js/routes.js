@@ -21,6 +21,9 @@ Router.registerRoute(Constants.GET_PRODUCTION_LINES, args => {
 Router.registerRoute(Constants.GET_PRODUCTS, args => {
   return ROOT + '/products';
 });
+Router.registerRoute(Constants.GET_PRODUCT_TYPES, args => {
+  return ROOT + '/productTypes';
+});
 Router.registerRoute(Constants.GET_PRODUCERS, args => {
   return ROOT + '/producers';
 })
@@ -37,6 +40,9 @@ Router.registerRoute(Constants.UPDATE_PRODUCTION_LINE, args => {
 Router.registerRoute(Constants.UPDATE_PRODUCT, args => {
   return ROOT + '/products/'+args.id;
 });
+Router.registerRoute(Constants.UPDATE_PRODUCT_TYPE, args => {
+  return ROOT + '/productTypes/'+args.id;
+});
 Router.registerRoute(Constants.UPDATE_PRODUCER, args => {
   return ROOT + '/producers/'+args.id;
 });
@@ -45,16 +51,19 @@ Router.registerRoute(Constants.UPDATE_PRODUCER, args => {
  * Routes for deleting data
  */
 Router.registerRoute(Constants.DELETE_FACTORY, args => {
-  return ROOT + '/factories/'+args.id+'';
+  return ROOT + '/factories/'+args.id;
 });
 Router.registerRoute(Constants.DELETE_PRODUCTION_LINE, args => {
-  return ROOT + '/productionlines/'+args.id+'';
+  return ROOT + '/productionlines/'+args.id;
 });
 Router.registerRoute(Constants.DELETE_PRODUCT, args => {
-  return ROOT + '/product/'+args.id+'';
+  return ROOT + '/products/'+args.id;
+});
+Router.registerRoute(Constants.DELETE_PRODUCT_TYPE, args => {
+  return ROOT + '/productTypes/'+args.id;
 });
 Router.registerRoute(Constants.DELETE_PRODUCER, args => {
-  return ROOT + '/producer/'+args.id+'';
+  return ROOT + '/producer/'+args.id;
 });
 
 /**
@@ -68,6 +77,9 @@ Router.registerRoute(Constants.ADD_PRODUCTION_LINE, args => {
 });
 Router.registerRoute(Constants.ADD_PRODUCT, args => {
   return ROOT + '/products';
+});
+Router.registerRoute(Constants.ADD_PRODUCT_TYPE, args => {
+  return ROOT + '/productTypes';
 });
 Router.registerRoute(Constants.ADD_PRODUCER, args => {
   return ROOT + '/producers';
