@@ -16,7 +16,7 @@ Router.registerRoute(Constants.GET_FACTORIES, args => {
   return ROOT + '/factories';
 });
 Router.registerRoute(Constants.GET_PRODUCTION_LINES, args => {
-  return ROOT + '/productionline/'+args.id+'/productionlines';
+  return ROOT + '/productionlines/'+args.id+'/productionlines';
 });
 Router.registerRoute(Constants.GET_PRODUCTS, args => {
   return ROOT + '/products';
@@ -29,26 +29,26 @@ Router.registerRoute(Constants.GET_PRODUCERS, args => {
  * Routes for editing data
  */
 Router.registerRoute(Constants.UPDATE_FACTORY, args => {
-  return ROOT + '/factory/'+args.id;
+  return ROOT + '/factories/'+args.id;
 });
 Router.registerRoute(Constants.UPDATE_PRODUCTION_LINE, args => {
-  return ROOT + '/productionline/'+args.id;
+  return ROOT + '/productionlines/'+args.id;
 });
 Router.registerRoute(Constants.UPDATE_PRODUCT, args => {
-  return ROOT + '/product/'+args.id;
+  return ROOT + '/products/'+args.id;
 });
 Router.registerRoute(Constants.UPDATE_PRODUCER, args => {
-  return ROOT + '/producer/'+args.id;
+  return ROOT + '/producers/'+args.id;
 });
 
 /**
  * Routes for deleting data
  */
 Router.registerRoute(Constants.DELETE_FACTORY, args => {
-  return ROOT + '/factory/'+args.id+'';
+  return ROOT + '/factories/'+args.id+'';
 });
 Router.registerRoute(Constants.DELETE_PRODUCTION_LINE, args => {
-  return ROOT + '/productionline/'+args.id+'';
+  return ROOT + '/productionlines/'+args.id+'';
 });
 Router.registerRoute(Constants.DELETE_PRODUCT, args => {
   return ROOT + '/product/'+args.id+'';
@@ -61,14 +61,14 @@ Router.registerRoute(Constants.DELETE_PRODUCER, args => {
  * Routes for adding data
  */
 Router.registerRoute(Constants.ADD_FACTORY, args => {
-  return ROOT + '/factory';
+  return ROOT + '/factories';
 });
 Router.registerRoute(Constants.ADD_PRODUCTION_LINE, args => {
-  return ROOT + '/productionline';
+  return ROOT + '/productionlines';
 });
 Router.registerRoute(Constants.ADD_PRODUCT, args => {
-  return ROOT + '/product';
+  return ROOT + '/products';
 });
 Router.registerRoute(Constants.ADD_PRODUCER, args => {
-  return ROOT + '/producer';
+  return ROOT + '/producers';
 });

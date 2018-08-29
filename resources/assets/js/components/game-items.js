@@ -1,3 +1,4 @@
+import AppDispatcher from '../dispatcher.js';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import GameItemsStore from '../stores/game-items-store.js';
@@ -22,18 +23,34 @@ export default class GameItems extends React.Component {
     super(props, context);
 
     this.handleGameSelect = this.handleGameSelect.bind(this);
+    this.handleProductsSelect = this.handleProductsSelect.bind(this);
+    this.handleProducersSelect = this.handleProducersSelect.bind(this);
 
     this.state = {
-      gamePanelActiveKey: '0'
+      products: GameItemsStore.getProducts(),
+      producers: GameItemsStore.getProducers(),
+      gamePanelActiveKey: '0',
+      productsPanelActiveKey: '0',
+      producersPanelActiveKey: '0'
     }
   }
 
   _onChange() {
-
+    this.setState({
+      products: GameItemsStore.getProducts(),
+      producers: GameItemsStore.getProducers()
+    })
   }
 
   componentDidMount() {
     GameItemsStore.on(GAME_ITEMS_ID, this._onChange.bind(this));
+    AppDispatcher.dispatch({
+      action: GET_GAME_ITEMS,
+      emitOn: [{
+        store: GameItemsStore,
+        componentIds: [GAME_ITEMS_ID]
+      }]
+    });
   }
 
   componentWillUnmount() {
@@ -42,6 +59,14 @@ export default class GameItems extends React.Component {
 
   handleGameSelect(gamePanelActiveKey) {
     this.setState({gamePanelActiveKey});
+  }
+
+  handleProductsSelect(productsPanelActiveKey) {
+    this.setState({productsPanelActiveKey});
+  }
+
+  handleProducersSelect(producersPanelActiveKey) {
+    this.setState({producersPanelActiveKey});
   }
 
   render() {
@@ -56,43 +81,67 @@ export default class GameItems extends React.Component {
               Game Definitions
             </Panel.Title>
           </Panel.Heading>
+
           <Panel.Body collapsible>
+
             <Well>
-              <PanelGroup>
-                <Panel bsStyle='success'>
+              <PanelGroup accordion id='product-panel-group'
+                activeKey={this.state.productsPanelActiveKey}
+                onSelect={this.handleProductsSelect}
+                >
+                <Panel eventKey='1' bsStyle='success'>
                   <Panel.Heading>
-                    Game Products
+                    <Panel.Title toggle>
+                      Game Products
+                    </Panel.Title>
                   </Panel.Heading>
-                  <Panel.Body>
+
+                  <Panel.Body collapsible>
                     <ListGroup>
-                      <ListGroupItem>Item 1</ListGroupItem>
-                      <ListGroupItem>Item 2</ListGroupItem>
+                      {this.state.products.map(product => {
+                        return <ListGroupItem>
+                          {product.name}
+                        </ListGroupItem>
+                      })}
                     </ListGroup>
                   </Panel.Body>
+
                 </Panel>
               </PanelGroup>
               <ButtonToolbar>
                 <Button>Add Product</Button>
               </ButtonToolbar>
             </Well>
+
             <Well>
-              <PanelGroup>
-                <Panel bsStyle='success'>
+              <PanelGroup accordion id='producer-panel-group'
+                activeKey={this.state.producersPanelActiveKey}
+                onSelect={this.handleProducersSelect}
+                >
+                <Panel eventKey='1' bsStyle='success'>
                   <Panel.Heading>
-                    Game Producers
+                    <Panel.Title toggle>
+                      Game Producers
+                    </Panel.Title>
                   </Panel.Heading>
-                  <Panel.Body>
+
+                  <Panel.Body collapsible>
                     <ListGroup>
-                      <ListGroupItem>Item 1</ListGroupItem>
-                      <ListGroupItem>Item 2</ListGroupItem>
+                      {this.state.producers.map(producer => {
+                        return <ListGroupItem>
+                          {producer.name}
+                        </ListGroupItem>
+                      })}
                     </ListGroup>
                   </Panel.Body>
+
                 </Panel>
               </PanelGroup>
               <ButtonToolbar>
                 <Button>Add Producer</Button>
               </ButtonToolbar>
             </Well>
+
           </Panel.Body>
         </Panel>
       </PanelGroup>

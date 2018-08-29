@@ -25,6 +25,7 @@ export const DELETE_PRODUCT               = 'delete-product';
 export const DELETE_PRODUCTION_LINE       = 'delete-production-line';
 
 export const GET_FACTORIES                = 'get-factories';
+export const GET_GAME_ITEMS               = 'get-game-items';
 export const GET_PRODUCERS                = 'get-producers';
 export const GET_PRODUCTION_LINES         = 'get-production-lines';
 export const GET_PRODUCTS                 = 'get-products';
