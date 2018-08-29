@@ -91,29 +91,48 @@ class BasicSeeder extends Seeder {
     $ironProduction->producer()->save($assembler1->replicate());
     $ironOreProduction->producer()->save($miner->replicate());
 
+    // Product Types, always by default these are created
+    $user->productTypes()->save(App\ProductType::create([
+      'name'=>'Logistics'
+    ]));
+    $user->productTypes()->save(App\ProductType::create([
+      'name'=>'Production'
+    ]));
+    $user->productTypes()->save(App\ProductType::create([
+      'name'=>'Intermediate'
+    ]));
+    $user->productTypes()->save(App\ProductType::create([
+      'name'=>'Combat'
+    ]));
+
     // Products
     $copperWire = $user->products()->save(App\Product::create([
       'name' => 'Copper Wire',
       'crafting_time' => 0.5,
-      'stock_size' => 2
+      'stock_size' => 2,
+      'product_type_id'=>3
     ]));
     $copperPlate = $user->products()->save(App\Product::create([
       'name' => 'Copper Plate',
-      'crafting_time' => 3.5
+      'crafting_time' => 3.5,
+      'product_type_id'=>3
     ]));
     $copperOre = $user->products()->save(App\Product::create([
       'name' => 'Copper Ore',
       'crafting_time' => 2,
-      'hardness' => 0.9
+      'hardness' => 0.9,
+      'product_type_id'=>3
     ]));
     $ironPlate = $user->products()->save(App\Product::create([
       'name' => 'Iron Plate',
-      'crafting_time' => 3.5
+      'crafting_time' => 3.5,
+      'product_type_id'=>3
     ]));
     $ironOre = $user->products()->save(App\Product::create([
       'name' => 'Iron Ore',
       'crafting_time' => 2,
-      'hardness' => 0.9
+      'hardness' => 0.9,
+      'product_type_id'=>3
     ]));
 
     // Connect a product with a production line
