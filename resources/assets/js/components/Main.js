@@ -9,9 +9,11 @@ import ReactDOM from 'react-dom';
 
 import {
   Alert,
+  Button,
+  ButtonToolbar,
   Label,
   Panel,
-  PanelGroup
+  PanelGroup,
 } from 'react-bootstrap';
 
 import { RootElement } from '../bootstrap.js';
@@ -28,7 +30,7 @@ class Main extends Component {
     super(props, context);
 
     this.handleFactorySelect = this.handleFactorySelect.bind(this);
-
+    this.handleNewFactory = this.handleNewFactory.bind(this);
     this.state = {
       activeKey: '0',
       currentModal: ModalsStore.getCurrentModal(),
@@ -46,6 +48,10 @@ class Main extends Component {
     this.setState({
       factories: FactoryStore.getFactories()
     });
+  }
+
+  handleNewFactory() {
+
   }
 
   handleFactorySelect(activeKey) {
@@ -71,24 +77,31 @@ class Main extends Component {
 
   render() {
     return (
-      <PanelGroup
-        accordion
-        id='factory-panel-group'
-        activeKey={this.state.activeKey}
-        onSelect={this.handleFactorySelect}
-      >
-        {this.state.currentModal}
-        <div>
-          <h3><Label bsStyle='primary'>Your Factories</Label></h3>
-        </div>
-        {this.state.factories.map(factory =>
-          <Factory
-            key={factory.id}
-            eventKey={factory.id}
-            id={factory.id}
-          />
-        )}
-      </PanelGroup>
+      <div>
+        <PanelGroup
+          accordion
+          id='factory-panel-group'
+          activeKey={this.state.activeKey}
+          onSelect={this.handleFactorySelect}
+        >
+          {this.state.currentModal}
+          <div>
+            <h3><Label bsStyle='primary'>Your Factories</Label></h3>
+          </div>
+          {this.state.factories.map(factory =>
+            <Factory
+              key={factory.id}
+              eventKey={factory.id}
+              id={factory.id}
+            />
+          )}
+        </PanelGroup>
+        <ButtonToolbar>
+            <Button bsStyle='primary' onClick={this.handleNewFactory}>
+                Add New Factory
+            </Button>
+        </ButtonToolbar>
+      </div>
     );
   }
 }

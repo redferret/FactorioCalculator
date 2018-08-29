@@ -33,6 +33,8 @@ export default class Factory extends React.Component {
     this.handleSelectProductionLine = this.handleSelectProductionLine.bind(this);
     this.handleAddProductionLine = this.handleAddProductionLine.bind(this);
 
+    this.FACTORY_PANEL_ID = FACTORY_PANEL_ + this.props.id;
+
     this.state = {
       factory: FactoryStore.getFactory(props.id),
       activeKey: '0',
@@ -46,18 +48,18 @@ export default class Factory extends React.Component {
   }
 
   componentDidMount() {
-    FactoryStore.on(FACTORY_PANEL_ + this.props.id, this._onChange.bind(this));
+    FactoryStore.on(this.FACTORY_PANEL_ID, this._onChange.bind(this));
     AppDispatcher.dispatch({
       action: LOAD_FACTORY,
       emitOn:[{
         store: FactoryStore,
-        componentIds: [FACTORY_PANEL_ + this.props.id]
+        componentIds: [this.FACTORY_PANEL_ID]
       }]
     })
   }
 
   componentWillUnmount() {
-    FactoryStore.removeListener(FACTORY_PANEL_ + this.props.id, this._onChange.bind(this));
+    FactoryStore.removeListener(this.FACTORY_PANEL_ID, this._onChange.bind(this));
   }
 
   handleSelectProductionLine(activeKey) {
@@ -79,9 +81,6 @@ export default class Factory extends React.Component {
   }
 
   renderFactoryDetails() {
-    if (this.state.factory.production_lines === undefined) {
-      return <div></div>;
-    }
     return (
       <div>
         <h4><Label bsStyle='success'>Factory Details</Label></h4>
@@ -106,9 +105,7 @@ export default class Factory extends React.Component {
   }
 
   renderFactoryProductionLines() {
-    if (this.state.factory.production_lines === undefined) {
-      return <div></div>;
-    }
+
     if (this.state.factory.production_lines.length > 0) {
       return (
         <PanelGroup
@@ -135,8 +132,10 @@ export default class Factory extends React.Component {
   }
 
   render() {
+    let panelStyle = this.state.factory.production_lines.length > 0 ?
+      'primary' : 'danger';
     return (
-      <Panel bsStyle='primary' eventKey={this.props.eventKey}>
+      <Panel bsStyle={panelStyle} eventKey={this.props.eventKey}>
         <Panel.Heading>
           <Panel.Title toggle>
               {this.state.factory.name}
