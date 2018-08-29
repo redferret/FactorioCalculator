@@ -200,15 +200,6 @@ export default class EditProductionLineModal extends React.Component {
 
             let produces = productionLine.produces;
 
-            let consumerRequirementElement = productionLine.is_output ?
-              <div className='list-group-item'>
-                <Label>{this.state.selectedProductionLine.produces.name} Requirement</Label>
-                <Input type='number' name='consumer_requirement'
-                callback={(event) => {console.log('Not Implemented Yet')}}
-                initialValue={productionLine.consumer_requirement} />
-              </div> :
-              <div></div>;
-
             return (
               <div key={produces.id}>
                 <Label>Production Line: {productionLine.name}</Label>
@@ -243,7 +234,6 @@ export default class EditProductionLineModal extends React.Component {
                     </tr></tbody>
                   </Table>
                 </a>
-                {consumerRequirementElement}
               </div>
             );
           })}
