@@ -58,11 +58,19 @@ export default class GameItems extends React.Component {
           </Panel.Heading>
           <Panel.Body collapsible>
             <Well>
-              <h3><Label bsStyle='success'>Game Products</Label></h3>
-              <ListGroup>
-                <ListGroupItem>Item 1</ListGroupItem>
-                <ListGroupItem>Item 2</ListGroupItem>
-              </ListGroup>
+              <PanelGroup>
+                <Panel bsStyle='success'>
+                  <Panel.Heading>
+                    Game Products
+                  </Panel.Heading>
+                  <Panel.Body>
+                    <ListGroup>
+                      <ListGroupItem>Item 1</ListGroupItem>
+                      <ListGroupItem>Item 2</ListGroupItem>
+                    </ListGroup>
+                  </Panel.Body>
+                </Panel>
+              </PanelGroup>
               <ButtonToolbar>
                 <Button>Add Product</Button>
               </ButtonToolbar>
