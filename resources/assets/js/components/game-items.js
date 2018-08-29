@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import GameItemsStore from '../stores/game-items-store.js';
 
 import {
   Button,
@@ -21,6 +22,18 @@ export default class GameItems extends React.Component {
     this.state = {
       gamePanelActiveKey: '0'
     }
+  }
+
+  _onChange() {
+
+  }
+
+  componentDidMount() {
+    GameItemsStore.on('', this._onChange.bind(this));
+  }
+
+  componentWillUnmount() {
+    GameItemsStore.removeListener('', this._onChange.bind(this));
   }
 
   handleGameSelect(gamePanelActiveKey) {
