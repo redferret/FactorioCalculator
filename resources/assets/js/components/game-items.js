@@ -84,15 +84,34 @@ export default class GameItems extends React.Component {
   }
 
   renderProductList(productType) {
-    if (productType.products.length > 0) {
+    var length = productType.products.length
+    if (length > 0) {
+      var columns = Math.ceil(length / 10);
+      var reversedRows = [];
+      var rows = [];
+      for (var c = 0; c < columns; c++) {
+        reversedRows.unshift(productType.products.slice(c*10, Math.min(length, (c*10) + 10)));
+      }
+      for (var i = 0; i < columns; i++) {
+        rows.unshift(reversedRows.shift());
+      }
+
       return (
         <Well>
-          {productType.products.map(product =>
-            <div key={product.id}>
-              <img src={ROOT + '/images/' + product.image_file} />{' '}
-              {product.name}
-            </div>
-          )}
+          <table>
+            <tbody>
+              {rows.map((row, index) =>
+                <tr key={index}>
+                  {row.map(product =>
+                    <td key={product.id}>
+                      <img src={ROOT + '/images/' + product.image_file} />{' '}
+                      {product.name}
+                    </td>
+                  )}
+                </tr>
+              )}
+            </tbody>
+          </table>
         </Well>
       );
     }
