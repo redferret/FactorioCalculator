@@ -5,6 +5,7 @@ import ModalsStore from '../stores/modals-store.js';
 import NewProducerModalStore from '../stores/new-producer-modal-store.js';
 import NewProductModalStore from '../stores/new-product-modal-store.js';
 import NewProductTypeModalStore from '../stores/new-product-type-modal-store.js';
+import EditProductModalStore from '../stores/edit-product-modal-store.js';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
@@ -33,6 +34,7 @@ import {
   NEW_PRODUCER_MODAL_ID,
   NEW_PRODUCT_TYPE_MODAL_ID,
   NEW_PRODUCT_MODAL_ID,
+  EDIT_PRODUCT_MODAL_ID,
   RE_RENDER,
 } from '../constants.js';
 
@@ -47,6 +49,8 @@ export default class GameItems extends React.Component {
     this.handleProducersSelect = this.handleProducersSelect.bind(this);
     this.handleProductTypeSelect = this.handleProductTypeSelect.bind(this);
     this.handleProductTypesSelect = this.handleProductTypesSelect.bind(this);
+
+    this.handleSelectedProduct = this.handleSelectedProduct.bind(this);
 
     this.state = {
       productTypes: GameItemsStore.getProductTypes(),
@@ -138,36 +142,49 @@ export default class GameItems extends React.Component {
     });
   }
 
+  handleSelectedProduct(product) {
+    ModalsStore.showModal(EDIT_PRODUCT_MODAL_ID);
+    AppDispatcher.dispatch({
+      action: RE_RENDER,
+      emitOn: [{
+        store: MainStore,
+        componentIds: [MAIN_MODAL_CHANGE]
+      }, {
+        store: EditProductModalStore,
+        componentIds: [EDIT_PRODUCT_MODAL_ID]
+      }]
+    })
+  }
+
   renderProductList(productType) {
     var length = productType.sorted_products.length
     if (length > 0) {
-      var columns = Math.ceil(length / 10);
+      var rowLength = 7;
+      var columns = Math.ceil(length / rowLength);
       var reversedRows = [];
       var rows = [];
       for (var c = 0; c < columns; c++) {
-        reversedRows.unshift(productType.sorted_products.slice(c*10, Math.min(length, (c*10) + 10)));
+        reversedRows.unshift(productType.sorted_products.slice(c*rowLength, Math.min(length, (c*rowLength) + rowLength)));
       }
       for (var i = 0; i < columns; i++) {
         rows.unshift(reversedRows.shift());
       }
 
       return (
-        <Well>
-          <table>
-            <tbody>
-              {rows.map((row, index) =>
-                <tr key={index}>
-                  {row.map(product =>
-                    <td key={product.id}>
-                      <img src={ROOT + '/images/' + product.image_file} />{' '}
-                      {product.name}
-                    </td>
-                  )}
-                </tr>
+        <Well><table><tbody>
+          {rows.map((row, index) =>
+            <tr key={index}>
+              {row.map(product =>
+                <td key={product.id}>
+                  <Button bsStyle='link' onClick={() => this.handleSelectedProduct(product)}>
+                    <img src={ROOT + '/images/' + product.image_file} />{' '}
+                    {product.name}
+                  </Button>
+                </td>
               )}
-            </tbody>
-          </table>
-        </Well>
+            </tr>
+          )}
+        </tbody></table></Well>
       );
     }
     return (
