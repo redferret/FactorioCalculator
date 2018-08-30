@@ -61,7 +61,9 @@ class ProductionLineController extends Controller {
    * @return \Illuminate\Http\Response
    */
   public function store(Request $request) {
-    //
+    $newProductionLine = ProductionLine::create($request->all());
+    Auth::user()->productionLines->save($newProductionLine);
+    return $newProductionLine;
   }
 
   /**
@@ -85,7 +87,12 @@ class ProductionLineController extends Controller {
    * @return \Illuminate\Http\Response
    */
   public function destroy($id) {
-    //
+    $productionLine = Auth::user()->productionLines()->find($id);
+    if($productionLines != null) {
+      $productionLine->delete();
+      return array('response'=>'success');
+    }
+    return array('response'=>'failed');
   }
 
 }
