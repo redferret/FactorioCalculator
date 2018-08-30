@@ -35,8 +35,7 @@ class ModalsStore extends EventEmitter {
     this._modals.set(EDIT_PRODUCT_MODAL_ID, <EditProductModal/>);
     this._modals.set(EDIT_PRODUCT_TYPE_MODAL_ID, <EditProductTypeModal/>);
     this._modals.set(EDIT_PRODUCTION_LINE_MODAL_ID, <EditProductionLineModal/>);
-    this._modals.set(EDIT_PRODUCTION_LINE_MODAL_ID, <EditProductionLineModal/>);
-    
+
     this._modals.set(NEW_FACTORY_MODAL_ID, <NewFactoryModal/>);
     this._modals.set(NEW_PRODUCER_MODAL_ID, <NewProducerModal/>);
     this._modals.set(NEW_PRODUCT_MODAL_ID, <NewProductModal/>);

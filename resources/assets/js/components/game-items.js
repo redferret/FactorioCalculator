@@ -56,6 +56,7 @@ export default class GameItems extends React.Component {
 
     this.handleSelectedProducer = this.handleSelectedProducer.bind(this);
     this.handleSelectedProduct = this.handleSelectedProduct.bind(this);
+    this.handleSelectedProductType = this.handleSelectedProductType.bind(this);
 
     this.state = {
       productTypes: GameItemsStore.getProductTypes(),
@@ -161,6 +162,20 @@ export default class GameItems extends React.Component {
     });
   }
 
+  handleSelectedProductType(productType) {
+    ModalsStore.showModal(EDIT_PRODUCT_TYPE_MODAL_ID);
+    AppDispatcher.dispatch({
+      action: RE_RENDER,
+      emitOn: [{
+        store: MainStore,
+        componentIds: [MAIN_MODAL_CHANGE]
+      }, {
+        store: EditProductTypeModalStore,
+        componentIds: [EDIT_PRODUCT_TYPE_MODAL_ID]
+      }]
+    });
+  }
+
   handleSelectedProduct(product) {
     ModalsStore.showModal(EDIT_PRODUCT_MODAL_ID);
     AppDispatcher.dispatch({
@@ -172,7 +187,7 @@ export default class GameItems extends React.Component {
         store: EditProductModalStore,
         componentIds: [EDIT_PRODUCT_MODAL_ID]
       }]
-    })
+    });
   }
 
   renderProductList(productType) {
@@ -293,6 +308,9 @@ export default class GameItems extends React.Component {
                             <Button onClick={this.handleNewProductSelect} bsStyle='primary'>
                               Add Product
                             </Button>
+                            <Button onClick={() => this.handleSelectedProductType(productType)}>
+                              Select Product Type
+                            </Button>
                           </ButtonToolbar>
 
                         </Panel.Body>
@@ -301,7 +319,9 @@ export default class GameItems extends React.Component {
                   </PanelGroup>
 
                   <ButtonToolbar>
-                    <Button onClick={this.handleNewProductTypeSelect} bsStyle='primary'>Add Product Type</Button>
+                    <Button onClick={this.handleNewProductTypeSelect} bsStyle='primary'>
+                      Add Product Type
+                    </Button>
                   </ButtonToolbar>
 
                 </Panel.Body>
