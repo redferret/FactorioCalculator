@@ -1,6 +1,7 @@
 import AppDispatcher from '../../dispatcher.js';
 import EditProductionLineModalStore from '../../stores/edit-production-line-modal-store.js';
 import ModalsStore from '../../stores/modals-store.js';
+import MainStore from '../../stores/main-store.js';
 import FactoryStore from '../../stores/factory-store.js';
 import Input from '../input.js';
 import React from 'react';
@@ -19,6 +20,7 @@ import {
 
 import {
   EDIT_PRODUCTION_LINE_MODAL_ID,
+  FACTORY_PANEL_,
   GET_FACTORIES,
   GET_PRODUCTION_LINES,
   MAIN_ID,
@@ -108,8 +110,11 @@ export default class EditProductionLineModal extends React.Component {
     AppDispatcher.dispatch({
       action: GET_FACTORIES,
       emitOn: [{
-        store: FactoryStore,
+        store: MainStore,
         componentIds: [MAIN_ID]
+      }, {
+        store: FactoryStore,
+        componentIds: [FACTORY_PANEL_ + this.state.selectedProductionLine.factory_id]
       }]
     });
   }
@@ -209,7 +214,7 @@ export default class EditProductionLineModal extends React.Component {
                 onClick={this.handleSelectProductionLine.bind(this,productionLine)}
                 className='list-group-item list-group-item-action'
                 >
-                  <img src={ROOT + '/images/' + produces.image_name} />{' '}
+                  <img src={ROOT + '/images/' + produces.image_file} />{' '}
                   {produces.name}
                   <Table>
                     <thead><tr>
@@ -277,7 +282,7 @@ export default class EditProductionLineModal extends React.Component {
         >
         <Modal.Header>
           <Modal.Title>
-            <img src={ROOT + '/images/' + this.state.selectedProductionLine.produces.image_name} />{' '}
+            <img src={ROOT + '/images/' + this.state.selectedProductionLine.produces.image_file} />{' '}
             {this.state.selectedProductionLine.produces.name}
           </Modal.Title>
         </Modal.Header>
