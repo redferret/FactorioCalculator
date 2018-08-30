@@ -26,7 +26,9 @@ class ProductController extends Controller {
    * @return \Illuminate\Http\Response
    */
   public function store(Request $request) {
-    //
+    $newProduct = Product::create($request->all());
+    Auth::user()->products()->save($newProduct);
+    return $newProduct;
   }
 
   /**
@@ -37,7 +39,13 @@ class ProductController extends Controller {
    * @return \Illuminate\Http\Response
    */
   public function update(Request $request, $id) {
-    //
+    $product = Auth::user()->products()->find($id);
+    if ($product != null) {
+      $product->fill($request->all());
+      $product->save();
+      return $product;
+    }
+    return array('response'=>'Product Not Found: id='.$id);
   }
 
   /**
@@ -47,7 +55,12 @@ class ProductController extends Controller {
    * @return \Illuminate\Http\Response
    */
   public function destroy($id) {
-    //
+    $product = Auth::user()->products()->find($id);
+    if ($product != null) {
+      $product->delete();
+      return array('response'=>'success');
+    }
+    return array('response'=>'failed');
   }
 
 }
