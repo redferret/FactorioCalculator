@@ -87,21 +87,24 @@ export default class ProductionLineDetails extends React.Component {
   renderProductionDetails() {
     if (this.props.produces !== null) {
 
-      let assemblyCountTitle = 'undefined';
+      let producerCountTitle = 'undefined';
       let madeWithTitle = 'undefined';
       switch(this.props.producer.producer_type) {
         case 0:
-          assemblyCountTitle = 'Number of Miners';
+          producerCountTitle = 'Number of Miners';
           madeWithTitle = 'Mined With';
           break;
         case 1:
-          assemblyCountTitle = 'Number of Assemblers';
+          producerCountTitle = 'Number of Assemblers';
           madeWithTitle = 'Assembled In';
           break;
         case 2:
-          assemblyCountTitle = 'Number of Furnaces';
+          producerCountTitle = 'Number of Furnaces';
           madeWithTitle = 'Smelted In';
           break;
+        case 3:
+          producerCountTitle = 'Number of Pumpjacks';
+          madeWithTitle = 'Pumped with';
       }
 
       let inputValue = this.props.items_per_second;
@@ -118,7 +121,7 @@ export default class ProductionLineDetails extends React.Component {
             <thead>
               <tr>
                 <th>Name</th>
-                <th>{assemblyCountTitle}</th>
+                <th>{producerCountTitle}</th>
                 <th>Items Produced / Second</th>
                 <th>Items Consumed</th>
                 <th>Seconds Per Item</th>
