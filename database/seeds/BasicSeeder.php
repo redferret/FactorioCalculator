@@ -10,12 +10,7 @@ class BasicSeeder extends Seeder {
    * @return void
    */
   public function run() {
-    $user = App\User::create([
-      'name' => 'Richard',
-      'email' => 'TestUserEmail@gmail.com',
-      'password' => bcrypt('secret')
-    ]);
-
+    $user = App\User::first();
     // Factories
     $factory = $user->factories()->save(
       App\Factory::create([
@@ -65,37 +60,11 @@ class BasicSeeder extends Seeder {
     $factory->productionLines()->save($copperOreProduction);
 
     // Producer Definitions for production lines
-    $assembler1 = $user->producers()->save(App\Producer::create([
-      'name' => 'Assembling Machine 1',
-      'image_name' => 'Assembling_machine_1.png',
-      'producer_type' => 1,
-      'speed' => 0.5
-    ]));
-    $assembler2 = $user->producers()->save(App\Producer::create([
-      'name' => 'Assembling Machine 2',
-      'image_name' => 'Assembling_machine_2.png',
-      'producer_type' => 1,
-      'speed' => 0.75
-    ]));
-    $assembler3 = $user->producers()->save(App\Producer::create([
-      'name' => 'Assembling Machine 3',
-      'image_name' => 'Assembling_machine_3.png',
-      'producer_type' => 1,
-      'speed' => 1.25
-    ]));
-    $furnace = $user->producers()->save(App\Producer::create([
-      'name' => 'Steel Furnace',
-      'image_name' => 'Steel_furnace.png',
-      'producer_type' => 2,
-      'speed' => 2
-    ]));
-    $miner = $user->producers()->save(App\Producer::create([
-      'name' => 'Electric Mining Drill',
-      'image_name' => 'Electric_mining_drill.png',
-      'producer_type' => 0,
-      'speed' => 1,
-      'power' => 3
-    ]));
+    $assembler1 = $user->producers()->where('name', 'Assembling Machine 1')->first();
+    $assembler2 = $user->producers()->where('name', 'Assembling Machine 2')->first();
+    $assembler3 = $user->producers()->where('name', 'Assembling Machine 3')->first();
+    $furnace = $user->producers()->where('name', 'Steel Furnace')->first();
+    $miner = $user->producers()->where('name', 'Electric Mining Drill')->first();
 
     // Producers for production lines
     $copperWireProduction->producer()->save($assembler3->replicate());
@@ -104,58 +73,28 @@ class BasicSeeder extends Seeder {
     $ironProduction->producer()->save($furnace->replicate());
     $ironOreProduction->producer()->save($miner->replicate());
 
-    // Product Types, always by default these are created
-    $user->productTypes()->save(App\ProductType::create([
-      'name'=>'Logistics',
-      'image_name' => 'Item-group_logistics.png',
-    ]));
-    $user->productTypes()->save(App\ProductType::create([
-      'name'=>'Production',
-      'image_name' => 'Item-group_production.png',
-    ]));
-    $user->productTypes()->save(App\ProductType::create([
-      'name'=>'Intermediate',
-      'image_name' => 'Item-group_intermediate_products.png',
-    ]));
-    $user->productTypes()->save(App\ProductType::create([
-      'name'=>'Combat',
-      'image_name' => 'Item-group_military.png',
-    ]));
-
     // Products
     $copperWire = $user->products()->save(App\Product::create([
       'name' => 'Copper Cable',
-      'image_name' => 'Copper_cable.png',
+      'image_file' => 'Copper_cable.png',
       'crafting_time' => 0.5,
       'stock_size' => 2,
       'product_type_id' => 3
     ]));
     $copperPlate = $user->products()->save(App\Product::create([
       'name' => 'Copper Plate',
-      'image_name' => 'Copper_plate.png',
+      'image_file' => 'Copper_plate.png',
       'crafting_time' => 3.5,
       'product_type_id' => 3
     ]));
-    $copperOre = $user->products()->save(App\Product::create([
-      'name' => 'Copper Ore',
-      'image_name' => 'Copper_ore.png',
-      'crafting_time' => 2,
-      'hardness' => 0.9,
-      'product_type_id' => 3
-    ]));
+    $copperOre = $user->products()->where('name', 'Copper Ore')->first();
     $ironPlate = $user->products()->save(App\Product::create([
       'name' => 'Iron Plate',
-      'image_name' => 'Iron_plate.png',
+      'image_file' => 'Iron_plate.png',
       'crafting_time' => 3.5,
       'product_type_id' => 3
     ]));
-    $ironOre = $user->products()->save(App\Product::create([
-      'name' => 'Iron Ore',
-      'image_name' => 'Iron_ore.png',
-      'crafting_time' => 2,
-      'hardness' => 0.9,
-      'product_type_id' => 3
-    ]));
+    $ironOre = $user->products()->where('name', 'Iron Ore')->first();
 
     // Connect a product with a production line
     $copperWireProduction->produces()->save($copperWire);
