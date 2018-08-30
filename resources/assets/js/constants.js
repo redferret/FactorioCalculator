@@ -2,6 +2,10 @@
 
 // Constants for Component Ids
 export const ALL_FACTORIES                  = 'all-factories';
+export const EDIT_FACTORY_MODAL_ID          = 'edit-factory-modal-id';
+export const EDIT_PRODUCER_MODAL_ID         = 'edit-producer-modal-id';
+export const EDIT_PRODUCT_MODAL_ID          = 'edit-product-modal-id';
+export const EDIT_PRODUCT_TYPE_MODAL_ID     = 'new-product-type-modal-id';
 export const EDIT_PRODUCTION_LINE_MODAL_ID  = 'edit-production-line-modal-id';
 export const FACTORY_PANEL_                 = 'factory-panel-';
 export const GAME_ITEMS_ID                  = 'game-items-id';
@@ -11,6 +15,7 @@ export const MODAL_ID                       = 'product-modal';
 export const NEW_FACTORY_MODAL_ID           = 'new-factory-modal-id';
 export const NEW_PRODUCER_MODAL_ID          = 'new-producer-modal-id';
 export const NEW_PRODUCT_MODAL_ID           = 'new-product-modal-id';
+export const NEW_PRODUCT_TYPE_MODAL_ID      = 'new-product-type-modal-id';
 export const NEW_PRODUCTION_LINE_MODAL_ID   = 'new-production-line-modal-id';
 export const PRODUCTION_LINE_ID             = 'production-line_';
 

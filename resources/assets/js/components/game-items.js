@@ -1,5 +1,10 @@
 import AppDispatcher from '../dispatcher.js';
 import GameItemsStore from '../stores/game-items-store.js';
+import MainStore from '../stores/main-store.js';
+import ModalsStore from '../stores/modals-store.js';
+import NewProducerModalStore from '../stores/new-producer-modal-store.js';
+import NewProductModalStore from '../stores/new-product-modal-store.js';
+import NewProductTypeModalStore from '../stores/new-product-type-modal-store.js';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
@@ -24,6 +29,11 @@ import { ROOT } from '../routes.js';
 import {
   GAME_ITEMS_ID,
   GET_GAME_ITEMS,
+  MAIN_MODAL_CHANGE,
+  NEW_PRODUCER_MODAL_ID,
+  NEW_PRODUCT_TYPE_MODAL_ID,
+  NEW_PRODUCT_MODAL_ID,
+  RE_RENDER,
 } from '../constants.js';
 
 export default class GameItems extends React.Component {
@@ -31,9 +41,12 @@ export default class GameItems extends React.Component {
     super(props, context);
 
     this.handleGameSelect = this.handleGameSelect.bind(this);
-    this.handleProductTypesSelect = this.handleProductTypesSelect.bind(this);
-    this.handleProductTypeSelect = this.handleProductTypeSelect.bind(this);
+    this.handleNewProducerSelect = this.handleNewProducerSelect.bind(this);
+    this.handleNewProductSelect = this.handleNewProductSelect.bind(this);
+    this.handleNewProductTypeSelect = this.handleNewProductTypeSelect.bind(this);
     this.handleProducersSelect = this.handleProducersSelect.bind(this);
+    this.handleProductTypeSelect = this.handleProductTypeSelect.bind(this);
+    this.handleProductTypesSelect = this.handleProductTypesSelect.bind(this);
 
     this.state = {
       productTypes: GameItemsStore.getProductTypes(),
@@ -83,14 +96,56 @@ export default class GameItems extends React.Component {
     this.setState({producersPanelActiveKey});
   }
 
+  handleNewProductSelect() {
+    ModalsStore.showModal(NEW_PRODUCT_MODAL_ID);
+    AppDispatcher.dispatch({
+      action: RE_RENDER,
+      emitOn: [{
+        store: MainStore,
+        componentIds: [MAIN_MODAL_CHANGE]
+      }, {
+        store: NewProductModalStore,
+        componentIds: [NEW_PRODUCT_MODAL_ID]
+      }]
+    });
+  }
+
+  handleNewProducerSelect() {
+    ModalsStore.showModal(NEW_PRODUCER_MODAL_ID);
+    AppDispatcher.dispatch({
+      action: RE_RENDER,
+      emitOn: [{
+        store: MainStore,
+        componentIds: [MAIN_MODAL_CHANGE]
+      }, {
+        store: NewProducerModalStore,
+        componentIds: [NEW_PRODUCER_MODAL_ID]
+      }]
+    });
+  }
+
+  handleNewProductTypeSelect() {
+    ModalsStore.showModal(NEW_PRODUCT_TYPE_MODAL_ID);
+    AppDispatcher.dispatch({
+      action: RE_RENDER,
+      emitOn: [{
+        store: MainStore,
+        componentIds: [MAIN_MODAL_CHANGE]
+      }, {
+        store: NewProductTypeModalStore,
+        componentIds: [NEW_PRODUCT_MODAL_ID]
+      }]
+    });
+  }
+
   renderProductList(productType) {
-    var length = productType.products.length
+    var length = productType.sorted_products.length
     if (length > 0) {
       var columns = Math.ceil(length / 10);
       var reversedRows = [];
       var rows = [];
       for (var c = 0; c < columns; c++) {
-        reversedRows.unshift(productType.products.slice(c*10, Math.min(length, (c*10) + 10)));
+        reversedRows.unshift(productType.sorted_products.slice(c*10, Math.min(length, (c*10) + 10)));
       }
       for (var i = 0; i < columns; i++) {
         rows.unshift(reversedRows.shift());
@@ -163,7 +218,9 @@ export default class GameItems extends React.Component {
                         <Panel.Body collapsible>
                           {this.renderProductList(productType)}
                           <ButtonToolbar>
-                            <Button bsStyle='primary'>Add Product</Button>
+                            <Button onClick={this.handleNewProductSelect} bsStyle='primary'>
+                              Add Product
+                            </Button>
                           </ButtonToolbar>
 
                         </Panel.Body>
@@ -172,7 +229,7 @@ export default class GameItems extends React.Component {
                   </PanelGroup>
 
                   <ButtonToolbar>
-                    <Button bsStyle='primary'>Add Product Type</Button>
+                    <Button onClick={this.handleNewProductTypeSelect} bsStyle='primary'>Add Product Type</Button>
                   </ButtonToolbar>
 
                 </Panel.Body>
@@ -199,14 +256,15 @@ export default class GameItems extends React.Component {
                       </ListGroupItem>
                     )}
                   </ListGroup>
+                  <ButtonToolbar>
+                    <Button onClick={this.handleNewProducerSelect} bsStyle='primary'>
+                      Add Producer
+                    </Button>
+                  </ButtonToolbar>
                 </Panel.Body>
 
               </Panel>
             </PanelGroup>
-            <ButtonToolbar>
-              <Button bsStyle='primary'>Add Producer</Button>
-            </ButtonToolbar>
-
           </Panel.Body>
         </Panel>
       </PanelGroup>
