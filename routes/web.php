@@ -35,6 +35,7 @@ Route::post('/factories', 'FactoryController@store');
 Route::put('/factories/{id}', 'FactoryController@update');
 
 Route::delete('/productionlines/{id}', 'ProductionLineController@destroy');
+Route::get('/productionlines/{id}', 'ProductionLineController@getProductionLine');
 Route::get('/productionlines/{id}/balance', 'ProductionLineController@balance');
 Route::get('/productionlines/{id}/productionlines', 'ProductionLineController@getProductionLines');
 Route::post('/productionlines', 'ProductionLineController@store');

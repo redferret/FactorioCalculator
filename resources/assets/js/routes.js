@@ -18,6 +18,9 @@ Router.registerRoute(Constants.GET_FACTORIES, args => {
 Router.registerRoute(Constants.GET_PRODUCTION_LINES, args => {
   return ROOT + '/productionlines/'+args.id+'/productionlines';
 });
+Router.registerRoute(Constants.GET_PRODUCTION_LINE, args => {
+  return ROOT + '/productionlines/' + args.id;
+});
 Router.registerRoute(Constants.GET_PRODUCTS, args => {
   return ROOT + '/products';
 });
