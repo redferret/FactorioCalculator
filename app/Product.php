@@ -21,7 +21,7 @@ class Product extends Model
         'consumed_by_product_id', 'consumer_product_id');
     }
 
-    public function consumedByProduct() {
+    public function consumedByProducts() {
       return $this->belongsToMany(Product::class, 'consumer_consumed',
         'consumer_product_id', 'consumed_by_product_id');
     }
