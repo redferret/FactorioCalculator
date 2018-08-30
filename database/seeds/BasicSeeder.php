@@ -74,26 +74,10 @@ class BasicSeeder extends Seeder {
     $ironOreProduction->producer()->save($miner->replicate());
 
     // Products
-    $copperWire = $user->products()->save(App\Product::create([
-      'name' => 'Copper Cable',
-      'image_file' => 'Copper_cable.png',
-      'crafting_time' => 0.5,
-      'stock_size' => 2,
-      'product_type_id' => 3
-    ]));
-    $copperPlate = $user->products()->save(App\Product::create([
-      'name' => 'Copper Plate',
-      'image_file' => 'Copper_plate.png',
-      'crafting_time' => 3.5,
-      'product_type_id' => 3
-    ]));
+    $copperWire = $user->products()->where('name', 'Copper Cable')->first();
+    $copperPlate = $user->products()->where('name', 'Copper Plate')->first();
     $copperOre = $user->products()->where('name', 'Copper Ore')->first();
-    $ironPlate = $user->products()->save(App\Product::create([
-      'name' => 'Iron Plate',
-      'image_file' => 'Iron_plate.png',
-      'crafting_time' => 3.5,
-      'product_type_id' => 3
-    ]));
+    $ironPlate = $user->products()->where('name', 'Iron Plate')->first();
     $ironOre = $user->products()->where('name', 'Iron Ore')->first();
 
     // Connect a product with a production line

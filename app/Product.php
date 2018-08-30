@@ -16,6 +16,16 @@ class Product extends Model
       return $this->belongsTo(ProductionLine::class);
     }
 
+    public function consumerProducts() {
+      return $this->belongsToMany(Product::class, 'consumer_consumed',
+        'consumed_by_product_id', 'consumer_product_id');
+    }
+
+    public function consumedByProduct() {
+      return $this->belongsToMany(Product::class, 'consumer_consumed',
+        'consumer_product_id', 'consumed_by_product_id');
+    }
+
     public function productType() {
       return $this->belongsTo(ProductType::class);
     }

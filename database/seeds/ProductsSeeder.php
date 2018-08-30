@@ -38,6 +38,32 @@ class ProductsSeeder extends Seeder {
       'hardness' => 0.9,
       'product_type_id' => 3
     ]));
+
+    $copperPlate = $user->products()->save(App\Product::create([
+      'name' => 'Copper Plate',
+      'image_file' => 'Copper_plate.png',
+      'crafting_time' => 3.5,
+      'product_type_id' => 3
+    ]));
+    $copperPlate->consumerProducts()->save($copperOre);
+
+    $copperWire = $user->products()->save(App\Product::create([
+      'name' => 'Copper Cable',
+      'image_file' => 'Copper_cable.png',
+      'crafting_time' => 0.5,
+      'stock_size' => 2,
+      'product_type_id' => 3
+    ]));
+    $copperWire->consumerProducts()->save($copperPlate);
+
+    $ironPlate = $user->products()->save(App\Product::create([
+      'name' => 'Iron Plate',
+      'image_file' => 'Iron_plate.png',
+      'crafting_time' => 3.5,
+      'product_type_id' => 3
+    ]));
+    $ironPlate->consumerProducts()->save($ironOre);
+
     $uraniumOre = $user->products()->save(App\Product::create([
       'name' => 'Uranium Ore',
       'image_file' => 'Uranium_ore.png',
@@ -74,6 +100,6 @@ class ProductsSeeder extends Seeder {
       'hardness' => 0.9,
       'product_type_id' => 3
     ]));
-    
+
   }
 }
