@@ -6,6 +6,8 @@ import NewProducerModalStore from '../stores/new-producer-modal-store.js';
 import NewProductModalStore from '../stores/new-product-modal-store.js';
 import NewProductTypeModalStore from '../stores/new-product-type-modal-store.js';
 import EditProductModalStore from '../stores/edit-product-modal-store.js';
+import EditProducerModalStore from '../stores/edit-producer-modal-store.js';
+import EditProductTypeModalStore from '../stores/edit-product-type-modal-store.js';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
@@ -35,6 +37,8 @@ import {
   NEW_PRODUCT_TYPE_MODAL_ID,
   NEW_PRODUCT_MODAL_ID,
   EDIT_PRODUCT_MODAL_ID,
+  EDIT_PRODUCT_TYPE_MODAL_ID,
+  EDIT_PRODUCER_MODAL_ID,
   RE_RENDER,
 } from '../constants.js';
 
@@ -50,6 +54,7 @@ export default class GameItems extends React.Component {
     this.handleProductTypeSelect = this.handleProductTypeSelect.bind(this);
     this.handleProductTypesSelect = this.handleProductTypesSelect.bind(this);
 
+    this.handleSelectedProducer = this.handleSelectedProducer.bind(this);
     this.handleSelectedProduct = this.handleSelectedProduct.bind(this);
 
     this.state = {
@@ -128,6 +133,20 @@ export default class GameItems extends React.Component {
     });
   }
 
+  handleSelectedProducer(producer) {
+    ModalsStore.showModal(EDIT_PRODUCER_MODAL_ID);
+    AppDispatcher.dispatch({
+      action: RE_RENDER,
+      emitOn: [{
+        store: MainStore,
+        componentIds: [MAIN_MODAL_CHANGE]
+      }, {
+        store: EditProducerModalStore,
+        componentIds: [EDIT_PRODUCER_MODAL_ID]
+      }]
+    });
+  }
+
   handleNewProductTypeSelect() {
     ModalsStore.showModal(NEW_PRODUCT_TYPE_MODAL_ID);
     AppDispatcher.dispatch({
@@ -189,6 +208,42 @@ export default class GameItems extends React.Component {
     }
     return (
       <Alert bsStyle='warning'>No Products</Alert>
+    )
+  }
+
+  renderProducersList() {
+    var length = this.state.producers.length
+    if (length > 0) {
+      var rowLength = 5;
+      var columns = Math.ceil(length / rowLength);
+      var reversedRows = [];
+      var rows = [];
+      for (var c = 0; c < columns; c++) {
+        reversedRows.unshift(this.state.producers.slice(c*rowLength, Math.min(length, (c*rowLength) + rowLength)));
+      }
+      for (var i = 0; i < columns; i++) {
+        rows.unshift(reversedRows.shift());
+      }
+
+      return (
+        <Well><table><tbody>
+          {rows.map((row, index) =>
+            <tr key={index}>
+              {row.map(producer =>
+                <td key={producer.id}>
+                  <Button bsStyle='link' onClick={() => this.handleSelectedProducer(producer)}>
+                    <img src={ROOT + '/images/' + producer.image_file} />{' '}
+                    {producer.name}
+                  </Button>
+                </td>
+              )}
+            </tr>
+          )}
+        </tbody></table></Well>
+      );
+    }
+    return (
+      <Alert bsStyle='warning'>No Producers</Alert>
     )
   }
 
@@ -265,14 +320,7 @@ export default class GameItems extends React.Component {
                 </Panel.Heading>
 
                 <Panel.Body collapsible>
-                  <ListGroup>
-                    {this.state.producers.map(producer =>
-                      <ListGroupItem key={producer.id}>
-                        <img src={ROOT + '/images/' + producer.image_file} />{' '}
-                        {producer.name}
-                      </ListGroupItem>
-                    )}
-                  </ListGroup>
+                  {this.renderProducersList()}
                   <ButtonToolbar>
                     <Button onClick={this.handleNewProducerSelect} bsStyle='primary'>
                       Add Producer
