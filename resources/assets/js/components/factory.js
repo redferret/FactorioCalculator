@@ -18,6 +18,7 @@ import {
 } from 'react-bootstrap';
 
 import {
+  ALL_FACTORIES,
   FACTORY_PANEL_,
   LOAD_FACTORY,
   MAIN_MODAL_CHANGE,
@@ -49,6 +50,7 @@ export default class Factory extends React.Component {
 
   componentDidMount() {
     FactoryStore.on(this.FACTORY_PANEL_ID, this._onChange.bind(this));
+    FactoryStore.on(ALL_FACTORIES, this._onChange.bind(this));
     AppDispatcher.dispatch({
       action: LOAD_FACTORY,
       emitOn:[{
