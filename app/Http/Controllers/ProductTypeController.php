@@ -14,7 +14,7 @@ class ProductTypeController extends Controller {
   public function getAll() {
     $productTypes = Auth::user()->productTypes;
     foreach($productTypes as $type) {
-      $type->products = collect($type->products)->sortBy('name')->values()->all();
+      $type->sorted_products = collect($type->products)->sortBy('name')->values()->all();
     }
     return $productTypes;
   }
