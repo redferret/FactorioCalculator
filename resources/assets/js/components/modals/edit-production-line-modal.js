@@ -5,6 +5,8 @@ import FactoryStore from '../../stores/factory-store.js';
 import Input from '../input.js';
 import React from 'react';
 
+import { ROOT } from '../../routes.js';
+
 import {
   Alert,
   Button,
@@ -207,7 +209,8 @@ export default class EditProductionLineModal extends React.Component {
                 onClick={this.handleSelectProductionLine.bind(this,productionLine)}
                 className='list-group-item list-group-item-action'
                 >
-                  <h4>{produces.name}</h4>
+                  <img src={ROOT + '/images/' + produces.image_name} />{' '}
+                  {produces.name}
                   <Table>
                     <thead><tr>
                       <th>Assemblers Needed</th>
@@ -266,12 +269,6 @@ export default class EditProductionLineModal extends React.Component {
   }
 
   render() {
-
-    if (this.state.selectedProductionLine === undefined ||
-         this.state.selectedProductionLine === null) {
-      return <div></div>;
-    }
-
     return (
       <Modal
         show={this.state.show}
@@ -280,6 +277,7 @@ export default class EditProductionLineModal extends React.Component {
         >
         <Modal.Header>
           <Modal.Title>
+            <img src={ROOT + '/images/' + this.state.selectedProductionLine.produces.image_name} />{' '}
             {this.state.selectedProductionLine.produces.name}
           </Modal.Title>
         </Modal.Header>

@@ -7,19 +7,26 @@ import MainStore from '../stores/main-store.js';
 import ModalsStore from '../stores/modals-store.js';
 import React from 'react';
 
+import { ROOT } from '../routes.js';
+
 import {
   Alert,
   Button,
   ButtonToolbar,
   Panel,
+  Label,
   Table,
+  Grid,
+  Row,
+  Col,
 } from 'react-bootstrap';
 
 import {
+  EDIT_PRODUCTION_LINE_MODAL_ID,
+  FACTORY_PANEL_,
   GET_PRODUCTION_LINES,
   MAIN_ID,
   MAIN_MODAL_CHANGE,
-  EDIT_PRODUCTION_LINE_MODAL_ID,
   UPDATE_PRODUCTION_LINE,
 } from '../constants.js';
 
@@ -60,8 +67,11 @@ export default class ProductionLineDetails extends React.Component {
         value: event.target.value,
       },
       emitOn: [{
-        store: FactoryStore,
+        store: MainStore,
         componentIds: [MAIN_ID]
+      }, {
+        store: FactoryStore,
+        componentIds: [FACTORY_PANEL_ + this.props.factory_id]
       }]
     });
   }
@@ -78,15 +88,19 @@ export default class ProductionLineDetails extends React.Component {
     if (this.props.produces !== null) {
 
       let assemblyCountTitle = 'undefined';
+      let madeWithTitle = 'undefined';
       switch(this.props.producer.producer_type) {
         case 0:
           assemblyCountTitle = 'Number of Miners';
+          madeWithTitle = 'Mined With';
           break;
         case 1:
           assemblyCountTitle = 'Number of Assemblers';
+          madeWithTitle = 'Assembled In';
           break;
         case 2:
           assemblyCountTitle = 'Number of Furnaces';
+          madeWithTitle = 'Smelted In';
           break;
       }
 
@@ -112,7 +126,10 @@ export default class ProductionLineDetails extends React.Component {
             </thead>
             <tbody>
               <tr>
-                <td>{this.props.produces.name}</td>
+                <td>
+                  <img src={ROOT + '/images/' + this.props.produces.image_name} />{' '}
+                  {this.props.produces.name}
+                </td>
                 <td>{this.props.assembly_count}</td>
                 <td>{itemsPerSecond}</td>
                 <td>#</td>
@@ -120,6 +137,16 @@ export default class ProductionLineDetails extends React.Component {
               </tr>
             </tbody>
           </Table>
+          <Grid>
+            <Row>
+              <Label>{madeWithTitle}</Label>
+            </Row>
+            <Row>
+              <img src={ROOT + '/images/' + this.props.producer.image_name} />
+              {' ' + this.props.producer.name}
+            </Row>
+          </Grid>
+          <br/>
           <ButtonToolbar>
             <Button onClick={this.handleShowModal} bsStyle='primary' bsSize='small'>Select Production Line</Button>{' '}
             <Button onClick={this.removeFromProduction} bsSize='small'>Remove Product from Production Line</Button>

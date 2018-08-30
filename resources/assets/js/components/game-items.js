@@ -119,27 +119,25 @@ export default class GameItems extends React.Component {
                         <Panel key={productType.id} eventKey={productType.id} bsStyle='success'>
                           <Panel.Heading>
                             <Panel.Title toggle>
+                              <img src={ROOT + '/images/' + productType.image_name} />{' '}
                               {productType.name}
                             </Panel.Title>
-                            <Panel.Body collapsible>
-                              <ListGroup>
-                                {productType.products.map(product => {
-                                  let imagePath = ROOT + '/images/' + product.image_name;
-                                  return (
-                                    <div>
-                                      <Image src={imagePath} />{' '}
-                                      {product.name}
-                                    </div>
-                                  );
-                                })}
-                              </ListGroup>
-
-                              <ButtonToolbar>
-                                <Button bsStyle='primary'>Add Product</Button>
-                              </ButtonToolbar>
-
-                            </Panel.Body>
                           </Panel.Heading>
+                          <Panel.Body collapsible>
+                            <Well>
+                              {productType.products.map(product =>
+                                <div key={product.id}>
+                                  <img src={ROOT + '/images/' + product.image_name} />{' '}
+                                  {product.name}
+                                </div>
+                              )}
+                            </Well>
+
+                            <ButtonToolbar>
+                              <Button bsStyle='primary'>Add Product</Button>
+                            </ButtonToolbar>
+
+                          </Panel.Body>
                         </Panel>
                       )}
                     </PanelGroup>
@@ -169,6 +167,7 @@ export default class GameItems extends React.Component {
                     <ListGroup>
                       {this.state.producers.map(producer =>
                         <ListGroupItem key={producer.id}>
+                          <img src={ROOT + '/images/' + producer.image_name} />{' '}
                           {producer.name}
                         </ListGroupItem>
                       )}
