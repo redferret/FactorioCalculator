@@ -20,6 +20,12 @@ class ProductionLineController extends Controller {
     return Utility::getAllFactories();
   }
 
+  public function getProductionLine($id) {
+    $productionLine = Auth::user()->productionLines()->find($id);
+    Utility::update($productionLine);
+    return $productionLine;
+  }
+
   public function getProductionLines($id) {
     $productionLine = Auth::user()->productionLines()->find($id);
     $inputProductionLines = $productionLine->producerProductionLines;
