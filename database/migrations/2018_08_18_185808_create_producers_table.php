@@ -15,6 +15,7 @@ class CreateProducersTable extends Migration {
     Schema::create('producers', function (Blueprint $table) {
       $table->increments('id');
       $table->string('name')->default('New Producer');
+      $table->string('image_name')->default('');
       $table->boolean('producer_type')->default(1);
       $table->float('speed')->default(0.5);
       $table->float('power')->default(2);

@@ -6,13 +6,19 @@ import ReactDOM from 'react-dom';
 import {
   Button,
   ButtonToolbar,
+  Image,
   Label,
   ListGroup,
   ListGroupItem,
+  OverlayTrigger,
   Panel,
   PanelGroup,
+  Popover,
+  Thumbnail,
   Well,
 } from 'react-bootstrap';
+
+import { ROOT } from '../routes.js';
 
 import {
   GAME_ITEMS_ID,
@@ -117,11 +123,15 @@ export default class GameItems extends React.Component {
                             </Panel.Title>
                             <Panel.Body collapsible>
                               <ListGroup>
-                                {productType.products.map(product =>
-                                  <ListGroupItem key={product.id}>
-                                    {product.name}
-                                  </ListGroupItem>
-                                )}
+                                {productType.products.map(product => {
+                                  let imagePath = ROOT + '/images/' + product.image_name;
+                                  return (
+                                    <div>
+                                      <Image src={imagePath} />{' '}
+                                      {product.name}
+                                    </div>
+                                  );
+                                })}
                               </ListGroup>
 
                               <ButtonToolbar>

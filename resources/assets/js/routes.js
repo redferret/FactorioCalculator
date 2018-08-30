@@ -7,7 +7,7 @@ import Router from './router.js';
 Router.registerRoute(Constants.ROOT_URL, args => {
   return $('meta[name="rootURL"]').attr('content');
 })
-const ROOT = Router.route(Constants.ROOT_URL);
+export const ROOT = Router.route(Constants.ROOT_URL);
 
 /**
  * Routes for getting data

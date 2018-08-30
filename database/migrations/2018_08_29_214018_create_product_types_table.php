@@ -14,6 +14,7 @@ class CreateProductTypesTable extends Migration {
     Schema::create('product_types', function (Blueprint $table) {
       $table->increments('id');
       $table->string('name')->default('New Product Type');
+      $table->string('image_name')->default('');
       $table->integer('user_id')->unsigned()->nullable();
       $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
       $table->timestamps();
