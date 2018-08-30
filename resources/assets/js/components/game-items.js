@@ -4,6 +4,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import {
+  Alert,
   Button,
   ButtonToolbar,
   Image,
@@ -82,7 +83,26 @@ export default class GameItems extends React.Component {
     this.setState({producersPanelActiveKey});
   }
 
+  renderProductList(productType) {
+    if (productType.products.length > 0) {
+      return (
+        <Well>
+          {productType.products.map(product =>
+            <div key={product.id}>
+              <img src={ROOT + '/images/' + product.image_name} />{' '}
+              {product.name}
+            </div>
+          )}
+        </Well>
+      );
+    }
+    return (
+      <Alert bsStyle='warning'>No Products</Alert>
+    )
+  }
+
   render() {
+
     return (
       <PanelGroup accordion id='game-panel-group'
         activeKey={this.state.gamePanelActiveKey}
@@ -124,15 +144,7 @@ export default class GameItems extends React.Component {
                             </Panel.Title>
                           </Panel.Heading>
                           <Panel.Body collapsible>
-                            <Well>
-                              {productType.products.map(product =>
-                                <div key={product.id}>
-                                  <img src={ROOT + '/images/' + product.image_name} />{' '}
-                                  {product.name}
-                                </div>
-                              )}
-                            </Well>
-
+                            {this.renderProductList(productType)}
                             <ButtonToolbar>
                               <Button bsStyle='primary'>Add Product</Button>
                             </ButtonToolbar>
