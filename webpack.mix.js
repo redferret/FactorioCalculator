@@ -45,7 +45,7 @@ WebpackShellPlugin.prototype.apply = function (compiler) {
       console.log("\nExecuting post-build scripts\n");
       options.onBuildEnd.forEach(script => exec(script, puts));
     }
-    mix.copyDirectory('public', '..\\..\\htdocs\\FactorioCalculator\\');
+    mix.copyDirectory('public\\js', '..\\..\\htdocs\\FactorioCalculator\\js');
     callback();
   });
 };
@@ -62,4 +62,3 @@ mix.webpackConfig(webpack => {
     ]
   };
 });
-
