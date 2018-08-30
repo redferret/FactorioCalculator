@@ -13,7 +13,11 @@ class ProducerController extends Controller {
   }
 
   public function getAll() {
-    return collect(Auth::user()->producers)->unique('name')->values()->all();
+    $producers = Auth::user()->producers;
+    foreach($producers as $producer) {
+      $producer->processes;
+    }
+    return collect($producers)->unique('name')->values()->all();
   }
 
   /**
@@ -38,8 +42,7 @@ class ProducerController extends Controller {
     $producer = $productionLine->producer;
     $producer->fill([$request->input('name')=>$request->input('value')]);
     $producer->save();
-    Utility::update($productionLine);
-    return $productionLine;
+    return $producer;
   }
 
   /**
