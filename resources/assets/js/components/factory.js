@@ -1,9 +1,11 @@
 import AppDispatcher from '../dispatcher.js';
 import FactoryStore from '../stores/factory-store.js';
+import EditFactoryModalStore from '../stores/edit-factory-modal-store.js';
 import MainStore from '../stores/main-store.js';
 import ModalsStore from '../stores/modals-store.js';
 import NewProductionLineModalStore from '../stores/new-production-line-modal-store.js';
 import NewProductionLineModal from './modals/new-production-line-modal.js';
+import EditFactoryModal from './modals/edit-factory-modal.js';
 import ProductionLineDetails from './production-line-details.js';
 import React from 'react';
 
@@ -21,6 +23,7 @@ import {
   ALL_FACTORIES,
   FACTORY_PANEL_,
   LOAD_FACTORY,
+  EDIT_FACTORY_MODAL_ID,
   MAIN_MODAL_CHANGE,
   NEW_PRODUCTION_LINE_MODAL_ID,
   RE_RENDER,
@@ -33,6 +36,7 @@ export default class Factory extends React.Component {
 
     this.handleSelectProductionLine = this.handleSelectProductionLine.bind(this);
     this.handleAddProductionLine = this.handleAddProductionLine.bind(this);
+    this.handleSelectFactory = this.handleSelectFactory.bind(this);
 
     this.FACTORY_PANEL_ID = FACTORY_PANEL_ + this.props.id;
 
@@ -57,7 +61,7 @@ export default class Factory extends React.Component {
         store: FactoryStore,
         componentIds: [this.FACTORY_PANEL_ID]
       }]
-    })
+    });
   }
 
   componentWillUnmount() {
@@ -78,6 +82,20 @@ export default class Factory extends React.Component {
       }, {
         store: NewProductionLineModalStore,
         componentIds: [NEW_PRODUCTION_LINE_MODAL_ID]
+      }]
+    })
+  };
+
+  handleSelectFactory() {
+    ModalsStore.showModal(EDIT_FACTORY_MODAL_ID);
+    AppDispatcher.dispatch({
+      action: RE_RENDER,
+      emitOn: [{
+        store: MainStore,
+        componentIds: [MAIN_MODAL_CHANGE]
+      }, {
+        store: EditFactoryModalStore,
+        componentIds: [EDIT_FACTORY_MODAL_ID]
       }]
     })
   }
@@ -140,7 +158,7 @@ export default class Factory extends React.Component {
       <Panel bsStyle={panelStyle} eventKey={this.props.eventKey}>
         <Panel.Heading>
           <Panel.Title toggle>
-              {this.state.factory.name}
+            {this.state.factory.name}
           </Panel.Title>
         </Panel.Heading>
         <Panel.Body collapsible>
@@ -148,6 +166,7 @@ export default class Factory extends React.Component {
           {this.renderFactoryProductionLines()}
           <ButtonToolbar>
             <Button bsStyle='primary' onClick={this.handleAddProductionLine}>Add Production Line</Button>
+            <Button onClick={this.handleSelectFactory}>Select Factory</Button>
           </ButtonToolbar>
         </Panel.Body>
       </Panel>
