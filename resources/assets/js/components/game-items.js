@@ -89,7 +89,7 @@ export default class GameItems extends React.Component {
         <Well>
           {productType.products.map(product =>
             <div key={product.id}>
-              <img src={ROOT + '/images/' + product.image_name} />{' '}
+              <img src={ROOT + '/images/' + product.image_file} />{' '}
               {product.name}
             </div>
           )}
@@ -116,82 +116,77 @@ export default class GameItems extends React.Component {
           </Panel.Heading>
 
           <Panel.Body collapsible>
+            <PanelGroup accordion id='productTypes-panel-group'
+              activeKey={this.state.productTypesPanelActiveKey}
+              onSelect={this.handleProductTypesSelect}
+              >
+              <Panel eventKey='1' bsStyle='success'>
+                <Panel.Heading>
+                  <Panel.Title toggle>
+                    Products
+                  </Panel.Title>
+                </Panel.Heading>
 
-            <Well>
-              <PanelGroup accordion id='productTypes-panel-group'
-                activeKey={this.state.productTypesPanelActiveKey}
-                onSelect={this.handleProductTypesSelect}
-                >
-                <Panel eventKey='1' bsStyle='success'>
-                  <Panel.Heading>
-                    <Panel.Title toggle>
-                      Products
-                    </Panel.Title>
-                  </Panel.Heading>
+                <Panel.Body collapsible>
 
-                  <Panel.Body collapsible>
+                  <PanelGroup accordion id='productType-panel-group'
+                    activeKey={this.state.productTypePanelActiveKey}
+                    onSelect={this.handleProductTypeSelect}
+                    >
+                    {this.state.productTypes.map(productType =>
+                      <Panel key={productType.id} eventKey={productType.id} bsStyle='success'>
+                        <Panel.Heading>
+                          <Panel.Title toggle>
+                            <img src={ROOT + '/images/' + productType.image_file} />{' '}
+                            {productType.name}
+                          </Panel.Title>
+                        </Panel.Heading>
+                        <Panel.Body collapsible>
+                          {this.renderProductList(productType)}
+                          <ButtonToolbar>
+                            <Button bsStyle='primary'>Add Product</Button>
+                          </ButtonToolbar>
 
-                    <PanelGroup accordion id='productType-panel-group'
-                      activeKey={this.state.productTypePanelActiveKey}
-                      onSelect={this.handleProductTypeSelect}
-                      >
-                      {this.state.productTypes.map(productType =>
-                        <Panel key={productType.id} eventKey={productType.id} bsStyle='success'>
-                          <Panel.Heading>
-                            <Panel.Title toggle>
-                              <img src={ROOT + '/images/' + productType.image_name} />{' '}
-                              {productType.name}
-                            </Panel.Title>
-                          </Panel.Heading>
-                          <Panel.Body collapsible>
-                            {this.renderProductList(productType)}
-                            <ButtonToolbar>
-                              <Button bsStyle='primary'>Add Product</Button>
-                            </ButtonToolbar>
+                        </Panel.Body>
+                      </Panel>
+                    )}
+                  </PanelGroup>
 
-                          </Panel.Body>
-                        </Panel>
-                      )}
-                    </PanelGroup>
+                  <ButtonToolbar>
+                    <Button bsStyle='primary'>Add Product Type</Button>
+                  </ButtonToolbar>
 
-                    <ButtonToolbar>
-                      <Button bsStyle='primary'>Add Product Type</Button>
-                    </ButtonToolbar>
+                </Panel.Body>
+              </Panel>
+            </PanelGroup>
 
-                  </Panel.Body>
-                </Panel>
-              </PanelGroup>
-            </Well>
+            <PanelGroup accordion id='producer-panel-group'
+              activeKey={this.state.producersPanelActiveKey}
+              onSelect={this.handleProducersSelect}
+              >
+              <Panel eventKey='1' bsStyle='success'>
+                <Panel.Heading>
+                  <Panel.Title toggle>
+                    Producers
+                  </Panel.Title>
+                </Panel.Heading>
 
-            <Well>
-              <PanelGroup accordion id='producer-panel-group'
-                activeKey={this.state.producersPanelActiveKey}
-                onSelect={this.handleProducersSelect}
-                >
-                <Panel eventKey='1' bsStyle='success'>
-                  <Panel.Heading>
-                    <Panel.Title toggle>
-                      Producers
-                    </Panel.Title>
-                  </Panel.Heading>
+                <Panel.Body collapsible>
+                  <ListGroup>
+                    {this.state.producers.map(producer =>
+                      <ListGroupItem key={producer.id}>
+                        <img src={ROOT + '/images/' + producer.image_file} />{' '}
+                        {producer.name}
+                      </ListGroupItem>
+                    )}
+                  </ListGroup>
+                </Panel.Body>
 
-                  <Panel.Body collapsible>
-                    <ListGroup>
-                      {this.state.producers.map(producer =>
-                        <ListGroupItem key={producer.id}>
-                          <img src={ROOT + '/images/' + producer.image_name} />{' '}
-                          {producer.name}
-                        </ListGroupItem>
-                      )}
-                    </ListGroup>
-                  </Panel.Body>
-
-                </Panel>
-              </PanelGroup>
-              <ButtonToolbar>
-                <Button bsStyle='primary'>Add Producer</Button>
-              </ButtonToolbar>
-            </Well>
+              </Panel>
+            </PanelGroup>
+            <ButtonToolbar>
+              <Button bsStyle='primary'>Add Producer</Button>
+            </ButtonToolbar>
 
           </Panel.Body>
         </Panel>

@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 class ProductType extends Model {
-  protected $fillable = ['name', 'image_name'];
+  protected $fillable = ['name', 'image_file'];
 
   public function user() {
     return $this->belongsTo(User::class);

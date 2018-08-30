@@ -130,7 +130,7 @@ export default class ProductionLineDetails extends React.Component {
             <tbody>
               <tr>
                 <td>
-                  <img src={ROOT + '/images/' + this.props.produces.image_name} />{' '}
+                  <img src={ROOT + '/images/' + this.props.produces.image_file} />{' '}
                   {this.props.produces.name}
                 </td>
                 <td>{this.props.assembly_count}</td>
@@ -145,7 +145,7 @@ export default class ProductionLineDetails extends React.Component {
               <Label>{madeWithTitle}</Label>
             </Row>
             <Row>
-              <img src={ROOT + '/images/' + this.props.producer.image_name} />
+              <img src={ROOT + '/images/' + this.props.producer.image_file} />
               {' ' + this.props.producer.name}
             </Row>
           </Grid>
