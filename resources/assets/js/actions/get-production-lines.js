@@ -5,7 +5,9 @@ import { GET_PRODUCTION_LINES } from '../constants.js';
 import EditProductionLineModalStore from '../stores/edit-production-line-modal-store.js';
 
 Actions.register(GET_PRODUCTION_LINES, payload => {
-  fetch(Router.route(GET_PRODUCTION_LINES, {id: payload.data.id})).then(response => {
+  fetch(Router.route(GET_PRODUCTION_LINES, {
+    id: payload.data.id
+  })).then(response => {
     return response.json();
   }).then(productionLines => {
     EditProductionLineModalStore.setInputProductionLines(productionLines.inputs);
