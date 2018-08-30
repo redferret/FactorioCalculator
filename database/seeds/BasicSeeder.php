@@ -68,31 +68,40 @@ class BasicSeeder extends Seeder {
     $assembler1 = $user->producers()->save(App\Producer::create([
       'name' => 'Assembling Machine 1',
       'image_name' => 'Assembling_machine_1.png',
+      'producer_type' => 1,
       'speed' => 0.5
     ]));
     $assembler2 = $user->producers()->save(App\Producer::create([
       'name' => 'Assembling Machine 2',
       'image_name' => 'Assembling_machine_2.png',
+      'producer_type' => 1,
       'speed' => 0.75
     ]));
     $assembler3 = $user->producers()->save(App\Producer::create([
       'name' => 'Assembling Machine 3',
       'image_name' => 'Assembling_machine_3.png',
+      'producer_type' => 1,
       'speed' => 1.25
     ]));
-
+    $furnace = $user->producers()->save(App\Producer::create([
+      'name' => 'Steel Furnace',
+      'image_name' => 'Steel_furnace.png',
+      'producer_type' => 2,
+      'speed' => 2
+    ]));
     $miner = $user->producers()->save(App\Producer::create([
       'name' => 'Electric Mining Drill',
       'image_name' => 'Electric_mining_drill.png',
+      'producer_type' => 0,
       'speed' => 1,
       'power' => 3
     ]));
 
     // Producers for production lines
     $copperWireProduction->producer()->save($assembler3->replicate());
-    $copperProduction->producer()->save($assembler2->replicate());
+    $copperProduction->producer()->save($furnace->replicate());
     $copperOreProduction->producer()->save($miner->replicate());
-    $ironProduction->producer()->save($assembler1->replicate());
+    $ironProduction->producer()->save($furnace->replicate());
     $ironOreProduction->producer()->save($miner->replicate());
 
     // Product Types, always by default these are created
