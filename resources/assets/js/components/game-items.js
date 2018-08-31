@@ -1,15 +1,16 @@
 import AppDispatcher from '../dispatcher.js';
+import EditProducerModalStore from '../stores/edit-producer-modal-store.js';
+import EditProductModalStore from '../stores/edit-product-modal-store.js';
+import EditProductTypeModalStore from '../stores/edit-product-type-modal-store.js';
 import GameItemsStore from '../stores/game-items-store.js';
 import MainStore from '../stores/main-store.js';
 import ModalsStore from '../stores/modals-store.js';
 import NewProducerModalStore from '../stores/new-producer-modal-store.js';
 import NewProductModalStore from '../stores/new-product-modal-store.js';
 import NewProductTypeModalStore from '../stores/new-product-type-modal-store.js';
-import EditProductModalStore from '../stores/edit-product-modal-store.js';
-import EditProducerModalStore from '../stores/edit-producer-modal-store.js';
-import EditProductTypeModalStore from '../stores/edit-product-type-modal-store.js';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Router from '../router.js';
 
 import {
   Alert,
@@ -27,18 +28,17 @@ import {
   Well,
 } from 'react-bootstrap';
 
-import { ROOT } from '../routes.js';
-
 import {
-  GAME_ITEMS_ID,
-  GET_GAME_ITEMS,
-  MAIN_MODAL_CHANGE,
-  NEW_PRODUCER_MODAL_ID,
-  NEW_PRODUCT_TYPE_MODAL_ID,
-  NEW_PRODUCT_MODAL_ID,
+  EDIT_PRODUCER_MODAL_ID,
   EDIT_PRODUCT_MODAL_ID,
   EDIT_PRODUCT_TYPE_MODAL_ID,
-  EDIT_PRODUCER_MODAL_ID,
+  GAME_ITEMS_ID,
+  GET_GAME_ITEMS,
+  IMAGE_ASSET,
+  MAIN_MODAL_CHANGE,
+  NEW_PRODUCER_MODAL_ID,
+  NEW_PRODUCT_MODAL_ID,
+  NEW_PRODUCT_TYPE_MODAL_ID,
   RE_RENDER,
 } from '../constants.js';
 
@@ -212,7 +212,7 @@ export default class GameItems extends React.Component {
               {row.map(product =>
                 <td key={product.id}>
                   <Button bsStyle='link' onClick={() => this.handleSelectedProduct(product)}>
-                    <img src={ROOT + '/images/' + product.image_file} />{' '}
+                    <img src={Router.route(IMAGE_ASSET, {fileName: product.image_file})} />{' '}
                     {product.name}
                   </Button>
                 </td>
@@ -248,7 +248,7 @@ export default class GameItems extends React.Component {
               {row.map(producer =>
                 <td key={producer.id}>
                   <Button bsStyle='link' onClick={() => this.handleSelectedProducer(producer)}>
-                    <img src={ROOT + '/images/' + producer.image_file} />{' '}
+                    <img src={Router.route(IMAGE_ASSET, {fileName: producer.image_file})} />{' '}
                     {producer.name}
                   </Button>
                 </td>
@@ -299,7 +299,7 @@ export default class GameItems extends React.Component {
                       <Panel key={productType.id} eventKey={productType.id} bsStyle='success'>
                         <Panel.Heading>
                           <Panel.Title toggle>
-                            <img src={ROOT + '/images/' + productType.image_file} />{' '}
+                            <img src={Router.route(IMAGE_ASSET, {fileName: productType.image_file})} />{' '}
                             {productType.name}
                           </Panel.Title>
                         </Panel.Heading>

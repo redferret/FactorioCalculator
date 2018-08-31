@@ -5,8 +5,7 @@ import MainStore from '../../stores/main-store.js';
 import FactoryStore from '../../stores/factory-store.js';
 import Input from '../input.js';
 import React from 'react';
-
-import { ROOT } from '../../routes.js';
+import Router from '../../router.js';
 
 import {
   Alert,
@@ -23,6 +22,7 @@ import {
   FACTORY_PANEL_,
   GET_FACTORIES,
   GET_PRODUCTION_LINES,
+  IMAGE_ASSET,
   MAIN_ID,
   UPDATE_PRODUCER,
 } from '../../constants.js';
@@ -214,7 +214,7 @@ export default class EditProductionLineModal extends React.Component {
                 onClick={this.handleSelectProductionLine.bind(this,productionLine)}
                 className='list-group-item list-group-item-action'
                 >
-                  <img src={ROOT + '/images/' + produces.image_file} />{' '}
+                  <img src={Router.route(IMAGE_ASSET, {fileName: produces.image_file})} />{' '}
                   {produces.name}
                   <Table>
                     <thead><tr>
@@ -282,7 +282,7 @@ export default class EditProductionLineModal extends React.Component {
         >
         <Modal.Header>
           <Modal.Title>
-            <img src={ROOT + '/images/' + this.state.selectedProductionLine.produces.image_file} />{' '}
+            <img src={Router.route(IMAGE_ASSET, {fileName: this.state.selectedProductionLine.produces.image_file})} />{' '}
             {this.state.selectedProductionLine.produces.name}
           </Modal.Title>
         </Modal.Header>

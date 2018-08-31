@@ -43,6 +43,7 @@ export const GET_PRODUCT_TYPES            = 'get-product-types';
 export const LOAD_FACTORY                 = 'load-factory';
 export const RE_RENDER                    = 're-render';
 export const ROOT_URL                     = 'root-url';
+export const IMAGE_ASSET                  = 'image-file';
 
 export const UPDATE_FACTORY                 = 'update-factory';
 export const UPDATE_PRODUCER                = 'update-producer';

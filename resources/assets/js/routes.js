@@ -6,8 +6,12 @@ import Router from './router.js';
  */
 Router.registerRoute(Constants.ROOT_URL, args => {
   return $('meta[name="rootURL"]').attr('content');
-})
-export const ROOT = Router.route(Constants.ROOT_URL);
+});
+const ROOT = Router.route(Constants.ROOT_URL);
+
+Router.registerRoute(Constants.IMAGE_ASSET, args => {
+  return ROOT + '/images/' + args.fileName;
+});
 
 /**
  * Routes for getting data

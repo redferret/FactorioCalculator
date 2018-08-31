@@ -6,8 +6,7 @@ import Input from './input.js';
 import MainStore from '../stores/main-store.js';
 import ModalsStore from '../stores/modals-store.js';
 import React from 'react';
-
-import { ROOT } from '../routes.js';
+import Router from '../router.js';
 
 import {
   Alert,
@@ -25,6 +24,7 @@ import {
   EDIT_PRODUCTION_LINE_MODAL_ID,
   FACTORY_PANEL_,
   GET_PRODUCTION_LINES,
+  IMAGE_ASSET,
   MAIN_ID,
   MAIN_MODAL_CHANGE,
   UPDATE_PRODUCTION_LINE,
@@ -130,7 +130,7 @@ export default class ProductionLineDetails extends React.Component {
             <tbody>
               <tr>
                 <td>
-                  <img src={ROOT + '/images/' + this.props.produces.image_file} />{' '}
+                  <img src={Router.route(IMAGE_ASSET, {fileName: this.props.produces.image_file})} />{' '}
                   {this.props.produces.name}
                 </td>
                 <td>{this.props.assembly_count}</td>
@@ -145,7 +145,7 @@ export default class ProductionLineDetails extends React.Component {
               <Label>{madeWithTitle}</Label>
             </Row>
             <Row>
-              <img src={ROOT + '/images/' + this.props.producer.image_file} />
+              <img src={Router.route(IMAGE_ASSET, {fileName: this.props.producer.image_file})} />
               {' ' + this.props.producer.name}
             </Row>
           </Grid>

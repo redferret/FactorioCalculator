@@ -3,6 +3,7 @@ import Input from '../input.js';
 import ModalsStore from '../../stores/modals-store.js';
 import EditProductModalStore from '../../stores/edit-product-modal-store.js';
 import React from 'react';
+import Router from '../../router.js';
 
 import {
   Alert,
@@ -14,10 +15,9 @@ import {
   Well,
 } from 'react-bootstrap';
 
-import { ROOT } from '../../routes.js';
-
 import {
   EDIT_PRODUCT_MODAL_ID,
+  IMAGE_ASSET,
 } from '../../constants.js';
 
 export default class EditProductModal extends React.Component {
@@ -66,7 +66,7 @@ export default class EditProductModal extends React.Component {
         >
         <Modal.Header>
           <Modal.Title>
-            <img src={ROOT + '/images/' + this.state.selectedProduct.image_file} />
+            <img src={Router.route(IMAGE_ASSET, {fileName: this.state.selectedProduct.image_file})} />
             {this.state.selectedProduct.name}
           </Modal.Title>
         </Modal.Header>
