@@ -274,6 +274,7 @@ export default class EditProductionLineModal extends React.Component {
   }
 
   render() {
+    let productionLine = this.state.selectedProductionLine;
     return (
       <Modal
         show={this.state.show}
@@ -282,8 +283,8 @@ export default class EditProductionLineModal extends React.Component {
         >
         <Modal.Header>
           <Modal.Title>
-            <img src={Router.route(IMAGE_ASSET, {fileName: this.state.selectedProductionLine.produces.image_file})} />{' '}
-            {this.state.selectedProductionLine.produces.name}
+            <img src={Router.route(IMAGE_ASSET, {fileName: productionLine.produces.image_file})} />{' '}
+            {productionLine.produces.name}
           </Modal.Title>
         </Modal.Header>
 
