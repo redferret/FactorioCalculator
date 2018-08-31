@@ -23,7 +23,9 @@ class FactoryController extends Controller {
    * @return \Illuminate\Http\Response
    */
   public function store(Request $request) {
-    //
+    $newFactory = Factory::create($request->all());
+    Auth::user()->factories()->save($newFactory);
+    return $newFactory;
   }
 
   /**
@@ -34,7 +36,13 @@ class FactoryController extends Controller {
    * @return \Illuminate\Http\Response
    */
   public function update(Request $request, $id) {
-    //
+    $factory = Auth::user()->factories()->find($id);
+    if ($factory != null) {
+      $factory->fill($request->all());
+      $factory->save();
+      return $factory;
+    }
+    return array('response'=>'Factory Not Found: id='.$id);
   }
 
   /**
@@ -44,7 +52,12 @@ class FactoryController extends Controller {
    * @return \Illuminate\Http\Response
    */
   public function destroy($id) {
-    //
+    $factory = Auth::user()->factories()->find($id);
+    if ($factory != null) {
+      $factory->delete();
+      return array('response'=>'success');
+    }
+    return array('response'=>'failed');
   }
 
 }
