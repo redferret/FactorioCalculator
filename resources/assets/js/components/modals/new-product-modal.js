@@ -8,8 +8,14 @@ import {
   Alert,
   Button,
   ButtonToolbar,
+  Col,
+  DropdownButton,
+  Dropdown,
+  Grid,
   Label,
-  Modal,
+  MenuItem,
+  Modal,Form,
+  Row,
   Table,
   Well,
 } from 'react-bootstrap';
@@ -67,7 +73,23 @@ export default class NewProductModal extends React.Component {
         </Modal.Header>
 
         <Modal.Body>
-          Modal Body
+          <Grid>
+            <Row>
+              <Col md={3}>
+                <Input type='text' initialValue='New Product' label='Product Name'/>
+                <Input type='number' initialValue='1' label='Crafting Time'/>
+                <Input type='number' initialValue='1' label='Stock Size'/>
+              </Col>
+              <Col>
+                <Input type='number' initialValue='0' label='Hardness' help='Set to 0 if product is not an Ore'/>
+              </Col>
+            </Row>
+            <Row>
+              <Col md={3}>
+                
+              </Col>
+            </Row>
+          </Grid>
         </Modal.Body>
 
         <Modal.Footer>
