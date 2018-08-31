@@ -27,7 +27,9 @@ class ProducerController extends Controller {
    * @return \Illuminate\Http\Response
    */
   public function store(Request $request) {
-    //
+    $newProducer = Producer::create($request->all());
+    Auth::user()->producers()->save($newProducer);
+    return $newProducer;
   }
 
   /**
@@ -52,7 +54,12 @@ class ProducerController extends Controller {
    * @return \Illuminate\Http\Response
    */
   public function destroy($id) {
-    //
+    $producer = Auth::user()->producers()->find($id);
+    if ($producer != null) {
+      $producer->delete();
+      return array('response'=>'success');
+    }
+    return array('response'=>'failed');
   }
 
 }
