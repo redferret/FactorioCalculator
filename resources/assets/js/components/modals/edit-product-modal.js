@@ -9,8 +9,13 @@ import {
   Alert,
   Button,
   ButtonToolbar,
+  Col,
+  DropdownButton,
+  Grid,
   Label,
-  Modal,
+  MenuItem,
+  Modal,Form,
+  Row,
   Table,
   Well,
 } from 'react-bootstrap';
@@ -58,6 +63,7 @@ export default class EditProductModal extends React.Component {
   }
 
   render() {
+    let product = this.state.selectedProduct;
     return (
       <Modal
         show={this.state.show}
@@ -66,13 +72,30 @@ export default class EditProductModal extends React.Component {
         >
         <Modal.Header>
           <Modal.Title>
-            <img src={Router.route(IMAGE_ASSET, {fileName: this.state.selectedProduct.image_file})} />
-            {this.state.selectedProduct.name}
+            <Form inline>
+              <Input initialValue={product.name} isStatic={true}
+                label={
+                  <img src={Router.route(IMAGE_ASSET, {fileName: product.image_file})} />
+                }
+              />
+            </Form>
           </Modal.Title>
         </Modal.Header>
 
         <Modal.Body>
-
+          <Grid>
+            <Row>
+              <Col md={3}>
+                <Input type='number' initialValue={product.crafting_time} label='Crafting Time'/>
+                <Input type='number' initialValue={product.stock_size} label='Stock Size'/>
+              </Col>
+              <Col>
+                {product.hardness?
+                  <Input type='number' initialValue={product.hardness} label='Hardness'/>: ''
+                }
+              </Col>
+            </Row>
+          </Grid>
         </Modal.Body>
 
         <Modal.Footer>
