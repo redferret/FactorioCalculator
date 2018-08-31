@@ -46,6 +46,7 @@ WebpackShellPlugin.prototype.apply = function (compiler) {
       options.onBuildEnd.forEach(script => exec(script, puts));
     }
     mix.copyDirectory('public\\js', '..\\..\\htdocs\\FactorioCalculator\\js');
+    mix.copyDirectory('public\\css', '..\\..\\htdocs\\FactorioCalculator\\css');
     callback();
   });
 };
