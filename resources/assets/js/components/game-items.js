@@ -178,6 +178,7 @@ export default class GameItems extends React.Component {
 
   handleSelectedProduct(product) {
     ModalsStore.showModal(EDIT_PRODUCT_MODAL_ID);
+    EditProductModalStore.setSelectedProduct(product);
     AppDispatcher.dispatch({
       action: RE_RENDER,
       emitOn: [{

@@ -14,6 +14,8 @@ import {
   Well,
 } from 'react-bootstrap';
 
+import { ROOT } from '../../routes.js';
+
 import {
   EDIT_PRODUCT_MODAL_ID,
 } from '../../constants.js';
@@ -25,14 +27,16 @@ export default class EditProductModal extends React.Component {
     this.handleHideModal = this.handleHideModal.bind(this);
     this._isMounted = false;
     this.state = {
-      show: ModalsStore.shouldShow()
+      show: ModalsStore.shouldShow(),
+      selectedProduct: EditProductModalStore.getSelectedProduct()
     }
   }
 
   _onChange() {
     if (this._isMounted) {
       this.setState({
-        show: ModalsStore.shouldShow()
+        show: ModalsStore.shouldShow(),
+        selectedProduct: EditProductModalStore.getSelectedProduct()
       });
     }
   }
@@ -62,12 +66,13 @@ export default class EditProductModal extends React.Component {
         >
         <Modal.Header>
           <Modal.Title>
-            Edit Product
+            <img src={ROOT + '/images/' + this.state.selectedProduct.image_file} />
+            {this.state.selectedProduct.name}
           </Modal.Title>
         </Modal.Header>
 
         <Modal.Body>
-          Modal Body
+
         </Modal.Body>
 
         <Modal.Footer>
