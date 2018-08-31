@@ -5,6 +5,7 @@ import {
   ControlLabel,
   FormControl,
   FormGroup,
+  HelpBlock,
 } from 'react-bootstrap';
 
 class Input extends React.Component {
@@ -16,7 +17,7 @@ class Input extends React.Component {
 
     this.state = {
       value: this.props.initialValue,
-      isValid: true
+      isValid: null
     };
     this.ignoreBlur = true;
   }
@@ -37,16 +38,23 @@ class Input extends React.Component {
         }
         break;
     }
+    this.setState({
+      isValid: this.props.validationCallback()
+    })
   }
 
   render() {
 
-    let validationState = this.state.isValid ? null : 'error';
+    let validationState = this.state.isValid;
+    let label = this.props.label? <ControlLabel>{this.props.label}</ControlLabel> : '';
+    let helpBlock = this.props.help? <HelpBlock>{this.props.help}</HelpBlock> : '';
 
     if (this.props.isStatic) {
       return (
         <FormGroup controlId="inputFormGroup" validationState={validationState}>
+          {label}
           <FormControl.Static>{this.props.initialValue}</FormControl.Static>
+          {helpBlock}
         </FormGroup>
       );
     }
@@ -56,18 +64,20 @@ class Input extends React.Component {
         controlId="inputFormGroup"
         validationState={validationState}
       >
-      <FormControl type={this.props.type} name={this.props.name}
-        onBlur={(event) => this.handleChange(event)}
-        onKeyPress={(event) => this.handleChange(event)}
-        onChange={(event) => {
-          this.ignoreBlur = false;
-          this.setState({
-            value: event.target.value
-          });
-        }}
-        inputRef={(reference) => this.DOMRef = reference}
-        value={this.state.value}
-        style={this.props.width}/>
+        {label}
+        <FormControl type={this.props.type} name={this.props.name}
+          onBlur={(event) => this.handleChange(event)}
+          onKeyPress={(event) => this.handleChange(event)}
+          onChange={(event) => {
+            this.ignoreBlur = false;
+            this.setState({
+              value: event.target.value
+            });
+          }}
+          inputRef={(reference) => this.DOMRef = reference}
+          value={this.state.value}
+          style={this.props.width}/>
+        {helpBlock}
       </FormGroup>
     );
   }
@@ -77,9 +87,12 @@ Input.defaultProps = {
   name: 'default',
   isStatic: false,
   type: 'text',
+  label: '',
+  help: '',
   width: {
     'width': 'auto'
   },
+  validationCallback: () => null,
   callback: () => {}
 };
 
