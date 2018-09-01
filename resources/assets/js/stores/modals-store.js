@@ -1,8 +1,11 @@
+import AppDispatcher from '../dispatcher.js';
 import EditFactoryModal from '../components/modals/edit-factory-modal.js';
 import EditProducerModal from '../components/modals/edit-producer-modal.js';
 import EditProductionLineModal from '../components/modals/edit-production-line-modal.js';
 import EditProductModal from '../components/modals/edit-product-modal.js';
 import EditProductTypeModal from '../components/modals/edit-product-type-modal.js';
+import MainStore from './main-store.js';
+import ModalSpinner from '../components/modals/modal-spinner.js';
 import NewFactoryModal from '../components/modals/new-factory-modal.js';
 import NewProducerModal from '../components/modals/new-producer-modal.js';
 import NewProductionLineModal from '../components/modals/new-production-line-modal.js';
@@ -17,11 +20,14 @@ import {
   EDIT_PRODUCT_MODAL_ID,
   EDIT_PRODUCT_TYPE_MODAL_ID,
   EDIT_PRODUCTION_LINE_MODAL_ID,
+  MAIN_MODAL_CHANGE,
   NEW_FACTORY_MODAL_ID,
   NEW_PRODUCER_MODAL_ID,
   NEW_PRODUCT_MODAL_ID,
   NEW_PRODUCT_TYPE_MODAL_ID,
   NEW_PRODUCTION_LINE_MODAL_ID,
+  RE_RENDER,
+  SPINNER_MODAL_ID,
 } from '../constants.js';
 
 class ModalsStore extends EventEmitter {
@@ -36,6 +42,7 @@ class ModalsStore extends EventEmitter {
     this._modals.set(EDIT_PRODUCT_TYPE_MODAL_ID, <EditProductTypeModal/>);
     this._modals.set(EDIT_PRODUCTION_LINE_MODAL_ID, <EditProductionLineModal/>);
 
+    this._modals.set(SPINNER_MODAL_ID, <ModalSpinner/>);
     this._modals.set(NEW_FACTORY_MODAL_ID, <NewFactoryModal/>);
     this._modals.set(NEW_PRODUCER_MODAL_ID, <NewProducerModal/>);
     this._modals.set(NEW_PRODUCT_MODAL_ID, <NewProductModal/>);
@@ -47,10 +54,27 @@ class ModalsStore extends EventEmitter {
     this._show = false;
   }
 
-  showModal(id) {
+  setToShowModal(id) {
     this._currentModal = this._modals.get(id);
     this._currentModalId = id;
     this._show = true;
+  }
+
+  showModal(modal) {
+    this._currentModal = this._modals.get(modal.id);
+    this._currentModalId = modal.id;
+    this._show = true;
+
+    AppDispatcher.dispatch({
+      action: RE_RENDER,
+      emitOn: [{
+        store: MainStore,
+        componentIds: [MAIN_MODAL_CHANGE]
+      }, {
+        store: modal.store,
+        componentIds: [modal.id]
+      }]
+    });
   }
 
   hideModal() {

@@ -18,6 +18,7 @@ export const NEW_PRODUCT_MODAL_ID           = 'new-product-modal-id';
 export const NEW_PRODUCT_TYPE_MODAL_ID      = 'new-product-type-modal-id';
 export const NEW_PRODUCTION_LINE_MODAL_ID   = 'new-production-line-modal-id';
 export const PRODUCTION_LINE_ID             = 'production-line_';
+export const SPINNER_MODAL_ID               = 'spinner-modal-id';
 
 // Constants for Actions
 export const ADD_FACTORY                  = 'add-factory';
