@@ -119,7 +119,10 @@ export default class EditProductModal extends React.Component {
       }]
     });
     ModalsStore.hideModal();
-    ModalsStore.showModal(SPINNER_MODAL_ID);
+    ModalsStore.showModal({
+      id: SPINNER_MODAL_ID,
+      store: ModalsStore
+    });
   }
 
   render() {

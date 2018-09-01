@@ -13,7 +13,6 @@ export default class ModalSpinner extends React.Component {
   constructor(props, context) {
     super(props, context);
 
-    this.handleHideModal = this.handleHideModal.bind(this);
     this._isMounted = false;
     this.state = {
       show: ModalsStore.shouldShow()
