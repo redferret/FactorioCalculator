@@ -122,7 +122,7 @@ export default class EditProductionLineModal extends React.Component {
   renderProductDetails() {
     let producer = this.state.selectedProductionLine.producer;
     let product = this.state.selectedProductionLine.product;
-    let isMiner = this.state.selectedProductionLine.producer.producer_type === 0;
+    let isMiner = producer.producer_type === 0;
     let isInput = this.state.selectedProductionLine.production_line_id !== null;
     let productionId = this.state.selectedProductionLine.id;
 
@@ -172,7 +172,7 @@ export default class EditProductionLineModal extends React.Component {
           <thead><tr>
             <th>Crafting Time Per Item</th>
             <th>Stock Count</th>
-            <th>Assember(s) Speed</th>
+            <th>{producer.name}(s) Speed</th>
             <th>Actual Production (Items/Sec)</th>
             <th>Surplus/Deficit (Items/Sec)</th>
           </tr></thead>
@@ -204,9 +204,8 @@ export default class EditProductionLineModal extends React.Component {
       <Well>
         <div className='list-group'> {
           productionLines.map(productionLine => {
-
             let product = productionLine.product;
-
+            let producer = productionLine.producer;
             return (
               <div key={product.id}>
                 <Label>Production Line: {productionLine.name}</Label>
@@ -218,7 +217,7 @@ export default class EditProductionLineModal extends React.Component {
                   {product.name}
                   <Table>
                     <thead><tr>
-                      <th>Assemblers Needed</th>
+                      <th>{producer.name} Needed</th>
                       <th>Crafting Time Per Item</th>
                       <th>Items Produced / Sec</th>
                       <th>Actual Production (Items/Sec)</th>
