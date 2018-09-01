@@ -60,16 +60,9 @@ class Main extends Component {
   }
 
   handleNewFactory() {
-    ModalsStore.showModal(NEW_FACTORY_MODAL_ID);
-    AppDispatcher.dispatch({
-      action: RE_RENDER,
-      emitOn: [{
-        store: MainStore,
-        componentIds: [MAIN_MODAL_CHANGE]
-      }, {
-        store: NewFactoryModalStore,
-        componentIds: [NEW_FACTORY_MODAL_ID]
-      }]
+    ModalsStore.showModal({
+      id: NEW_FACTORY_MODAL_ID,
+      store: NewFactoryModalStore
     });
   }
 

@@ -73,31 +73,17 @@ export default class Factory extends React.Component {
   }
 
   handleAddProductionLine() {
-    ModalsStore.showModal(NEW_PRODUCTION_LINE_MODAL_ID);
-    AppDispatcher.dispatch({
-      action: RE_RENDER,
-      emitOn: [{
-        store: MainStore,
-        componentIds: [MAIN_MODAL_CHANGE]
-      }, {
-        store: NewProductionLineModalStore,
-        componentIds: [NEW_PRODUCTION_LINE_MODAL_ID]
-      }]
-    })
+    ModalsStore.showModal({
+      id: NEW_PRODUCTION_LINE_MODAL_ID,
+      store: NewProductionLineModalStore
+    });
   };
 
   handleSelectFactory() {
-    ModalsStore.showModal(EDIT_FACTORY_MODAL_ID);
-    AppDispatcher.dispatch({
-      action: RE_RENDER,
-      emitOn: [{
-        store: MainStore,
-        componentIds: [MAIN_MODAL_CHANGE]
-      }, {
-        store: EditFactoryModalStore,
-        componentIds: [EDIT_FACTORY_MODAL_ID]
-      }]
-    })
+    ModalsStore.showModal({
+      id: EDIT_FACTORY_MODAL_ID,
+      store: EditFactoryModalStore
+    });
   }
 
   renderFactoryDetails() {

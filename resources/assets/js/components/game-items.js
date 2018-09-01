@@ -107,87 +107,45 @@ export default class GameItems extends React.Component {
   }
 
   handleNewProductSelect() {
-    ModalsStore.showModal(NEW_PRODUCT_MODAL_ID);
-    AppDispatcher.dispatch({
-      action: RE_RENDER,
-      emitOn: [{
-        store: MainStore,
-        componentIds: [MAIN_MODAL_CHANGE]
-      }, {
-        store: NewProductModalStore,
-        componentIds: [NEW_PRODUCT_MODAL_ID]
-      }]
+    ModalsStore.showModal({
+      id: NEW_PRODUCT_MODAL_ID,
+      store: NewProductModalStore
     });
   }
 
   handleNewProducerSelect() {
-    ModalsStore.showModal(NEW_PRODUCER_MODAL_ID);
-    AppDispatcher.dispatch({
-      action: RE_RENDER,
-      emitOn: [{
-        store: MainStore,
-        componentIds: [MAIN_MODAL_CHANGE]
-      }, {
-        store: NewProducerModalStore,
-        componentIds: [NEW_PRODUCER_MODAL_ID]
-      }]
+    ModalsStore.showModal({
+      id: NEW_PRODUCER_MODAL_ID,
+      store: NewProducerModalStore
     });
   }
 
   handleSelectedProducer(producer) {
-    ModalsStore.showModal(EDIT_PRODUCER_MODAL_ID);
-    AppDispatcher.dispatch({
-      action: RE_RENDER,
-      emitOn: [{
-        store: MainStore,
-        componentIds: [MAIN_MODAL_CHANGE]
-      }, {
-        store: EditProducerModalStore,
-        componentIds: [EDIT_PRODUCER_MODAL_ID]
-      }]
+    ModalsStore.showModal({
+      id: EDIT_PRODUCER_MODAL_ID,
+      store: EditProducerModalStore
     });
   }
 
   handleNewProductTypeSelect() {
-    ModalsStore.showModal(NEW_PRODUCT_TYPE_MODAL_ID);
-    AppDispatcher.dispatch({
-      action: RE_RENDER,
-      emitOn: [{
-        store: MainStore,
-        componentIds: [MAIN_MODAL_CHANGE]
-      }, {
-        store: NewProductTypeModalStore,
-        componentIds: [NEW_PRODUCT_MODAL_ID]
-      }]
+    ModalsStore.showModal({
+      id: NEW_PRODUCT_TYPE_MODAL_ID,
+      store: NewProductTypeModalStore
     });
   }
 
   handleSelectedProductType(productType) {
-    ModalsStore.showModal(EDIT_PRODUCT_TYPE_MODAL_ID);
-    AppDispatcher.dispatch({
-      action: RE_RENDER,
-      emitOn: [{
-        store: MainStore,
-        componentIds: [MAIN_MODAL_CHANGE]
-      }, {
-        store: EditProductTypeModalStore,
-        componentIds: [EDIT_PRODUCT_TYPE_MODAL_ID]
-      }]
+    ModalsStore.showModal({
+      id: EDIT_PRODUCT_TYPE_MODAL_ID,
+      store: EditProductTypeModalStore
     });
   }
 
   handleSelectedProduct(product) {
-    ModalsStore.showModal(EDIT_PRODUCT_MODAL_ID);
     EditProductModalStore.setSelectedProduct(product);
-    AppDispatcher.dispatch({
-      action: RE_RENDER,
-      emitOn: [{
-        store: MainStore,
-        componentIds: [MAIN_MODAL_CHANGE]
-      }, {
-        store: EditProductModalStore,
-        componentIds: [EDIT_PRODUCT_MODAL_ID]
-      }]
+    ModalsStore.showModal({
+      id: EDIT_PRODUCT_MODAL_ID,
+      store: EditProductModalStore
     });
   }
 
