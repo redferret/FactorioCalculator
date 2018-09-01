@@ -76,25 +76,29 @@ class ProductsSeeder extends Seeder {
       'name' => 'Crude Oil',
       'image_file' => 'Crude_oil.png',
       'crafting_time' => 0,
-      'product_type_id' => 3
+      'product_type_id' => 3,
+      'is_fluid'=>true
     ]));
     $heavyOil = $user->products()->save(App\Product::create([
       'name' => 'Heavy Oil',
       'image_file' => 'Heavy_oil.png',
       'crafting_time' => 0,
-      'product_type_id' => 3
+      'product_type_id' => 3,
+      'is_fluid'=>true
     ]));
     $lightOil = $user->products()->save(App\Product::create([
       'name' => 'Light Oil',
       'image_file' => 'Light_oil.png',
       'crafting_time' => 0,
-      'product_type_id' => 3
+      'product_type_id' => 3,
+      'is_fluid'=>true
     ]));
     $lubricant = $user->products()->save(App\Product::create([
       'name' => 'Lubricant',
       'image_file' => 'Lubricant.png',
       'crafting_time' => 0,
-      'product_type_id' => 3
+      'product_type_id' => 3,
+      'is_fluid'=>true
     ]));
 
   }

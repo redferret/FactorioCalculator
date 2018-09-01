@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     protected $fillable = ['crafting_time', 'name', 'image_file', 'user_id',
-      'stock_size', 'hardness', 'product_type_id'];
+      'stock_size', 'hardness', 'product_type_id', 'is_fluid'];
 
     /**
      * The production lines that produce this product
