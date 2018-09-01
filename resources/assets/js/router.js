@@ -15,7 +15,10 @@ class WebRouter {
 
   route(name, args) {
     let route = this._routes.get(name);
-    return route(args);
+    if (route instanceof Function) {
+      return route(args);
+    }
+    console.error('The route "'+name+'" was not registered or is not a function');
   }
 
   method(name, data) {
