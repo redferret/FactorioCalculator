@@ -28,6 +28,7 @@ import {
   MAIN_ID,
   MAIN_MODAL_CHANGE,
   UPDATE_PRODUCTION_LINE,
+  SPINNER_MODAL_ID
 } from '../constants.js';
 
 export default class ProductionLineDetails extends React.Component {
@@ -59,21 +60,27 @@ export default class ProductionLineDetails extends React.Component {
   }
 
   itemsPerSecondChanged(event) {
-    AppDispatcher.dispatch({
-      action: UPDATE_PRODUCTION_LINE,
-      data: {
-        productionLineId: this.props.id,
-        name: event.target.name,
-        value: event.target.value,
-      },
-      emitOn: [{
-        store: MainStore,
-        componentIds: [MAIN_ID]
-      }, {
-        store: FactoryStore,
-        componentIds: [FACTORY_PANEL_ + this.props.factory_id]
-      }]
-    });
+    if (this.props.items_per_second != event.target.value) {
+      ModalsStore.showModal({
+        id: SPINNER_MODAL_ID,
+        store: ModalsStore
+      });
+      AppDispatcher.dispatch({
+        action: UPDATE_PRODUCTION_LINE,
+        data: {
+          productionLineId: this.props.id,
+          name: event.target.name,
+          value: event.target.value,
+        },
+        emitOn: [{
+          store: MainStore,
+          componentIds: [MAIN_ID]
+        }, {
+          store: FactoryStore,
+          componentIds: [FACTORY_PANEL_ + this.props.factory_id]
+        }]
+      });
+    }
   }
 
   removeFromProduction(e) {
