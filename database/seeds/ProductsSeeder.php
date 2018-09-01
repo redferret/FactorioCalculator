@@ -15,6 +15,7 @@ class ProductsSeeder extends Seeder {
       'image_file' => 'Coal.png',
       'crafting_time' => 2,
       'hardness' => 0.9,
+      'stock_size' => 1,
       'product_type_id' => 3
     ]));
     $stone = $user->products()->save(App\Product::create([
@@ -22,6 +23,7 @@ class ProductsSeeder extends Seeder {
       'image_file' => 'Stone.png',
       'crafting_time' => 2,
       'hardness' => 0.4,
+      'stock_size' => 1,
       'product_type_id' => 3
     ]));
     $ironOre = $user->products()->save(App\Product::create([
@@ -29,6 +31,7 @@ class ProductsSeeder extends Seeder {
       'image_file' => 'Iron_ore.png',
       'crafting_time' => 2,
       'hardness' => 0.9,
+      'stock_size' => 1,
       'product_type_id' => 3
     ]));
     $copperOre = $user->products()->save(App\Product::create([
@@ -36,6 +39,7 @@ class ProductsSeeder extends Seeder {
       'image_file' => 'Copper_ore.png',
       'crafting_time' => 2,
       'hardness' => 0.9,
+      'stock_size' => 1,
       'product_type_id' => 3
     ]));
 
@@ -43,6 +47,7 @@ class ProductsSeeder extends Seeder {
       'name' => 'Copper Plate',
       'image_file' => 'Copper_plate.png',
       'crafting_time' => 3.5,
+      'stock_size' => 1,
       'product_type_id' => 3
     ]));
     $copperPlate->consumerProducts()->save($copperOre);
@@ -60,6 +65,7 @@ class ProductsSeeder extends Seeder {
       'name' => 'Iron Plate',
       'image_file' => 'Iron_plate.png',
       'crafting_time' => 3.5,
+      'stock_size' => 1,
       'product_type_id' => 3
     ]));
     $ironPlate->consumerProducts()->save($ironOre);
@@ -69,34 +75,31 @@ class ProductsSeeder extends Seeder {
       'image_file' => 'Uranium_ore.png',
       'crafting_time' => 4,
       'hardness' => 0.9,
+      'stock_size' => 1,
       'product_type_id' => 3
     ]));
 
     $crudeOil = $user->products()->save(App\Product::create([
       'name' => 'Crude Oil',
       'image_file' => 'Crude_oil.png',
-      'crafting_time' => 0,
       'product_type_id' => 3,
       'is_fluid'=>true
     ]));
     $heavyOil = $user->products()->save(App\Product::create([
       'name' => 'Heavy Oil',
       'image_file' => 'Heavy_oil.png',
-      'crafting_time' => 0,
       'product_type_id' => 3,
       'is_fluid'=>true
     ]));
     $lightOil = $user->products()->save(App\Product::create([
       'name' => 'Light Oil',
       'image_file' => 'Light_oil.png',
-      'crafting_time' => 0,
       'product_type_id' => 3,
       'is_fluid'=>true
     ]));
     $lubricant = $user->products()->save(App\Product::create([
       'name' => 'Lubricant',
       'image_file' => 'Lubricant.png',
-      'crafting_time' => 0,
       'product_type_id' => 3,
       'is_fluid'=>true
     ]));
