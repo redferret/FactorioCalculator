@@ -7,10 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class ProductionLine extends Model
 {
   protected $fillable = ['name', 'items_per_second', 'user_id', 'factory_id',
-    'consumer_requirement', 'assembly_count', 'seconds_per_item'];
+    'consumer_requirement', 'assembly_count', 'seconds_per_item', 'product_id'];
 
-  public function produces() {
-    return $this->hasOne(Product::class);
+  public function product() {
+    return $this->belongsTo(Product::class);
   }
 
   public function producerProductionLines() {

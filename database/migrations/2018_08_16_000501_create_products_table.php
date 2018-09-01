@@ -21,7 +21,6 @@ class CreateProductsTable extends Migration {
       $table->integer('product_type_id')->unsigned()->nullable();
       $table->float('hardness')->nullable();
 
-      $table->integer('production_line_id')->unsigned()->nullable();
       $table->integer('user_id')->unsigned()->nullable();
       $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
       $table->timestamps();

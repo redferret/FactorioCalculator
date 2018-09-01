@@ -14,7 +14,7 @@ class ProductController extends Controller {
   public function getAll() {
     $products = Auth::user()->products;
     foreach($products as $product) {
-      $product->productionLine;
+      $product->producedByProductionLines;
     }
     return $products;
   }

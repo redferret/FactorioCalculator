@@ -81,12 +81,12 @@ class BasicSeeder extends Seeder {
     $ironOre = $user->products()->where('name', 'Iron Ore')->first();
 
     // Connect a product with a production line
-    $copperWireProduction->produces()->save($copperWire);
-    $copperProduction->produces()->save($copperPlate);
-    $ironProduction->produces()->save($ironPlate);
-    $copperOreProduction->produces()->save($copperOre);
-    $ironOreProduction->produces()->save($ironOre);
-
+    $copperWire->producedByProductionLines()->save($copperWireProduction);
+    $copperPlate->producedByProductionLines()->save($copperProduction);
+    $ironPlate->producedByProductionLines()->save($ironProduction);
+    $copperOre->producedByProductionLines()->save($copperOreProduction);
+    $ironOre->producedByProductionLines()->save($ironOreProduction);
+    
     // Connect consumption needs to production lines
     $copperWireProduction->producerProductionLines()->save($copperProduction);
     $copperProduction->producerProductionLines()->save($copperOreProduction);

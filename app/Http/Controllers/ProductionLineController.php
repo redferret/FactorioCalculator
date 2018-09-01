@@ -30,7 +30,7 @@ class ProductionLineController extends Controller {
     $productionLine = Auth::user()->productionLines()->find($id);
     $inputProductionLines = $productionLine->producerProductionLines;
     foreach($inputProductionLines as $pl) {
-      $pl->produces;
+      $pl->product;
       $pl->producer;
       $pl->assembly_count = round($pl->assembly_count, 2);
       $pl->items_per_second = round($pl->items_per_second, 2);
@@ -40,7 +40,7 @@ class ProductionLineController extends Controller {
 
     $outputProductionLines = $productionLine->consumerProductionLines;
     foreach($outputProductionLines as $pl) {
-      $pl->produces;
+      $pl->product;
       $pl->producer;
       $pl->assembly_count = round($pl->assembly_count, 2);
       $pl->items_per_second = round($pl->items_per_second, 2);

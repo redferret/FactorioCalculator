@@ -7,13 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     protected $fillable = ['crafting_time', 'name', 'image_file', 'user_id',
-        'production_line_id', 'stock_size', 'hardness', 'product_type_id'];
+      'stock_size', 'hardness', 'product_type_id'];
 
     /**
-     * The production line that produces this product
+     * The production lines that produce this product
      */
-    public function productionLine() {
-      return $this->belongsTo(ProductionLine::class);
+    public function producedByProductionLines() {
+      return $this->hasMany(ProductionLine::class);
     }
 
     public function consumerProducts() {
