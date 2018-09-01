@@ -77,7 +77,7 @@ export default class ProductionLineDetails extends React.Component {
   }
 
   removeFromProduction(e) {
-    alert("Remove "+this.props.produces.name+" from Production " + this.props.produces.production_line_id);
+    alert("Remove "+this.props.product.name+" from Production " + this.props.product.production_line_id);
   }
 
   addProductToProduction(e) {
@@ -85,7 +85,7 @@ export default class ProductionLineDetails extends React.Component {
   }
 
   renderProductionDetails() {
-    if (this.props.produces !== null) {
+    if (this.props.product !== null) {
 
       let producerCountTitle = 'undefined';
       let madeWithTitle = 'undefined';
@@ -130,8 +130,8 @@ export default class ProductionLineDetails extends React.Component {
             <tbody>
               <tr>
                 <td>
-                  <img src={Router.route(IMAGE_ASSET, {fileName: this.props.produces.image_file})} />{' '}
-                  {this.props.produces.name}
+                  <img src={Router.route(IMAGE_ASSET, {fileName: this.props.product.image_file})} />{' '}
+                  {this.props.product.name}
                 </td>
                 <td>{this.props.assembly_count}</td>
                 <td>{itemsPerSecond}</td>

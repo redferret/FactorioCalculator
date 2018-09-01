@@ -64,7 +64,6 @@ export default class NewProductModal extends React.Component {
       <Modal
         show={this.state.show}
         onHide={this.handleHideModal}
-        bsSize='large'
         >
         <Modal.Header>
           <Modal.Title>
@@ -86,7 +85,7 @@ export default class NewProductModal extends React.Component {
             </Row>
             <Row>
               <Col md={3}>
-                
+
               </Col>
             </Row>
           </Grid>

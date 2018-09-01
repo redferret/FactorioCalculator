@@ -121,7 +121,7 @@ export default class EditProductionLineModal extends React.Component {
 
   renderProductDetails() {
     let producer = this.state.selectedProductionLine.producer;
-    let product = this.state.selectedProductionLine.produces;
+    let product = this.state.selectedProductionLine.product;
     let isMiner = this.state.selectedProductionLine.producer.producer_type === 0;
     let isInput = this.state.selectedProductionLine.production_line_id !== null;
     let productionId = this.state.selectedProductionLine.id;
@@ -205,17 +205,17 @@ export default class EditProductionLineModal extends React.Component {
         <div className='list-group'> {
           productionLines.map(productionLine => {
 
-            let produces = productionLine.produces;
+            let product = productionLine.product;
 
             return (
-              <div key={produces.id}>
+              <div key={product.id}>
                 <Label>Production Line: {productionLine.name}</Label>
                 <a
                 onClick={this.handleSelectProductionLine.bind(this,productionLine)}
                 className='list-group-item list-group-item-action'
                 >
-                  <img src={Router.route(IMAGE_ASSET, {fileName: produces.image_file})} />{' '}
-                  {produces.name}
+                  <img src={Router.route(IMAGE_ASSET, {fileName: product.image_file})} />{' '}
+                  {product.name}
                   <Table>
                     <thead><tr>
                       <th>Assemblers Needed</th>
@@ -231,7 +231,7 @@ export default class EditProductionLineModal extends React.Component {
                       </td>
                       <td>
                         <Input type='number' isStatic={true}
-                        initialValue={produces.crafting_time} />
+                        initialValue={product.crafting_time} />
                       </td>
                       <td>
                         <Input type='number' isStatic={true}
@@ -283,8 +283,8 @@ export default class EditProductionLineModal extends React.Component {
         >
         <Modal.Header>
           <Modal.Title>
-            <img src={Router.route(IMAGE_ASSET, {fileName: productionLine.produces.image_file})} />{' '}
-            {productionLine.produces.name}
+            <img src={Router.route(IMAGE_ASSET, {fileName: productionLine.product.image_file})} />{' '}
+            {productionLine.product.name}
           </Modal.Title>
         </Modal.Header>
 
