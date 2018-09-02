@@ -15,11 +15,7 @@ Actions.register(UPDATE_PRODUCT, payload => {
   fetch(Router.route(UPDATE_PRODUCT, {
     id: payload.data.id
   }),
-    Router.method('PUT', {
-      crafting_time: payload.data.values.crafting_time,
-      hardness: payload.data.values.hardness,
-      stock_size: payload.data.values.stock_size
-    })
+    Router.method('PUT', payload.data.values)
   ).then(response => {
     return response.json();
   }).then(data => {

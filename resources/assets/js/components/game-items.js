@@ -121,6 +121,7 @@ export default class GameItems extends React.Component {
   }
 
   handleSelectedProducer(producer) {
+    EditProducerModalStore.setProducer(producer);
     ModalsStore.showModal({
       id: EDIT_PRODUCER_MODAL_ID,
       store: EditProducerModalStore

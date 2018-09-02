@@ -24,7 +24,7 @@ import {
   GET_PRODUCTION_LINES,
   IMAGE_ASSET,
   MAIN_ID,
-  UPDATE_PRODUCER,
+  UPDATE_PRODUCTION_LINE_PRODUCER,
 } from '../../constants.js';
 
 export default class EditProductionLineModal extends React.Component {
@@ -82,9 +82,6 @@ export default class EditProductionLineModal extends React.Component {
   }
 
   handleHideProductModal() {
-    this.setState({
-      productionLineStack: []
-    });
     ModalsStore.hideModal();
   }
 
@@ -94,12 +91,14 @@ export default class EditProductionLineModal extends React.Component {
   }
 
   dispatchProducerChanged(event, productionLineId) {
+    let values = {};
+    values[event.target.name] = event.target.value;
+
     AppDispatcher.dispatch({
-      action: UPDATE_PRODUCER,
+      action: UPDATE_PRODUCTION_LINE_PRODUCER,
       data: {
-        productionLineId: productionLineId,
-        name: event.target.name,
-        value: event.target.value
+        id: productionLineId,
+        values: values
       },
       emitOn:[{
         store: EditProductionLineModalStore,

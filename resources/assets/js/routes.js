@@ -44,6 +44,9 @@ Router.registerRoute(Constants.UPDATE_FACTORY, args => {
 Router.registerRoute(Constants.UPDATE_PRODUCTION_LINE, args => {
   return ROOT + '/productionlines/'+args.id;
 });
+Router.registerRoute(Constants.UPDATE_PRODUCTION_LINE_PRODUCER, args => {
+  return ROOT + '/productionlines/'+args.id+'/producer';
+});
 Router.registerRoute(Constants.UPDATE_PRODUCT, args => {
   return ROOT + '/products/'+args.id;
 });

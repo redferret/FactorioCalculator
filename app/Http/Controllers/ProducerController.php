@@ -40,9 +40,8 @@ class ProducerController extends Controller {
    * @return \Illuminate\Http\Response
    */
   public function update(Request $request, $id) {
-    $productionLine = Auth::user()->productionLines()->find($id);
-    $producer = $productionLine->producer;
-    $producer->fill([$request->input('name')=>$request->input('value')]);
+    $producer = Auth::user()->producers()->find($id);
+    $producer->fill($request->all());
     $producer->save();
     return $producer;
   }

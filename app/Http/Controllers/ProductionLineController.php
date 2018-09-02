@@ -80,6 +80,15 @@ class ProductionLineController extends Controller {
     return array('factories'=>$this->recalculate($id), 'productionLine'=>$productionLine);
   }
 
+  public function updateProducer(Request $request, $id) {
+    $productionLine = Auth::user()->productionLines()->find($id);
+    $inputs = $request->all();
+    $producer = $productionLine->producer;
+    $producer->fill($inputs);
+    $producer->save();
+    return array($producer, $inputs);
+  }
+
   /**
    * Remove the specified resource from storage.
    *

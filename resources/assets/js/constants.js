@@ -46,8 +46,9 @@ export const RE_RENDER                    = 're-render';
 export const ROOT_URL                     = 'root-url';
 export const IMAGE_ASSET                  = 'image-file';
 
-export const UPDATE_FACTORY                 = 'update-factory';
-export const UPDATE_PRODUCER                = 'update-producer';
-export const UPDATE_PRODUCT                 = 'update-product';
-export const UPDATE_PRODUCT_TYPE            = 'update-product-type';
-export const UPDATE_PRODUCTION_LINE         = 'update-production-line';
+export const UPDATE_FACTORY                   = 'update-factory';
+export const UPDATE_PRODUCER                  = 'update-producer';
+export const UPDATE_PRODUCTION_LINE_PRODUCER  = 'update-production-line-producer';
+export const UPDATE_PRODUCT                   = 'update-product';
+export const UPDATE_PRODUCT_TYPE              = 'update-product-type';
+export const UPDATE_PRODUCTION_LINE           = 'update-production-line';

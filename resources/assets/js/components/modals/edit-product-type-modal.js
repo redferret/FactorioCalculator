@@ -49,6 +49,7 @@ export default class EditProductTypeModal extends React.Component {
   _onChange() {
     if (this._isMounted) {
       this.setState({
+        selectedProductType: EditProductTypeModalStore.getProductType(),
         show: ModalsStore.shouldShow()
       });
     }

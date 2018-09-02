@@ -1,31 +1,28 @@
-
 import Actions from './app-actions.js';
-import EditProductionLineModalStore from '../stores/edit-production-line-modal-store.js';
+import GameItemsStore from '../stores/game-items-store.js';
+import ModalsStore from '../stores/modals-store.js';
 import Router from '../router.js';
 
 import {
-  GET_PRODUCTION_LINE,
+  GET_PRODUCERS,
   UPDATE_PRODUCER,
 } from '../constants.js';
 
 Actions.register(UPDATE_PRODUCER, payload => {
   fetch(Router.route(UPDATE_PRODUCER, {
-    id: payload.data.productionLineId
+    id: payload.data.id
   }),
-    Router.method('PUT', {
-      name: payload.data.name,
-      value: payload.data.value
-    })
+    Router.method('PUT', payload.data.values)
   ).then(response => {
     return response.json();
   }).then(producer => {
-    return fetch(Router.route(GET_PRODUCTION_LINE, {
-      id: producer.production_line_id
-    }), Router.method('GET'));
+    // do something with producer
+    return fetch(Router.route(GET_PRODUCERS));
   }).then(response => {
     return response.json();
-  }).then(productionLine => {
-    EditProductionLineModalStore.setSelectedProductionLine(productionLine);
+  }).then(producers => {
+    GameItemsStore.setProducers(producers);
     Actions.finish(payload);
+    ModalsStore.hideModal();
   });
 });

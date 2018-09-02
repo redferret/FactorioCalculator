@@ -40,3 +40,4 @@ Route::get('/productionlines/{id}/balance', 'ProductionLineController@balance');
 Route::get('/productionlines/{id}/productionlines', 'ProductionLineController@getProductionLines');
 Route::post('/productionlines', 'ProductionLineController@store');
 Route::put('/productionlines/{id}', 'ProductionLineController@update');
+Route::put('/productionlines/{id}/producer', 'ProductionLineController@updateProducer');

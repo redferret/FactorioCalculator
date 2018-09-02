@@ -56,7 +56,8 @@ export default class EditProductModal extends React.Component {
   _onChange() {
     if (this._isMounted) {
       this.setState({
-        show: ModalsStore.shouldShow()
+        show: ModalsStore.shouldShow(),
+        selectedProduct: EditProductModalStore.getSelectedProduct()
       });
     }
   }
@@ -80,26 +81,10 @@ export default class EditProductModal extends React.Component {
   updateValues(event) {
     let value = event.target.value;
     let values = this.state.values;
-    switch(event.target.name) {
-      case 'crafting_time':
-        values.crafting_time = value;
-        this.setState({
-          values: values
-        });
-        break;
-      case 'hardness':
-        values.hardness = value;
-        this.setState({
-          values: values
-        });
-        break;
-      case 'stock_size':
-        values.stock_size = value;
-        this.setState({
-          values: values
-        });
-        break;
-    }
+    values[event.target.name] = value;
+    this.setState({
+      values: values
+    });
   }
 
   handleApplyProductChanges() {
