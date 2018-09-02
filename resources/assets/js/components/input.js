@@ -90,8 +90,8 @@ Input.defaultProps = {
   label: '',
   help: '',
   customStyle: {
-    'margin-left': 'auto',
-    'margin-right': 'auto'
+    'marginLeft': 'auto',
+    'marginRight': 'auto'
   },
   validationCallback: () => null,
   callback: () => {}
