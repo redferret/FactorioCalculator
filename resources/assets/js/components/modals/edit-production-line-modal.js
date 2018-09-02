@@ -288,13 +288,6 @@ export default class EditProductionLineModal extends React.Component {
 
         {this.renderModalBody()}
 
-        <Modal.Footer>
-          <ButtonToolbar>
-            <Button bsStyle='success'>Add Input</Button>
-            <Button bsStyle='primary'>Add Consumer</Button>
-            <Button onClick={this.handleHideProductModal}>Close</Button>
-          </ButtonToolbar>
-        </Modal.Footer>
       </Modal>
     );
   }

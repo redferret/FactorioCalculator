@@ -35,9 +35,8 @@ export default class ProductionLineDetails extends React.Component {
 
   constructor(props, context) {
     super(props, context);
-    this.addProductToProduction = this.addProductToProduction.bind(this);
     this.handleShowModal = this.handleShowModal.bind(this);
-    this.removeFromProduction = this.removeFromProduction.bind(this);
+    this.changeProduct = this.changeProduct.bind(this);
     this.itemsPerSecondChanged = this.itemsPerSecondChanged.bind(this);
   }
 
@@ -83,94 +82,80 @@ export default class ProductionLineDetails extends React.Component {
     }
   }
 
-  removeFromProduction(e) {
-    alert("Remove "+this.props.product.name+" from Production " + this.props.product.production_line_id);
+  changeProduct(e) {
+
   }
 
-  addProductToProduction(e) {
-    alert("Add Product to Production "+ this.props.id);
-  }
 
   renderProductionDetails() {
-    if (this.props.product !== null) {
-
-      let producerCountTitle = 'undefined';
-      let madeWithTitle = 'undefined';
-      switch(this.props.producer.producer_type) {
-        case 0:
-          producerCountTitle = 'Number of Miners';
-          madeWithTitle = 'Mined With';
-          break;
-        case 1:
-          producerCountTitle = 'Number of Assemblers';
-          madeWithTitle = 'Assembled In';
-          break;
-        case 2:
-          producerCountTitle = 'Number of Furnaces';
-          madeWithTitle = 'Smelted In';
-          break;
-        case 3:
-          producerCountTitle = 'Number of Pumpjacks';
-          madeWithTitle = 'Pumped with';
-      }
-
-      let inputValue = this.props.items_per_second;
-      let itemsPerSecond = this.props.is_output ?
-        <Input type='number' name='items_per_second'
-          callback={this.itemsPerSecondChanged}
-          initialValue={inputValue} /> :
-        <Input type='number' isStatic={true}
-          initialValue={inputValue} />;
-
-      return (
-        <div>
-          <Table>
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>{producerCountTitle}</th>
-                <th>Items Produced / Second</th>
-                <th>Items Consumed</th>
-                <th>Seconds Per Item</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
-                  <img src={Router.route(IMAGE_ASSET, {fileName: this.props.product.image_file})} />{' '}
-                  {this.props.product.name}
-                </td>
-                <td><Input initialValue={this.props.assembly_count} isStatic={true}/></td>
-                <td>{itemsPerSecond}</td>
-                <td>#</td>
-                <td><Input initialValue={this.props.seconds_per_item} isStatic={true}/></td>
-              </tr>
-            </tbody>
-          </Table>
-          <div className='made-in-container'>
-            <Row>
-              <Label>{madeWithTitle}</Label>
-            </Row>
-            <Row>
-              <img src={Router.route(IMAGE_ASSET, {fileName: this.props.producer.image_file})} />
-              {' ' + this.props.producer.name}
-            </Row>
-          </div>
-          <br/>
-          <ButtonToolbar>
-            <Button onClick={this.handleShowModal} bsStyle='primary' bsSize='small'>Select Production Line</Button>{' '}
-            <Button onClick={this.removeFromProduction} bsSize='small'>Remove Product from Production Line</Button>
-          </ButtonToolbar>
-        </div>
-      );
+    let producerCountTitle = 'undefined';
+    let madeWithTitle = 'undefined';
+    switch(this.props.producer.producer_type) {
+      case 0:
+        producerCountTitle = 'Number of Miners';
+        madeWithTitle = 'Mined With';
+        break;
+      case 1:
+        producerCountTitle = 'Number of Assemblers';
+        madeWithTitle = 'Assembled In';
+        break;
+      case 2:
+        producerCountTitle = 'Number of Furnaces';
+        madeWithTitle = 'Smelted In';
+        break;
+      case 3:
+        producerCountTitle = 'Number of Pumpjacks';
+        madeWithTitle = 'Pumped with';
     }
+
+    let inputValue = this.props.items_per_second;
+    let itemsPerSecond = this.props.is_output ?
+      <Input type='number' name='items_per_second'
+        callback={this.itemsPerSecondChanged}
+        initialValue={inputValue} /> :
+      <Input type='number' isStatic={true}
+        initialValue={inputValue} />;
 
     return (
       <div>
+        <Table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>{producerCountTitle}</th>
+              <th>Items Produced / Second</th>
+              <th>Items Consumed</th>
+              <th>Seconds Per Item</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <img src={Router.route(IMAGE_ASSET, {fileName: this.props.product.image_file})} />{' '}
+                {this.props.product.name}
+              </td>
+              <td><Input initialValue={this.props.assembly_count} isStatic={true}/></td>
+              <td>{itemsPerSecond}</td>
+              <td>#</td>
+              <td><Input initialValue={this.props.seconds_per_item} isStatic={true}/></td>
+            </tr>
+          </tbody>
+        </Table>
+        <div className='made-in-container'>
+          <Row>
+            <Label>{madeWithTitle}</Label>
+          </Row>
+          <Row>
+            <img src={Router.route(IMAGE_ASSET, {fileName: this.props.producer.image_file})} />
+            {' ' + this.props.producer.name}
+          </Row>
+        </div>
         <br/>
-        <Alert bsStyle='danger'>Produces Nothing, Select a Product for this Production Line</Alert>
         <ButtonToolbar>
-          <Button onClick={this.addProductToProduction} bsStyle='primary'>Add Product</Button>
+          <Button bsStyle='success'>Add Input</Button>
+          <Button bsStyle='primary'>Add Consumer</Button>
+          <Button onClick={this.handleShowModal} bsStyle='warning' bsSize='small'>Select Production Line</Button>{' '}
+          <Button onClick={this.changeProduct} bsSize='small'>Change Product</Button>
         </ButtonToolbar>
       </div>
     );
