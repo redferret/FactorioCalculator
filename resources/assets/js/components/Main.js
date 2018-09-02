@@ -93,8 +93,7 @@ class Main extends Component {
 
   render() {
     return (
-      <div>
-        <Well>
+      <div className='custom-main dark'>
           <PanelGroup
             accordion
             id='factory-panel-group'
@@ -118,7 +117,6 @@ class Main extends Component {
                 Add New Factory
             </Button>
           </ButtonToolbar>
-        </Well>
         <GameItems/>
       </div>
     );

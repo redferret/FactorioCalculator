@@ -10472,8 +10472,31 @@ a.text-dark:focus {
 }
 
 .navbar-laravel {
-  background-color: #fff;
+  background-color: transparent;
   -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
           box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+.custom-main {
+  display: block;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.made-in-container {
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 10px;
+}
+
+.dark {
+  background-color: #4c4c4c;
+}
+
+.steel-blue {
+  background-color: #647a93;
 }
 
