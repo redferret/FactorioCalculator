@@ -140,10 +140,10 @@ export default class ProductionLineDetails extends React.Component {
                   <img src={Router.route(IMAGE_ASSET, {fileName: this.props.product.image_file})} />{' '}
                   {this.props.product.name}
                 </td>
-                <td>{this.props.assembly_count}</td>
+                <td><Input initialValue={this.props.assembly_count} isStatic={true}/></td>
                 <td>{itemsPerSecond}</td>
                 <td>#</td>
-                <td>{this.props.seconds_per_item}</td>
+                <td><Input initialValue={this.props.seconds_per_item} isStatic={true}/></td>
               </tr>
             </tbody>
           </Table>
