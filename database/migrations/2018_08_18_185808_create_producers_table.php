@@ -18,7 +18,7 @@ class CreateProducersTable extends Migration {
       $table->string('image_file')->default('');
       $table->boolean('producer_type')->default(1);
       $table->float('speed')->default(0.5);
-      $table->float('power')->default(2);
+      $table->float('power')->nullable();
 
       $table->integer('user_id')->unsigned()->nullable();
       $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
