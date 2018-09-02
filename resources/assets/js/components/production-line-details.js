@@ -147,7 +147,7 @@ export default class ProductionLineDetails extends React.Component {
               </tr>
             </tbody>
           </Table>
-          <Grid>
+          <div className='made-in-container'>
             <Row>
               <Label>{madeWithTitle}</Label>
             </Row>
@@ -155,7 +155,7 @@ export default class ProductionLineDetails extends React.Component {
               <img src={Router.route(IMAGE_ASSET, {fileName: this.props.producer.image_file})} />
               {' ' + this.props.producer.name}
             </Row>
-          </Grid>
+          </div>
           <br/>
           <ButtonToolbar>
             <Button onClick={this.handleShowModal} bsStyle='primary' bsSize='small'>Select Production Line</Button>{' '}
