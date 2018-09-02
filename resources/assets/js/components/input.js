@@ -76,7 +76,7 @@ class Input extends React.Component {
           }}
           inputRef={(reference) => this.DOMRef = reference}
           value={this.state.value}
-          style={this.props.width}/>
+          style={this.props.customStyle}/>
         {helpBlock}
       </FormGroup>
     );
@@ -89,8 +89,9 @@ Input.defaultProps = {
   type: 'text',
   label: '',
   help: '',
-  width: {
-    'width': 'auto'
+  customStyle: {
+    'margin-left': 'auto',
+    'margin-right': 'auto'
   },
   validationCallback: () => null,
   callback: () => {}
