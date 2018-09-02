@@ -135,6 +135,7 @@ export default class GameItems extends React.Component {
   }
 
   handleSelectedProductType(productType) {
+    EditProductTypeModalStore.setProductType(productType);
     ModalsStore.showModal({
       id: EDIT_PRODUCT_TYPE_MODAL_ID,
       store: EditProductTypeModalStore
