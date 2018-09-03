@@ -78,13 +78,15 @@ class ModalsStore extends EventEmitter {
     this._currentModalId = modal.id;
     this._show = true;
 
-    AppDispatcher.dispatch({
-      action: RE_RENDER,
-      emitOn: [{
-        store: modal.store,
-        componentIds: [modal.id]
-      }]
-    });
+    if (modal.store) {
+      AppDispatcher.dispatch({
+        action: RE_RENDER,
+        emitOn: [{
+          store: modal.store,
+          componentIds: [modal.id]
+        }]
+      });
+    }
 
     this.emitChange(MODAL_ID);
   }

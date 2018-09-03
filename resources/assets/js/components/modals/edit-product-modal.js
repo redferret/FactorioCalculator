@@ -160,8 +160,7 @@ export class ModalFooter extends React.Component {
     });
     ModalsStore.hideModal();
     ModalsStore.showModal({
-      id: SPINNER_MODAL_ID,
-      store: ModalsStore
+      id: SPINNER_MODAL_ID
     });
   }
   render() {
