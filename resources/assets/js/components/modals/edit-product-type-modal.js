@@ -28,61 +28,59 @@ import {
   UPDATE_PRODUCT_TYPE,
 } from '../../constants.js';
 
-export default class EditProductTypeModal extends React.Component {
+export class ModalHeader extends React.Component {
+  render() {
+    let productType = EditProductTypeModalStore.getProductType();
+    return (
+      <Form inline>
+        <Input initialValue={productType.name} isStatic={true}
+          label={
+            <img src={Router.route(IMAGE_ASSET, {fileName: productType.image_file})} />
+          }
+        />
+      </Form>
+    )
+  }
+}
+
+export class ModalBody extends React.Component {
   constructor(props, context) {
     super(props, context);
-
-    this.handleHideModal = this.handleHideModal.bind(this);
-    this.handleApplyProductTypeChanges = this.handleApplyProductTypeChanges.bind(this);
     this.updateNameValue = this.updateNameValue.bind(this);
-
-    this._isMounted = false;
-
-    let productType = EditProductTypeModalStore.getProductType();
-    this.state = {
-      name: productType.name,
-      selectedProductType: productType,
-      show: ModalsStore.shouldShow()
-    }
-  }
-
-  _onChange() {
-    if (this._isMounted) {
-      this.setState({
-        selectedProductType: EditProductTypeModalStore.getProductType(),
-        show: ModalsStore.shouldShow()
-      });
-    }
-  }
-
-  componentDidMount() {
-    this._isMounted = true;
-    ModalsStore.on(EDIT_PRODUCT_TYPE_MODAL_ID, this._onChange.bind(this));
-    EditProductTypeModalStore.on(EDIT_PRODUCT_TYPE_MODAL_ID, this._onChange.bind(this));
-  }
-
-  componentWillUnmount() {
-    this._isMounted = false;
-    ModalsStore.removeListener(EDIT_PRODUCT_TYPE_MODAL_ID, this._onChange.bind(this));
-    EditProductTypeModalStore.removeListener(EDIT_PRODUCT_TYPE_MODAL_ID, this._onChange.bind(this));
-  }
-
-  handleHideModal() {
-    ModalsStore.hideModal();
   }
 
   updateNameValue(event) {
-    this.setState({
-      name: event.target.value
-    });
+    EditProductTypeModalStore.setProductTypeName(event.target.name);
+  }
+
+  render() {
+    let productType = EditProductTypeModalStore.getProductType();
+    return (
+      <Grid>
+        <Row>
+          <Col md={3}>
+            <Input type='text' name='name' initialValue={productType.name} label='Name'
+              callback={(event) => this.updateNameValue(event)}/>
+          </Col>
+        </Row>
+      </Grid>
+    )
+  }
+}
+
+export class ModalFooter extends React.Component {
+  constructor(props, context) {
+    super(props, context);
+    this.handleApplyProductTypeChanges = this.handleApplyProductTypeChanges.bind(this);
   }
 
   handleApplyProductTypeChanges() {
+    let productType = EditProductTypeModalStore.getProductType();
     AppDispatcher.dispatch({
       action: UPDATE_PRODUCT_TYPE,
       data: {
-        id: this.state.selectedProductType.id,
-        name: this.state.name
+        id: productType.id,
+        name: EditProductTypeModalStore.getProductTypeName()
       },
       emitOn: [{
         store: GameItemsStore,
@@ -91,48 +89,16 @@ export default class EditProductTypeModal extends React.Component {
     });
     ModalsStore.hideModal();
     ModalsStore.showModal({
-      id: SPINNER_MODAL_ID,
-      store: ModalsStore
+      id: SPINNER_MODAL_ID
     });
   }
 
   render() {
-    let productType = this.state.selectedProductType;
     return (
-      <Modal
-        show={this.state.show}
-        onHide={this.handleHideModal}
-        >
-        <Modal.Header>
-          <Modal.Title>
-            <Form inline>
-              <Input initialValue={productType.name} isStatic={true}
-                label={
-                  <img src={Router.route(IMAGE_ASSET, {fileName: productType.image_file})} />
-                }
-              />
-            </Form>
-          </Modal.Title>
-        </Modal.Header>
-
-        <Modal.Body>
-          <Grid>
-            <Row>
-              <Col md={3}>
-                <Input type='text' name='name' initialValue={productType.name} label='Name'
-                  callback={(event) => this.updateNameValue(event)}/>
-              </Col>
-            </Row>
-          </Grid>
-        </Modal.Body>
-
-        <Modal.Footer>
-          <ButtonToolbar>
-            <Button bsStyle='success' onClick={this.handleApplyProductTypeChanges}>Apply</Button>
-            <Button onClick={this.handleHideModal}>Cancel</Button>
-          </ButtonToolbar>
-        </Modal.Footer>
-      </Modal>
-    );
+      <ButtonToolbar>
+        <Button bsStyle='success' onClick={this.handleApplyProductTypeChanges}>Apply</Button>
+        <Button onClick={() => {ModalsStore.hideModal()}}>Cancel</Button>
+      </ButtonToolbar>
+    )
   }
 }

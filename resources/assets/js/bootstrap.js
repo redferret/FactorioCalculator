@@ -47,7 +47,7 @@ export const RootElement = document.getElementById('root');
 require('./util.js');
 require('./actions/action-repo.js');
 require('./routes.js');
-
+require('./components/modals/modals.js');
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
  * for events that are broadcast by Laravel. Echo and event broadcasting
