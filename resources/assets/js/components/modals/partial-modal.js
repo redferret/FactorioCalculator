@@ -9,6 +9,8 @@ export default class PartialModal extends React.Component {
     super(props, context);
 
     this.handleHideModal = this.handleHideModal.bind(this);
+    this.renderModalPartials = this.renderModalPartials.bind(this);
+
     this._isMounted = false;
 
     this.state = {
@@ -40,13 +42,9 @@ export default class PartialModal extends React.Component {
     ModalsStore.hideModal();
   }
 
-
-  render() {
+  renderModalPartials() {
     return (
-      <Modal
-        show={this.state.show}
-        onHide={this.handleHideModal}
-        >
+      <div>
         {this.state.modal.header?
           <Modal.Header>
             <Modal.Title>
@@ -66,7 +64,31 @@ export default class PartialModal extends React.Component {
             {this.state.modal.footer}
           </Modal.Footer> : ''
         }
+      </div>
+    )
+  }
+
+  render() {
+
+    if (this.state.modal.modalSize) {
+      return (
+        <Modal
+          show={this.state.show}
+          onHide={this.handleHideModal}
+          bsSize={this.state.modal.modalSize}
+          >
+          {this.renderModalPartials()}
+        </Modal>
+      )
+    }
+
+    return (
+      <Modal
+        show={this.state.show}
+        onHide={this.handleHideModal}
+        >
+        {this.renderModalPartials()}
       </Modal>
-    );
+    )
   }
 }
