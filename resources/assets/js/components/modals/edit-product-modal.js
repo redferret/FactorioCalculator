@@ -33,29 +33,8 @@ import {
 } from '../../constants.js';
 
 export class ModalHeader extends React.Component {
-  constructor(props, context) {
-    super(props, context);
-    this.state = {
-      product: EditProductModalStore.getSelectedProduct()
-    }
-  }
-  _onChange() {
-    if (this._isMounted) {
-      this.setState({
-        product: EditProductModalStore.getSelectedProduct()
-      })
-    }
-  }
-  componentDidMount() {
-    this._isMounted = true;
-    EditProductModalStore.on(EDIT_PRODUCT_MODAL_ID, this._onChange.bind(this));
-  }
-  componentWillUnmount() {
-    this._isMounted = false;
-    EditProductModalStore.removeListener(EDIT_PRODUCT_MODAL_ID, this._onChange.bind(this));
-  }
   render() {
-    let product = this.state.product;
+    let product = EditProductModalStore.getSelectedProduct();
     return (
       <Form inline>
         <Input initialValue={product.name} isStatic={true}
@@ -72,33 +51,17 @@ export class ModalBody extends React.Component {
   constructor(props, context) {
     super(props, context);
     this.updateValues = this.updateValues.bind(this);
-    this.state = {
-      product: EditProductModalStore.getSelectedProduct()
-    }
   }
-  _onChange() {
-    if (this._isMounted) {
-      this.setState({
-        product: EditProductModalStore.getSelectedProduct()
-      })
-    }
-  }
-  componentDidMount() {
-    this._isMounted = true;
-    EditProductModalStore.on(EDIT_PRODUCT_MODAL_ID, this._onChange.bind(this));
-  }
-  componentWillUnmount() {
-    this._isMounted = false;
-    EditProductModalStore.removeListener(EDIT_PRODUCT_MODAL_ID, this._onChange.bind(this));
-  }
+
   updateValues(event) {
     let value = event.target.value;
     let values = EditProductModalStore.getProductValues();
     values[event.target.name] = value;
     EditProductModalStore.setProductValues(values);
   }
+
   render() {
-    let product = this.state.product;
+    let product = EditProductModalStore.getSelectedProduct();
     return (
       <Grid>
         <Row>
@@ -124,30 +87,14 @@ export class ModalFooter extends React.Component {
   constructor(props, context) {
     super(props, context);
     this.handleApplyProductChanges = this.handleApplyProductChanges.bind(this);
-    this.state = {
-      product: EditProductModalStore.getSelectedProduct()
-    }
   }
-  _onChange() {
-    if (this._isMounted) {
-      this.setState({
-        product: EditProductModalStore.getSelectedProduct()
-      })
-    }
-  }
-  componentDidMount() {
-    this._isMounted = true;
-    EditProductModalStore.on(EDIT_PRODUCT_MODAL_ID, this._onChange.bind(this));
-  }
-  componentWillUnmount() {
-    this._isMounted = false;
-    EditProductModalStore.removeListener(EDIT_PRODUCT_MODAL_ID, this._onChange.bind(this));
-  }
+
   handleApplyProductChanges() {
+    let product = EditProductModalStore.getSelectedProduct();
     AppDispatcher.dispatch({
       action: UPDATE_PRODUCT,
       data: {
-        id: this.state.product.id,
+        id: product.id,
         values: EditProductModalStore.getProductValues()
       },
       emitOn: [{
@@ -163,6 +110,7 @@ export class ModalFooter extends React.Component {
       id: SPINNER_MODAL_ID
     });
   }
+
   render() {
     return (
       <ButtonToolbar>

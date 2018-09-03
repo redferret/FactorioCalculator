@@ -1,8 +1,8 @@
+import * as EditProducerModal from '../components/modals/edit-producer-modal.js';
 import * as EditProductModal from '../components/modals/edit-product-modal.js';
 import * as ModalSpinner from '../components/modals/modal-spinner.js';
 import AppDispatcher from '../dispatcher.js';
 import EditFactoryModal from '../components/modals/edit-factory-modal.js';
-import EditProducerModal from '../components/modals/edit-producer-modal.js';
 import EditProductionLineModal from '../components/modals/edit-production-line-modal.js';
 import EditProductTypeModal from '../components/modals/edit-product-type-modal.js';
 import MainStore from './main-store.js';
@@ -38,7 +38,13 @@ class ModalsStore extends EventEmitter {
     this._modals = new Map();
 
     // this._modals.set(EDIT_FACTORY_MODAL_ID, <EditFactoryModal/>);
-    // this._modals.set(EDIT_PRODUCER_MODAL_ID, <EditProducerModal/>);
+
+    this._modals.set(EDIT_PRODUCER_MODAL_ID, {
+      header: <EditProducerModal.ModalHeader/>,
+      body: <EditProducerModal.ModalBody/>,
+      footer: <EditProducerModal.ModalFooter/>,
+    });
+
     this._modals.set(EDIT_PRODUCT_MODAL_ID, {
       header: <EditProductModal.ModalHeader/>,
       body: <EditProductModal.ModalBody/>,
