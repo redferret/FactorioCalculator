@@ -21,6 +21,7 @@ import {
   EDIT_PRODUCT_TYPE_MODAL_ID,
   EDIT_PRODUCTION_LINE_MODAL_ID,
   MAIN_MODAL_CHANGE,
+  MODAL_ID,
   NEW_FACTORY_MODAL_ID,
   NEW_PRODUCER_MODAL_ID,
   NEW_PRODUCT_MODAL_ID,
@@ -85,12 +86,12 @@ class ModalsStore extends EventEmitter {
       }]
     });
 
-    this.emitChange('MODAL_ID');
+    this.emitChange(MODAL_ID);
   }
 
   hideModal() {
     this._show = false;
-    this.emitChange('MODAL_ID');
+    this.emitChange(MODAL_ID);
   }
 
   shouldShow() {

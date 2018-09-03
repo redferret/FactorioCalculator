@@ -2,9 +2,7 @@ import ModalsStore from '../../stores/modals-store.js';
 import React from 'react';
 
 import { Modal } from 'react-bootstrap';
-
-// import {
-// } from '../../constants.js';
+import { MODAL_ID } from '../../constants.js';
 
 export default class PartialModal extends React.Component {
   constructor(props, context) {
@@ -30,12 +28,12 @@ export default class PartialModal extends React.Component {
 
   componentDidMount() {
     this._isMounted = true;
-    ModalsStore.on('MODAL_ID', this._onChange.bind(this));
+    ModalsStore.on(MODAL_ID, this._onChange.bind(this));
   }
 
   componentWillUnmount() {
     this._isMounted = false;
-    ModalsStore.removeListener('MODAL_ID', this._onChange.bind(this));
+    ModalsStore.removeListener(MODAL_ID, this._onChange.bind(this));
   }
 
   handleHideModal() {

@@ -168,7 +168,7 @@ export class ModalFooter extends React.Component {
     return (
       <ButtonToolbar>
         <Button bsStyle='success' onClick={this.handleApplyProductChanges}>Apply</Button>
-        <Button onClick={this.handleHideModal}>Cancel</Button>
+        <Button onClick={() => {ModalsStore.hideModal();}}>Cancel</Button>
       </ButtonToolbar>
     )
   }
