@@ -6,6 +6,7 @@ import GameItems from './game-items.js';
 import MainStore from '../stores/main-store.js';
 import ModalsStore from '../stores/modals-store.js';
 import NewFactoryModalStore from '../stores/new-factory-modal-store.js';
+import PartialModal from './modals/partial-modal.js';
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
@@ -100,7 +101,7 @@ class Main extends Component {
             activeKey={this.state.factoryPanelActiveKey}
             onSelect={this.handleFactorySelect}
           >
-            {this.state.currentModal}
+            <PartialModal/>
             <div>
               <h3><Label bsStyle='primary'>Your Factories</Label></h3>
             </div>

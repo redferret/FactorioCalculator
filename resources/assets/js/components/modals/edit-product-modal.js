@@ -13,10 +13,11 @@ import {
   ButtonToolbar,
   Col,
   DropdownButton,
+  Form,
   Grid,
   Label,
   MenuItem,
-  Modal,Form,
+  Modal,
   Row,
   Table,
   Well,
@@ -31,68 +32,123 @@ import {
   SPINNER_MODAL_ID,
 } from '../../constants.js';
 
-export default class EditProductModal extends React.Component {
+export class ModalHeader extends React.Component {
   constructor(props, context) {
     super(props, context);
-
-    this.handleHideModal = this.handleHideModal.bind(this);
-    this.handleApplyProductChanges = this.handleApplyProductChanges.bind(this);
-    this.updateValues = this.updateValues.bind(this);
-
-    this._isMounted = false;
-    let selectedProduct = EditProductModalStore.getSelectedProduct();
-
     this.state = {
-      values: {
-        crafting_time: selectedProduct.crafting_time,
-        hardness: selectedProduct.hardness,
-        stock_size: selectedProduct.stock_size
-      },
-      show: ModalsStore.shouldShow(),
-      selectedProduct: selectedProduct
+      product: EditProductModalStore.getSelectedProduct()
     }
   }
-
   _onChange() {
     if (this._isMounted) {
       this.setState({
-        show: ModalsStore.shouldShow(),
-        selectedProduct: EditProductModalStore.getSelectedProduct()
-      });
+        product: EditProductModalStore.getSelectedProduct()
+      })
     }
   }
-
   componentDidMount() {
     this._isMounted = true;
-    ModalsStore.on(EDIT_PRODUCT_MODAL_ID, this._onChange.bind(this));
     EditProductModalStore.on(EDIT_PRODUCT_MODAL_ID, this._onChange.bind(this));
   }
-
   componentWillUnmount() {
     this._isMounted = false;
-    ModalsStore.removeListener(EDIT_PRODUCT_MODAL_ID, this._onChange.bind(this));
     EditProductModalStore.removeListener(EDIT_PRODUCT_MODAL_ID, this._onChange.bind(this));
   }
-
-  handleHideModal() {
-    ModalsStore.hideModal();
+  render() {
+    let product = this.state.product;
+    return (
+      <Form inline>
+        <Input initialValue={product.name} isStatic={true}
+          label={
+            <img src={Router.route(IMAGE_ASSET, {fileName: product.image_file})} />
+          }
+        />
+      </Form>
+    )
   }
+}
 
+export class ModalBody extends React.Component {
+  constructor(props, context) {
+    super(props, context);
+    this.updateValues = this.updateValues.bind(this);
+    this.state = {
+      product: EditProductModalStore.getSelectedProduct()
+    }
+  }
+  _onChange() {
+    if (this._isMounted) {
+      this.setState({
+        product: EditProductModalStore.getSelectedProduct()
+      })
+    }
+  }
+  componentDidMount() {
+    this._isMounted = true;
+    EditProductModalStore.on(EDIT_PRODUCT_MODAL_ID, this._onChange.bind(this));
+  }
+  componentWillUnmount() {
+    this._isMounted = false;
+    EditProductModalStore.removeListener(EDIT_PRODUCT_MODAL_ID, this._onChange.bind(this));
+  }
   updateValues(event) {
     let value = event.target.value;
-    let values = this.state.values;
+    let values = EditProductModalStore.getProductValues();
     values[event.target.name] = value;
-    this.setState({
-      values: values
-    });
+    EditProductModalStore.setProductValues(values);
   }
+  render() {
+    let product = this.state.product;
+    return (
+      <Grid>
+        <Row>
+          <Col md={3}>
+            <Input type='number' name='crafting_time' initialValue={product.crafting_time} label='Crafting Time'
+              callback={(event) => this.updateValues(event)}/>
+            <Input type='number' name='stock_size' initialValue={product.stock_size} label='Stock Size'
+              callback={(event) => this.updateValues(event)}/>
+          </Col>
+          <Col>
+            {product.hardness?
+              <Input type='number' name='hardness' initialValue={product.hardness} label='Hardness'
+                callback={(event) => this.updateValues(event)}/>: ''
+            }
+          </Col>
+        </Row>
+      </Grid>
+    )
+  }
+}
 
+export class ModalFooter extends React.Component {
+  constructor(props, context) {
+    super(props, context);
+    this.handleApplyProductChanges = this.handleApplyProductChanges.bind(this);
+    this.state = {
+      product: EditProductModalStore.getSelectedProduct()
+    }
+  }
+  _onChange() {
+    if (this._isMounted) {
+      this.setState({
+        product: EditProductModalStore.getSelectedProduct()
+      })
+    }
+  }
+  componentDidMount() {
+    this._isMounted = true;
+    EditProductModalStore.on(EDIT_PRODUCT_MODAL_ID, this._onChange.bind(this));
+  }
+  componentWillUnmount() {
+    this._isMounted = false;
+    EditProductModalStore.removeListener(EDIT_PRODUCT_MODAL_ID, this._onChange.bind(this));
+  }
   handleApplyProductChanges() {
     AppDispatcher.dispatch({
       action: UPDATE_PRODUCT,
       data: {
-        id: this.state.selectedProduct.id,
-        values: this.state.values
+        id: this.state.product.id,
+        values: EditProductModalStore.getProductValues()
       },
       emitOn: [{
         store: FactoryStore,
@@ -108,52 +164,12 @@ export default class EditProductModal extends React.Component {
       store: ModalsStore
     });
   }
-
   render() {
-    let product = this.state.selectedProduct;
     return (
-      <Modal
-        show={this.state.show}
-        onHide={this.handleHideModal}
-        >
-        <Modal.Header>
-          <Modal.Title>
-            <Form inline>
-              <Input initialValue={product.name} isStatic={true}
-                label={
-                  <img src={Router.route(IMAGE_ASSET, {fileName: product.image_file})} />
-                }
-              />
-            </Form>
-          </Modal.Title>
-        </Modal.Header>
-
-        <Modal.Body>
-          <Grid>
-            <Row>
-              <Col md={3}>
-                <Input type='number' name='crafting_time' initialValue={product.crafting_time} label='Crafting Time'
-                  callback={(event) => this.updateValues(event)}/>
-                <Input type='number' name='stock_size' initialValue={product.stock_size} label='Stock Size'
-                  callback={(event) => this.updateValues(event)}/>
-              </Col>
-              <Col>
-                {product.hardness?
-                  <Input type='number' name='hardness' initialValue={product.hardness} label='Hardness'
-                    callback={(event) => this.updateValues(event)}/>: ''
-                }
-              </Col>
-            </Row>
-          </Grid>
-        </Modal.Body>
-
-        <Modal.Footer>
-          <ButtonToolbar>
-            <Button bsStyle='success' onClick={this.handleApplyProductChanges}>Apply</Button>
-            <Button onClick={this.handleHideModal}>Cancel</Button>
-          </ButtonToolbar>
-        </Modal.Footer>
-      </Modal>
-    );
+      <ButtonToolbar>
+        <Button bsStyle='success' onClick={this.handleApplyProductChanges}>Apply</Button>
+        <Button onClick={this.handleHideModal}>Cancel</Button>
+      </ButtonToolbar>
+    )
   }
 }
