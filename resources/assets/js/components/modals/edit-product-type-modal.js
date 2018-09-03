@@ -50,7 +50,7 @@ export class ModalBody extends React.Component {
   }
 
   updateNameValue(event) {
-    EditProductTypeModalStore.setProductTypeName(event.target.name);
+    EditProductTypeModalStore.setProductTypeName(event.target.value);
   }
 
   render() {
