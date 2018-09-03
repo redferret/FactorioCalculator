@@ -8,16 +8,18 @@ import {
   RE_RENDER,
 } from '../constants.js';
 
+const EMPTY_MODAL = {
+  header: <div>No Modal Defined</div>,
+  body: <div>Contact Support</div>,
+  footer: null
+}
+
 class ModalsStore extends EventEmitter {
   constructor() {
     super();
 
     this._currentModalId = 'no-id';
-    this._currentModal = {
-      header: null,
-      body: null,
-      footer: null
-    };
+    this._currentModal = EMPTY_MODAL;
     this._show = false;
   }
 
@@ -57,7 +59,11 @@ class ModalsStore extends EventEmitter {
   }
 
   getCurrentModal() {
-    return this._currentModal;
+    if (this._currentModal) {
+      return this._currentModal;
+    } else {
+      return EMPTY_MODAL;
+    }
   }
 
   emitChange(id) {
