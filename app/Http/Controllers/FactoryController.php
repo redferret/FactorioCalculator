@@ -16,6 +16,24 @@ class FactoryController extends Controller {
     return Utility::getAllFactories();
   }
 
+  public function getFactory($id) {
+    $factory = Auth::user()->factories()->find($id);
+    $totalItems = 0;
+    foreach($factory->productionLines as $productionLine) {
+      Utility::update($productionLine);
+      // If this production line is an output
+      if ($productionLine->consumerProductionLines()->first() == null) {
+        $totalItems += $productionLine->items_per_second;
+        $productionLine->is_output = true;
+      } else {
+        $productionLine->is_output = false;
+      }
+    }
+    $factory->total_items = round($totalItems);
+
+    return $factory;
+  }
+
   /**
    * Store a newly created resource in storage.
    *
@@ -40,7 +58,7 @@ class FactoryController extends Controller {
     if ($factory != null) {
       $factory->fill($request->all());
       $factory->save();
-      return $factory;
+      return $this->getFactory($id);
     }
     return array('response'=>'Factory Not Found: id='.$id);
   }

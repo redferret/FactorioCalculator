@@ -1,7 +1,8 @@
 import AppDispatcher from '../../dispatcher.js';
+import EditFactoryModalStore from '../../stores/edit-factory-modal-store.js';
+import FactoryStore from '../../stores/factory-store.js';
 import Input from '../input.js';
 import ModalsStore from '../../stores/modals-store.js';
-import EditFactoryModalStore from '../../stores/edit-factory-modal-store.js';
 import React from 'react';
 
 import {
@@ -16,67 +17,64 @@ import {
 
 import {
   EDIT_FACTORY_MODAL_ID,
+  FACTORY_PANEL_,
+  UPDATE_FACTORY,
+  SPINNER_MODAL_ID,
 } from '../../constants.js';
 
-export default class EditFactoryModal extends React.Component {
+export class ModalHeader extends React.Component {
+  render() {
+    let factory = EditFactoryModalStore.getFactory();
+    return (
+      <div>{factory.name}</div>
+    )
+  }
+}
+
+export class ModalBody extends React.Component {
   constructor(props, context) {
     super(props, context);
-
-    this.handleHideModal = this.handleHideModal.bind(this);
-    this._isMounted = false;
-    this.state = {
-      show: ModalsStore.shouldShow()
-    }
+    this.handleFactoryNameChange = this.handleFactoryNameChange.bind(this);
   }
 
-  _onChange() {
-    if (this._isMounted) {
-      this.setState({
-        show: ModalsStore.shouldShow()
-      });
-    }
+  handleFactoryNameChange(event) {
+    EditFactoryModalStore.setFactoryName(event.target.value);
   }
 
-  componentDidMount() {
-    this._isMounted = true;
-    ModalsStore.on(EDIT_FACTORY_MODAL_ID, this._onChange.bind(this));
-    EditFactoryModalStore.on(EDIT_FACTORY_MODAL_ID, this._onChange.bind(this));
+  render() {
+    let factory = EditFactoryModalStore.getFactory();
+    return (
+      <Input name='name' type='text' label='Factory Name' initialValue={factory.name}
+        callback={(event) => this.handleFactoryNameChange(event)} />
+    )
   }
+}
 
-  componentWillUnmount() {
-    this._isMounted = false;
-    ModalsStore.removeListener(EDIT_FACTORY_MODAL_ID, this._onChange.bind(this));
-    EditFactoryModalStore.removeListener(EDIT_FACTORY_MODAL_ID, this._onChange.bind(this));
-  }
+export class ModalFooter extends React.Component {
 
-  handleHideModal() {
+  handleApplyChanges() {
     ModalsStore.hideModal();
+    ModalsStore.showModal({id: SPINNER_MODAL_ID});
+    let factory = EditFactoryModalStore.getFactory();
+    AppDispatcher.dispatch({
+      action: UPDATE_FACTORY,
+      data: {
+        id: factory.id,
+        name: EditFactoryModalStore.getFactoryName()
+      },
+      emitOn: [{
+        store: FactoryStore,
+        componentIds: [FACTORY_PANEL_ + factory.id]
+      }]
+    });
   }
 
   render() {
     return (
-      <Modal
-        show={this.state.show}
-        onHide={this.handleHideModal}
-        bsSize='large'
-        >
-        <Modal.Header>
-          <Modal.Title>
-            Edit Factory
-          </Modal.Title>
-        </Modal.Header>
-
-        <Modal.Body>
-          Modal Body
-        </Modal.Body>
-
-        <Modal.Footer>
-          <ButtonToolbar>
-            <Button bsStyle='success'>Apply</Button>
-            <Button onClick={this.handleHideModal}>Cancel</Button>
-          </ButtonToolbar>
-        </Modal.Footer>
-      </Modal>
-    );
+      <ButtonToolbar>
+        <Button onClick={this.handleApplyChanges}>Apply</Button>
+        <Button onClick={() => ModalsStore.hideModal()}>Cancel</Button>
+      </ButtonToolbar>
+    )
   }
 }

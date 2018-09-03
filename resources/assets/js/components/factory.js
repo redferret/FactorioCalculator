@@ -1,11 +1,11 @@
 import AppDispatcher from '../dispatcher.js';
-import FactoryStore from '../stores/factory-store.js';
+import EditFactoryModal from './modals/edit-factory-modal.js';
 import EditFactoryModalStore from '../stores/edit-factory-modal-store.js';
+import FactoryStore from '../stores/factory-store.js';
 import MainStore from '../stores/main-store.js';
 import ModalsStore from '../stores/modals-store.js';
-import NewProductionLineModalStore from '../stores/new-production-line-modal-store.js';
 import NewProductionLineModal from './modals/new-production-line-modal.js';
-import EditFactoryModal from './modals/edit-factory-modal.js';
+import NewProductionLineModalStore from '../stores/new-production-line-modal-store.js';
 import ProductionLineDetails from './production-line-details.js';
 import React from 'react';
 
@@ -80,6 +80,7 @@ export default class Factory extends React.Component {
   };
 
   handleSelectFactory() {
+    EditFactoryModalStore.setFactory(this.state.factory);
     ModalsStore.showModal({
       id: EDIT_FACTORY_MODAL_ID,
       store: EditFactoryModalStore

@@ -8,6 +8,17 @@ class FactoryStore extends EventEmitter {
     this._factories = [];
   }
 
+  setFactory(factory) {
+    let index = this._factories.findIndex(test => {
+      return factory.id == test.id;
+    });
+    if (index < 0) {
+      this._factories.unshift(factory);
+    } else {
+      this._factories[index] = factory;
+    }
+  }
+
   setFactories(factories) {
     this._factories = factories;
   }

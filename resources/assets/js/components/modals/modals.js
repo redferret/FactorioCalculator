@@ -1,11 +1,10 @@
 
+import * as EditFactoryModal from './edit-factory-modal.js';
 import * as EditProducerModal from './edit-producer-modal.js';
 import * as EditProductionLineModal from './edit-production-line-modal.js';
 import * as EditProductModal from './edit-product-modal.js';
 import * as EditProductTypeModal from './edit-product-type-modal.js';
 import * as ModalSpinner from './modal-spinner.js';
-
-import EditFactoryModal from './edit-factory-modal.js';
 
 import MainStore from '../../stores/main-store.js';
 import ModalsRepository from '../../stores/modals-repository.js'
@@ -31,7 +30,11 @@ import {
   SPINNER_MODAL_ID,
 } from '../../constants.js';
 
-// ModalsRepository.registerModal(EDIT_FACTORY_MODAL_ID, <EditFactoryModal/>);
+ModalsRepository.registerModal(EDIT_FACTORY_MODAL_ID, {
+  header: <EditFactoryModal.ModalHeader/>,
+  body: <EditFactoryModal.ModalBody/>,
+  footer: <EditFactoryModal.ModalFooter/>,
+});
 
 ModalsRepository.registerModal(EDIT_PRODUCER_MODAL_ID, {
   header: <EditProducerModal.ModalHeader/>,
