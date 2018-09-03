@@ -27,67 +27,91 @@ import {
   UPDATE_PRODUCTION_LINE_PRODUCER,
 } from '../../constants.js';
 
-export default class EditProductionLineModal extends React.Component {
+
+export class ModalHeader extends React.Component {
 
   constructor(props, context) {
     super(props, context);
-
-    this.renderModalBody = this.renderModalBody.bind(this);
-    this.handleHideProductModal = this.handleHideProductModal.bind(this);
-    this.dispatchProducerChanged = this.dispatchProducerChanged.bind(this);
-
     this._isMounted = false;
-
     this.state = {
-      selectedProductionLine: EditProductionLineModalStore.getSelectedProductionLine(),
-      show: ModalsStore.shouldShow()
+      productionLine: EditProductionLineModalStore.getSelectedProductionLine()
     }
   }
 
-  /**
-   * When the modal store emits a change on
-   */
   _onChange() {
-    if (this._isMounted) {
+    if(this._isMounted) {
       this.setState({
-        selectedProductionLine: EditProductionLineModalStore.getSelectedProductionLine(),
-        show: ModalsStore.shouldShow()
+        productionLine: EditProductionLineModalStore.getSelectedProductionLine()
       });
     }
   }
 
-  _fetchProductionLines(id) {
+  componentDidMount() {
+    EditProductionLineModalStore.on(EDIT_PRODUCTION_LINE_MODAL_ID, this._onChange.bind(this));
+    this._isMounted = true;
+  }
+
+  componentWillUnmount() {
+    EditProductionLineModalStore.removeListener(EDIT_PRODUCTION_LINE_MODAL_ID, this._onChange.bind(this));
+    this._isMounted = false;
+  }
+
+  render() {
+    let productionLine = this.state.productionLine;
+    return (
+      <div>
+        <img src={Router.route(IMAGE_ASSET, {fileName: productionLine.product.image_file})} />{' '}
+        {productionLine.product.name}
+      </div>
+    )
+  }
+}
+
+export class ModalBody extends React.Component {
+
+  constructor(props, context) {
+    super(props, context);
+
+    this.dispatchProducerChanged = this.dispatchProducerChanged.bind(this);
+    this.handleSelectProductionLine = this.handleSelectProductionLine.bind(this);
+
+    this._isMounted = false;
+
+    this.state = {
+      productionLine: EditProductionLineModalStore.getSelectedProductionLine()
+    }
+  }
+
+  _onChange() {
+    if(this._isMounted) {
+      this.setState({
+        productionLine: EditProductionLineModalStore.getSelectedProductionLine()
+      });
+    }
+  }
+
+  componentDidMount() {
+    EditProductionLineModalStore.on(EDIT_PRODUCTION_LINE_MODAL_ID, this._onChange.bind(this));
+    this._isMounted = true;
+  }
+
+  componentWillUnmount() {
+    EditProductionLineModalStore.removeListener(EDIT_PRODUCTION_LINE_MODAL_ID, this._onChange.bind(this));
+    this._isMounted = false;
+  }
+
+  handleSelectProductionLine(productionLine) {
+    EditProductionLineModalStore.setSelectedProductionLine(productionLine);
     AppDispatcher.dispatch({
       action: GET_PRODUCTION_LINES,
       data: {
-        id: id
+        id: productionLine.id
       },
       emitOn: [{
         store: EditProductionLineModalStore,
         componentIds: [EDIT_PRODUCTION_LINE_MODAL_ID]
       }]
     });
-  }
-
-  componentDidMount() {
-    this._isMounted = true;
-    ModalsStore.on(EDIT_PRODUCTION_LINE_MODAL_ID, this._onChange.bind(this));
-    EditProductionLineModalStore.on(EDIT_PRODUCTION_LINE_MODAL_ID, this._onChange.bind(this));
-  }
-
-  componentWillUnmount() {
-    this._isMounted = false;
-    ModalsStore.removeListener(EDIT_PRODUCTION_LINE_MODAL_ID, this._onChange.bind(this));
-    EditProductionLineModalStore.removeListener(EDIT_PRODUCTION_LINE_MODAL_ID, this._onChange.bind(this));
-  }
-
-  handleHideProductModal() {
-    ModalsStore.hideModal();
-  }
-
-  handleSelectProductionLine(productionLine) {
-    EditProductionLineModalStore.setSelectedProductionLine(productionLine);
-    this._fetchProductionLines(productionLine.id);
   }
 
   dispatchProducerChanged(event, productionLineId) {
@@ -119,11 +143,11 @@ export default class EditProductionLineModal extends React.Component {
   }
 
   renderProductDetails() {
-    let producer = this.state.selectedProductionLine.producer;
-    let product = this.state.selectedProductionLine.product;
+    let productionLine = this.state.productionLine;
+    let producer = productionLine.producer;
+    let product = productionLine.product;
     let isMiner = producer.producer_type === 0;
-    let isInput = this.state.selectedProductionLine.production_line_id !== null;
-    let productionId = this.state.selectedProductionLine.id;
+    let id = productionLine.id;
 
     if (isMiner) {
       return (
@@ -148,12 +172,12 @@ export default class EditProductionLineModal extends React.Component {
             </td>
             <td>
               <Input type='number' name='speed'
-              callback={(event) => this.dispatchProducerChanged(event, productionId)}
+              callback={(event) => this.dispatchProducerChanged(event, id)}
               initialValue={producer.speed} />
             </td>
             <td>
               <Input type='number' name='power'
-              callback={(event) => this.dispatchProducerChanged(event, productionId)}
+              callback={(event) => this.dispatchProducerChanged(event, id)}
               initialValue={producer.power} />
             </td>
             <td>
@@ -186,7 +210,7 @@ export default class EditProductionLineModal extends React.Component {
             </td>
             <td>
               <Input type='number' name='speed'
-              callback={(event) => this.dispatchProducerChanged(event, productionId)}
+              callback={(event) => this.dispatchProducerChanged(event, id)}
               initialValue={producer.speed} />
             </td>
             <td>Not Implemented Yet</td>
@@ -198,7 +222,6 @@ export default class EditProductionLineModal extends React.Component {
   }
 
   renderProductionLines(productionLines) {
-
     return (
       <Well>
         <div className='list-group'> {
@@ -209,7 +232,7 @@ export default class EditProductionLineModal extends React.Component {
               <div key={product.id}>
                 <Label>Production Line: {productionLine.name}</Label>
                 <a
-                onClick={this.handleSelectProductionLine.bind(this,productionLine)}
+                onClick={() => this.handleSelectProductionLine(productionLine)}
                 className='list-group-item list-group-item-action'
                 >
                   <img src={Router.route(IMAGE_ASSET, {fileName: product.image_file})} />{' '}
@@ -248,7 +271,7 @@ export default class EditProductionLineModal extends React.Component {
     );
   }
 
-  renderModalBody() {
+  render() {
     let inputProductionLines = EditProductionLineModalStore.getInputProductionLines();
     let outputProductionLines = EditProductionLineModalStore.getOutputProductionLines();
 
@@ -268,27 +291,6 @@ export default class EditProductionLineModal extends React.Component {
         <h4><Label bsStyle='success'>Production Inputs</Label></h4>
         {inputElements}
       </Modal.Body>
-    );
-  }
-
-  render() {
-    let productionLine = this.state.selectedProductionLine;
-    return (
-      <Modal
-        show={this.state.show}
-        onHide={this.handleHideProductModal}
-        bsSize='large'
-        >
-        <Modal.Header>
-          <Modal.Title>
-            <img src={Router.route(IMAGE_ASSET, {fileName: productionLine.product.image_file})} />{' '}
-            {productionLine.product.name}
-          </Modal.Title>
-        </Modal.Header>
-
-        {this.renderModalBody()}
-
-      </Modal>
     );
   }
 }

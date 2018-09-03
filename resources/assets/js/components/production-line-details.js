@@ -27,6 +27,7 @@ import {
   IMAGE_ASSET,
   MAIN_ID,
   MAIN_MODAL_CHANGE,
+  MODAL_ID,
   UPDATE_PRODUCTION_LINE,
   SPINNER_MODAL_ID
 } from '../constants.js';
@@ -49,11 +50,8 @@ export default class ProductionLineDetails extends React.Component {
         id: this.props.id
       },
       emitOn: [{
-        store: MainStore,
-        componentIds: [MAIN_MODAL_CHANGE]
-      }, {
-        store: EditProductionLineModalStore,
-        componentIds: [EDIT_PRODUCTION_LINE_MODAL_ID]
+        store: ModalsStore,
+        componentIds: [MODAL_ID]
       }]
     });
   }
@@ -61,8 +59,7 @@ export default class ProductionLineDetails extends React.Component {
   itemsPerSecondChanged(event) {
     if (this.props.items_per_second != event.target.value) {
       ModalsStore.showModal({
-        id: SPINNER_MODAL_ID,
-        store: ModalsStore
+        id: SPINNER_MODAL_ID
       });
       AppDispatcher.dispatch({
         action: UPDATE_PRODUCTION_LINE,
