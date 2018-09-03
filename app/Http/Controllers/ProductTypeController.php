@@ -16,6 +16,7 @@ class ProductTypeController extends Controller {
     foreach($productTypes as $type) {
       foreach($type->products as $product) {
         $product->producedByProductionLines;
+        $product->consumerProducts;
       }
       $type->sorted_products = collect($type->products)->sortBy('name')->values()->all();
     }

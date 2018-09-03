@@ -117,7 +117,7 @@ export class ModalBody extends React.Component {
   dispatchProducerChanged(event, productionLineId) {
     let values = {};
     values[event.target.name] = event.target.value;
-
+    let productionLine = EditProductionLineModalStore.getSelectedProductionLine();
     AppDispatcher.dispatch({
       action: UPDATE_PRODUCTION_LINE_PRODUCER,
       data: {
@@ -137,7 +137,7 @@ export class ModalBody extends React.Component {
         componentIds: [MAIN_ID]
       }, {
         store: FactoryStore,
-        componentIds: [FACTORY_PANEL_ + this.state.selectedProductionLine.factory_id]
+        componentIds: [FACTORY_PANEL_ + productionLine.factory_id]
       }]
     });
   }

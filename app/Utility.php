@@ -35,8 +35,9 @@ class Utility {
    */
   public static function update($productionLine) {
     $producer = $productionLine->producer;
-    $productionLine->product->producedByProductionLines;
     $product = $productionLine->product;
+    $product->consumerProducts;
+    $product->producedByProductionLines;
 
     $seconds_per_item = $product->crafting_time / $producer->speed;
     $numberOfAssemblers = ($productionLine->items_per_second * $seconds_per_item) / $product->stock_size;
@@ -74,8 +75,9 @@ class Utility {
     }
 
     $productionLine->items_per_second = $items_per_second;
-    $productionLine->product->producedByProductionLines;
     $product = $productionLine->product;
+    $product->consumerProducts;
+    $product->producedByProductionLines;
     $producer = $productionLine->producer;
 
     $seconds_per_item = $product->crafting_time / $producer->speed;
