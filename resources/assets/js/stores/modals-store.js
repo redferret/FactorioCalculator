@@ -10,7 +10,7 @@ import {
 
 const EMPTY_MODAL = {
   header: <div>No Modal Defined</div>,
-  body: <div>Contact Support</div>,
+  body: null,
   footer: null
 }
 

@@ -94,30 +94,31 @@ class Main extends Component {
 
   render() {
     return (
-      <div className='custom-main dark'>
-          <PanelGroup
-            accordion
-            id='factory-panel-group'
-            activeKey={this.state.factoryPanelActiveKey}
-            onSelect={this.handleFactorySelect}
-          >
-            <PartialModal/>
-            <div>
-              <h3><Label bsStyle='primary'>Your Factories</Label></h3>
-            </div>
-            {this.state.factories.map(factory =>
-              <Factory
-                key={factory.id}
-                eventKey={factory.id}
-                id={factory.id}
-              />
-            )}
-          </PanelGroup>
-          <ButtonToolbar>
-            <Button bsStyle='primary' onClick={this.handleNewFactory}>
-                Add New Factory
-            </Button>
-          </ButtonToolbar>
+      <div>
+        <PanelGroup
+          accordion
+          id='factory-panel-group'
+          activeKey={this.state.factoryPanelActiveKey}
+          onSelect={this.handleFactorySelect}
+        >
+          <PartialModal/>
+          <div>
+            <h3><Label bsStyle='primary'>Your Factories</Label></h3>
+          </div>
+          {this.state.factories.map(factory =>
+            <Factory
+              key={factory.id}
+              eventKey={factory.id}
+              id={factory.id}
+            />
+          )}
+        </PanelGroup>
+        <ButtonToolbar>
+          <Button bsStyle='primary' onClick={this.handleNewFactory}>
+              Add New Factory
+          </Button>
+        </ButtonToolbar>
+        <br/>
         <GameItems/>
       </div>
     );

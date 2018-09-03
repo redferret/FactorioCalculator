@@ -14,7 +14,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
-    <link href="{{ asset('css/app.css') }}" media="all" rel="stylesheet" type="text/css" />
+    <!-- <link href="{{ asset('css/app.css') }}" media="all" rel="stylesheet" type="text/css" /> -->
 
     <!-- Fonts -->
     <!-- <link rel="dns-prefetch" href="https://fonts.gstatic.com">
@@ -24,7 +24,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
   </head>
-  <body class="custom-main dark">
+  <body>
     <div>
       <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
         <div class="container">
