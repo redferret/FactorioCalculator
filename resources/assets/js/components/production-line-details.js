@@ -151,8 +151,8 @@ export default class ProductionLineDetails extends React.Component {
         <ButtonToolbar>
           <Button bsStyle='success'>Add Input</Button>
           <Button bsStyle='primary'>Add Consumer</Button>
-          <Button onClick={this.handleShowModal} bsStyle='warning' bsSize='small'>Select Production Line</Button>{' '}
-          <Button onClick={this.changeProduct} bsSize='small'>Change Product</Button>
+          <Button onClick={this.handleShowModal} bsStyle='warning'>Select Production Line</Button>{' '}
+          <Button onClick={this.changeProduct}>Change Product</Button>
         </ButtonToolbar>
       </div>
     );

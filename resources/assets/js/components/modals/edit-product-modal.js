@@ -71,9 +71,10 @@ export class ModalBody extends React.Component {
             <Input type='number' name='stock_size' initialValue={product.stock_size} label='Stock Size'
               callback={(event) => this.updateValues(event)}/>
           </Col>
-          <Col>
+          <Col md={3}>
             {product.hardness?
               <Input type='number' name='hardness' initialValue={product.hardness} label='Hardness'
+                help='Setting to 0 will remove this property'
                 callback={(event) => this.updateValues(event)}/>: ''
             }
           </Col>
