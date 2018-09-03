@@ -57,7 +57,7 @@ ModalsRepository.registerModal(EDIT_PRODUCT_TYPE_MODAL_ID, {
 ModalsRepository.registerModal(EDIT_PRODUCTION_LINE_MODAL_ID, {
   header: <EditProductionLineModal.ModalHeader/>,
   body: <EditProductionLineModal.ModalBody/>,
-  footer: null,
+  footer: <EditProductionLineModal.ModalFooter/>,
   modalSize: 'large'
 });
 

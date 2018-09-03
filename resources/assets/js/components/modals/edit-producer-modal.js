@@ -113,10 +113,15 @@ export class ModalFooter extends React.Component {
     });
   }
 
+  handleDeleteProducer() {
+
+  }
+
   render() {
     return (
       <ButtonToolbar>
         <Button bsStyle='success' onClick={this.handleApplyProducerChanges}>Apply</Button>
+        <Button bsStyle='danger' onClick={this.handleDeleteProducer}>Delete Producer</Button>
         <Button onClick={() => {ModalsStore.hideModal()}}>Cancel</Button>
       </ButtonToolbar>
     )

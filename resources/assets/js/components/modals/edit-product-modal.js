@@ -112,10 +112,24 @@ export class ModalFooter extends React.Component {
     });
   }
 
+  handleDeleteProduct() {
+    let product = EditProductModalStore.getSelectedProduct();
+    let confirmDelete = confirm("Are you sure you want to delete '" + product.name + "'?");
+    if (confirmDelete) {
+      if (product.produced_by_production_lines.length > 0) {
+        alert("You cannot delete this product if it's being produced by one or more production lines. " +
+        "Remove this product from all production lines to delete this product");
+      } else {
+        // delete product
+      }
+    }
+  }
+
   render() {
     return (
       <ButtonToolbar>
         <Button bsStyle='success' onClick={this.handleApplyProductChanges}>Apply</Button>
+        <Button bsStyle='danger' onClick={this.handleDeleteProduct}>Delete Product</Button>
         <Button onClick={() => {ModalsStore.hideModal();}}>Cancel</Button>
       </ButtonToolbar>
     )

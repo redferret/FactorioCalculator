@@ -35,6 +35,7 @@ class Utility {
    */
   public static function update($productionLine) {
     $producer = $productionLine->producer;
+    $productionLine->product->producedByProductionLines;
     $product = $productionLine->product;
 
     $seconds_per_item = $product->crafting_time / $producer->speed;
@@ -73,7 +74,7 @@ class Utility {
     }
 
     $productionLine->items_per_second = $items_per_second;
-
+    $productionLine->product->producedByProductionLines;
     $product = $productionLine->product;
     $producer = $productionLine->producer;
 

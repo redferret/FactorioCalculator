@@ -294,3 +294,18 @@ export class ModalBody extends React.Component {
     );
   }
 }
+
+export class ModalFooter extends React.Component {
+
+  handleDeleteProductionLine() {
+
+  }
+
+  render() {
+    return (
+      <ButtonToolbar>
+        <Button bsStyle='danger' onClick={this.handleDeleteProductionLine}>Delete Production Line</Button>
+      </ButtonToolbar>
+    )
+  }
+}
