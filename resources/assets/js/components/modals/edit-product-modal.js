@@ -118,7 +118,7 @@ export class ModalFooter extends React.Component {
     if (confirmDelete) {
       if (product.produced_by_production_lines.length > 0) {
         alert("You cannot delete this product if it's being produced by one or more production lines. " +
-        "Remove this product from all production lines to delete this product");
+        "Remove this product from all production lines to delete it.");
       } else {
         // delete product
       }
