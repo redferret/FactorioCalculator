@@ -19,11 +19,8 @@ import {
 
 import {
   EDIT_PRODUCTION_LINE_MODAL_ID,
-  FACTORY_PANEL_,
-  GET_FACTORIES,
   GET_PRODUCTION_LINES,
   IMAGE_ASSET,
-  MAIN_ID,
   UPDATE_PRODUCTION_LINE_PRODUCER,
 } from '../../constants.js';
 
@@ -72,7 +69,6 @@ export class ModalBody extends React.Component {
   constructor(props, context) {
     super(props, context);
 
-    this.dispatchProducerChanged = this.dispatchProducerChanged.bind(this);
     this.handleSelectProductionLine = this.handleSelectProductionLine.bind(this);
 
     this._isMounted = false;
@@ -114,36 +110,8 @@ export class ModalBody extends React.Component {
     });
   }
 
-  dispatchProducerChanged(event, productionLineId) {
-    let values = {};
-    values[event.target.name] = event.target.value;
-    let productionLine = EditProductionLineModalStore.getSelectedProductionLine();
-    AppDispatcher.dispatch({
-      action: UPDATE_PRODUCTION_LINE_PRODUCER,
-      data: {
-        id: productionLineId,
-        values: values
-      },
-      emitOn:[{
-        store: EditProductionLineModalStore,
-        componentIds: [EDIT_PRODUCTION_LINE_MODAL_ID]
-      }]
-    });
-
-    AppDispatcher.dispatch({
-      action: GET_FACTORIES,
-      emitOn: [{
-        store: MainStore,
-        componentIds: [MAIN_ID]
-      }, {
-        store: FactoryStore,
-        componentIds: [FACTORY_PANEL_ + productionLine.factory_id]
-      }]
-    });
-  }
-
   renderProductDetails() {
-    let productionLine = this.state.productionLine;
+    let productionLine = EditProductionLineModalStore.getSelectedProductionLine();
     let producer = productionLine.producer;
     let product = productionLine.product;
     let isMiner = producer.producer_type === 0;
@@ -155,8 +123,6 @@ export class ModalBody extends React.Component {
           <thead><tr>
             <th>Crafting Time Per Item</th>
             <th>Stock Count</th>
-            <th>Miner(s) Speed</th>
-            <th>Miner(s) Power</th>
             <th>Item Hardness</th>
             <th>Actual Production (Items/Sec)</th>
             <th>Surplus/Deficit (Items/Sec)</th>
@@ -169,16 +135,6 @@ export class ModalBody extends React.Component {
             <td>
               <Input type='number' isStatic={true}
               initialValue={product.stock_size} />
-            </td>
-            <td>
-              <Input type='number' name='speed'
-              callback={(event) => this.dispatchProducerChanged(event, id)}
-              initialValue={producer.speed} />
-            </td>
-            <td>
-              <Input type='number' name='power'
-              callback={(event) => this.dispatchProducerChanged(event, id)}
-              initialValue={producer.power} />
             </td>
             <td>
               <Input type='number' isStatic={true}
@@ -195,7 +151,6 @@ export class ModalBody extends React.Component {
           <thead><tr>
             <th>Crafting Time Per Item</th>
             <th>Stock Count</th>
-            <th>{producer.name}(s) Speed</th>
             <th>Actual Production (Items/Sec)</th>
             <th>Surplus/Deficit (Items/Sec)</th>
           </tr></thead>
@@ -207,11 +162,6 @@ export class ModalBody extends React.Component {
             <td>
               <Input type='number' isStatic={true}
               initialValue={product.stock_size} />
-            </td>
-            <td>
-              <Input type='number' name='speed'
-              callback={(event) => this.dispatchProducerChanged(event, id)}
-              initialValue={producer.speed} />
             </td>
             <td>Not Implemented Yet</td>
             <td>Not Implemented Yet</td>

@@ -10,10 +10,7 @@ Actions.register(UPDATE_PRODUCTION_LINE, payload => {
   fetch(Router.route(UPDATE_PRODUCTION_LINE, {
     id: payload.data.productionLineId
   }),
-    Router.method('PUT', {
-      name: payload.data.name,
-      value: payload.data.value
-    })
+    Router.method('PUT', payload.data.values)
   ).then(response => {
     return response.json();
   }).then(data => {

@@ -1,10 +1,12 @@
 
 import Actions from './app-actions.js';
 import EditProductionLineModalStore from '../stores/edit-production-line-modal-store.js';
+import FactoryStore from '../stores/factory-store.js';
+import ModalsStore from '../stores/modals-store.js';
 import Router from '../router.js';
 
 import {
-  GET_PRODUCTION_LINE,
+  GET_FACTORIES,
   UPDATE_PRODUCTION_LINE_PRODUCER,
 } from '../constants.js';
 
@@ -17,13 +19,12 @@ Actions.register(UPDATE_PRODUCTION_LINE_PRODUCER, payload => {
     return response.json();
   }).then(producer => {
     // do something with producer
-    return fetch(Router.route(GET_PRODUCTION_LINE, {
-      id: payload.data.id
-    }));
+    return fetch(Router.route(GET_FACTORIES));
   }).then(response => {
     return response.json();
-  }).then(productionLine => {
-    EditProductionLineModalStore.setSelectedProductionLine(productionLine);
+  }).then(factories => {
+    FactoryStore.setFactories(factories);
     Actions.finish(payload);
+    ModalsStore.hideModal();
   });
 });
