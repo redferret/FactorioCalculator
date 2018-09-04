@@ -31,6 +31,7 @@ class ProductionLineController extends Controller {
     $inputProductionLines = $productionLine->producerProductionLines;
     foreach($inputProductionLines as $pl) {
       $pl->product;
+      $pl->product->consumerProducts;
       $pl->producer;
       $pl->assembly_count = round($pl->assembly_count, 2);
       $pl->items_per_second = round($pl->items_per_second, 2);
@@ -41,6 +42,7 @@ class ProductionLineController extends Controller {
     $outputProductionLines = $productionLine->consumerProductionLines;
     foreach($outputProductionLines as $pl) {
       $pl->product;
+      $pl->product->consumerProducts;
       $pl->producer;
       $pl->assembly_count = round($pl->assembly_count, 2);
       $pl->items_per_second = round($pl->items_per_second, 2);
@@ -75,7 +77,7 @@ class ProductionLineController extends Controller {
    */
   public function update(Request $request, $id) {
     $productionLine = Auth::user()->productionLines()->find($id);
-    $productionLine->fill([$request->input('name') => $request->input('value')]);
+    $productionLine->fill($request->all());
     $productionLine->save();
     return array('factories'=>$this->recalculate($id), 'productionLine'=>$productionLine);
   }

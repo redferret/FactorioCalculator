@@ -58,7 +58,7 @@ class Utility {
   }
 
   /**
-   *
+   * (Mining power - Mining hardness) * Mining speed / Mining time
    * @param type $productionLine
    * @return type
    */
@@ -68,17 +68,33 @@ class Utility {
       throw new Exception("Production line '".$productionLine->name."' must be an input");
     }
 
-    $items_per_second = 0;
-
-    foreach($productionLine->consumerProductionLines as $consumer) {
-      $items_per_second += ($consumer->consumer_requirement / $consumer->seconds_per_item) * $consumer->assembly_count;
-    }
-
-    $productionLine->items_per_second = $items_per_second;
     $product = $productionLine->product;
     $product->consumerProducts;
     $product->producedByProductionLines;
     $producer = $productionLine->producer;
+
+    $items_per_second = 0;
+
+    // if ($producer->producer_type == 0) {
+    //
+    // } else {
+    //
+    // }
+    foreach($productionLine->consumerProductionLines as $consumerProductionLine) {
+      $consumerProduct = $consumerProductionLine->product;
+      $consumerProducts = $consumerProduct->consumerProducts;
+
+      $index = $consumerProducts->search(function ($consumerProductRef, $key) use ($product) {
+        return $consumerProductRef->product_id == $product->id;
+      });
+
+      $requiredConsumerProduct = $consumerProducts[$index];
+      $consumerRequirement = $requiredConsumerProduct->consumer_requirement;
+
+      $items_per_second += ($consumerRequirement / $consumerProductionLine->seconds_per_item) * $consumerProductionLine->assembly_count;
+    }
+
+    $productionLine->items_per_second = $items_per_second;
 
     $seconds_per_item = $product->crafting_time / $producer->speed;
     $numberOfAssemblers = ($productionLine->items_per_second * $seconds_per_item) / $product->stock_size;

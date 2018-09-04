@@ -21,6 +21,7 @@ class CreateProductsTable extends Migration {
       $table->string('name')->default('New Product');
 
       $table->increments('id');
+      $table->integer('consumer_product_id')->unsigned()->nullable();
       $table->integer('product_type_id')->unsigned()->nullable();
       $table->integer('user_id')->unsigned()->nullable();
       $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

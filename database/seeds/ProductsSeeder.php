@@ -50,7 +50,11 @@ class ProductsSeeder extends Seeder {
       'stock_size' => 1,
       'product_type_id' => 3
     ]));
-    $copperPlate->consumerProducts()->save($copperOre);
+    $copperPlateRequirement = App\ConsumerProduct::create([
+      'consumer_requirement' => 1
+    ]);
+    $copperPlateRequirement->requiredProduct()->save($copperOre);
+    $copperPlate->consumerProducts()->save($copperPlateRequirement);
 
     $copperWire = $user->products()->save(App\Product::create([
       'name' => 'Copper Cable',
@@ -59,7 +63,11 @@ class ProductsSeeder extends Seeder {
       'stock_size' => 2,
       'product_type_id' => 3
     ]));
-    $copperWire->consumerProducts()->save($copperPlate);
+    $copperWireRequirement = App\ConsumerProduct::create([
+      'consumer_requirement' => 1
+    ]);
+    $copperWireRequirement->requiredProduct()->save($copperPlate);
+    $copperWire->consumerProducts()->save($copperWireRequirement);
 
     $ironPlate = $user->products()->save(App\Product::create([
       'name' => 'Iron Plate',
@@ -68,7 +76,11 @@ class ProductsSeeder extends Seeder {
       'stock_size' => 1,
       'product_type_id' => 3
     ]));
-    $ironPlate->consumerProducts()->save($ironOre);
+    $ironPlateRequirement = App\ConsumerProduct::create([
+      'consumer_requirement' => 1
+    ]);
+    $ironPlateRequirement->requiredProduct()->save($ironOre);
+    $ironPlate->consumerProducts()->save($ironPlateRequirement);
 
     $uraniumOre = $user->products()->save(App\Product::create([
       'name' => 'Uranium Ore',
