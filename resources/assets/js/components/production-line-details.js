@@ -238,6 +238,7 @@ export default class ProductionLineDetails extends React.Component {
           <Button bsStyle='primary'>Add Consumer</Button>
           <Button onClick={this.handleShowModal} bsStyle='warning'>Select Production Line</Button>{' '}
           <Button onClick={this.changeProduct}>Change Product</Button>
+          <Button>Change Producer</Button>
         </ButtonToolbar>
       </div>
     );
