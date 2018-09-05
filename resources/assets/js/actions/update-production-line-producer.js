@@ -17,7 +17,7 @@ Actions.register(UPDATE_PRODUCTION_LINE_PRODUCER, payload => {
     Router.method('PUT', payload.data.values)
   ).then(response => {
     return response.json();
-  }).then(producer => {
+  }).then(productionLine => {
     // do something with producer
     return fetch(Router.route(GET_FACTORIES));
   }).then(response => {

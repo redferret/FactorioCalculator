@@ -4,7 +4,10 @@ import FactoryStore from '../stores/factory-store.js';
 import ModalsStore from '../stores/modals-store.js';
 import Router from '../router.js';
 
-import { UPDATE_PRODUCTION_LINE } from '../constants.js';
+import {
+  UPDATE_PRODUCTION_LINE,
+  GET_FACTORIES,
+} from '../constants.js';
 
 Actions.register(UPDATE_PRODUCTION_LINE, payload => {
   fetch(Router.route(UPDATE_PRODUCTION_LINE, {
@@ -14,8 +17,12 @@ Actions.register(UPDATE_PRODUCTION_LINE, payload => {
   ).then(response => {
     return response.json();
   }).then(data => {
-    FactoryStore.setFactories(data.factories);
+    return fetch(Router.route(GET_FACTORIES));
+  }).then(response => {
+    return response.json();
+  }).then(factories => {
+    FactoryStore.setFactories(factories);
     Actions.finish(payload);
     ModalsStore.hideModal();
-  })
+  });
 });

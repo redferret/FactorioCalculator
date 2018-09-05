@@ -8,6 +8,7 @@ import Router from '../router.js';
 import {
   GET_FACTORIES,
   GET_PRODUCT_TYPES,
+  RE_CALCULATE_PRODUCTION_LINES,
   UPDATE_PRODUCT,
 } from '../constants.js';
 
@@ -17,6 +18,10 @@ Actions.register(UPDATE_PRODUCT, payload => {
   }),
     Router.method('PUT', payload.data.values)
   ).then(response => {
+    return response.json();
+  }).then(data => {
+    return fetch(Router.route(RE_CALCULATE_PRODUCTION_LINES));
+  }).then(response => {
     return response.json();
   }).then(data => {
     return fetch(Router.route(GET_FACTORIES));
