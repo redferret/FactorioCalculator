@@ -1,82 +1,139 @@
 import AppDispatcher from '../../dispatcher.js';
 import Input from '../input.js';
+import GameItemsStore from '../../stores/game-items-store.js';
 import ModalsStore from '../../stores/modals-store.js';
 import NewProductionLineModalStore from '../../stores/new-production-line-modal-store.js';
+import ItemTable from '../item-table.js';
 import React from 'react';
+import Router from '../../router.js';
+import TabbedItems from '../tabbed-items.js';
 
 import {
-  Alert,
   Button,
   ButtonToolbar,
+  Col,
+  Grid,
   Label,
-  Modal,
-  Table,
-  Well,
+  Nav,
+  NavItem,
+  Row,
+  Tab,
 } from 'react-bootstrap';
 
 import {
   NEW_PRODUCTION_LINE_MODAL_ID,
+  SPINNER_MODAL_ID,
+  IMAGE_ASSET,
 } from '../../constants.js';
 
-export default class NewProductionLineModal extends React.Component {
+export class ModalHeader extends React.Component {
+  render() {
+    return (
+      <div>New Production Line</div>
+    )
+  }
+}
+
+export class ModalBody extends React.Component {
+  constructor(props, context) {
+    super(props, context);
+    this.handleNameChange = this.handleNameChange.bind(this);
+    this.handleItemsPerSecondChange = this.handleItemsPerSecondChange.bind(this);
+    this.handleReselectProduct = this.handleReselectProduct.bind(this);
+    this.handleProductSelect = this.handleProductSelect.bind(this);
+    this.state = {
+      selectedProduct: null
+    }
+  }
+
+  handleProductSelect(product) {
+    NewProductionLineModalStore.setProduct(product);
+    this.setState({
+      selectedProduct: NewProductionLineModalStore.getProduct()
+    });
+  }
+
+  handleNameChange(event) {
+    NewProductionLineModalStore.setName(event.target.value);
+  }
+
+  handleItemsPerSecondChange(event) {
+    NewProductionLineModalStore.setItemsPerSecond(event.target.value);
+  }
+
+  handleReselectProduct() {
+    NewProductionLineModalStore.setProduct(null);
+    this.setState({
+      selectedProduct: null
+    })
+  }
+
+  render() {
+    let selectedProduct = this.state.selectedProduct;
+    let productTypes = GameItemsStore.getProductTypes();
+    return (
+      <Grid>
+        <Row>
+          <Col md={3}>
+            <Input name='name' type='text' label='Production Line Name'
+              callback={(event)=>this.handleNameChange(event)}/>
+            <Input name='items_per_second' type='number' label='Initial Items Per Second'
+              callback={(event)=>this.handleItemsPerSecondChange(event)}/>
+          </Col>
+        </Row>
+        <Row>
+          <Col md={10}>
+            {selectedProduct == null?
+              <div>
+                Select a product that will be produced
+                <TabbedItems tabs={productTypes}
+                  tabCallback={(productType) =>
+                    <div>
+                      <h4><Label>{productType.name}</Label></h4>
+                      <img src={Router.route(IMAGE_ASSET, {fileName:productType.image_file})}/>
+                    </div>
+                  }
+                  tabContentCallback={(productType) =>
+                    <ItemTable items={productType.sorted_products} rowLength={3}
+                      onClickCallback={this.handleProductSelect}
+                      itemCallback={(product) =>
+                        <div>
+                          <img src={Router.route(IMAGE_ASSET, {fileName: product.image_file})} />{' '}
+                          {product.name}
+                        </div>
+                      }/>
+                  }/>
+              </div>
+               :
+              <div>
+                Selected Product to be Produced:
+                <img src={Router.route(IMAGE_ASSET, {fileName: selectedProduct.image_file})} />
+                {selectedProduct.name}
+                <ButtonToolbar>
+                  <Button onClick={this.handleReselectProduct}>Change Selected Product</Button>
+                </ButtonToolbar>
+              </div>
+            }
+
+          </Col>
+        </Row>
+      </Grid>
+    )
+  }
+}
+
+export class ModalFooter extends React.Component {
   constructor(props, context) {
     super(props, context);
 
-    this.handleHideModal = this.handleHideModal.bind(this);
-    this._isMounted = false;
-    this.state = {
-      show: ModalsStore.shouldShow()
-    }
-  }
-
-  _onChange() {
-    if (this._isMounted) {
-      this.setState({
-        show: ModalsStore.shouldShow()
-      });
-    }
-  }
-
-  componentDidMount() {
-    this._isMounted = true;
-    ModalsStore.on(NEW_PRODUCTION_LINE_MODAL_ID, this._onChange.bind(this));
-    NewProductionLineModalStore.on(NEW_PRODUCTION_LINE_MODAL_ID, this._onChange.bind(this));
-  }
-
-  componentWillUnmount() {
-    this._isMounted = false;
-    ModalsStore.removeListener(NEW_PRODUCTION_LINE_MODAL_ID, this._onChange.bind(this));
-    NewProductionLineModalStore.removeListener(NEW_PRODUCTION_LINE_MODAL_ID, this._onChange.bind(this));
-  }
-
-  handleHideModal() {
-    ModalsStore.hideModal();
   }
 
   render() {
     return (
-      <Modal
-        show={this.state.show}
-        onHide={this.handleHideModal}
-        bsSize='large'
-        >
-        <Modal.Header>
-          <Modal.Title>
-            New Production Line
-          </Modal.Title>
-        </Modal.Header>
-
-        <Modal.Body>
-          Modal Body
-        </Modal.Body>
-
-        <Modal.Footer>
-          <ButtonToolbar>
-            <Button bsStyle='success'>Add Production Line</Button>
-            <Button onClick={this.handleHideModal}>Cancel</Button>
-          </ButtonToolbar>
-        </Modal.Footer>
-      </Modal>
-    );
+      <ButtonToolbar>
+        <Button bsStyle='success'>Add Production Line</Button>
+        <Button onClick={() => ModalsStore.hideModal()}>Cancel</Button>
+      </ButtonToolbar>
+    )
   }
 }
