@@ -43,6 +43,14 @@ class Input extends React.Component {
     })
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (!this.props.isStatic) {
+      this.setState({
+        value: nextProps.initialValue
+      });
+    }
+  }
+
   render() {
 
     let validationState = this.state.isValid;
