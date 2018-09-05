@@ -8,6 +8,7 @@ import ModalsStore from '../stores/modals-store.js';
 import NewProducerModalStore from '../stores/new-producer-modal-store.js';
 import NewProductModalStore from '../stores/new-product-modal-store.js';
 import NewProductTypeModalStore from '../stores/new-product-type-modal-store.js';
+import ItemTable from './item-table.js';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Router from '../router.js';
@@ -151,42 +152,6 @@ export default class GameItems extends React.Component {
     });
   }
 
-  renderProductList(productType) {
-    var length = productType.sorted_products.length
-    if (length > 0) {
-      var rowLength = 7;
-      var columns = Math.ceil(length / rowLength);
-      var reversedRows = [];
-      var rows = [];
-      for (var c = 0; c < columns; c++) {
-        reversedRows.unshift(productType.sorted_products.slice(c*rowLength, Math.min(length, (c*rowLength) + rowLength)));
-      }
-      for (var i = 0; i < columns; i++) {
-        rows.unshift(reversedRows.shift());
-      }
-
-      return (
-        <Well><table><tbody>
-          {rows.map((row, index) =>
-            <tr key={index}>
-              {row.map(product =>
-                <td key={product.id}>
-                  <Button bsStyle='link' onClick={() => this.handleSelectedProduct(product)}>
-                    <img src={Router.route(IMAGE_ASSET, {fileName: product.image_file})} />{' '}
-                    {product.name}
-                  </Button>
-                </td>
-              )}
-            </tr>
-          )}
-        </tbody></table></Well>
-      );
-    }
-    return (
-      <Alert bsStyle='warning'>No Products</Alert>
-    )
-  }
-
   renderProducersList() {
     var length = this.state.producers.length
     if (length > 0) {
@@ -264,7 +229,13 @@ export default class GameItems extends React.Component {
                           </Panel.Title>
                         </Panel.Heading>
                         <Panel.Body collapsible>
-                          {this.renderProductList(productType)}
+                          <ItemTable items={productType.sorted_products} rowLength={10} onClickCallback={this.handleSelectedProduct}
+                            itemCallback={(product) =>
+                              <div>
+                                <img src={Router.route(IMAGE_ASSET, {fileName: product.image_file})} />{' '}
+                                {product.name}
+                              </div>
+                            }/>
                           <ButtonToolbar>
                             <Button onClick={this.handleNewProductSelect} bsStyle='primary'>
                               Add Product
