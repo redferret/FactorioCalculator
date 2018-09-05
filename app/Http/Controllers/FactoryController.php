@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Utility;
 use Auth;
 use Illuminate\Http\Request;
 
@@ -13,14 +12,32 @@ class FactoryController extends Controller {
   }
 
   public function getAll() {
-    return Utility::getAllFactories();
+    $factories = Auth::user()->factories;
+    foreach($factories as $factory) {
+      $totalItems = 0;
+      $productionLines = $factory->productionLines;
+      foreach($productionLines as $productionLine) {
+        if ($productionLine->consumerProductionLines()->first() == null) {
+          $totalItems += $productionLine->items_per_second;
+          $productionLine->is_output = true;
+        } else {
+          $productionLine->is_output = false;
+        }
+        $productionLine->producer;
+        $product = $productionLine->product;
+        $product->consumerProducts;
+        $product->producedByProductionLines;
+      }
+      $factory->total_items = round($totalItems);
+    }
+
+    return $factories;
   }
 
   public function getFactory($id) {
     $factory = Auth::user()->factories()->find($id);
     $totalItems = 0;
     foreach($factory->productionLines as $productionLine) {
-      Utility::update($productionLine);
       // If this production line is an output
       if ($productionLine->consumerProductionLines()->first() == null) {
         $totalItems += $productionLine->items_per_second;
@@ -28,6 +45,10 @@ class FactoryController extends Controller {
       } else {
         $productionLine->is_output = false;
       }
+      $productionLine->producer;
+      $product = $productionLine->product;
+      $product->consumerProducts;
+      $product->producedByProductionLines;
     }
     $factory->total_items = round($totalItems);
 
