@@ -10,7 +10,6 @@ export const EDIT_PRODUCTION_LINE_MODAL_ID  = 'edit-production-line-modal-id';
 export const FACTORY_PANEL_                 = 'factory-panel-';
 export const GAME_ITEMS_ID                  = 'game-items-id';
 export const MAIN_ID                        = 'main-id';
-export const MAIN_MODAL_CHANGE              = 'main-modal-change';
 export const MODAL_ID                       = 'modal-id';
 export const NEW_FACTORY_MODAL_ID           = 'new-factory-modal-id';
 export const NEW_PRODUCER_MODAL_ID          = 'new-producer-modal-id';
@@ -20,7 +19,7 @@ export const NEW_PRODUCTION_LINE_MODAL_ID   = 'new-production-line-modal-id';
 export const PRODUCTION_LINE_ID             = 'production-line_';
 export const SPINNER_MODAL_ID               = 'spinner-modal-id';
 
-// Constants for Actions
+// Constants for Actions and Routes
 export const ADD_FACTORY                  = 'add-factory';
 export const ADD_PRODUCER                 = 'add-producer';
 export const ADD_PRODUCT                  = 'add-product';
@@ -41,10 +40,12 @@ export const GET_PRODUCTION_LINES         = 'get-production-lines';
 export const GET_PRODUCTS                 = 'get-products';
 export const GET_PRODUCT_TYPES            = 'get-product-types';
 
-export const LOAD_FACTORY                 = 'load-factory';
-export const RE_RENDER                    = 're-render';
-export const ROOT_URL                     = 'root-url';
-export const IMAGE_ASSET                  = 'image-file';
+export const LOAD_FACTORY                   = 'load-factory';
+export const RE_RENDER                      = 're-render';
+export const RE_CALCULATE_PRODUCTION_LINES  = 'recalculate'
+export const ROOT_URL                       = 'root-url';
+export const IMAGE_ASSET                    = 'image-file';
+export const INITIAL_APP_LOAD               = 'initial-app-load';
 
 export const UPDATE_FACTORY                   = 'update-factory';
 export const UPDATE_PRODUCER                  = 'update-producer';

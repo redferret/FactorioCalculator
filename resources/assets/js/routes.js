@@ -14,6 +14,13 @@ Router.registerRoute(Constants.IMAGE_ASSET, args => {
 });
 
 /**
+ * Special Routes
+ */
+Router.registerRoute(Constants.RE_CALCULATE_PRODUCTION_LINES, args => {
+  return ROOT + '/productionlines/recalculate';
+});
+
+/**
  * Routes for getting data
  */
 Router.registerRoute(Constants.GET_FACTORIES, args => {

@@ -26,10 +26,9 @@ import { RootElement } from '../bootstrap.js';
 
 import {
   GET_FACTORIES,
+  INITIAL_APP_LOAD,
   MAIN_ID,
-  MAIN_MODAL_CHANGE,
   NEW_FACTORY_MODAL_ID,
-
   RE_RENDER,
 } from '../constants.js';
 
@@ -43,15 +42,8 @@ class Main extends Component {
     this.handleNewFactory = this.handleNewFactory.bind(this);
     this.state = {
       factoryPanelActiveKey: '0',
-      currentModal: ModalsStore.getCurrentModal(),
       factories: []
     };
-  }
-
-  _onModalChange() {
-    this.setState({
-      currentModal: ModalsStore.getCurrentModal()
-    });
   }
 
   _onLoadedFactories() {
@@ -76,10 +68,9 @@ class Main extends Component {
   }
 
   componentDidMount() {
-    MainStore.on(MAIN_MODAL_CHANGE, this._onModalChange.bind(this));
     MainStore.on(MAIN_ID, this._onLoadedFactories.bind(this));
     AppDispatcher.dispatch({
-      action: GET_FACTORIES,
+      action: INITIAL_APP_LOAD,
       emitOn: [{
         store: MainStore,
         componentIds: [MAIN_ID]
@@ -89,7 +80,6 @@ class Main extends Component {
 
   componentWillUnmount() {
     MainStore.removeListener(MAIN_ID, this._onLoadedFactories.bind(this));
-    MainStore.removeListener(MAIN_MODAL_CHANGE, this._onModalChange.bind(this));
   }
 
   render() {

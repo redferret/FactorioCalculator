@@ -1,6 +1,7 @@
 require('./get-factories.js');
 require('./get-game-items.js');
 require('./get-production-lines.js');
+require('./initial-app-load.js');
 require('./load-factory.js');
 require('./re-render.js');
 require('./update-factory.js');
