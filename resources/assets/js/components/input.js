@@ -97,6 +97,7 @@ Input.defaultProps = {
   type: 'text',
   label: '',
   help: '',
+  initialValue: '',
   customStyle: {
     'marginLeft': 'auto',
     'marginRight': 'auto'

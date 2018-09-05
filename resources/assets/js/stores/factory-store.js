@@ -13,7 +13,7 @@ class FactoryStore extends EventEmitter {
       return factory.id == test.id;
     });
     if (index < 0) {
-      this._factories.unshift(factory);
+      this._factories[this._factories.length] = factory;
     } else {
       this._factories[index] = factory;
     }

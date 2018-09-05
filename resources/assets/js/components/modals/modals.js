@@ -5,12 +5,12 @@ import * as EditProductionLineModal from './edit-production-line-modal.js';
 import * as EditProductModal from './edit-product-modal.js';
 import * as EditProductTypeModal from './edit-product-type-modal.js';
 import * as ModalSpinner from './modal-spinner.js';
+import * as NewFactoryModal from './new-factory-modal.js';
 
 import MainStore from '../../stores/main-store.js';
 import ModalsRepository from '../../stores/modals-repository.js'
 import React from 'react';
 
-import NewFactoryModal from './new-factory-modal.js';
 import NewProducerModal from './new-producer-modal.js';
 import NewProductionLineModal from './new-production-line-modal.js';
 import NewProductModal from './new-product-modal.js';
@@ -66,7 +66,13 @@ ModalsRepository.registerModal(SPINNER_MODAL_ID, {
   body: <ModalSpinner.ModalBody/>,
   footer: null
 });
-// ModalsRepository.registerModal(NEW_FACTORY_MODAL_ID, <NewFactoryModal/>);
+
+ModalsRepository.registerModal(NEW_FACTORY_MODAL_ID, {
+  header: <NewFactoryModal.ModalHeader/>,
+  body: <NewFactoryModal.ModalBody/>,
+  footer: <NewFactoryModal.ModalFooter/>
+});
+
 // ModalsRepository.registerModal(NEW_PRODUCER_MODAL_ID, <NewProducerModal/>);
 // ModalsRepository.registerModal(NEW_PRODUCT_MODAL_ID, <NewProductModal/>);
 // ModalsRepository.registerModal(NEW_PRODUCT_TYPE_MODAL_ID, <NewProductTypeModal/>);

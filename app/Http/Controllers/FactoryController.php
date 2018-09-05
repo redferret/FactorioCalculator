@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Factory;
 use Auth;
 use Illuminate\Http\Request;
 
@@ -64,6 +65,8 @@ class FactoryController extends Controller {
   public function store(Request $request) {
     $newFactory = Factory::create($request->all());
     Auth::user()->factories()->save($newFactory);
+    $newFactory->productionLines;
+    $newFactory->total_items = 0;
     return $newFactory;
   }
 
