@@ -84,7 +84,8 @@ class Input extends React.Component {
           }}
           inputRef={(reference) => this.DOMRef = reference}
           value={this.state.value}
-          style={this.props.customStyle}/>
+          style={this.props.customStyle}
+          autocomplete={this.props.autocomplete}/>
         {helpBlock}
       </FormGroup>
     );
@@ -94,6 +95,7 @@ class Input extends React.Component {
 Input.defaultProps = {
   name: 'default',
   isStatic: false,
+  autocomplete: 'off',
   type: 'text',
   label: '',
   help: '',
