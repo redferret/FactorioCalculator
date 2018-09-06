@@ -31,7 +31,7 @@ class FactoryStore extends EventEmitter {
       console.error('No Factory Found: productionLine.id = ' + productionLine.id);
     } else {
       let factory = this._factories[index];
-      factory.production_lines[production_lines.length] = productionLine;
+      factory.production_lines[factory.production_lines.length] = productionLine;
     }
   }
 

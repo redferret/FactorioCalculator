@@ -1,4 +1,5 @@
 import AppDispatcher from '../../dispatcher.js';
+import FactoryStore from '../../stores/factory-store';
 import GameItemsStore from '../../stores/game-items-store.js';
 import Input from '../input.js';
 import ItemTable from '../item-table.js';
@@ -22,6 +23,7 @@ import {
 } from 'react-bootstrap';
 
 import {
+  ADD_PRODUCTION_LINE,
   IMAGE_ASSET,
   NEW_PRODUCTION_LINE_MODAL_ID,
   SPINNER_MODAL_ID,
@@ -155,8 +157,10 @@ export class ModalBody extends React.Component {
         <Row>
           <Col sm={3}>
             <Input name='name' type='text' label='Production Line Name'
+              initialValue={NewProductionLineModalStore.getName()}
               callback={(event)=>this.handleNameChange(event)}/>
             <Input name='items_per_second' type='number' label='Initial Items Per Second'
+              initialValue={NewProductionLineModalStore.getItemsPerSecond()}
               callback={(event)=>this.handleItemsPerSecondChange(event)}/>
           </Col>
         </Row>
@@ -174,13 +178,34 @@ export class ModalBody extends React.Component {
 export class ModalFooter extends React.Component {
   constructor(props, context) {
     super(props, context);
+    this.handleAddProductionLine = this.handleAddProductionLine.bind(this);
+  }
 
+  handleAddProductionLine() {
+    let values = {};
+    values['items_per_second'] = NewProductionLineModalStore.getItemsPerSecond();
+    values['name'] = NewProductionLineModalStore.getName();
+    values['producer'] = NewProductionLineModalStore.getProducer();
+    values['product'] = NewProductionLineModalStore.getProduct();
+    values['factory_id'] = NewProductionLineModalStore.getFactoryId();
+    ModalsStore.hideModal();
+    ModalsStore.showModal({id: SPINNER_MODAL_ID});
+    AppDispatcher.dispatch({
+      action: ADD_PRODUCTION_LINE,
+      data: {
+        values: values
+      },
+      emitOn: [{
+        store: FactoryStore,
+        componentIds: [NewProductionLineModalStore.getFactoryComponentId()]
+      }]
+    })
   }
 
   render() {
     return (
       <ButtonToolbar>
-        <Button bsStyle='success'>Add Production Line</Button>
+        <Button bsStyle='success' onClick={this.handleAddProductionLine}>Add Production Line</Button>
         <Button onClick={() => ModalsStore.hideModal()}>Cancel</Button>
       </ButtonToolbar>
     )

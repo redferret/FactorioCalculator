@@ -10,6 +10,7 @@ Actions.register(ADD_PRODUCTION_LINE, payload => {
   ).then(response => {
     return response.json();
   }).then(productionLine => {
+    console.log(productionLine);
     FactoryStore.addNewProductionLineToFactory(productionLine)
     Actions.finish(payload);
     ModalsStore.hideModal();

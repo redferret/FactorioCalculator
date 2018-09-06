@@ -72,7 +72,20 @@ class ProductionLineController extends Controller {
    */
   public function store(Request $request) {
     $newProductionLine = ProductionLine::create($request->all());
-    Auth::user()->productionLines->save($newProductionLine);
+    Auth::user()->productionLines()->save($newProductionLine);
+
+    $producerJson = $request->input('producer');
+    $producer = Auth::user()->producers()->find($producerJson['id'])->replicate();
+    $newProductionLine->producer()->save($producer);
+
+    $productJson = $request->input('product');
+    $product = Auth::user()->products()->find($productJson['id']);
+    $product->producedByProductionLines()->save($newProductionLine);
+
+    $factory = Auth::user()->factories()->find($request->input('factory_id'));
+    $factory->productionLines()->save($newProductionLine);
+
+    $this->updateProductionLineAssemblers($newProductionLine);
     return $newProductionLine;
   }
 

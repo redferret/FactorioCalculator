@@ -16,6 +16,22 @@ class NewProductionLineModalStore extends EventEmitter {
     this._itemsPerSecond = 0;
   }
 
+  setFactoryId(id) {
+    this._factoryId = id;
+  }
+
+  getFactoryId() {
+    return this._factoryId;
+  }
+
+  setFactoryComponentId(id) {
+    this._factoryComponentId = id;
+  }
+
+  getFactoryComponentId() {
+    return this._factoryComponentId;
+  }
+
   setProduct(product) {
     this._product = product;
   }
