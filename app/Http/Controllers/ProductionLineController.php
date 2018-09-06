@@ -86,6 +86,7 @@ class ProductionLineController extends Controller {
     $factory->productionLines()->save($newProductionLine);
 
     $this->updateProductionLineAssemblers($newProductionLine);
+    $newProductionLine->is_output = true;
     return $newProductionLine;
   }
 
