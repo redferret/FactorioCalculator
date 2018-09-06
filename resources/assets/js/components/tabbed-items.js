@@ -34,7 +34,7 @@ class TabbedItems extends React.Component {
         onSelect={this.handleTabSelect}
         >
         <Row>
-          <Col md={this.props.colmd}>
+          <Col sm={this.props.sm}>
             <Nav bsStyle='tabs'>
               {tabs.map((tab, index) =>
                 <NavItem key={index} eventKey={index}>
@@ -60,7 +60,7 @@ TabbedItems.defaultProps = {
   tabs: [],
   tabCallback: () => 'You need to Register a Tab Callback',
   tabContentCallback: () => 'Tab Content',
-  colmd: 10
+  sm: 12,
 }
 
 export default TabbedItems;
