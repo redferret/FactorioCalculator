@@ -23,6 +23,18 @@ class FactoryStore extends EventEmitter {
     this._factories = factories;
   }
 
+  addNewProductionLineToFactory(productionLine) {
+    let index = this._factories.findIndex(test => {
+      return productionLine.factory_id == test.id;
+    });
+    if (index < 0) {
+      console.error('No Factory Found: productionLine.id = ' + productionLine.id);
+    } else {
+      let factory = this._factories[index];
+      factory.production_lines[production_lines.length] = productionLine;
+    }
+  }
+
   getFactories() {
     return this._factories;
   }

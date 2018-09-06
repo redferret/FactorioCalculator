@@ -9,6 +9,13 @@ class NewProductionLineModalStore extends EventEmitter {
     this._itemsPerSecond = 0;
   }
 
+  reset() {
+    this._product = null;
+    this._producer = null;
+    this._name = '';
+    this._itemsPerSecond = 0;
+  }
+
   setProduct(product) {
     this._product = product;
   }
