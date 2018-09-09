@@ -24,7 +24,7 @@ class WebRouter {
   method(name, data) {
     let method = this._methods.get(name);
     if (method instanceof Function) {
-      return method(args);
+      return method(data);
     }
     console.error('The method "'+name+'" was not registered or is not a function');
   }
