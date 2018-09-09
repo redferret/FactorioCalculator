@@ -11,7 +11,6 @@ Actions.register(ADD_FACTORY, payload => {
   ).then(response => {
     return response.json();
   }).then(factory => {
-    console.log(factory);
     FactoryStore.setFactory(factory);
     Actions.finish(payload);
     ModalsStore.hideModal();

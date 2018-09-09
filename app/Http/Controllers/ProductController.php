@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Product;
 use Auth;
 use Illuminate\Http\Request;
 
@@ -28,7 +29,7 @@ class ProductController extends Controller {
   public function store(Request $request) {
     $newProduct = Product::create($request->all());
     Auth::user()->products()->save($newProduct);
-    return $newProduct;
+    return $request->all();
   }
 
   /**

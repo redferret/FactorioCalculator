@@ -1,5 +1,6 @@
 import AppDispatcher from '../../dispatcher.js';
 import Input from '../input.js';
+import GameItemsStore from '../../stores/game-items-store.js';
 import ModalsStore from '../../stores/modals-store.js';
 import NewProductModalStore from '../../stores/new-product-modal-store.js';
 import React from 'react';
@@ -8,96 +9,102 @@ import {
   Alert,
   Button,
   ButtonToolbar,
+  Checkbox,
   Col,
-  DropdownButton,
-  Dropdown,
   Grid,
-  Label,
-  MenuItem,
-  Modal,Form,
   Row,
-  Table,
-  Well,
 } from 'react-bootstrap';
 
 import {
+  ADD_PRODUCT,
+  GAME_ITEMS_ID,
   NEW_PRODUCT_MODAL_ID,
+  SPINNER_MODAL_ID,
 } from '../../constants.js';
 
-export default class NewProductModal extends React.Component {
-  constructor(props, context) {
-    super(props, context);
+export class ModalHeader extends React.Component {
+  render() {
+    return (
+      <div>
+        New Product
+      </div>
+    );
+  }
+}
 
-    this.handleHideModal = this.handleHideModal.bind(this);
-    this._isMounted = false;
-    this.state = {
-      show: ModalsStore.shouldShow()
+export class ModalBody extends React.Component {
+  constructor() {
+    super();
+    this.handleInputChange = this.handleInputChange.bind(this);
+  }
+
+  handleInputChange(event) {
+    let values = NewProductModalStore.getValues();
+    if (event.target.name == 'is_fluid') {
+      values[event.target.name] = $('[name="is_fluid"]').is(':checked');
+    } else {
+      values[event.target.name] = event.target.value;
     }
+    NewProductModalStore.setValues(values);
   }
 
-  _onChange() {
-    if (this._isMounted) {
-      this.setState({
-        show: ModalsStore.shouldShow()
-      });
-    }
+  render() {
+    let defaultValues = NewProductModalStore.getValues();
+    return (
+      <Grid>
+        <Row>
+          <Col sm={3}>
+            <Input name='name' type='text' label='Product Name'
+              initialValue={defaultValues.name}
+              callback={this.handleInputChange}/>
+            <Input name='crafting_time' type='number' label='Crafting Time'
+              initialValue={defaultValues.crafting_time}
+              callback={this.handleInputChange}/>
+            <Checkbox name='is_fluid' onChange={this.handleInputChange}>
+              <h4>Is Fluid</h4>
+            </Checkbox>
+          </Col>
+          <Col sm={3}>
+            <Input name='hardness' type='number' label='Hardness' help='Set to 0 if not an ore'
+              initialValue={defaultValues.hardness}
+              callback={this.handleInputChange}/>
+            <Input name='stock_size' type='number' label='Stock Size' help='The number of products produced at a time. i.e. 2 Copper Wire for each Copper Plate'
+              initialValue={defaultValues.stock_size}
+              callback={this.handleInputChange}/>
+          </Col>
+        </Row>
+      </Grid>
+    );
+  }
+}
+
+export class ModalFooter extends React.Component {
+  constructor() {
+    super();
+    this.handleAddProduct = this.handleAddProduct.bind(this);
   }
 
-  componentDidMount() {
-    this._isMounted = true;
-    ModalsStore.on(NEW_PRODUCT_MODAL_ID, this._onChange.bind(this));
-    NewProductModalStore.on(NEW_PRODUCT_MODAL_ID, this._onChange.bind(this));
-  }
-
-  componentWillUnmount() {
-    this._isMounted = false;
-    ModalsStore.removeListener(NEW_PRODUCT_MODAL_ID, this._onChange.bind(this));
-    NewProductModalStore.removeListener(NEW_PRODUCT_MODAL_ID, this._onChange.bind(this));
-  }
-
-  handleHideModal() {
+  handleAddProduct() {
     ModalsStore.hideModal();
+    ModalsStore.showModal({id: SPINNER_MODAL_ID});
+    AppDispatcher.dispatch({
+      action: ADD_PRODUCT,
+      data: {
+        values: NewProductModalStore.getValues()
+      },
+      emitOn: [{
+        store: GameItemsStore,// Optimize this, just emit a change on products
+        componentIds: [GAME_ITEMS_ID]
+      }]
+    })
   }
 
   render() {
     return (
-      <Modal
-        show={this.state.show}
-        onHide={this.handleHideModal}
-        >
-        <Modal.Header>
-          <Modal.Title>
-            New Product
-          </Modal.Title>
-        </Modal.Header>
-
-        <Modal.Body>
-          <Grid>
-            <Row>
-              <Col md={3}>
-                <Input type='text' initialValue='New Product' label='Product Name'/>
-                <Input type='number' initialValue='1' label='Crafting Time'/>
-                <Input type='number' initialValue='1' label='Stock Size'/>
-              </Col>
-              <Col>
-                <Input type='number' initialValue='0' label='Hardness' help='Set to 0 if product is not an Ore'/>
-              </Col>
-            </Row>
-            <Row>
-              <Col md={3}>
-
-              </Col>
-            </Row>
-          </Grid>
-        </Modal.Body>
-
-        <Modal.Footer>
-          <ButtonToolbar>
-            <Button bsStyle='success'>Add Product</Button>
-            <Button onClick={this.handleHideModal}>Cancel</Button>
-          </ButtonToolbar>
-        </Modal.Footer>
-      </Modal>
+      <ButtonToolbar>
+        <Button bsStyle='success' onClick={this.handleAddProduct}>Add Product</Button>
+        <Button onClick={() => ModalsStore.hideModal()}>Cancel</Button>
+      </ButtonToolbar>
     );
   }
 }

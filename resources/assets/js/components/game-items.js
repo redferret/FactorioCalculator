@@ -107,7 +107,9 @@ export default class GameItems extends React.Component {
     this.setState({producersPanelActiveKey});
   }
 
-  handleNewProductSelect() {
+  handleNewProductSelect(productType) {
+    let values = NewProductModalStore.getValues();
+    values['product_type_id'] = productType.id;
     ModalsStore.showModal({
       id: NEW_PRODUCT_MODAL_ID,
       store: NewProductModalStore
@@ -237,7 +239,7 @@ export default class GameItems extends React.Component {
                               </div>
                             }/>
                           <ButtonToolbar>
-                            <Button onClick={this.handleNewProductSelect} bsStyle='primary'>
+                            <Button onClick={()=>this.handleNewProductSelect(productType)} bsStyle='primary'>
                               Add Product
                             </Button>
                             <Button onClick={() => this.handleSelectedProductType(productType)}>
