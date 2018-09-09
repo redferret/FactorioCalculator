@@ -23,7 +23,10 @@ class WebRouter {
 
   method(name, data) {
     let method = this._methods.get(name);
-    return method(data);
+    if (method instanceof Function) {
+      return method(args);
+    }
+    console.error('The method "'+name+'" was not registered or is not a function');
   }
 }
 
