@@ -12,7 +12,7 @@ class ProductTypeSeeder extends Seeder {
     $user = App\User::first();
     $user->productTypes()->save(App\ProductType::create([
       'name'=>'Logistics',
-      'image_file' => 'Item-group_logistics.png',
+      'image_file' => 'Logistics_(research).png',
     ]));
     $user->productTypes()->save(App\ProductType::create([
       'name'=>'Production',

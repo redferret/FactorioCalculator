@@ -10,7 +10,7 @@ Router.registerRoute(Constants.ROOT_URL, args => {
 const ROOT = Router.route(Constants.ROOT_URL);
 
 Router.registerRoute(Constants.IMAGE_ASSET, args => {
-  return ROOT + '/images/' + args.fileName;
+  return 'https://wiki.factorio.com/images/' + args.fileName;
 });
 
 /**
