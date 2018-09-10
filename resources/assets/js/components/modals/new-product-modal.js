@@ -33,10 +33,6 @@ export class ModalHeader extends React.Component {
 }
 
 export class ModalBody extends React.Component {
-  constructor() {
-    super();
-    this.handleInputChange = this.handleInputChange.bind(this);
-  }
 
   handleInputChange(event) {
     let values = NewProductModalStore.getValues();
@@ -60,6 +56,9 @@ export class ModalBody extends React.Component {
             <Input name='crafting_time' type='number' label='Crafting Time'
               initialValue={defaultValues.crafting_time}
               callback={this.handleInputChange}/>
+            <Input name='image_file' type='text' label='Image File'
+              help='Pulls Image from external site wiki.factorio.com'
+              callback={this.handleInputChange}/>
             <Checkbox name='is_fluid' onChange={this.handleInputChange}>
               <h4>Is Fluid</h4>
             </Checkbox>
@@ -79,10 +78,6 @@ export class ModalBody extends React.Component {
 }
 
 export class ModalFooter extends React.Component {
-  constructor() {
-    super();
-    this.handleAddProduct = this.handleAddProduct.bind(this);
-  }
 
   handleAddProduct() {
     ModalsStore.hideModal();

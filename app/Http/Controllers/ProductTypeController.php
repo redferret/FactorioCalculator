@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\ProductType;
 use Auth;
 use Illuminate\Http\Request;
 
@@ -20,7 +21,7 @@ class ProductTypeController extends Controller {
       }
       $type->sorted_products = collect($type->products)->sortBy('name')->values()->all();
     }
-    return $productTypes;
+    return collect($productTypes)->sortBy('id')->values()->all();
   }
 
   /**
@@ -30,9 +31,9 @@ class ProductTypeController extends Controller {
    * @return \Illuminate\Http\Response
    */
   public function store(Request $request) {
-    $newProduct = Product::create($request->all());
-    Auth::user()->productTypes()->save($newProduct);
-    return $newProduct;
+    $newProductType = ProductType::create($request->all());
+    Auth::user()->productTypes()->save($newProductType);
+    return $newProductType;
   }
 
   /**

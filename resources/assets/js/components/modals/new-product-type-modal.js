@@ -31,7 +31,8 @@ export class ModalHeader extends React.Component {
 export class ModalBody extends React.Component {
 
   handleInputChange(event) {
-    NewProductTypeModalStore.setName(event.target.value);
+    let values = NewProductTypeModalStore.getValues();
+    values[event.target.name] = event.target.value;
   }
 
   render() {
@@ -41,6 +42,9 @@ export class ModalBody extends React.Component {
           <Col sm={6}>
             <Input name='name' type='text' label='Name of Product Type'
               callback={this.handleInputChange} />
+            <Input name='image_file' type='text' label='Image File'
+              help='Pulls Image from external site wiki.factorio.com'
+              callback={this.handleInputChange}/>
           </Col>
         </Row>
       </Grid>
@@ -56,7 +60,7 @@ export class ModalFooter extends React.Component {
     AppDispatcher.dispatch({
       action: ADD_PRODUCT_TYPE,
       data: {
-        name: NewProductTypeModalStore.getName()
+        values: NewProductTypeModalStore.getValues()
       },
       emitOn: [{
         store: GameItemsStore,

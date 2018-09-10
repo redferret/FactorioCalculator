@@ -76,7 +76,8 @@ ModalsRepository.registerModal(NEW_FACTORY_MODAL_ID, {
 ModalsRepository.registerModal(NEW_PRODUCTION_LINE_MODAL_ID, {
   header: <NewProductionLineModal.ModalHeader/>,
   body: <NewProductionLineModal.ModalBody/>,
-  footer: <NewProductionLineModal.ModalFooter/>
+  footer: <NewProductionLineModal.ModalFooter/>,
+  modalSize: 'large'
 });
 
 ModalsRepository.registerModal(NEW_PRODUCT_MODAL_ID, {

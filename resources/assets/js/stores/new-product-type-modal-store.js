@@ -3,14 +3,25 @@ var EventEmitter = require('events').EventEmitter;
 class NewProductTypeModalStore extends EventEmitter {
   constructor() {
     super();
+    this._values = {
+      name: '',
+      image_file: ''
+    }
   }
 
-  setName(name) {
-    this._name = name;
+  resetValues() {
+    this._values = {
+      name: '',
+      image_file: ''
+    }
   }
 
-  getName() {
-    return this._name;
+  setValues(values) {
+    this._values = values;
+  }
+
+  getValues() {
+    return this._values;
   }
 
   emitChange(id) {

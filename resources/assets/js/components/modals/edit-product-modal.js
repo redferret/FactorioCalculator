@@ -51,6 +51,7 @@ export class ModalBody extends React.Component {
   constructor(props, context) {
     super(props, context);
     this.updateValues = this.updateValues.bind(this);
+    this.renderInputFields = this.renderInputFields.bind(this);
   }
 
   updateValues(event) {
@@ -60,25 +61,40 @@ export class ModalBody extends React.Component {
     EditProductModalStore.setProductValues(values);
   }
 
+  renderInputFields(product) {
+    if (product.is_fluid) {
+      return (
+        <div>
+          There isn't anything to edit if this is a fluid
+        </div>
+      );
+    }
+
+    return (
+      <Row>
+        <Col md={3}>
+          <Input type='number' name='crafting_time' initialValue={product.crafting_time} label='Crafting Time'
+            callback={(event) => this.updateValues(event)}/>
+          <Input type='number' name='stock_size' initialValue={product.stock_size} label='Stock Size'
+            callback={(event) => this.updateValues(event)}/>
+        </Col>
+        <Col md={3}>
+          {product.hardness?
+            <Input type='number' name='hardness' initialValue={product.hardness} label='Hardness'
+              help='Setting to 0 will remove this property'
+              callback={(event) => this.updateValues(event)}/>: ''
+          }
+        </Col>
+      </Row>
+    )
+  }
+
   render() {
     let product = EditProductModalStore.getSelectedProduct();
+
     return (
       <Grid>
-        <Row>
-          <Col md={3}>
-            <Input type='number' name='crafting_time' initialValue={product.crafting_time} label='Crafting Time'
-              callback={(event) => this.updateValues(event)}/>
-            <Input type='number' name='stock_size' initialValue={product.stock_size} label='Stock Size'
-              callback={(event) => this.updateValues(event)}/>
-          </Col>
-          <Col md={3}>
-            {product.hardness?
-              <Input type='number' name='hardness' initialValue={product.hardness} label='Hardness'
-                help='Setting to 0 will remove this property'
-                callback={(event) => this.updateValues(event)}/>: ''
-            }
-          </Col>
-        </Row>
+        {this.renderInputFields(product)}
       </Grid>
     )
   }
@@ -126,6 +142,16 @@ export class ModalFooter extends React.Component {
   }
 
   render() {
+
+    let product = EditProductModalStore.getSelectedProduct();
+    if (product.is_fluid) {
+      return (
+        <ButtonToolbar>
+          <Button bsStyle='danger' onClick={this.handleDeleteProduct}>Delete Product</Button>
+          <Button onClick={() => {ModalsStore.hideModal();}}>Cancel</Button>
+        </ButtonToolbar>
+      )
+    }
     return (
       <ButtonToolbar>
         <Button bsStyle='success' onClick={this.handleApplyProductChanges}>Apply</Button>

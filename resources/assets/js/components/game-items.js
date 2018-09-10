@@ -109,8 +109,10 @@ export default class GameItems extends React.Component {
   }
 
   handleNewProductSelect(productType) {
+    NewProductModalStore.resetValues();
     let values = NewProductModalStore.getValues();
     values['product_type_id'] = productType.id;
+    NewProductModalStore.setValues(values);
     ModalsStore.showModal({
       id: NEW_PRODUCT_MODAL_ID,
       store: NewProductModalStore
