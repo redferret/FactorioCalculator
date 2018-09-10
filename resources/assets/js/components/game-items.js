@@ -231,6 +231,7 @@ export default class GameItems extends React.Component {
                       <div>
                         <ItemTable items={productType.sorted_products} rowLength={6}
                           onClickCallback={(product)=>this.handleSelectedProduct(product)} sm={2}
+                          emptyItemsMessage='No Products'
                           itemCallback={(product) =>
                             <div>
                               <img src={Router.route(IMAGE_ASSET, {fileName: product.image_file})} />{' '}
