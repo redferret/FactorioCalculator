@@ -78,7 +78,7 @@ export default class Factory extends React.Component {
     NewProductionLineModalStore.setFactoryId(this.props.id);
     ModalsStore.showModal({
       id: NEW_PRODUCTION_LINE_MODAL_ID,
-      store: NewProductionLineModalStore
+      store: NewProductionLineModalStore // Can probably remove
     });
   };
 
@@ -86,7 +86,7 @@ export default class Factory extends React.Component {
     EditFactoryModalStore.setFactory(this.state.factory);
     ModalsStore.showModal({
       id: EDIT_FACTORY_MODAL_ID,
-      store: EditFactoryModalStore
+      store: EditFactoryModalStore // Can probably remove
     });
   }
 
