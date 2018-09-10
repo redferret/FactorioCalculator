@@ -11,8 +11,11 @@ import {
   Alert,
   Button,
   ButtonToolbar,
+  Col,
+  Grid,
   Label,
   Modal,
+  Row,
   Table,
   Well,
 } from 'react-bootstrap';
@@ -140,7 +143,10 @@ export class ModalBody extends React.Component {
               <Input type='number' isStatic={true}
               initialValue={product.hardness} />
             </td>
-            <td>Not Implemented Yet</td>
+            <td>
+              <Input type='number' isStatic={true}
+              initialValue={productionLine.items_per_second} />
+            </td>
             <td>Not Implemented Yet</td>
           </tr></tbody>
         </Table>
@@ -163,7 +169,10 @@ export class ModalBody extends React.Component {
               <Input type='number' isStatic={true}
               initialValue={product.stock_size} />
             </td>
-            <td>Not Implemented Yet</td>
+            <td>
+              <Input type='number' isStatic={true}
+              initialValue={productionLine.items_per_second} />
+            </td>
             <td>Not Implemented Yet</td>
           </tr></tbody>
         </Table>
@@ -185,33 +194,22 @@ export class ModalBody extends React.Component {
                 onClick={() => this.handleSelectProductionLine(productionLine)}
                 className='list-group-item list-group-item-action'
                 >
-                  <img src={Router.route(IMAGE_ASSET, {fileName: product.image_file})} />{' '}
-                  {product.name}
-                  <Table>
-                    <thead><tr>
-                      <th>{producer.name} Needed</th>
-                      <th>Crafting Time Per Item</th>
-                      <th>Items Produced / Sec</th>
-                      <th>Actual Production (Items/Sec)</th>
-                      <th>Surplus/Deficit (Items/Sec)</th>
-                    </tr></thead>
-                    <tbody><tr>
-                      <td>
-                        <Input type='number' isStatic={true}
-                        initialValue={productionLine.assembly_count} />
-                      </td>
-                      <td>
-                        <Input type='number' isStatic={true}
-                        initialValue={product.crafting_time} />
-                      </td>
-                      <td>
-                        <Input type='number' isStatic={true}
-                        initialValue={productionLine.items_per_second} />
-                      </td>
-                      <td>Not Implemented Yet</td>
-                      <td>Not Implemented Yet</td>
-                    </tr></tbody>
-                  </Table>
+                  <Grid>
+                    <Row>
+                      <Col sm={2}>
+                        <img src={Router.route(IMAGE_ASSET, {fileName: product.image_file})} />{' '}
+                        {product.name}
+                      </Col>
+                      <Col sm={3}>
+                        <div className='font-bold'>Production Rate (Items/Sec): </div>
+                        {productionLine.items_per_second}
+                      </Col>
+                      <Col sm={3}>
+                        <div className='font-bold'>Number of Producers Needed: </div>
+                        {productionLine.assembly_count}
+                      </Col>
+                    </Row>
+                  </Grid>
                 </a>
               </div>
             );

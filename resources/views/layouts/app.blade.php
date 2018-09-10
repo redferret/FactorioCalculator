@@ -14,7 +14,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
-    <!-- <link href="{{ asset('css/app.css') }}" media="all" rel="stylesheet" type="text/css" /> -->
+    <link href="{{ asset('css/app.css') }}" media="all" rel="stylesheet" type="text/css" />
 
     <!-- Fonts -->
     <!-- <link rel="dns-prefetch" href="https://fonts.gstatic.com">
