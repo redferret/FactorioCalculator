@@ -22,7 +22,7 @@ import {
 
 import {
   EDIT_PRODUCTION_LINE_MODAL_ID,
-  GET_PRODUCTION_LINES,
+  GET_INPUT_OUTPUT_PRODUCTION_LINES,
   IMAGE_ASSET,
   UPDATE_PRODUCTION_LINE_PRODUCER,
 } from '../../constants.js';
@@ -102,7 +102,7 @@ export class ModalBody extends React.Component {
   handleSelectProductionLine(productionLine) {
     EditProductionLineModalStore.setSelectedProductionLine(productionLine);
     AppDispatcher.dispatch({
-      action: GET_PRODUCTION_LINES,
+      action: GET_INPUT_OUTPUT_PRODUCTION_LINES,
       data: {
         id: productionLine.id
       },

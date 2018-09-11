@@ -26,8 +26,11 @@ Router.registerRoute(Constants.RE_CALCULATE_PRODUCTION_LINES, args => {
 Router.registerRoute(Constants.GET_FACTORIES, args => {
   return ROOT + '/factories';
 });
+Router.registerRoute(Constants.GET_INPUT_OUTPUT_PRODUCTION_LINES, args => {
+  return ROOT + '/productionlines/'+args.id+'/inputsOutputs';
+});
 Router.registerRoute(Constants.GET_PRODUCTION_LINES, args => {
-  return ROOT + '/productionlines/'+args.id+'/productionlines';
+  return ROOT + '/productionlines';
 });
 Router.registerRoute(Constants.GET_PRODUCTION_LINE, args => {
   return ROOT + '/productionlines/' + args.id;
