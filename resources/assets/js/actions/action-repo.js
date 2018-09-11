@@ -1,7 +1,8 @@
 require('./add-factory.js');
+require('./add-producer.js');
+require('./add-product-type.js');
 require('./add-product.js');
 require('./add-production-line.js');
-require('./add-product-type.js');
 require('./get-factories.js');
 require('./get-game-items.js');
 require('./get-production-lines.js');

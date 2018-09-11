@@ -120,6 +120,7 @@ export default class GameItems extends React.Component {
   }
 
   handleNewProducerSelect() {
+    NewProducerModalStore.resetValues();
     ModalsStore.showModal({
       id: NEW_PRODUCER_MODAL_ID,
       store: NewProducerModalStore
