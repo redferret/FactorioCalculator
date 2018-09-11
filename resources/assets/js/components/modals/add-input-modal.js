@@ -1,25 +1,25 @@
-import AppDispatcher from '../../dispatcher.js';
 import AddInputModalStore from '../../stores/add-input-modal-store.js';
+import AppDispatcher from '../../dispatcher.js';
 import FactoryStore from '../../stores/factory-store.js';
+import ItemTable from '../item-table.js';
 import MenuItems from '../menu-items.js';
 import ModalsStore from '../../stores/modals-store.js';
-import Router from '../../router.js';
 import React from 'react';
-import ItemTable from '../item-table.js';
+import Router from '../../router.js';
 
 import {
   Button,
   ButtonToolbar,
-  Grid,
-  Row,
   Col,
-  MenuItem,
   Dropdown,
+  Grid,
+  MenuItem,
+  Row,
 } from 'react-bootstrap';
 
 import {
-  ADD_INPUT,
   ADD_INPUT_MODAL_ID,
+  ADD_INPUT,
   IMAGE_ASSET,
   SPINNER_MODAL_ID,
 } from '../../constants.js';
@@ -106,7 +106,7 @@ export class ModalBody extends React.Component {
           <Col sm={9}>
             <Row>
               <Col sm={5}>
-                <div>Production Line: {productionLine.name}</div>
+                <h4>Inputs for {productionLine.name}</h4>
                 <ItemTable items={AddInputModalStore.getInputs()} rowLength={1}
                   emptyItemsMessage='No Inputs'
                   onClickCallback={this.handleRemoveProductionLine}
