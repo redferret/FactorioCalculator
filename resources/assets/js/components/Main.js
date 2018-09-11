@@ -46,7 +46,7 @@ class Main extends Component {
     };
   }
 
-  _onLoadedFactories() {
+  _onChange() {
     this.setState({
       factories: FactoryStore.getFactories()
     });
@@ -68,7 +68,7 @@ class Main extends Component {
   }
 
   componentDidMount() {
-    MainStore.on(MAIN_ID, this._onLoadedFactories.bind(this));
+    MainStore.on(MAIN_ID, this._onChange.bind(this));
     AppDispatcher.dispatch({
       action: INITIAL_APP_LOAD,
       emitOn: [{
@@ -79,7 +79,7 @@ class Main extends Component {
   }
 
   componentWillUnmount() {
-    MainStore.removeListener(MAIN_ID, this._onLoadedFactories.bind(this));
+    MainStore.removeListener(MAIN_ID, this._onChange.bind(this));
   }
 
   render() {

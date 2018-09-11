@@ -158,40 +158,89 @@ export default class GameItems extends React.Component {
     });
   }
 
-  renderProducersList() {
-    var length = this.state.producers.length
-    if (length > 0) {
-      var rowLength = 5;
-      var columns = Math.ceil(length / rowLength);
-      var reversedRows = [];
-      var rows = [];
-      for (var c = 0; c < columns; c++) {
-        reversedRows.unshift(this.state.producers.slice(c*rowLength, Math.min(length, (c*rowLength) + rowLength)));
-      }
-      for (var i = 0; i < columns; i++) {
-        rows.unshift(reversedRows.shift());
-      }
-
-      return (
-        <Well><table><tbody>
-          {rows.map((row, index) =>
-            <tr key={index}>
-              {row.map(producer =>
-                <td key={producer.id}>
-                  <Button bsStyle='link' onClick={() => this.handleSelectedProducer(producer)}>
-                    <img src={Router.route(IMAGE_ASSET, {fileName: producer.image_file})} />{' '}
-                    {producer.name}
-                  </Button>
-                </td>
-              )}
-            </tr>
-          )}
-        </tbody></table></Well>
-      );
-    }
+  renderProducts() {
     return (
-      <Alert bsStyle='warning'>No Producers</Alert>
-    )
+      <PanelGroup accordion id='productTypes-panel-group'
+        activeKey={this.state.productTypesPanelActiveKey}
+        onSelect={this.handleProductTypesSelect}
+        >
+        <Panel eventKey='1' bsStyle='success'>
+          <Panel.Heading>
+            <Panel.Title toggle>
+              Products
+            </Panel.Title>
+          </Panel.Heading>
+          <Panel.Body collapsible>
+            <ButtonToolbar>
+              <Button onClick={this.handleNewProductTypeSelect} bsStyle='primary'>
+                Add Product Type
+              </Button>
+            </ButtonToolbar>
+            <TabbedItems tabs={this.state.productTypes} sm={12}
+              tabCallback={(productType) =>
+                <div>
+                  <h4><Label>{productType.name}</Label></h4>
+                  <img src={Router.route(IMAGE_ASSET, {fileName:productType.image_file})}/>
+                </div>
+              }
+              tabContentCallback={(productType) =>
+                <div>
+                  <ItemTable items={productType.sorted_products} rowLength={6}
+                    onClickCallback={(product)=>this.handleSelectedProduct(product)} sm={2}
+                    emptyItemsMessage='No Products'
+                    itemCallback={(product) =>
+                      <div>
+                        <img src={Router.route(IMAGE_ASSET, {fileName: product.image_file})} />{' '}
+                        {product.name}
+                      </div>
+                    }/>
+                  <ButtonToolbar>
+                    <Button onClick={()=>this.handleNewProductSelect(productType)} bsStyle='primary'>
+                      Add Product
+                    </Button>
+                    <Button onClick={() => this.handleSelectedProductType(productType)}>
+                      Select Product Type
+                    </Button>
+                  </ButtonToolbar>
+                </div>
+              }/>
+          </Panel.Body>
+        </Panel>
+      </PanelGroup>
+    );
+  }
+
+  renderProducers() {
+    return (
+      <PanelGroup accordion id='producer-panel-group'
+        activeKey={this.state.producersPanelActiveKey}
+        onSelect={this.handleProducersSelect}
+        >
+        <Panel eventKey='1' bsStyle='success'>
+          <Panel.Heading>
+            <Panel.Title toggle>
+              Producers
+            </Panel.Title>
+          </Panel.Heading>
+          <Panel.Body collapsible>
+            <ItemTable items={this.state.producers} rowLength={6}
+              onClickCallback={(producer)=>this.handleSelectedProducer(producer)} sm={2}
+              emptyItemsMessage='No Producers'
+              itemCallback={(producer) =>
+                <div>
+                  <img src={Router.route(IMAGE_ASSET, {fileName: producer.image_file})} />{' '}
+                  {producer.name}
+                </div>
+              }/>
+            <ButtonToolbar>
+              <Button onClick={this.handleNewProducerSelect} bsStyle='primary'>
+                Add Producer
+              </Button>
+            </ButtonToolbar>
+          </Panel.Body>
+        </Panel>
+      </PanelGroup>
+    );
   }
 
   render() {
@@ -207,73 +256,8 @@ export default class GameItems extends React.Component {
             </Panel.Title>
           </Panel.Heading>
           <Panel.Body collapsible>
-            <PanelGroup accordion id='productTypes-panel-group'
-              activeKey={this.state.productTypesPanelActiveKey}
-              onSelect={this.handleProductTypesSelect}
-              >
-              <Panel eventKey='1' bsStyle='success'>
-                <Panel.Heading>
-                  <Panel.Title toggle>
-                    Products
-                  </Panel.Title>
-                </Panel.Heading>
-                <Panel.Body collapsible>
-                  <ButtonToolbar>
-                    <Button onClick={this.handleNewProductTypeSelect} bsStyle='primary'>
-                      Add Product Type
-                    </Button>
-                  </ButtonToolbar>
-                  <TabbedItems tabs={this.state.productTypes} sm={12}
-                    tabCallback={(productType) =>
-                      <div>
-                        <h4><Label>{productType.name}</Label></h4>
-                        <img src={Router.route(IMAGE_ASSET, {fileName:productType.image_file})}/>
-                      </div>
-                    }
-                    tabContentCallback={(productType) =>
-                      <div>
-                        <ItemTable items={productType.sorted_products} rowLength={6}
-                          onClickCallback={(product)=>this.handleSelectedProduct(product)} sm={2}
-                          emptyItemsMessage='No Products'
-                          itemCallback={(product) =>
-                            <div>
-                              <img src={Router.route(IMAGE_ASSET, {fileName: product.image_file})} />{' '}
-                              {product.name}
-                            </div>
-                          }/>
-                        <ButtonToolbar>
-                          <Button onClick={()=>this.handleNewProductSelect(productType)} bsStyle='primary'>
-                            Add Product
-                          </Button>
-                          <Button onClick={() => this.handleSelectedProductType(productType)}>
-                            Select Product Type
-                          </Button>
-                        </ButtonToolbar>
-                      </div>
-                    }/>
-                </Panel.Body>
-              </Panel>
-            </PanelGroup>
-            <PanelGroup accordion id='producer-panel-group'
-              activeKey={this.state.producersPanelActiveKey}
-              onSelect={this.handleProducersSelect}
-              >
-              <Panel eventKey='1' bsStyle='success'>
-                <Panel.Heading>
-                  <Panel.Title toggle>
-                    Producers
-                  </Panel.Title>
-                </Panel.Heading>
-                <Panel.Body collapsible>
-                  {this.renderProducersList()}
-                  <ButtonToolbar>
-                    <Button onClick={this.handleNewProducerSelect} bsStyle='primary'>
-                      Add Producer
-                    </Button>
-                  </ButtonToolbar>
-                </Panel.Body>
-              </Panel>
-            </PanelGroup>
+            {this.renderProducts()}
+            {this.renderProducers()}
           </Panel.Body>
         </Panel>
       </PanelGroup>

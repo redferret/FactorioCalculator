@@ -2,6 +2,7 @@ import AppDispatcher from '../../dispatcher.js';
 import EditFactoryModalStore from '../../stores/edit-factory-modal-store.js';
 import FactoryStore from '../../stores/factory-store.js';
 import Input from '../input.js';
+import MainStore from '../../stores/main-store.js';
 import ModalsStore from '../../stores/modals-store.js';
 import React from 'react';
 
@@ -16,8 +17,10 @@ import {
 } from 'react-bootstrap';
 
 import {
+  DELETE_FACTORY,
   EDIT_FACTORY_MODAL_ID,
   FACTORY_PANEL_,
+  MAIN_ID,
   UPDATE_FACTORY,
   SPINNER_MODAL_ID,
 } from '../../constants.js';
@@ -70,7 +73,22 @@ export class ModalFooter extends React.Component {
   }
 
   handleDeleteFactory() {
-
+    let factory = EditFactoryModalStore.getFactory()
+    let confirmDelete = confirm("Are you sure you want to delete '" + factory.name + "'?");
+    if (confirmDelete) {
+      ModalsStore.hideModal();
+      ModalsStore.showModal({id: SPINNER_MODAL_ID});
+      AppDispatcher.dispatch({
+        action: DELETE_FACTORY,
+        data: {
+          id: factory.id
+        },
+        emitOn: [{
+          store: MainStore,
+          componentIds: [MAIN_ID]
+        }]
+      });
+    }
   }
 
   render() {
