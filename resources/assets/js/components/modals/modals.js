@@ -32,7 +32,8 @@ import {
 ModalsRepository.registerModal(ADD_INPUT_MODAL_ID, {
   header: <AddInputModal.ModalHeader/>,
   body: <AddInputModal.ModalBody/>,
-  footer: <AddInputModal.ModalFooter/>
+  footer: <AddInputModal.ModalFooter/>,
+  modalSize: 'large'
 })
 
 ModalsRepository.registerModal(EDIT_FACTORY_MODAL_ID, {

@@ -27,6 +27,7 @@ import {
   FACTORY_PANEL_,
   GET_PRODUCTION_LINES,
   GET_INPUT_OUTPUT_PRODUCTION_LINES,
+  GET_INPUT_PRODUCTION_LINES,
   IMAGE_ASSET,
   MAIN_ID,
   MAIN_MODAL_CHANGE,
@@ -49,7 +50,17 @@ export default class ProductionLineDetails extends React.Component {
 
   handleShowAddInputModal() {
     AddInputModalStore.setProductionLine(this.props);
-    ModalsStore.showModal({id: ADD_INPUT_MODAL_ID});
+    ModalsStore.setToShowModal(ADD_INPUT_MODAL_ID);
+    AppDispatcher.dispatch({
+      action: GET_INPUT_PRODUCTION_LINES,
+      data: {
+        id: this.props.id
+      },
+      emitOn: [{
+        store: ModalsStore,
+        componentIds: [MODAL_ID]
+      }]
+    });
   }
 
   handleShowEditProductionLineModal() {

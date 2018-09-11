@@ -6,6 +6,7 @@ require('./add-production-line.js');
 require('./get-factories.js');
 require('./get-game-items.js');
 require('./get-input-output-production-lines.js');
+require('./get-input-production-lines.js');
 require('./get-production-lines.js');
 require('./initial-app-load.js');
 require('./load-factory.js');

@@ -36,9 +36,9 @@ class ItemTable extends React.Component {
         <Grid>
           {rows.map((row, index) =>
             <Row key={index}>
-              {row.map(item =>
-                <Col key={item.id} sm={this.props.sm}>
-                  <Button bsStyle='link' onClick={() => this.props.onClickCallback(item)}>
+              {row.map((item, index) =>
+                <Col key={index} sm={this.props.sm}>
+                  <Button id={'item_' + item.id} bsStyle='link' onClick={() => this.props.onClickCallback(item)}>
                     {this.props.itemCallback(item)}
                   </Button>
                 </Col>
