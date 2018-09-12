@@ -5,16 +5,18 @@ import ModalsStore from '../stores/modals-store.js';
 import Router from '../router.js';
 
 import {
-  UPDATE_PRODUCTION_LINE,
+  EDIT_INPUTS,
   GET_FACTORIES,
   RE_CALCULATE_PRODUCTION_LINES,
 } from '../constants.js';
 
-Actions.register(UPDATE_PRODUCTION_LINE, payload => {
-  fetch(Router.route(UPDATE_PRODUCTION_LINE, {
-    id: payload.data.productionLineId
+Actions.register(EDIT_INPUTS, payload => {
+  fetch(Router.route(EDIT_INPUTS, {
+    id: payload.data.id
   }),
-    Router.method('PUT', payload.data.values)
+    Router.method('PUT', {
+      inputs: payload.data.inputs
+    })
   ).then(response => {
     return response.json();
   }).then(productionLine => {

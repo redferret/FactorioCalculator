@@ -1,5 +1,6 @@
 
 import * as EditFactoryModal from './edit-factory-modal.js';
+import * as EditInputsModal from './edit-inputs-modal.js';
 import * as EditProducerModal from './edit-producer-modal.js';
 import * as EditProductionLineModal from './edit-production-line-modal.js';
 import * as EditProductModal from './edit-product-modal.js';
@@ -10,13 +11,12 @@ import * as NewProducerModal from './new-producer-modal.js';
 import * as NewProductionLineModal from './new-production-line-modal.js';
 import * as NewProductModal from './new-product-modal.js';
 import * as NewProductTypeModal from './new-product-type-modal.js';
-import * as AddInputModal from './add-input-modal.js';
 import ModalsRepository from '../../stores/modals-repository.js'
 import React from 'react';
 
 import {
-  ADD_INPUT_MODAL_ID,
   EDIT_FACTORY_MODAL_ID,
+  EDIT_INPUTS_MODAL_ID,
   EDIT_PRODUCER_MODAL_ID,
   EDIT_PRODUCT_MODAL_ID,
   EDIT_PRODUCT_TYPE_MODAL_ID,
@@ -29,10 +29,11 @@ import {
   SPINNER_MODAL_ID,
 } from '../../constants.js';
 
-ModalsRepository.registerModal(ADD_INPUT_MODAL_ID, {
-  header: <AddInputModal.ModalHeader/>,
-  body: <AddInputModal.ModalBody/>,
-  footer: <AddInputModal.ModalFooter/>
+ModalsRepository.registerModal(EDIT_INPUTS_MODAL_ID, {
+  header: <EditInputsModal.ModalHeader/>,
+  body: <EditInputsModal.ModalBody/>,
+  footer: <EditInputsModal.ModalFooter/>,
+  modalSize: 'large'
 })
 
 ModalsRepository.registerModal(EDIT_FACTORY_MODAL_ID, {

@@ -1,0 +1,191 @@
+import AppDispatcher from '../../dispatcher.js';
+import EditInputsModalStore from '../../stores/edit-inputs-modal-store.js';
+import FactoryStore from '../../stores/factory-store.js';
+import ItemTable from '../item-table.js';
+import MenuItems from '../menu-items.js';
+import ModalsStore from '../../stores/modals-store.js';
+import React from 'react';
+import Router from '../../router.js';
+
+import {
+  Button,
+  ButtonToolbar,
+  Col,
+  Dropdown,
+  Grid,
+  MenuItem,
+  Row,
+} from 'react-bootstrap';
+
+import {
+  ALL_FACTORIES,
+  EDIT_INPUTS,
+  EDIT_INPUTS_MODAL_ID,
+  IMAGE_ASSET,
+  SPINNER_MODAL_ID,
+} from '../../constants.js';
+
+export class ModalHeader extends React.Component {
+
+  render() {
+    let productionLine = EditInputsModalStore.getProductionLine();
+    return (
+      <div>Manage Inputs for {productionLine.name}</div>
+    );
+  }
+}
+
+export class ModalBody extends React.Component {
+
+  constructor() {
+    super();
+    this.handleMenuItemSelect = this.handleMenuItemSelect.bind(this);
+    this.handleMenuToggle = this.handleMenuToggle.bind(this);
+    this.handleAddProductionLine = this.handleAddProductionLine.bind(this);
+    this.handleRemoveProductionLine = this.handleRemoveProductionLine.bind(this);
+    this._isMounted = false;
+
+    this.state = {
+      menuOpen: false,
+      selectedFactoryId: -1,
+      inputs: EditInputsModalStore.getInputs()
+    }
+  }
+
+  _onChange() {
+    if(this._isMounted) {
+      this.setState({
+        inputs: EditInputsModalStore.getInputs()
+      });
+    }
+  }
+
+  componentDidMount() {
+    EditInputsModalStore.on(EDIT_INPUTS_MODAL_ID, this._onChange.bind(this));
+    this._isMounted = true;
+  }
+
+  componentWillUnmount() {
+    EditInputsModalStore.removeListener(EDIT_INPUTS_MODAL_ID, this._onChange.bind(this));
+    this._isMounted = false;
+  }
+
+  handleMenuItemSelect(factory) {
+    this.setState({
+      menuOpen: false,
+      selectedFactoryId: factory.id
+    });
+  }
+
+  handleMenuToggle() {
+    this.setState({
+      menuOpen:!this.state.menuOpen
+    });
+  }
+
+  handleAddProductionLine(productionLine) {
+    EditInputsModalStore.addInput(productionLine);
+    this.setState({
+      inputs: EditInputsModalStore.getInputs()
+    })
+  }
+
+  handleRemoveProductionLine(productionLine) {
+    EditInputsModalStore.removeInput(productionLine);
+    this.setState({
+      inputs: EditInputsModalStore.getInputs()
+    })
+  }
+
+  render() {
+    let productionLine = EditInputsModalStore.getProductionLine();
+    let factories = FactoryStore.getFactories();
+    let selectedFactory = FactoryStore.getFactory(this.state.selectedFactoryId);
+    return (
+      <Grid>
+        <Row>
+          <Col sm={9}>
+            <Row>
+              <Col sm={5}>
+                <h4>Inputs for {productionLine.name}</h4>
+                <ItemTable items={EditInputsModalStore.getInputs()} rowLength={1}
+                  emptyItemsMessage='No Inputs'
+                  onClickCallback={this.handleRemoveProductionLine}
+                  itemCallback={(productionLine =>
+                    <div>
+                      <img src={Router.route(IMAGE_ASSET, {fileName: productionLine.product.image_file})} />
+                      {productionLine.name}
+                    </div>
+                  )} />
+              </Col>
+              <Col sm={7} className='border-left'>
+                <Dropdown open={this.state.menuOpen} onToggle={this.handleMenuToggle} id='factory-menu'>
+                  <Dropdown.Toggle>Factories</Dropdown.Toggle>
+                  <MenuItems>
+                    {factories.map(factory =>
+                      <MenuItem key={factory.id} eventKey={factory.id}
+                        onClick={(event)=>this.handleMenuItemSelect(factory)}>
+                        {factory.name}
+                      </MenuItem>
+                    )}
+                  </MenuItems>
+                </Dropdown>
+                {selectedFactory?
+                  <ItemTable items={selectedFactory.production_lines} rowLength={2}
+                    emptyItemsMessage='No Production Lines'
+                    onClickCallback={this.handleAddProductionLine}
+                    itemCallback={(productionLine =>
+                      <div>
+                        <img src={Router.route(IMAGE_ASSET, {fileName: productionLine.product.image_file})} />
+                        {productionLine.name}
+                      </div>
+                    )} />
+                  : ''}
+              </Col>
+            </Row>
+          </Col>
+        </Row>
+        <Row>
+          <Col sm={9}>
+            <div className='help-text'>
+              <p>
+                Select a Factory on the right and then select the
+                Production Line you want to add as an Input to {productionLine.name}.
+                To remove the input, select the Production Line on the left.
+              </p>
+            </div>
+          </Col>
+        </Row>
+      </Grid>
+    );
+  }
+}
+
+export class ModalFooter extends React.Component {
+
+  handleApplyChanges() {
+    ModalsStore.hideModal();
+    ModalsStore.showModal({id:SPINNER_MODAL_ID});
+    let productionLine = EditInputsModalStore.getProductionLine();
+    AppDispatcher.dispatch({
+      action: EDIT_INPUTS,
+      data:{
+        id: productionLine.id,
+        inputs: EditInputsModalStore.getInputs()
+      },
+      emitOn:[{
+        store: FactoryStore,
+        componentIds: [ALL_FACTORIES]
+      }]
+    });
+  }
+
+  render() {
+    return (
+      <ButtonToolbar>
+        <Button bsStyle='success' onClick={this.handleApplyChanges}>Apply</Button>
+        <Button onClick={()=>ModalsStore.hideModal()}>Cancel</Button>
+      </ButtonToolbar>
+    )
+  }
+}

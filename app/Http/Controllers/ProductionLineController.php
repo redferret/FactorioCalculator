@@ -32,6 +32,38 @@ class ProductionLineController extends Controller {
     return $productionLines;
   }
 
+  public function editInputs(Request $request, $id) {
+    $productionLine = Auth::user()->productionLines()->find($id);
+    $inputs = $request->input('inputs');
+    $currentInputs = $productionLine->producerProductionLines;
+    // Find if the current inputs for the requests input production lines
+    //  if one or more are missing remove the production line from the $currentInputs
+    //  if a production line is not currently in the $currentInputs add the input
+
+    foreach ($currentInputs as $currentInput) {
+      $foundInput = false;
+      foreach ($inputs as $input) {
+        if ($input['id'] == $currentInput->id) {
+          $foundInput = true;
+          break;
+        }
+      }
+      if (!$foundInput) {
+        $productionLine->producerProductionLines()->detach($currentInput->id);
+      }
+    }
+
+    foreach ($inputs as $input) {
+      $currentInput = $productionLine->producerProductionLines()->find($input['id']);
+      if ($currentInput == null) {
+        $newInput = Auth::user()->productionLines()->find($input['id']);
+        $productionLine->producerProductionLines()->save($newInput);
+      }
+    }
+
+    return $productionLine;
+  }
+
   // public function getProductionLine($id) {
   //   $productionLine = Auth::user()->productionLines()->find($id);
   //   $productionLine->producer;
@@ -139,6 +171,24 @@ class ProductionLineController extends Controller {
     return array('response'=>'failed');
   }
 
+  private function updateProductionLine(& $productionLine) {
+
+    $productionLine->producer;
+    $product = $productionLine->product;
+    $product->consumerProducts;
+    $product->producedByProductionLines;
+
+    foreach($productionLine->producerProductionLines as $pl) {
+      $this->updateInputAssemblers($pl);
+    }
+
+    $productionLine->assembly_count = round($productionLine->assembly_count, 2);
+    $productionLine->items_per_second = round($productionLine->items_per_second, 2);
+    $productionLine->seconds_per_item = round($productionLine->seconds_per_item, 2);
+
+    $productionLine->updated = true;
+  }
+
   private function updateProductionLineItemsPerSecond(& $productionLine) {
     $producer = $productionLine->producer;
     $product = $productionLine->product;
@@ -218,12 +268,16 @@ class ProductionLineController extends Controller {
       $consumerProduct = $consumerProductionLine->product;
       $consumerProducts = $consumerProduct->consumerProducts;
 
-      $index = $consumerProducts->search(function ($consumerProductRef, $key) use ($product) {
-        return $consumerProductRef->product_id == $product->id;
-      });
+      if (count($consumerProducts) > 0) {
+        $index = $consumerProducts->search(function ($consumerProductRef, $key) use ($product) {
+          return $consumerProductRef->product_id == $product->id;
+        });
 
-      $requiredConsumerProduct = $consumerProducts[$index];
-      $consumerRequirement = $requiredConsumerProduct->consumer_requirement;
+        $requiredConsumerProduct = $consumerProducts[$index];
+        $consumerRequirement = $requiredConsumerProduct->consumer_requirement;
+      } else {
+        $consumerRequirement = 1;
+      }
 
       $items_per_second += ($consumerRequirement / $consumerProductionLine->seconds_per_item) * $consumerProductionLine->assembly_count;
     }
