@@ -1,7 +1,7 @@
 
 import Actions from './app-actions.js';
 import Router from '../router.js';
-import AddInputModalStore from '../stores/add-input-modal-store.js';
+import EditInputsModalStore from '../stores/edit-inputs-modal-store.js';
 
 import {
   GET_INPUT_OUTPUT_PRODUCTION_LINES,
@@ -14,7 +14,7 @@ Actions.register(GET_INPUT_PRODUCTION_LINES, payload => {
   })).then(response => {
     return response.json();
   }).then(productionLines => {
-    AddInputModalStore.setInputs(productionLines.inputs);
+    EditInputsModalStore.setInputs(productionLines.inputs);
     Actions.finish(payload);
   });
 });

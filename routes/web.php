@@ -42,3 +42,4 @@ Route::get('/productionlines', 'ProductionLineController@getProductionLines');
 Route::post('/productionlines', 'ProductionLineController@store');
 Route::put('/productionlines/{id}', 'ProductionLineController@update');
 Route::put('/productionlines/{id}/producer', 'ProductionLineController@updateProducer');
+Route::put('/productionlines/{id}/inputs', 'ProductionLineController@editInputs');

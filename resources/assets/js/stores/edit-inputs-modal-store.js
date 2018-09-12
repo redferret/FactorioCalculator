@@ -1,6 +1,6 @@
 var EventEmitter = require('events').EventEmitter;
 
-class AddInputModalStore extends EventEmitter {
+class EditInputsModalStore extends EventEmitter {
   constructor() {
     super();
     this._productionLine = null;
@@ -36,4 +36,4 @@ class AddInputModalStore extends EventEmitter {
   }
 }
 
-export default new AddInputModalStore();
+export default new EditInputsModalStore();

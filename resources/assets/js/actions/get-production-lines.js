@@ -1,7 +1,7 @@
 
 import Actions from './app-actions.js';
 import Router from '../router.js';
-import AddInputModalStore from '../stores/add-input-modal-store.js';
+import EditInputsModalStore from '../stores/edit-inputs-modal-store.js';
 import { GET_PRODUCTION_LINES } from '../constants.js';
 
 Actions.register(GET_PRODUCTION_LINES, payload => {

@@ -3,6 +3,7 @@ require('./add-producer.js');
 require('./add-product-type.js');
 require('./add-product.js');
 require('./add-production-line.js');
+require('./edit-inputs.js');
 require('./get-factories.js');
 require('./get-game-items.js');
 require('./get-input-output-production-lines.js');

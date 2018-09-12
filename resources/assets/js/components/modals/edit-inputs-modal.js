@@ -1,5 +1,5 @@
-import AddInputModalStore from '../../stores/add-input-modal-store.js';
 import AppDispatcher from '../../dispatcher.js';
+import EditInputsModalStore from '../../stores/edit-inputs-modal-store.js';
 import FactoryStore from '../../stores/factory-store.js';
 import ItemTable from '../item-table.js';
 import MenuItems from '../menu-items.js';
@@ -18,8 +18,9 @@ import {
 } from 'react-bootstrap';
 
 import {
-  ADD_INPUT_MODAL_ID,
-  ADD_INPUT,
+  ALL_FACTORIES,
+  EDIT_INPUTS,
+  EDIT_INPUTS_MODAL_ID,
   IMAGE_ASSET,
   SPINNER_MODAL_ID,
 } from '../../constants.js';
@@ -27,9 +28,9 @@ import {
 export class ModalHeader extends React.Component {
 
   render() {
-    let productionLine = AddInputModalStore.getProductionLine();
+    let productionLine = EditInputsModalStore.getProductionLine();
     return (
-      <div>Add Input to {productionLine.name}</div>
+      <div>Manage Inputs for {productionLine.name}</div>
     );
   }
 }
@@ -47,25 +48,25 @@ export class ModalBody extends React.Component {
     this.state = {
       menuOpen: false,
       selectedFactoryId: -1,
-      inputs: AddInputModalStore.getInputs()
+      inputs: EditInputsModalStore.getInputs()
     }
   }
 
   _onChange() {
     if(this._isMounted) {
       this.setState({
-        inputs: AddInputModalStore.getInputs()
+        inputs: EditInputsModalStore.getInputs()
       });
     }
   }
 
   componentDidMount() {
-    AddInputModalStore.on(ADD_INPUT_MODAL_ID, this._onChange.bind(this));
+    EditInputsModalStore.on(EDIT_INPUTS_MODAL_ID, this._onChange.bind(this));
     this._isMounted = true;
   }
 
   componentWillUnmount() {
-    AddInputModalStore.removeListener(ADD_INPUT_MODAL_ID, this._onChange.bind(this));
+    EditInputsModalStore.removeListener(EDIT_INPUTS_MODAL_ID, this._onChange.bind(this));
     this._isMounted = false;
   }
 
@@ -83,21 +84,21 @@ export class ModalBody extends React.Component {
   }
 
   handleAddProductionLine(productionLine) {
-    AddInputModalStore.addInput(productionLine);
+    EditInputsModalStore.addInput(productionLine);
     this.setState({
-      inputs: AddInputModalStore.getInputs()
+      inputs: EditInputsModalStore.getInputs()
     })
   }
 
   handleRemoveProductionLine(productionLine) {
-    AddInputModalStore.removeInput(productionLine);
+    EditInputsModalStore.removeInput(productionLine);
     this.setState({
-      inputs: AddInputModalStore.getInputs()
+      inputs: EditInputsModalStore.getInputs()
     })
   }
 
   render() {
-    let productionLine = AddInputModalStore.getProductionLine();
+    let productionLine = EditInputsModalStore.getProductionLine();
     let factories = FactoryStore.getFactories();
     let selectedFactory = FactoryStore.getFactory(this.state.selectedFactoryId);
     return (
@@ -107,7 +108,7 @@ export class ModalBody extends React.Component {
             <Row>
               <Col sm={5}>
                 <h4>Inputs for {productionLine.name}</h4>
-                <ItemTable items={AddInputModalStore.getInputs()} rowLength={1}
+                <ItemTable items={EditInputsModalStore.getInputs()} rowLength={1}
                   emptyItemsMessage='No Inputs'
                   onClickCallback={this.handleRemoveProductionLine}
                   itemCallback={(productionLine =>
@@ -161,10 +162,28 @@ export class ModalBody extends React.Component {
 }
 
 export class ModalFooter extends React.Component {
+
+  handleApplyChanges() {
+    ModalsStore.hideModal();
+    ModalsStore.showModal({id:SPINNER_MODAL_ID});
+    let productionLine = EditInputsModalStore.getProductionLine();
+    AppDispatcher.dispatch({
+      action: EDIT_INPUTS,
+      data:{
+        id: productionLine.id,
+        inputs: EditInputsModalStore.getInputs()
+      },
+      emitOn:[{
+        store: FactoryStore,
+        componentIds: [ALL_FACTORIES]
+      }]
+    });
+  }
+
   render() {
     return (
       <ButtonToolbar>
-        <Button bsStyle='success'>Apply</Button>
+        <Button bsStyle='success' onClick={this.handleApplyChanges}>Apply</Button>
         <Button onClick={()=>ModalsStore.hideModal()}>Cancel</Button>
       </ButtonToolbar>
     )

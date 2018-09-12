@@ -66,6 +66,7 @@ export default class Factory extends React.Component {
 
   componentWillUnmount() {
     FactoryStore.removeListener(this.FACTORY_PANEL_ID, this._onChange.bind(this));
+    FactoryStore.removeListener(ALL_FACTORIES, this._onChange.bind(this));
   }
 
   handleSelectProductionLine(activeKey) {

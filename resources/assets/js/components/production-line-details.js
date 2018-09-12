@@ -1,5 +1,5 @@
-import AddInputModalStore from '../stores/add-input-modal-store.js';
 import AppDispatcher from '../dispatcher.js';
+import EditInputsModalStore from '../stores/edit-inputs-modal-store.js';
 import EditProductionLineModal from './modals/edit-production-line-modal.js';
 import EditProductionLineModalStore from '../stores/edit-production-line-modal-store.js';
 import FactoryStore from '../stores/factory-store.js';
@@ -22,12 +22,12 @@ import {
 } from 'react-bootstrap';
 
 import {
-  ADD_INPUT_MODAL_ID,
+  ALL_FACTORIES,
+  EDIT_INPUTS_MODAL_ID,
   EDIT_PRODUCTION_LINE_MODAL_ID,
-  FACTORY_PANEL_,
-  GET_PRODUCTION_LINES,
   GET_INPUT_OUTPUT_PRODUCTION_LINES,
   GET_INPUT_PRODUCTION_LINES,
+  GET_PRODUCTION_LINES,
   IMAGE_ASSET,
   MAIN_ID,
   MAIN_MODAL_CHANGE,
@@ -42,15 +42,15 @@ export default class ProductionLineDetails extends React.Component {
   constructor(props, context) {
     super(props, context);
     this.handleShowEditProductionLineModal = this.handleShowEditProductionLineModal.bind(this);
-    this.handleShowAddInputModal = this.handleShowAddInputModal.bind(this);
+    this.handleShowEditInputsModal = this.handleShowEditInputsModal.bind(this);
     this.changeProduct = this.changeProduct.bind(this);
     this.itemsPerSecondChanged = this.itemsPerSecondChanged.bind(this);
     this.dispatchProducerChanged = this.dispatchProducerChanged.bind(this);
   }
 
-  handleShowAddInputModal() {
-    AddInputModalStore.setProductionLine(this.props);
-    ModalsStore.setToShowModal(ADD_INPUT_MODAL_ID);
+  handleShowEditInputsModal() {
+    EditInputsModalStore.setProductionLine(this.props);
+    ModalsStore.setToShowModal(EDIT_INPUTS_MODAL_ID);
     AppDispatcher.dispatch({
       action: GET_INPUT_PRODUCTION_LINES,
       data: {
@@ -97,7 +97,7 @@ export default class ProductionLineDetails extends React.Component {
           componentIds: [MAIN_ID]
         }, {
           store: FactoryStore,
-          componentIds: [FACTORY_PANEL_ + this.props.factory_id]
+          componentIds: [ALL_FACTORIES]
         }]
       });
     }
@@ -254,7 +254,7 @@ export default class ProductionLineDetails extends React.Component {
         </div>
         <br/>
         <ButtonToolbar>
-          <Button bsStyle='success' onClick={this.handleShowAddInputModal}>Add Input</Button>
+          <Button bsStyle='success' onClick={this.handleShowEditInputsModal}>Manage Inputs</Button>
           <Button bsStyle='warning' onClick={this.handleShowEditProductionLineModal}>
             Select Production Line
           </Button>
