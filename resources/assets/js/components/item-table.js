@@ -41,6 +41,7 @@ class ItemTable extends React.Component {
                   <Button id={'item_' + item.id} bsStyle='link' onClick={() => this.props.onClickCallback(item)}>
                     {this.props.itemCallback(item)}
                   </Button>
+                  {this.props.itemContent(item)}
                 </Col>
               )}
             </Row>
@@ -56,6 +57,7 @@ class ItemTable extends React.Component {
 
 ItemTable.defaultProps = {
   itemCallback: () => console.error('An Item Callback must be registered with an ItemTable'),
+  itemContent: () => '',
   emptyItemsMessage: 'No Items',
   onClickCallback: (item) => {},
   rowLength: 6,

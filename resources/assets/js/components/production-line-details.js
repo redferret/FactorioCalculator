@@ -126,7 +126,7 @@ export default class ProductionLineDetails extends React.Component {
         componentIds: [MAIN_ID]
       }, {
         store: FactoryStore,
-        componentIds: [FACTORY_PANEL_ + this.props.factory_id]
+        componentIds: [ALL_FACTORIES]
       }]
     });
   }

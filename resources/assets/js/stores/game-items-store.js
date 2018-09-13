@@ -5,10 +5,19 @@ class GameItemsStore extends EventEmitter {
     super();
     this._productTypes = [];
     this._producers = [];
+    this._products = [];
   }
 
-  setProductTypes(products) {
-    this._productTypes = products;
+  getProducts() {
+    return this._products;
+  }
+
+  setProductTypes(productTypes) {
+    this._productTypes = productTypes;
+    productTypes.map(type => {
+      let typeProducts = type.products;
+      this._products.unshift(...typeProducts);
+    });
   }
 
   setProducers(producers) {
