@@ -14,10 +14,14 @@ class GameItemsStore extends EventEmitter {
 
   setProductTypes(productTypes) {
     this._productTypes = productTypes;
+    let tempSet = new Set();
     productTypes.map(type => {
       let typeProducts = type.products;
-      this._products.unshift(...typeProducts);
+      typeProducts.map(product => {
+        tempSet.add(product);
+      });
     });
+    this._products = Array.from(tempSet);
   }
 
   setProducers(producers) {

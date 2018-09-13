@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\ConsumerProduct;
 use App\Product;
 use Auth;
 use Illuminate\Http\Request;
@@ -27,9 +28,18 @@ class ProductController extends Controller {
    * @return \Illuminate\Http\Response
    */
   public function store(Request $request) {
-    $newProduct = Product::create($request->all());
+    $newProduct = Product::create($request->input('values'));
     Auth::user()->products()->save($newProduct);
-    return $request->all();
+    $productsJson = $request->input('products');
+    foreach ($productsJson as $productJson) {
+      $productRequirement = ConsumerProduct::create([
+        'consumer_requirement'=>$productJson['consumer_requirement']
+      ]);
+      $product = Auth::user()->products()->find($productJson['id']);
+      $productRequirement->requiredProduct()->save($product);
+      $newProduct->consumerProducts()->save($productRequirement);
+    }
+    return $newProduct;
   }
 
   /**

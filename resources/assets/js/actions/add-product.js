@@ -12,7 +12,10 @@ import {
 
 Actions.register(ADD_PRODUCT, payload => {
   fetch(Router.route(ADD_PRODUCT),
-    Router.method('POST', payload.data.values)
+    Router.method('POST', {
+      values: payload.data.values,
+      products: payload.data.consumerProducts
+    })
   ).then(response => {
     return response.json();
   }).then(product => {
