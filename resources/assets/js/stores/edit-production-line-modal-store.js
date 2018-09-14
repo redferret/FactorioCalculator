@@ -6,6 +6,8 @@ class EditProductionLineModalStore extends EventEmitter {
   constructor() {
     super();
     this._productionLines = [];
+    this._outputProductionLines = [];
+    this._inputProductionLines = [];
   }
 
   setSelectedProductionLine(selectedProductionLine) {
@@ -17,6 +19,7 @@ class EditProductionLineModalStore extends EventEmitter {
   }
 
   setInputProductionLines(productionLines) {
+    this._inputProductionLines = [];
     this._inputProductionLines = productionLines;
   }
 
@@ -25,6 +28,7 @@ class EditProductionLineModalStore extends EventEmitter {
   }
 
   setOutputProductionLines(productionLines) {
+    this._outputProductionLines = [];
     this._outputProductionLines = productionLines;
   }
 

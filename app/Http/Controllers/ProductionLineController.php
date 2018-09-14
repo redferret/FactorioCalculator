@@ -81,9 +81,9 @@ class ProductionLineController extends Controller {
       $pl->product;
       $pl->product->consumerProducts;
       $pl->producer;
-      $pl->assembly_count = round($pl->assembly_count, 2);
-      $pl->items_per_second = round($pl->items_per_second, 2);
-      $pl->seconds_per_item = round($pl->seconds_per_item, 2);
+      $pl->assembly_count = round($pl->assembly_count);
+      $pl->items_per_second = round($pl->items_per_second, 1);
+      $pl->seconds_per_item = round($pl->seconds_per_item, 1);
       $pl->is_output = false;
     }
 
@@ -92,9 +92,9 @@ class ProductionLineController extends Controller {
       $pl->product;
       $pl->product->consumerProducts;
       $pl->producer;
-      $pl->assembly_count = round($pl->assembly_count, 2);
-      $pl->items_per_second = round($pl->items_per_second, 2);
-      $pl->seconds_per_item = round($pl->seconds_per_item, 2);
+      $pl->assembly_count = round($pl->assembly_count);
+      $pl->items_per_second = round($pl->items_per_second, 1);
+      $pl->seconds_per_item = round($pl->seconds_per_item, 1);
       $pl->is_output = true;
     }
 
@@ -182,9 +182,9 @@ class ProductionLineController extends Controller {
       $this->updateInputAssemblers($pl);
     }
 
-    $productionLine->assembly_count = round($productionLine->assembly_count, 2);
-    $productionLine->items_per_second = round($productionLine->items_per_second, 2);
-    $productionLine->seconds_per_item = round($productionLine->seconds_per_item, 2);
+    $productionLine->assembly_count = round($productionLine->assembly_count);
+    $productionLine->items_per_second = round($productionLine->items_per_second, 1);
+    $productionLine->seconds_per_item = round($productionLine->seconds_per_item, 1);
 
     $productionLine->updated = true;
   }
@@ -208,9 +208,9 @@ class ProductionLineController extends Controller {
       $this->updateInputAssemblers($pl);
     }
 
-    $productionLine->assembly_count = round($productionLine->assembly_count, 2);
-    $productionLine->items_per_second = round($productionLine->items_per_second, 2);
-    $productionLine->seconds_per_item = round($productionLine->seconds_per_item, 2);
+    $productionLine->assembly_count = round($productionLine->assembly_count);
+    $productionLine->items_per_second = round($productionLine->items_per_second, 1);
+    $productionLine->seconds_per_item = round($productionLine->seconds_per_item, 1);
 
   }
 
@@ -238,9 +238,9 @@ class ProductionLineController extends Controller {
       $this->updateInputAssemblers($pl);
     }
 
-    $productionLine->assembly_count = round($productionLine->assembly_count, 2);
-    $productionLine->items_per_second = round($productionLine->items_per_second, 2);
-    $productionLine->seconds_per_item = round($productionLine->seconds_per_item, 2);
+    $productionLine->assembly_count = round($productionLine->assembly_count);
+    $productionLine->items_per_second = round($productionLine->items_per_second, 1);
+    $productionLine->seconds_per_item = round($productionLine->seconds_per_item, 1);
 
     $productionLine->updated = true;
   }
@@ -295,9 +295,9 @@ class ProductionLineController extends Controller {
       $this->updateInputAssemblers($pl);
     }
 
-    $productionLine->assembly_count = round($productionLine->assembly_count, 2);
-    $productionLine->items_per_second = round($productionLine->items_per_second, 2);
-    $productionLine->seconds_per_item = round($productionLine->seconds_per_item, 2);
+    $productionLine->assembly_count = round($productionLine->assembly_count);
+    $productionLine->items_per_second = round($productionLine->items_per_second, 1);
+    $productionLine->seconds_per_item = round($productionLine->seconds_per_item, 1);
 
     $productionLine->updated = true;
   }

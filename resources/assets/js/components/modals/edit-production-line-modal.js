@@ -61,7 +61,7 @@ export class ModalHeader extends React.Component {
     return (
       <div>
         <img src={Router.route(IMAGE_ASSET, {fileName: productionLine.product.image_file})} />{' '}
-        {productionLine.product.name}
+        {productionLine.name}
       </div>
     )
   }
@@ -128,7 +128,7 @@ export class ModalBody extends React.Component {
             <th>Stock Count</th>
             <th>Item Hardness</th>
             <th>Actual Production (Items/Sec)</th>
-            <th>Surplus/Deficit (Items/Sec)</th>
+            <th>Producers Needed</th>
           </tr></thead>
           <tbody><tr>
             <td>
@@ -147,7 +147,7 @@ export class ModalBody extends React.Component {
               <Input type='number' isStatic={true}
               initialValue={productionLine.items_per_second} />
             </td>
-            <td>Not Implemented Yet</td>
+            <td>{productionLine.assembly_count}</td>
           </tr></tbody>
         </Table>
       );
@@ -158,7 +158,7 @@ export class ModalBody extends React.Component {
             <th>Crafting Time Per Item</th>
             <th>Stock Count</th>
             <th>Actual Production (Items/Sec)</th>
-            <th>Surplus/Deficit (Items/Sec)</th>
+            <th>Producers Needed</th>
           </tr></thead>
           <tbody><tr>
             <td>
@@ -173,7 +173,7 @@ export class ModalBody extends React.Component {
               <Input type='number' isStatic={true}
               initialValue={productionLine.items_per_second} />
             </td>
-            <td>Not Implemented Yet</td>
+            <td>{productionLine.assembly_count}</td>
           </tr></tbody>
         </Table>
       );
@@ -188,7 +188,7 @@ export class ModalBody extends React.Component {
             let product = productionLine.product;
             let producer = productionLine.producer;
             return (
-              <div key={product.id}>
+              <div key={productionLine.name + product.name + product.id}>
                 <Label>Production Line: {productionLine.name}</Label>
                 <a
                 onClick={() => this.handleSelectProductionLine(productionLine)}

@@ -266,8 +266,11 @@ export default class ProductionLineDetails extends React.Component {
   }
 
   render() {
+    let style = this.props.is_output? 'success'
+      : (this.props.is_primary? 'warning' : 'info');
+    
     return (
-      <Panel bsStyle='info' eventKey={this.props.eventKey}>
+      <Panel bsStyle={style} eventKey={this.props.eventKey}>
         <Panel.Heading>
           <Panel.Title toggle>
             {this.props.name}

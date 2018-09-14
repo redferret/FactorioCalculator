@@ -4,6 +4,7 @@ import Factory from './factory.js';
 import FactoryStore from '../stores/factory-store.js';
 import GameItems from './game-items.js';
 import MainStore from '../stores/main-store.js';
+import ModalSpinnerStore from '../stores/modal-spinner-store.js';
 import ModalsStore from '../stores/modals-store.js';
 import NewFactoryModalStore from '../stores/new-factory-modal-store.js';
 import PartialModal from './modals/partial-modal.js';
@@ -30,6 +31,7 @@ import {
   MAIN_ID,
   NEW_FACTORY_MODAL_ID,
   RE_RENDER,
+  SPINNER_MODAL_ID,
 } from '../constants.js';
 
 class Main extends Component {
@@ -69,6 +71,8 @@ class Main extends Component {
 
   componentDidMount() {
     MainStore.on(MAIN_ID, this._onChange.bind(this));
+    ModalSpinnerStore.setSpinnerMessage('Loading Application Data...');
+    ModalsStore.showModal({id: SPINNER_MODAL_ID});
     AppDispatcher.dispatch({
       action: INITIAL_APP_LOAD,
       emitOn: [{

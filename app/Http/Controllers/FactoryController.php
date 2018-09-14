@@ -19,17 +19,24 @@ class FactoryController extends Controller {
       $productionLines = $factory->productionLines;
       foreach($productionLines as $productionLine) {
         if ($productionLine->consumerProductionLines()->first() == null) {
-          $totalItems += $productionLine->items_per_second;
           $productionLine->is_output = true;
         } else {
           $productionLine->is_output = false;
         }
+        if ($productionLine->producerProductionLines()->first() == null) {
+          $productionLine->is_primary = true;
+        }
+        $totalItems += $productionLine->items_per_second;
         $productionLine->producer;
         $product = $productionLine->product;
         $product->consumerProducts;
         $product->producedByProductionLines;
+
+        $productionLine->assembly_count = round($productionLine->assembly_count);
+        $productionLine->items_per_second = round($productionLine->items_per_second, 1);
+        $productionLine->seconds_per_item = round($productionLine->seconds_per_item, 1);
       }
-      $factory->total_items = round($totalItems);
+      $factory->total_items = round($totalItems, 1);
     }
 
     return $factories;
