@@ -77,18 +77,12 @@ export default class Factory extends React.Component {
     NewProductionLineModalStore.reset();
     NewProductionLineModalStore.setFactoryComponentId(this.FACTORY_PANEL_ID);
     NewProductionLineModalStore.setFactoryId(this.props.id);
-    ModalsStore.showModal({
-      id: NEW_PRODUCTION_LINE_MODAL_ID,
-      store: NewProductionLineModalStore // Can probably remove
-    });
+    ModalsStore.showModal({id: NEW_PRODUCTION_LINE_MODAL_ID});
   };
 
   handleSelectFactory() {
     EditFactoryModalStore.setFactory(this.state.factory);
-    ModalsStore.showModal({
-      id: EDIT_FACTORY_MODAL_ID,
-      store: EditFactoryModalStore // Can probably remove
-    });
+    ModalsStore.showModal({id: EDIT_FACTORY_MODAL_ID});
   }
 
   renderFactoryDetails() {
