@@ -182,7 +182,7 @@ class ProductionLineController extends Controller {
       $this->updateInputAssemblers($pl);
     }
 
-    $productionLine->assembly_count = round($productionLine->assembly_count);
+    $productionLine->assembly_count = ceil($productionLine->assembly_count);
     $productionLine->items_per_second = round($productionLine->items_per_second, 1);
     $productionLine->seconds_per_item = round($productionLine->seconds_per_item, 1);
 
@@ -208,7 +208,7 @@ class ProductionLineController extends Controller {
       $this->updateInputAssemblers($pl);
     }
 
-    $productionLine->assembly_count = round($productionLine->assembly_count);
+    $productionLine->assembly_count = ceil($productionLine->assembly_count);
     $productionLine->items_per_second = round($productionLine->items_per_second, 1);
     $productionLine->seconds_per_item = round($productionLine->seconds_per_item, 1);
 
@@ -238,7 +238,7 @@ class ProductionLineController extends Controller {
       $this->updateInputAssemblers($pl);
     }
 
-    $productionLine->assembly_count = round($productionLine->assembly_count);
+    $productionLine->assembly_count = ceil($productionLine->assembly_count);
     $productionLine->items_per_second = round($productionLine->items_per_second, 1);
     $productionLine->seconds_per_item = round($productionLine->seconds_per_item, 1);
 
@@ -295,7 +295,7 @@ class ProductionLineController extends Controller {
       $this->updateInputAssemblers($pl);
     }
 
-    $productionLine->assembly_count = round($productionLine->assembly_count);
+    $productionLine->assembly_count = ceil($productionLine->assembly_count);
     $productionLine->items_per_second = round($productionLine->items_per_second, 1);
     $productionLine->seconds_per_item = round($productionLine->seconds_per_item, 1);
 

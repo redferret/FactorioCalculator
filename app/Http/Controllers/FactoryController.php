@@ -32,7 +32,7 @@ class FactoryController extends Controller {
         $product->consumerProducts;
         $product->producedByProductionLines;
 
-        $productionLine->assembly_count = round($productionLine->assembly_count);
+        $productionLine->assembly_count = ceil($productionLine->assembly_count);
         $productionLine->items_per_second = round($productionLine->items_per_second, 1);
         $productionLine->seconds_per_item = round($productionLine->seconds_per_item, 1);
       }
@@ -58,7 +58,7 @@ class FactoryController extends Controller {
       $product->consumerProducts;
       $product->producedByProductionLines;
     }
-    $factory->total_items = round($totalItems);
+    $factory->total_items = round($totalItems, 1);
 
     return $factory;
   }
