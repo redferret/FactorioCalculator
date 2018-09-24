@@ -47,6 +47,13 @@ class FactoryStore extends EventEmitter {
     });
   }
 
+  removeFactory(id) {
+    let index = this._factories.findIndex(test => {
+      return id == test.id;
+    });
+    this._factories.splice(index, 1);
+  }
+
   emitChange(id) {
     this.emit(id);
   }

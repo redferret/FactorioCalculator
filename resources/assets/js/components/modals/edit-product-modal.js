@@ -25,6 +25,7 @@ import {
 
 import {
   ALL_FACTORIES,
+  DELETE_PRODUCT,
   EDIT_PRODUCT_MODAL_ID,
   GAME_ITEMS_ID,
   IMAGE_ASSET,
@@ -108,6 +109,8 @@ export class ModalFooter extends React.Component {
 
   handleApplyProductChanges() {
     let product = EditProductModalStore.getSelectedProduct();
+    ModalsStore.hideModal();
+    ModalsStore.showModal({id: SPINNER_MODAL_ID});
     AppDispatcher.dispatch({
       action: UPDATE_PRODUCT,
       data: {
@@ -122,10 +125,6 @@ export class ModalFooter extends React.Component {
         componentIds: [GAME_ITEMS_ID]
       }]
     });
-    ModalsStore.hideModal();
-    ModalsStore.showModal({
-      id: SPINNER_MODAL_ID
-    });
   }
 
   handleDeleteProduct() {
@@ -136,7 +135,21 @@ export class ModalFooter extends React.Component {
         alert("You cannot delete this product if it's being produced by one or more production lines. " +
         "Remove this product from all production lines to delete it.");
       } else {
-        // delete product
+        ModalsStore.hideModal();
+        ModalsStore.showModal({id: SPINNER_MODAL_ID});
+        AppDispatcher.dispatch({
+          action: DELETE_PRODUCT,
+          data: {
+            id: product.id
+          },
+          emitOn: [{
+            store: FactoryStore,
+            componentIds: [ALL_FACTORIES]
+          }, {
+            store: GameItemsStore,
+            componentIds: [GAME_ITEMS_ID]
+          }]
+        });
       }
     }
   }

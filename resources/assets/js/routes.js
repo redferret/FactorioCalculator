@@ -48,7 +48,7 @@ Router.registerRoute(Constants.DELETE_PRODUCT_TYPE, args => {
   return ROOT + '/productTypes/'+args.id;
 });
 Router.registerRoute(Constants.DELETE_PRODUCER, args => {
-  return ROOT + '/producer/'+args.id;
+  return ROOT + '/producers/'+args.id;
 });
 
 Router.registerRoute(Constants.EDIT_INPUTS, args => {

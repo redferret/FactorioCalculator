@@ -166,7 +166,7 @@ class ProductionLineController extends Controller {
     $productionLine = Auth::user()->productionLines()->find($id);
     if($productionLines != null) {
       $productionLine->delete();
-      return array('response'=>'success');
+      return $productionLine;
     }
     return array('response'=>'failed');
   }

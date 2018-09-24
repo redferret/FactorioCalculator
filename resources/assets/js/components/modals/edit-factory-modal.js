@@ -74,7 +74,8 @@ export class ModalFooter extends React.Component {
 
   handleDeleteFactory() {
     let factory = EditFactoryModalStore.getFactory()
-    let confirmDelete = confirm("Are you sure you want to delete '" + factory.name + "'?");
+    let confirmDelete = confirm("Are you sure you want to delete '" + factory.name + "'?" +
+      "This will remove all production lines in this factory as well.");
     if (confirmDelete) {
       ModalsStore.hideModal();
       ModalsStore.showModal({id: SPINNER_MODAL_ID});

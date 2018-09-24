@@ -69,7 +69,7 @@ class ProductController extends Controller {
     $product = Auth::user()->products()->find($id);
     if ($product != null) {
       $product->delete();
-      return array('response'=>'success');
+      return $product;
     }
     return array('response'=>'failed');
   }

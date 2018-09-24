@@ -21,6 +21,7 @@ import {
 } from 'react-bootstrap';
 
 import {
+  DELETE_PRODUCT_TYPE,
   EDIT_PRODUCT_TYPE_MODAL_ID,
   GAME_ITEMS_ID,
   IMAGE_ASSET,
@@ -76,6 +77,8 @@ export class ModalFooter extends React.Component {
 
   handleApplyProductTypeChanges() {
     let productType = EditProductTypeModalStore.getProductType();
+    ModalsStore.hideModal();
+    ModalsStore.showModal({id: SPINNER_MODAL_ID});
     AppDispatcher.dispatch({
       action: UPDATE_PRODUCT_TYPE,
       data: {
@@ -87,14 +90,32 @@ export class ModalFooter extends React.Component {
         componentIds: [GAME_ITEMS_ID]
       }]
     });
-    ModalsStore.hideModal();
-    ModalsStore.showModal({
-      id: SPINNER_MODAL_ID
-    });
   }
 
   handleDeleteProductType() {
-
+    let productType = EditProductTypeModalStore.getProductType();
+    let confirmDelete = confirm("Are you sure you want to delete '" + productType.name + "'? " +
+      "This will also remove all products in this category.");
+    if (confirmDelete) {
+      let isEmpty = productType.products.length < 1;
+      if (isEmpty) {
+        ModalsStore.hideModal();
+        ModalsStore.showModal({id: SPINNER_MODAL_ID});
+        AppDispatcher.dispatch({
+          action: DELETE_PRODUCT_TYPE,
+          data: {
+            id: productType.id
+          },
+          emitOn: [{
+            store: GameItemsStore,
+            componentIds: [GAME_ITEMS_ID]
+          }]
+        });
+      } else {
+        alert("In order to safely delete this category each product needs to be deleted. If there are production lines " +
+         "producing these products you must remove that product from the production line to delete that product.");
+      }
+    }
   }
 
   render() {
