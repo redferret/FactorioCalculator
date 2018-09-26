@@ -3,6 +3,18 @@ a:hover {
  cursor:pointer;
 }
 
+.spinner-center {
+  margin: auto;
+  width: 35%;
+  padding-top: 10px;
+}
+
+.spinner-message {
+  text-align: left;
+  padding-top: 20px;
+  padding-left: 8px;
+}
+
 .font-bold {
   font-weight: bold;
 }

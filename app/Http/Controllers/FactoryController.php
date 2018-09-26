@@ -104,9 +104,9 @@ class FactoryController extends Controller {
     $factory = Auth::user()->factories()->find($id);
     if ($factory != null) {
       $factory->delete();
-      return array('response'=>'success');
+      return $factory;
     }
-    return array('response'=>'failed');
+    return array('response'=>'failed', 'on'=>$id);
   }
 
 }

@@ -56,7 +56,7 @@ class ProducerController extends Controller {
     $producer = Auth::user()->producers()->find($id);
     if ($producer != null) {
       $producer->delete();
-      return array('response'=>'success');
+      return $producer;
     }
     return array('response'=>'failed');
   }

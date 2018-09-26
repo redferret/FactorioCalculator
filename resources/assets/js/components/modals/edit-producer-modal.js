@@ -21,6 +21,7 @@ import {
 } from 'react-bootstrap';
 
 import {
+  DELETE_PRODUCER,
   EDIT_PRODUCER_MODAL_ID,
   GAME_ITEMS_ID,
   IMAGE_ASSET,
@@ -105,9 +106,7 @@ export class ModalFooter extends React.Component {
 
   handleApplyProducerChanges() {
     ModalsStore.hideModal();
-    ModalsStore.showModal({
-      id: SPINNER_MODAL_ID
-    });
+    ModalsStore.showModal({id: SPINNER_MODAL_ID});
     let producer = EditProducerModalStore.getProducer();
     AppDispatcher.dispatch({
       action: UPDATE_PRODUCER,
@@ -123,7 +122,23 @@ export class ModalFooter extends React.Component {
   }
 
   handleDeleteProducer() {
-
+    let producer = EditProducerModalStore.getProducer();
+    let confirmDelete = confirm("Are you sure you want to delete '" + producer.name + "'?");
+    if (confirmDelete) {
+      ModalsStore.hideModal();
+      ModalsStore.showModal({id: SPINNER_MODAL_ID});
+      AppDispatcher.dispatch({
+        action: DELETE_PRODUCER,
+        data: {
+          id: producer.id,
+          values: EditProducerModalStore.getProducerValues()
+        },
+        emitOn: [{
+          store: GameItemsStore,
+          componentIds: [GAME_ITEMS_ID]
+        }]
+      });
+    }
   }
 
   render() {
