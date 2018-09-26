@@ -38,9 +38,12 @@ class ItemTable extends React.Component {
             <Row key={index}>
               {row.map((item, index) =>
                 <Col key={index} sm={this.props.sm}>
+                  {this.props.noButton?
+                    this.props.itemCallback(item)
+                  :
                   <Button id={'item_' + item.id} bsStyle='link' onClick={() => this.props.onClickCallback(item)}>
                     {this.props.itemCallback(item)}
-                  </Button>
+                  </Button>}
                   {this.props.itemContent(item)}
                 </Col>
               )}
@@ -51,7 +54,7 @@ class ItemTable extends React.Component {
     }
     return (
       <Alert bsStyle='warning'>{this.props.emptyItemsMessage}</Alert>
-    )
+    );
   }
 }
 

@@ -38,6 +38,7 @@ Route::delete('/productionlines/{id}', 'ProductionLineController@destroy');
 // Route::get('/productionlines/{id}', 'ProductionLineController@getProductionLine');
 Route::get('/productionlines/recalculate', 'ProductionLineController@recalculate');
 Route::get('/productionlines/{id}/inputsOutputs', 'ProductionLineController@getProductionLineInputsOutputs');
+Route::get('/productionlines/{id}/requiredinputs', 'ProductionLineController@getRequiredProducts');
 Route::get('/productionlines', 'ProductionLineController@getProductionLines');
 Route::post('/productionlines', 'ProductionLineController@store');
 Route::put('/productionlines/{id}', 'ProductionLineController@update');
