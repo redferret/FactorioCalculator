@@ -164,7 +164,7 @@ class ProductionLineController extends Controller {
    */
   public function destroy($id) {
     $productionLine = Auth::user()->productionLines()->find($id);
-    if($productionLines != null) {
+    if($productionLine != null) {
       $productionLine->delete();
       return $productionLine;
     }

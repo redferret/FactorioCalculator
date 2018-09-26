@@ -56,6 +56,12 @@ class GameItemsStore extends EventEmitter {
       return product.id == test.id;
     });
     type.products.splice(index, 1);
+
+    products = type.sorted_products;
+    index = products.findIndex(test => {
+      return product.id == test.id;
+    });
+    type.sorted_products.splice(index, 1);
   }
 
   getProductTypes() {

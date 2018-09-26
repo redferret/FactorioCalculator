@@ -7,6 +7,7 @@ require('./delete-factory.js');
 require('./delete-producer.js');
 require('./delete-product-type.js');
 require('./delete-product.js');
+require('./delete-production-line.js');
 require('./edit-inputs.js');
 require('./get-factories.js');
 require('./get-game-items.js');

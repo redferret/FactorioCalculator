@@ -10,8 +10,8 @@ Actions.register(DELETE_PRODUCTION_LINE, payload => {
     Router.method('DELETE')
   ).then(response => {
     return response.json();
-  }).then(product => {
-    FactoryStore.removeProductionLine(product.id);
+  }).then(productionLine => {
+    FactoryStore.removeProductionLine(productionLine);
     ModalsStore.hideModal();
     Actions.finish(payload);
   });

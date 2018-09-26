@@ -12,8 +12,6 @@ Actions.register(DELETE_FACTORY, payload => {
   }).then(factory => {
     if (factory.response != 'failed') {
       FactoryStore.removeFactory(factory.id);
-    } else {
-      console.log(factory);
     }
     ModalsStore.hideModal();
     Actions.finish(payload);

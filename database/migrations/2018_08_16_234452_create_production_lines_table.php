@@ -23,7 +23,6 @@ class CreateProductionLinesTable extends Migration {
       $table->integer('factory_id')->unsigned()->nullable();
       $table->foreign('factory_id')->references('id')->on('factories')->onDelete('cascade');
       $table->integer('user_id')->unsigned()->nullable();
-      $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
       $table->timestamps();
     });
   }
