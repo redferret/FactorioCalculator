@@ -41,6 +41,7 @@ export const GET_PRODUCERS                      = 'get-producers';
 export const GET_PRODUCTION_LINE                = 'get-production-line';
 export const GET_PRODUCTION_LINES               = 'get-production-lines';
 export const GET_INPUT_OUTPUT_PRODUCTION_LINES  = 'get-input-output-production-lines';
+export const GET_REQUIRED_INPUT_PRODUCTS        = 'get-required-input-products';
 export const GET_INPUT_PRODUCTION_LINES         = 'get-input-production-lines';
 export const GET_PRODUCTS                       = 'get-products';
 export const GET_PRODUCT_TYPES                  = 'get-product-types';

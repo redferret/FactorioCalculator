@@ -8,6 +8,7 @@ import React from 'react';
 import Router from '../../router.js';
 
 import {
+  Alert,
   Button,
   ButtonToolbar,
   Col,
@@ -44,14 +45,16 @@ export class ModalBody extends React.Component {
 
     this.state = {
       selectedFactoryId: -1,
-      inputs: EditInputsModalStore.getInputs()
+      inputs: EditInputsModalStore.getInputs(),
+      missingInputs: EditInputsModalStore.getMissingInputs()
     }
   }
 
   _onChange() {
     if(this._isMounted) {
       this.setState({
-        inputs: EditInputsModalStore.getInputs()
+        inputs: EditInputsModalStore.getInputs(),
+        missingInputs: EditInputsModalStore.getMissingInputs()
       });
     }
   }
@@ -74,16 +77,20 @@ export class ModalBody extends React.Component {
 
   handleAddProductionLine(productionLine) {
     EditInputsModalStore.addInput(productionLine);
+    EditInputsModalStore.validateInputs();
     this.setState({
-      inputs: EditInputsModalStore.getInputs()
-    })
+      inputs: EditInputsModalStore.getInputs(),
+      missingInputs: EditInputsModalStore.getMissingInputs()
+    });
   }
 
   handleRemoveProductionLine(productionLine) {
     EditInputsModalStore.removeInput(productionLine);
+    EditInputsModalStore.validateInputs();
     this.setState({
-      inputs: EditInputsModalStore.getInputs()
-    })
+      inputs: EditInputsModalStore.getInputs(),
+      missingInputs: EditInputsModalStore.getMissingInputs()
+    });
   }
 
   render() {
@@ -97,7 +104,7 @@ export class ModalBody extends React.Component {
             <Row>
               <Col sm={5}>
                 <h4>Inputs for {productionLine.name}</h4>
-                <ItemTable items={EditInputsModalStore.getInputs()} rowLength={1}
+                <ItemTable items={this.state.inputs} rowLength={1}
                   emptyItemsMessage='No Inputs'
                   onClickCallback={this.handleRemoveProductionLine}
                   itemCallback={(productionLine =>
@@ -106,13 +113,19 @@ export class ModalBody extends React.Component {
                       {productionLine.name}
                     </div>
                   )} />
+                <ItemTable items={this.state.missingInputs} rowLength={2}
+                  emptyItemsMessage='No Missing Inputs' noButton
+                  itemCallback={(product =>
+                    <Alert bsStyle='danger'>
+                      <img src={Router.route(IMAGE_ASSET, {fileName: product.image_file})} />
+                      {product.name}
+                    </Alert>
+                  )} />
               </Col>
-              <Col sm={7} className='border-left'>
-
+              <Col sm={7}>
                 <SearchableDropdown toggleText='Factories' id='factory-menu' items={factories}
                   itemSelectCallback={this.handleFactorySelect}
                   itemCallback={(factory) => factory.name} />
-
                 {selectedFactory?
                   <ItemTable items={selectedFactory.production_lines} rowLength={2}
                     emptyItemsMessage='No Production Lines'

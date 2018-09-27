@@ -79,6 +79,9 @@ Router.registerRoute(Constants.GET_PRODUCT_TYPES, args => {
 Router.registerRoute(Constants.GET_PRODUCERS, args => {
   return ROOT + '/producers';
 });
+Router.registerRoute(Constants.GET_REQUIRED_INPUT_PRODUCTS, args => {
+  return ROOT + '/productionlines/'+args.id+'/requiredinputs';
+});
 
 /**
  * Special Routes

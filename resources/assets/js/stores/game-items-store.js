@@ -12,6 +12,13 @@ class GameItemsStore extends EventEmitter {
     return this._products;
   }
 
+  getProduct(id) {
+    let index = this._products.findIndex(test => {
+      return id == test.id;
+    });
+    return this._products[index];
+  }
+
   setProductTypes(productTypes) {
     this._productTypes = productTypes;
     let tempSet = new Set();

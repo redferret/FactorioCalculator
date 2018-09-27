@@ -32,6 +32,17 @@ class ProductionLineController extends Controller {
     return $productionLines;
   }
 
+  public function getRequiredProducts($id) {
+    $productionLine = Auth::user()->productionLines()->find($id);
+    $products = array();
+    $product = $productionLine->product;
+    $consumerProducts = $product->consumerProducts;
+    foreach($consumerProducts as $consumerProduct) {
+      $consumerProduct->requiredProduct;
+    }
+    return $consumerProducts;
+  }
+
   public function editInputs(Request $request, $id) {
     $productionLine = Auth::user()->productionLines()->find($id);
     $inputs = $request->input('inputs');
