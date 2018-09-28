@@ -5711,7 +5711,7 @@ var ItemTable = function (_React$Component) {
               __WEBPACK_IMPORTED_MODULE_3_react_bootstrap__["t" /* Row */],
               { key: index },
               row.map(function (item, index) {
-                return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                return item == null ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                   __WEBPACK_IMPORTED_MODULE_3_react_bootstrap__["e" /* Col */],
                   { key: index, sm: _this2.props.sm },
                   _this2.props.noButton ? _this2.props.itemCallback(item) : __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -5722,6 +5722,10 @@ var ItemTable = function (_React$Component) {
                     _this2.props.itemCallback(item)
                   ),
                   _this2.props.itemContent(item)
+                ) : __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                  __WEBPACK_IMPORTED_MODULE_3_react_bootstrap__["a" /* Alert */],
+                  { bsStyle: 'warning' },
+                  'Item is Null'
                 );
               })
             );
@@ -82345,6 +82349,16 @@ var ModalBody = function (_React$Component2) {
                       null,
                       __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement('img', { src: __WEBPACK_IMPORTED_MODULE_7__router_js__["a" /* default */].route(__WEBPACK_IMPORTED_MODULE_9__constants_js__["E" /* IMAGE_ASSET */], { fileName: productionLine.product.image_file }) }),
                       productionLine.name
+                    );
+                  } }),
+                __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__item_table_js__["a" /* default */], { items: this.state.missingInputs, rowLength: 2,
+                  emptyItemsMessage: 'No Missing Inputs', noButton: true,
+                  itemCallback: function itemCallback(product) {
+                    return __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
+                      __WEBPACK_IMPORTED_MODULE_8_react_bootstrap__["a" /* Alert */],
+                      { bsStyle: 'danger' },
+                      __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement('img', { src: __WEBPACK_IMPORTED_MODULE_7__router_js__["a" /* default */].route(__WEBPACK_IMPORTED_MODULE_9__constants_js__["E" /* IMAGE_ASSET */], { fileName: product.image_file }) }),
+                      product.name
                     );
                   } })
               ),

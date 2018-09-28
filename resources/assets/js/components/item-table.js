@@ -37,15 +37,18 @@ class ItemTable extends React.Component {
           {rows.map((row, index) =>
             <Row key={index}>
               {row.map((item, index) =>
-                <Col key={index} sm={this.props.sm}>
-                  {this.props.noButton?
-                    this.props.itemCallback(item)
+                item == null?
+                  <Col key={index} sm={this.props.sm}>
+                    {this.props.noButton?
+                      this.props.itemCallback(item)
+                    :
+                    <Button id={'item_' + item.id} bsStyle='link' onClick={() => this.props.onClickCallback(item)}>
+                      {this.props.itemCallback(item)}
+                    </Button>}
+                    {this.props.itemContent(item)}
+                  </Col>
                   :
-                  <Button id={'item_' + item.id} bsStyle='link' onClick={() => this.props.onClickCallback(item)}>
-                    {this.props.itemCallback(item)}
-                  </Button>}
-                  {this.props.itemContent(item)}
-                </Col>
+                  <Alert bsStyle='warning'>Item is Null</Alert>
               )}
             </Row>
           )}
