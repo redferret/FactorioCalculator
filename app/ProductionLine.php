@@ -10,7 +10,7 @@ class ProductionLine extends Model
     'assembly_count', 'seconds_per_item'];
 
   public function product() {
-    return $this->belongsToMany(Product::class, 'product_production_line');
+    return $this->belongsTo(Product::class);
   }
 
   public function producerProductionLines() {
