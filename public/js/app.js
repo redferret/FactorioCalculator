@@ -81314,6 +81314,53 @@ var ModalBody = function (_React$Component2) {
       });
     }
   }, {
+    key: 'renderMissingInputs',
+    value: function renderMissingInputs() {
+      if (this.state.missingInputs.length > 0) {
+        return __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
+          __WEBPACK_IMPORTED_MODULE_8_react_bootstrap__["a" /* Alert */],
+          { bsStyle: 'danger' },
+          __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
+            'div',
+            null,
+            'Missing Inputs:'
+          ),
+          __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__item_table_js__["a" /* default */], { items: this.state.missingInputs, rowLength: 1,
+            noButton: true, itemCallback: function itemCallback(product) {
+              return __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
+                'div',
+                null,
+                __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement('img', { src: __WEBPACK_IMPORTED_MODULE_7__router_js__["a" /* default */].route(__WEBPACK_IMPORTED_MODULE_9__constants_js__["u" /* IMAGE_ASSET */], { fileName: product.image_file }) }),
+                product.name
+              );
+            } })
+        );
+      } else {
+        return __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
+          __WEBPACK_IMPORTED_MODULE_8_react_bootstrap__["a" /* Alert */],
+          { bsStyle: 'info' },
+          'No Missing Inputs'
+        );
+      }
+    }
+  }, {
+    key: 'renderFactoryProductionLines',
+    value: function renderFactoryProductionLines(selectedFactory) {
+      if (selectedFactory) {
+        return __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__item_table_js__["a" /* default */], { items: selectedFactory.production_lines, rowLength: 2,
+          emptyItemsMessage: 'No Production Lines',
+          onClickCallback: this.handleAddProductionLine,
+          itemCallback: function itemCallback(productionLine) {
+            return __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
+              'div',
+              null,
+              __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement('img', { src: __WEBPACK_IMPORTED_MODULE_7__router_js__["a" /* default */].route(__WEBPACK_IMPORTED_MODULE_9__constants_js__["u" /* IMAGE_ASSET */], { fileName: productionLine.product.image_file }) }),
+              productionLine.name
+            );
+          } });
+      }
+    }
+  }, {
     key: 'render',
     value: function render() {
       var productionLine = __WEBPACK_IMPORTED_MODULE_1__stores_edit_inputs_modal_store_js__["a" /* default */].getProductionLine();
@@ -81351,28 +81398,7 @@ var ModalBody = function (_React$Component2) {
                       productionLine.name
                     );
                   } }),
-                this.state.missingInputs.length > 0 ? __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
-                  __WEBPACK_IMPORTED_MODULE_8_react_bootstrap__["a" /* Alert */],
-                  { bsStyle: 'danger' },
-                  __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
-                    'div',
-                    null,
-                    'Missing Inputs:'
-                  ),
-                  __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__item_table_js__["a" /* default */], { items: this.state.missingInputs, rowLength: 1,
-                    noButton: true, itemCallback: function itemCallback(product) {
-                      return __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
-                        'div',
-                        null,
-                        __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement('img', { src: __WEBPACK_IMPORTED_MODULE_7__router_js__["a" /* default */].route(__WEBPACK_IMPORTED_MODULE_9__constants_js__["u" /* IMAGE_ASSET */], { fileName: product.image_file }) }),
-                        product.name
-                      );
-                    } })
-                ) : __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
-                  __WEBPACK_IMPORTED_MODULE_8_react_bootstrap__["a" /* Alert */],
-                  { bsStyle: 'info' },
-                  'No Missing Inputs'
-                )
+                this.renderMissingInputs()
               ),
               __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
                 __WEBPACK_IMPORTED_MODULE_8_react_bootstrap__["d" /* Col */],
@@ -81382,17 +81408,7 @@ var ModalBody = function (_React$Component2) {
                   itemCallback: function itemCallback(factory) {
                     return factory.name;
                   } }),
-                selectedFactory ? __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__item_table_js__["a" /* default */], { items: selectedFactory.production_lines, rowLength: 2,
-                  emptyItemsMessage: 'No Production Lines',
-                  onClickCallback: this.handleAddProductionLine,
-                  itemCallback: function itemCallback(productionLine) {
-                    return __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
-                      'div',
-                      null,
-                      __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement('img', { src: __WEBPACK_IMPORTED_MODULE_7__router_js__["a" /* default */].route(__WEBPACK_IMPORTED_MODULE_9__constants_js__["u" /* IMAGE_ASSET */], { fileName: productionLine.product.image_file }) }),
-                      productionLine.name
-                    );
-                  } }) : ''
+                this.renderFactoryProductionLines(selectedFactory)
               )
             )
           )

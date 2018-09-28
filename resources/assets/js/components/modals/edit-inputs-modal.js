@@ -93,6 +93,47 @@ export class ModalBody extends React.Component {
     });
   }
 
+  renderMissingInputs() {
+    if (this.state.missingInputs.length > 0) {
+      return (
+        <Alert bsStyle='danger'>
+          <div>
+            Missing Inputs:
+          </div>
+          <ItemTable items={this.state.missingInputs} rowLength={1}
+            noButton itemCallback={(product =>
+              <div>
+                <img src={Router.route(IMAGE_ASSET, {fileName: product.image_file})} />
+                {product.name}
+              </div>
+            )} />
+        </Alert>
+      );
+    } else {
+      return (
+        <Alert bsStyle='info'>
+          No Missing Inputs
+        </Alert>
+      );
+    }
+  }
+
+  renderFactoryProductionLines(selectedFactory) {
+    if (selectedFactory) {
+      return (
+        <ItemTable items={selectedFactory.production_lines} rowLength={2}
+          emptyItemsMessage='No Production Lines'
+          onClickCallback={this.handleAddProductionLine}
+          itemCallback={(productionLine =>
+            <div>
+              <img src={Router.route(IMAGE_ASSET, {fileName: productionLine.product.image_file})} />
+              {productionLine.name}
+            </div>
+          )} />
+      );
+    }
+  }
+
   render() {
     let productionLine = EditInputsModalStore.getProductionLine();
     let factories = FactoryStore.getFactories();
@@ -113,41 +154,13 @@ export class ModalBody extends React.Component {
                       {productionLine.name}
                     </div>
                   )} />
-                {this.state.missingInputs.length > 0?
-                  <Alert bsStyle='danger'>
-                    <div>
-                      Missing Inputs:
-                    </div>
-                    <ItemTable items={this.state.missingInputs} rowLength={1}
-                      noButton itemCallback={(product =>
-                        <div>
-                          <img src={Router.route(IMAGE_ASSET, {fileName: product.image_file})} />
-                          {product.name}
-                        </div>
-                      )} />
-                  </Alert>
-                  :
-                  <Alert bsStyle='info'>
-                    No Missing Inputs
-                  </Alert>
-                  }
-
+                {this.renderMissingInputs()}
               </Col>
               <Col sm={7}>
                 <SearchableDropdown toggleText='Factories' id='factory-menu' items={factories}
                   itemSelectCallback={this.handleFactorySelect}
                   itemCallback={(factory) => factory.name} />
-                {selectedFactory?
-                  <ItemTable items={selectedFactory.production_lines} rowLength={2}
-                    emptyItemsMessage='No Production Lines'
-                    onClickCallback={this.handleAddProductionLine}
-                    itemCallback={(productionLine =>
-                      <div>
-                        <img src={Router.route(IMAGE_ASSET, {fileName: productionLine.product.image_file})} />
-                        {productionLine.name}
-                      </div>
-                    )} />
-                  : ''}
+                {this.renderFactoryProductionLines(selectedFactory)}
               </Col>
             </Row>
           </Col>
