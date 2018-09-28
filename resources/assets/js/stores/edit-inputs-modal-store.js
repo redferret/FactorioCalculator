@@ -49,7 +49,11 @@ class EditInputsModalStore extends EventEmitter {
     console.log('currentProducts: ', currentProducts);
     this._consumerRequirements.forEach(requirement => {
       let index = currentProducts.findIndex((test) => {
-        return test.id == requirement.required_product.id;
+        console.log('test', test);
+        console.log('requirement', requirement);
+        if (test != null && requirement.required_product != null) {
+          return test.id == requirement.required_product.id;
+        } return false;
       });
       if (index < 0){
         this._missingInputs.add(requirement.required_product);

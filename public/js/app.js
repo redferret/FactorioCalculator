@@ -4668,7 +4668,11 @@ var EditInputsModalStore = function (_EventEmitter) {
       console.log('currentProducts: ', currentProducts);
       this._consumerRequirements.forEach(function (requirement) {
         var index = currentProducts.findIndex(function (test) {
-          return test.id == requirement.required_product.id;
+          console.log('test', test);
+          console.log('requirement', requirement);
+          if (test != null && requirement.required_product != null) {
+            return test.id == requirement.required_product.id;
+          }return false;
         });
         if (index < 0) {
           _this2._missingInputs.add(requirement.required_product);
