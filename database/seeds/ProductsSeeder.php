@@ -56,6 +56,8 @@ class ProductsSeeder extends Seeder {
     $copperPlateRequirement->requiredProduct()->save($copperOre);
     $copperPlate->consumerProducts()->save($copperPlateRequirement);
 
+    $copperPlate->consumerProducts;
+
     $copperWire = $user->products()->save(App\Product::create([
       'name' => 'Copper Cable',
       'image_file' => 'Copper_cable.png',

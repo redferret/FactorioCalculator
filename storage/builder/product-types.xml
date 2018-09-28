@@ -8,419 +8,62 @@
   </ProductType>
 
   <ProductType name='Intermediates' image_file='Item-group_intermediate_products.png'>
-    <Product
-      name='Coal'
-      image_file='Coal.png'
-      crafting_time='2'
-      hardness='0.9'
-      stock_size='1'
-    />
-    <Product
-      name='Stone'
-      image_file='Stone.png'
-      crafting_time='2'
-      hardness='0.4'
-      stock_size='1'
-    />
-    <Product
-      name='Iron ore'
-      image_file='Iron_ore.png'
-      crafting_time='2'
-      hardness='0.9'
-      stock_size='1'
-    />
-    <Product
-      name='Copper ore'
-      image_file='Copper_ore.png'
-      crafting_time='2'
-      hardness='0.9'
-      stock_size='1'
-    />
-    <Product
-      name='Uranium ore'
-      image_file='Uranium_ore.png'
-      crafting_time='4'
-      hardness='0.9'
-      stock_size='1'
-    />
-    <Product
-      name='Crude oil'
-      image_file='Crude_oil.png'
-      crafting_time='1'
-      hardness='0'
-      stock_size='1'
-    />
-    <Product
-      name=''
-      image_file=''
-      crafting_time='5'
-      hardness='0'
-      stock_size='1'
-    />
-    <Product
-      name=''
-      image_file=''
-      crafting_time=''
-      hardness='0'
-      stock_size='1'
-    />
-    <Product
-      name=''
-      image_file=''
-      crafting_time=''
-      hardness='0'
-      stock_size='1'
-    />
-    <Product
-      name=''
-      image_file=''
-      crafting_time=''
-      hardness='0'
-      stock_size='1'
-    />
-    <Product
-      name=''
-      image_file=''
-      crafting_time=''
-      hardness='0'
-      stock_size='1'
-    />
-    <Product
-      name=''
-      image_file=''
-      crafting_time=''
-      hardness='0'
-      stock_size='1'
-    />
-    <Product
-      name=''
-      image_file=''
-      crafting_time=''
-      hardness='0'
-      stock_size='1'
-    />
-    <Product
-      name=''
-      image_file=''
-      crafting_time=''
-      hardness='0'
-      stock_size='1'
-    />
-    <Product
-      name=''
-      image_file=''
-      crafting_time=''
-      hardness='0'
-      stock_size='1'
-    />
-    <Product
-      name=''
-      image_file=''
-      crafting_time=''
-      hardness='0'
-      stock_size='1'
-    />
-    <Product
-      name=''
-      image_file=''
-      crafting_time=''
-      hardness='0'
-      stock_size='1'
-    />
-    <Product
-      name=''
-      image_file=''
-      crafting_time=''
-      hardness='0'
-      stock_size='1'
-    />
-    <Product
-      name=''
-      image_file=''
-      crafting_time=''
-      hardness='0'
-      stock_size='1'
-    />
-    <Product
-      name=''
-      image_file=''
-      crafting_time=''
-      hardness='0'
-      stock_size='1'
-    />
-    <Product
-      name=''
-      image_file=''
-      crafting_time=''
-      hardness='0'
-      stock_size='1'
-    />
-    <Product
-      name=''
-      image_file=''
-      crafting_time=''
-      hardness='0'
-      stock_size='1'
-    />
-    <Product
-      name=''
-      image_file=''
-      crafting_time=''
-      hardness='0'
-      stock_size='1'
-    />
-    <Product
-      name=''
-      image_file=''
-      crafting_time=''
-      hardness='0'
-      stock_size='1'
-    />
-    <Product
-      name=''
-      image_file=''
-      crafting_time=''
-      hardness='0'
-      stock_size='1'
-    />
-    <Product
-      name=''
-      image_file=''
-      crafting_time=''
-      hardness='0'
-      stock_size='1'
-    />
-    <Product
-      name=''
-      image_file=''
-      crafting_time=''
-      hardness='0'
-      stock_size='1'
-    />
-    <Product
-      name=''
-      image_file=''
-      crafting_time=''
-      hardness='0'
-      stock_size='1'
-    />
-    <Product
-      name=''
-      image_file=''
-      crafting_time=''
-      hardness='0'
-      stock_size='1'
-    />
-    <Product
-      name=''
-      image_file=''
-      crafting_time=''
-      hardness='0'
-      stock_size='1'
-    />
-    <Product
-      name=''
-      image_file=''
-      crafting_time=''
-      hardness='0'
-      stock_size='1'
-    />
-    <Product
-      name=''
-      image_file=''
-      crafting_time=''
-      hardness='0'
-      stock_size='1'
-    />
-    <Product
-      name=''
-      image_file=''
-      crafting_time=''
-      hardness='0'
-      stock_size='1'
-    />
-    <Product
-      name=''
-      image_file=''
-      crafting_time=''
-      hardness='0'
-      stock_size='1'
-    />
-    <Product
-      name=''
-      image_file=''
-      crafting_time=''
-      hardness='0'
-      stock_size='1'
-    />
-    <Product
-      name=''
-      image_file=''
-      crafting_time=''
-      hardness='0'
-      stock_size='1'
-    />
-    <Product
-      name=''
-      image_file=''
-      crafting_time=''
-      hardness='0'
-      stock_size='1'
-    />
-    <Product
-      name=''
-      image_file=''
-      crafting_time=''
-      hardness='0'
-      stock_size='1'
-    />
-    <Product
-      name=''
-      image_file=''
-      crafting_time=''
-      hardness='0'
-      stock_size='1'
-    />
-    <Product
-      name=''
-      image_file=''
-      crafting_time=''
-      hardness='0'
-      stock_size='1'
-    />
-    <Product
-      name=''
-      image_file=''
-      crafting_time=''
-      hardness='0'
-      stock_size='1'
-    />
-    <Product
-      name=''
-      image_file=''
-      crafting_time=''
-      hardness='0'
-      stock_size='1'
-    />
-    <Product
-      name=''
-      image_file=''
-      crafting_time=''
-      hardness='0'
-      stock_size='1'
-    />
-    <Product
-      name=''
-      image_file=''
-      crafting_time=''
-      hardness='0'
-      stock_size='1'
-    />
-    <Product
-      name=''
-      image_file=''
-      crafting_time=''
-      hardness='0'
-      stock_size='1'
-    />
-    <Product
-      name=''
-      image_file=''
-      crafting_time=''
-      hardness='0'
-      stock_size='1'
-    />
-    <Product
-      name=''
-      image_file=''
-      crafting_time=''
-      hardness='0'
-      stock_size='1'
-    />
-    <Product
-      name=''
-      image_file=''
-      crafting_time=''
-      hardness='0'
-      stock_size='1'
-    />
-    <Product
-      name=''
-      image_file=''
-      crafting_time=''
-      hardness='0'
-      stock_size='1'
-    />
-    <Product
-      name=''
-      image_file=''
-      crafting_time=''
-      hardness='0'
-      stock_size='1'
-    />
-    <Product
-      name=''
-      image_file=''
-      crafting_time=''
-      hardness='0'
-      stock_size='1'
-    />
-    <Product
-      name=''
-      image_file=''
-      crafting_time=''
-      hardness='0'
-      stock_size='1'
-    />
-    <Product
-      name=''
-      image_file=''
-      crafting_time=''
-      hardness='0'
-      stock_size='1'
-    />
-    <Product
-      name=''
-      image_file=''
-      crafting_time=''
-      hardness='0'
-      stock_size='1'
-    />
-    <Product
-      name=''
-      image_file=''
-      crafting_time=''
-      hardness='0'
-      stock_size='1'
-    />
-    <Product
-      name=''
-      image_file=''
-      crafting_time=''
-      hardness='0'
-      stock_size='1'
-    />
-    <Product
-      name=''
-      image_file=''
-      crafting_time=''
-      hardness='0'
-      stock_size='1'
-    />
-    <Product
-      name=''
-      image_file=''
-      crafting_time=''
-      hardness='0'
-      stock_size='1'
-    />
-    <Product
-      name=''
-      image_file=''
-      crafting_time=''
-      hardness='0'
-      stock_size='1'
-    />
+    <Product name='Coal'/>
+    <Product name='Stone'/>
+    <Product name='Iron ore'/>
+    <Product name='Copper ore'/>
+    <Product name='Uranium ore'/>
+    <Product name='Crude oil'/>
+    <Product name='Heavy oil'/>
+    <Product name='Light oil'/>
+    <Product name='Lubricant'/>
+    <Product name='Petroleum gas'/>
+    <Product name='Sulfuric acid'/>
+    <Product name='Water'/>
+    <Product name='Steam'/>
+    <Product name='Raw wood'/>
+    <Product name='Wood'/>
+    <Product name='Iron plate'/>
+    <Product name='Copper plate'/>
+    <Product name='Solid fuel'/>
+    <Product name='Steel plate'/>
+    <Product name='Plastic bar'/>
+    <Product name='Sulfur'/>
+    <Product name='Battery'/>
+    <Product name='Explosives'/>
+    <Product name='Crude oil barrel'/>
+    <Product name='Heavy oil barrel'/>
+    <Product name='Light oil barrel'/>
+    <Product name='Lubricant barrel'/>
+    <Product name='Petroleum gas barrel'/>
+    <Product name='Sulfuric acid barrel'/>
+    <Product name='Water barrel'/>
+    <Product name='Barrel'/>
+    <Product name='Copper cable'/>
+    <Product name='Iron stick'/>
+    <Product name='Iron gear wheel'/>
+    <Product name='Electronic circuit'/>
+    <Product name='Advanced circuit'/>
+    <Product name='Processing unit'/>
+    <Product name='Engine unit'/>
+    <Product name='Electric engine unit'/>
+    <Product name='Flying robot frame'/>
+    <Product name='Satellite'/>
+    <Product name='Rocket part'/>
+    <Product name='Rocket control unit'/>
+    <Product name='Low density structure'/>
+    <Product name='Rocket fuel'/>
+    <Product name='Nuclear fuel'/>
+    <Product name='Uranium-235'/>
+    <Product name='Uranium-238'/>
+    <Product name='Uranium fuel cell'/>
+    <Product name='Used up uranium fuel cell'/>
+    <Product name='Science pack 1'/>
+    <Product name='Science pack 2'/>
+    <Product name='Science pack 3'/>
+    <Product name='Military science pack'/>
+    <Product name='Production science pack'/>
+    <Product name='High tech science pack'/>
   </ProductType>
 
   <ProductType name='Combat' image_file='Item-group_military.png'>
