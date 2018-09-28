@@ -4659,7 +4659,7 @@ var EditInputsModalStore = function (_EventEmitter) {
 
       this._missingInputs = new Set();
       this._currentProducts = new Set();
-      console.log('Validating on: ', productionLine);
+      console.log('Validating on: ', this._productionLine);
       console.log('Inputs: ', this._inputs);
       this._inputs.forEach(function (productionLine) {
         _this2._currentProducts.add(productionLine.product);
