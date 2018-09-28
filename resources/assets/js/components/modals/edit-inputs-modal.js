@@ -113,14 +113,25 @@ export class ModalBody extends React.Component {
                       {productionLine.name}
                     </div>
                   )} />
-                <ItemTable items={this.state.missingInputs} rowLength={2}
-                  emptyItemsMessage='No Missing Inputs' noButton
-                  itemCallback={(product =>
-                    <Alert bsStyle='danger'>
-                      <img src={Router.route(IMAGE_ASSET, {fileName: product.image_file})} />
-                      {product.name}
-                    </Alert>
-                  )} />
+                {this.state.missingInputs.length > 0?
+                  <Alert bsStyle='danger'>
+                    <div>
+                      Missing Inputs:
+                    </div>
+                    <ItemTable items={this.state.missingInputs} rowLength={1}
+                      noButton itemCallback={(product =>
+                        <div>
+                          <img src={Router.route(IMAGE_ASSET, {fileName: product.image_file})} />
+                          {product.name}
+                        </div>
+                      )} />
+                  </Alert>
+                  :
+                  <Alert bsStyle='info'>
+                    No Missing Inputs
+                  </Alert>
+                  }
+
               </Col>
               <Col sm={7}>
                 <SearchableDropdown toggleText='Factories' id='factory-menu' items={factories}
