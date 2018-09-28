@@ -113,7 +113,6 @@ class Main extends Component {
           </Button>
         </ButtonToolbar>
         <br/>
-        <GameItems/>
       </div>
     );
   }

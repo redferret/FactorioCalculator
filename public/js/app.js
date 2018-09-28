@@ -27095,6 +27095,7 @@ var NewProductModalStore = function (_EventEmitter) {
         crafting_time: 1,
         hardness: 0,
         stock_size: 1,
+        image_file: '',
         is_fluid: 0,
         product_type_id: 1
       };
@@ -88934,6 +88935,7 @@ var ModalBody = function (_React$Component2) {
               callback: this.handleInputChange }),
             __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__input_js__["a" /* default */], { name: 'image_file', type: 'text', label: 'Image File',
               help: 'Pulls Image from external site wiki.factorio.com',
+              initialValue: defaultValues.image_file,
               callback: this.handleInputChange }),
             __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
               'h4',
@@ -88969,7 +88971,7 @@ var ModalBody = function (_React$Component2) {
               __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
                 'p',
                 null,
-                'Select products from the dropdown that are consumed by this product. To remove the product, click the icon.'
+                'Select products from the dropdown that are consumed by this product. To remove the product, click the product.'
               )
             )
           ),
@@ -89352,8 +89354,7 @@ var Main = function (_Component) {
             'Add New Factory'
           )
         ),
-        __WEBPACK_IMPORTED_MODULE_9_react___default.a.createElement('br', null),
-        __WEBPACK_IMPORTED_MODULE_9_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__game_items_js__["a" /* default */], null)
+        __WEBPACK_IMPORTED_MODULE_9_react___default.a.createElement('br', null)
       );
     }
   }]);
@@ -90437,7 +90438,7 @@ var GameItems = function (_React$Component) {
   return GameItems;
 }(__WEBPACK_IMPORTED_MODULE_11_react___default.a.Component);
 
-/* harmony default export */ __webpack_exports__["a"] = (GameItems);
+/* unused harmony default export */ var _unused_webpack_default_export = (GameItems);
 
 /***/ }),
 /* 445 */
