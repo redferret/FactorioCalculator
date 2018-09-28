@@ -13,6 +13,7 @@ class NewProductModalStore extends EventEmitter {
       crafting_time: 1,
       hardness: 0,
       stock_size: 1,
+      image_file: '',
       is_fluid: 0,
       product_type_id: 1
     };

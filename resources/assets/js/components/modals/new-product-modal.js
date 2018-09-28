@@ -91,6 +91,7 @@ export class ModalBody extends React.Component {
               callback={this.handleInputChange}/>
             <Input name='image_file' type='text' label='Image File'
               help='Pulls Image from external site wiki.factorio.com'
+              initialValue={defaultValues.image_file}
               callback={this.handleInputChange}/>
             <h4>Select Input Products</h4>
             <SearchableDropdown id='consumer-requirements' toggleText='Products' items={products}
@@ -113,7 +114,7 @@ export class ModalBody extends React.Component {
             <div className='help-text'>
               <p>
                 Select products from the dropdown that are consumed by this product.
-                To remove the product, click the icon.
+                To remove the product, click the product.
               </p>
             </div>
           </Col>
