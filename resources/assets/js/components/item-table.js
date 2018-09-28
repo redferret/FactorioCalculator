@@ -48,7 +48,9 @@ class ItemTable extends React.Component {
                     {this.props.itemContent(item)}
                   </Col>
                   :
-                  <div></div>
+                  <Col key={index} sm={this.props.sm}>
+                    Null
+                  </Col>
               )}
             </Row>
           )}

@@ -5722,7 +5722,11 @@ var ItemTable = function (_React$Component) {
                     _this2.props.itemCallback(item)
                   ),
                   _this2.props.itemContent(item)
-                ) : __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', null);
+                ) : __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                  __WEBPACK_IMPORTED_MODULE_3_react_bootstrap__["e" /* Col */],
+                  { key: index, sm: _this2.props.sm },
+                  'Null'
+                );
               })
             );
           })
