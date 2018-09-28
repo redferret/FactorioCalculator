@@ -48,7 +48,7 @@ class ItemTable extends React.Component {
                     {this.props.itemContent(item)}
                   </Col>
                   :
-                  <Alert bsStyle='warning'>Item is Null</Alert>
+                  <Alert key={index} bsStyle='warning'>Item is Null</Alert>
               )}
             </Row>
           )}

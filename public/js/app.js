@@ -5724,7 +5724,7 @@ var ItemTable = function (_React$Component) {
                   _this2.props.itemContent(item)
                 ) : __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                   __WEBPACK_IMPORTED_MODULE_3_react_bootstrap__["a" /* Alert */],
-                  { bsStyle: 'warning' },
+                  { key: index, bsStyle: 'warning' },
                   'Item is Null'
                 );
               })
