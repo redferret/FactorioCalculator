@@ -5,18 +5,18 @@ import { css } from 'react-emotion';
 import { SPINNER_MODAL_ID } from '../../constants.js';
 import { DEFAULT_MESSAGE } from '../../stores/modal-spinner-store.js';
 import { FadeLoader } from 'react-spinners';
+
 import {
-  Grid,
-  Row,
   Col,
+  Row,
 } from 'react-bootstrap';
 
 export class ModalBody extends React.Component {
   render() {
     return (
-      <Grid>
+      <div>
         <Row>
-          <Col sm={1}>
+          <Col sm={3}>
             <FadeLoader
               sizeUnit={"px"}
               size={60}
@@ -24,11 +24,11 @@ export class ModalBody extends React.Component {
               loading={true}
             />
           </Col>
-          <Col sm={5} className='spinner-message'>
+          <Col sm={9} className='spinner-message'>
             {ModalSpinnerStore.getSpinnerMessage()}
           </Col>
         </Row>
-      </Grid>
+      </div>
     );
   }
 }

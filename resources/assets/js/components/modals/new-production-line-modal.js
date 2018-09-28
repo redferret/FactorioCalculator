@@ -13,7 +13,6 @@ import {
   Button,
   ButtonToolbar,
   Col,
-  Grid,
   Label,
   Nav,
   NavItem,
@@ -104,7 +103,7 @@ export class ModalBody extends React.Component {
           }
           tabContentCallback={(productType) =>
             <ItemTable items={productType.sorted_products} rowLength={3}
-              onClickCallback={this.handleProductSelect} sm={3}
+              onClickCallback={this.handleProductSelect} sm={4}
               itemCallback={(product) =>
                 <div>
                   <img src={Router.route(IMAGE_ASSET, {fileName: product.image_file})} />{' '}
@@ -132,7 +131,7 @@ export class ModalBody extends React.Component {
       <div>
         <h4>Select a producer</h4>
         <ItemTable items={producers} rowLength={3}
-          onClickCallback={this.handleProducerSelect} sm={3}
+          onClickCallback={this.handleProducerSelect} sm={4}
           itemCallback={(producer) =>
             <div>
               <img src={Router.route(IMAGE_ASSET, {fileName: producer.image_file})} />
@@ -154,24 +153,28 @@ export class ModalBody extends React.Component {
 
   render() {
     return (
-      <Grid>
+      <div>
         <Row>
-          <Col sm={3}>
+          <Col sm={6}>
             <Input name='name' type='text' label='Production Line Name'
               initialValue={NewProductionLineModalStore.getName()}
               callback={(event)=>this.handleNameChange(event)}/>
+          </Col>
+        </Row>
+        <Row>
+          <Col sm={4}>
             <Input name='items_per_second' type='number' label='Initial Items Per Second'
               initialValue={NewProductionLineModalStore.getItemsPerSecond()}
               callback={(event)=>this.handleItemsPerSecondChange(event)}/>
           </Col>
         </Row>
         <Row>
-          <Col sm={6}>
+          <Col sm={12}>
             {this.renderSelectProduct()}
             {this.renderSelectProducer()}
           </Col>
         </Row>
-      </Grid>
+      </div>
     )
   }
 }

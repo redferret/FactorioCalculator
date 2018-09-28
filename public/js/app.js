@@ -2254,9 +2254,9 @@ var Style = {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__Glyphicon__ = __webpack_require__(93);
 /* unused harmony reexport Glyphicon */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__Grid__ = __webpack_require__(142);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "i", function() { return __WEBPACK_IMPORTED_MODULE_23__Grid__["a"]; });
+/* unused harmony reexport Grid */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__HelpBlock__ = __webpack_require__(307);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "j", function() { return __WEBPACK_IMPORTED_MODULE_24__HelpBlock__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "i", function() { return __WEBPACK_IMPORTED_MODULE_24__HelpBlock__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__Image__ = __webpack_require__(308);
 /* unused harmony reexport Image */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__InputGroup__ = __webpack_require__(309);
@@ -2264,7 +2264,7 @@ var Style = {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__Jumbotron__ = __webpack_require__(312);
 /* unused harmony reexport Jumbotron */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__Label__ = __webpack_require__(313);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "k", function() { return __WEBPACK_IMPORTED_MODULE_28__Label__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "j", function() { return __WEBPACK_IMPORTED_MODULE_28__Label__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__ListGroup__ = __webpack_require__(314);
 /* unused harmony reexport ListGroup */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__ListGroupItem__ = __webpack_require__(143);
@@ -2272,9 +2272,9 @@ var Style = {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__Media__ = __webpack_require__(67);
 /* unused harmony reexport Media */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__MenuItem__ = __webpack_require__(321);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "l", function() { return __WEBPACK_IMPORTED_MODULE_32__MenuItem__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "k", function() { return __WEBPACK_IMPORTED_MODULE_32__MenuItem__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__Modal__ = __webpack_require__(322);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "m", function() { return __WEBPACK_IMPORTED_MODULE_33__Modal__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "l", function() { return __WEBPACK_IMPORTED_MODULE_33__Modal__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__ModalBody__ = __webpack_require__(148);
 /* unused harmony reexport ModalBody */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__ModalFooter__ = __webpack_require__(149);
@@ -2284,7 +2284,7 @@ var Style = {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__ModalTitle__ = __webpack_require__(151);
 /* unused harmony reexport ModalTitle */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_38__Nav__ = __webpack_require__(152);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "n", function() { return __WEBPACK_IMPORTED_MODULE_38__Nav__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "m", function() { return __WEBPACK_IMPORTED_MODULE_38__Nav__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_39__Navbar__ = __webpack_require__(338);
 /* unused harmony reexport Navbar */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_40__NavbarBrand__ = __webpack_require__(153);
@@ -2292,7 +2292,7 @@ var Style = {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_41__NavDropdown__ = __webpack_require__(342);
 /* unused harmony reexport NavDropdown */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_42__NavItem__ = __webpack_require__(154);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "o", function() { return __WEBPACK_IMPORTED_MODULE_42__NavItem__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "n", function() { return __WEBPACK_IMPORTED_MODULE_42__NavItem__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_43__Overlay__ = __webpack_require__(155);
 /* unused harmony reexport Overlay */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_44__OverlayTrigger__ = __webpack_require__(349);
@@ -2306,9 +2306,9 @@ var Style = {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_48__Pagination__ = __webpack_require__(354);
 /* unused harmony reexport Pagination */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_49__Panel__ = __webpack_require__(356);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "p", function() { return __WEBPACK_IMPORTED_MODULE_49__Panel__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "o", function() { return __WEBPACK_IMPORTED_MODULE_49__Panel__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_50__PanelGroup__ = __webpack_require__(127);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "q", function() { return __WEBPACK_IMPORTED_MODULE_50__PanelGroup__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "p", function() { return __WEBPACK_IMPORTED_MODULE_50__PanelGroup__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_51__Popover__ = __webpack_require__(362);
 /* unused harmony reexport Popover */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_52__ProgressBar__ = __webpack_require__(363);
@@ -2318,19 +2318,19 @@ var Style = {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_54__ResponsiveEmbed__ = __webpack_require__(365);
 /* unused harmony reexport ResponsiveEmbed */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_55__Row__ = __webpack_require__(366);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "r", function() { return __WEBPACK_IMPORTED_MODULE_55__Row__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "q", function() { return __WEBPACK_IMPORTED_MODULE_55__Row__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_56__SafeAnchor__ = __webpack_require__(25);
 /* unused harmony reexport SafeAnchor */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_57__SplitButton__ = __webpack_require__(367);
 /* unused harmony reexport SplitButton */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_58__Tab__ = __webpack_require__(369);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "s", function() { return __WEBPACK_IMPORTED_MODULE_58__Tab__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "r", function() { return __WEBPACK_IMPORTED_MODULE_58__Tab__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_59__TabContainer__ = __webpack_require__(99);
 /* unused harmony reexport TabContainer */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_60__TabContent__ = __webpack_require__(100);
 /* unused harmony reexport TabContent */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_61__Table__ = __webpack_require__(370);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "t", function() { return __WEBPACK_IMPORTED_MODULE_61__Table__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "s", function() { return __WEBPACK_IMPORTED_MODULE_61__Table__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_62__TabPane__ = __webpack_require__(161);
 /* unused harmony reexport TabPane */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_63__Tabs__ = __webpack_require__(371);
@@ -2344,7 +2344,7 @@ var Style = {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_67__Tooltip__ = __webpack_require__(374);
 /* unused harmony reexport Tooltip */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_68__Well__ = __webpack_require__(375);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "u", function() { return __WEBPACK_IMPORTED_MODULE_68__Well__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "t", function() { return __WEBPACK_IMPORTED_MODULE_68__Well__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_69__utils__ = __webpack_require__(376);
 /* unused harmony reexport utils */
 
@@ -4046,7 +4046,7 @@ var Input = function (_React$Component) {
         this.props.label
       ) : '';
       var helpBlock = this.props.help ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-        __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["j" /* HelpBlock */],
+        __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["i" /* HelpBlock */],
         null,
         this.props.help
       ) : '';
@@ -25494,11 +25494,11 @@ var ItemTable = function (_React$Component) {
         }
 
         return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          __WEBPACK_IMPORTED_MODULE_3_react_bootstrap__["i" /* Grid */],
+          'div',
           null,
           rows.map(function (row, index) {
             return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              __WEBPACK_IMPORTED_MODULE_3_react_bootstrap__["r" /* Row */],
+              __WEBPACK_IMPORTED_MODULE_3_react_bootstrap__["q" /* Row */],
               { key: index },
               row.map(function (item, index) {
                 return item != null ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -25706,7 +25706,7 @@ var ModalBody = function (_React$Component2) {
 
       if (isMiner) {
         return __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
-          __WEBPACK_IMPORTED_MODULE_8_react_bootstrap__["t" /* Table */],
+          __WEBPACK_IMPORTED_MODULE_8_react_bootstrap__["s" /* Table */],
           null,
           __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
             'thead',
@@ -25781,7 +25781,7 @@ var ModalBody = function (_React$Component2) {
         );
       } else {
         return __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
-          __WEBPACK_IMPORTED_MODULE_8_react_bootstrap__["t" /* Table */],
+          __WEBPACK_IMPORTED_MODULE_8_react_bootstrap__["s" /* Table */],
           null,
           __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
             'thead',
@@ -25851,8 +25851,8 @@ var ModalBody = function (_React$Component2) {
       var _this3 = this;
 
       return __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
-        __WEBPACK_IMPORTED_MODULE_8_react_bootstrap__["u" /* Well */],
-        null,
+        __WEBPACK_IMPORTED_MODULE_8_react_bootstrap__["t" /* Well */],
+        { className: 'scrollable' },
         __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
           'div',
           { className: 'list-group' },
@@ -25864,7 +25864,7 @@ var ModalBody = function (_React$Component2) {
               'div',
               { key: productionLine.name + product.name + product.id },
               __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
-                __WEBPACK_IMPORTED_MODULE_8_react_bootstrap__["k" /* Label */],
+                __WEBPACK_IMPORTED_MODULE_8_react_bootstrap__["j" /* Label */],
                 null,
                 'Production Line: ',
                 productionLine.name
@@ -25878,38 +25878,34 @@ var ModalBody = function (_React$Component2) {
                   className: 'list-group-item list-group-item-action'
                 },
                 __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
-                  __WEBPACK_IMPORTED_MODULE_8_react_bootstrap__["i" /* Grid */],
+                  __WEBPACK_IMPORTED_MODULE_8_react_bootstrap__["q" /* Row */],
                   null,
                   __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
-                    __WEBPACK_IMPORTED_MODULE_8_react_bootstrap__["r" /* Row */],
-                    null,
+                    __WEBPACK_IMPORTED_MODULE_8_react_bootstrap__["d" /* Col */],
+                    { sm: 4 },
+                    __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement('img', { src: __WEBPACK_IMPORTED_MODULE_7__router_js__["a" /* default */].route(__WEBPACK_IMPORTED_MODULE_9__constants_js__["u" /* IMAGE_ASSET */], { fileName: product.image_file }) }),
+                    ' ',
+                    product.name
+                  ),
+                  __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
+                    __WEBPACK_IMPORTED_MODULE_8_react_bootstrap__["d" /* Col */],
+                    { sm: 4 },
                     __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
-                      __WEBPACK_IMPORTED_MODULE_8_react_bootstrap__["d" /* Col */],
-                      { sm: 2 },
-                      __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement('img', { src: __WEBPACK_IMPORTED_MODULE_7__router_js__["a" /* default */].route(__WEBPACK_IMPORTED_MODULE_9__constants_js__["u" /* IMAGE_ASSET */], { fileName: product.image_file }) }),
-                      ' ',
-                      product.name
+                      'div',
+                      { className: 'font-bold' },
+                      'Production Rate (Items/Sec): '
                     ),
+                    productionLine.items_per_second
+                  ),
+                  __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
+                    __WEBPACK_IMPORTED_MODULE_8_react_bootstrap__["d" /* Col */],
+                    { sm: 4 },
                     __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
-                      __WEBPACK_IMPORTED_MODULE_8_react_bootstrap__["d" /* Col */],
-                      { sm: 3 },
-                      __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
-                        'div',
-                        { className: 'font-bold' },
-                        'Production Rate (Items/Sec): '
-                      ),
-                      productionLine.items_per_second
+                      'div',
+                      { className: 'font-bold' },
+                      'Number of Producers Needed: '
                     ),
-                    __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
-                      __WEBPACK_IMPORTED_MODULE_8_react_bootstrap__["d" /* Col */],
-                      { sm: 3 },
-                      __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
-                        'div',
-                        { className: 'font-bold' },
-                        'Number of Producers Needed: '
-                      ),
-                      productionLine.assembly_count
-                    )
+                    productionLine.assembly_count
                   )
                 )
               )
@@ -25937,14 +25933,14 @@ var ModalBody = function (_React$Component2) {
       ) : this.renderProductionLines(inputProductionLines);
 
       return __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
-        __WEBPACK_IMPORTED_MODULE_8_react_bootstrap__["m" /* Modal */].Body,
+        __WEBPACK_IMPORTED_MODULE_8_react_bootstrap__["l" /* Modal */].Body,
         null,
         this.renderProductDetails(),
         __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
           'h4',
           null,
           __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
-            __WEBPACK_IMPORTED_MODULE_8_react_bootstrap__["k" /* Label */],
+            __WEBPACK_IMPORTED_MODULE_8_react_bootstrap__["j" /* Label */],
             { bsStyle: 'primary' },
             'Production Consumers'
           )
@@ -25954,7 +25950,7 @@ var ModalBody = function (_React$Component2) {
           'h4',
           null,
           __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
-            __WEBPACK_IMPORTED_MODULE_8_react_bootstrap__["k" /* Label */],
+            __WEBPACK_IMPORTED_MODULE_8_react_bootstrap__["j" /* Label */],
             { bsStyle: 'success' },
             'Production Inputs'
           )
@@ -26281,7 +26277,7 @@ var ModalBody = function (_React$Component2) {
                 'h4',
                 null,
                 __WEBPACK_IMPORTED_MODULE_7_react___default.a.createElement(
-                  __WEBPACK_IMPORTED_MODULE_10_react_bootstrap__["k" /* Label */],
+                  __WEBPACK_IMPORTED_MODULE_10_react_bootstrap__["j" /* Label */],
                   null,
                   productType.name
                 )
@@ -26291,7 +26287,7 @@ var ModalBody = function (_React$Component2) {
           },
           tabContentCallback: function tabContentCallback(productType) {
             return __WEBPACK_IMPORTED_MODULE_7_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__item_table_js__["a" /* default */], { items: productType.sorted_products, rowLength: 3,
-              onClickCallback: _this3.handleProductSelect, sm: 3,
+              onClickCallback: _this3.handleProductSelect, sm: 4,
               itemCallback: function itemCallback(product) {
                 return __WEBPACK_IMPORTED_MODULE_7_react___default.a.createElement(
                   'div',
@@ -26337,7 +26333,7 @@ var ModalBody = function (_React$Component2) {
           'Select a producer'
         ),
         __WEBPACK_IMPORTED_MODULE_7_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__item_table_js__["a" /* default */], { items: producers, rowLength: 3,
-          onClickCallback: this.handleProducerSelect, sm: 3,
+          onClickCallback: this.handleProducerSelect, sm: 4,
           itemCallback: function itemCallback(producer) {
             return __WEBPACK_IMPORTED_MODULE_7_react___default.a.createElement(
               'div',
@@ -26373,19 +26369,27 @@ var ModalBody = function (_React$Component2) {
       var _this4 = this;
 
       return __WEBPACK_IMPORTED_MODULE_7_react___default.a.createElement(
-        __WEBPACK_IMPORTED_MODULE_10_react_bootstrap__["i" /* Grid */],
+        'div',
         null,
         __WEBPACK_IMPORTED_MODULE_7_react___default.a.createElement(
-          __WEBPACK_IMPORTED_MODULE_10_react_bootstrap__["r" /* Row */],
+          __WEBPACK_IMPORTED_MODULE_10_react_bootstrap__["q" /* Row */],
           null,
           __WEBPACK_IMPORTED_MODULE_7_react___default.a.createElement(
             __WEBPACK_IMPORTED_MODULE_10_react_bootstrap__["d" /* Col */],
-            { sm: 3 },
+            { sm: 6 },
             __WEBPACK_IMPORTED_MODULE_7_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__input_js__["a" /* default */], { name: 'name', type: 'text', label: 'Production Line Name',
               initialValue: __WEBPACK_IMPORTED_MODULE_6__stores_new_production_line_modal_store_js__["a" /* default */].getName(),
               callback: function callback(event) {
                 return _this4.handleNameChange(event);
-              } }),
+              } })
+          )
+        ),
+        __WEBPACK_IMPORTED_MODULE_7_react___default.a.createElement(
+          __WEBPACK_IMPORTED_MODULE_10_react_bootstrap__["q" /* Row */],
+          null,
+          __WEBPACK_IMPORTED_MODULE_7_react___default.a.createElement(
+            __WEBPACK_IMPORTED_MODULE_10_react_bootstrap__["d" /* Col */],
+            { sm: 4 },
             __WEBPACK_IMPORTED_MODULE_7_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__input_js__["a" /* default */], { name: 'items_per_second', type: 'number', label: 'Initial Items Per Second',
               initialValue: __WEBPACK_IMPORTED_MODULE_6__stores_new_production_line_modal_store_js__["a" /* default */].getItemsPerSecond(),
               callback: function callback(event) {
@@ -26394,11 +26398,11 @@ var ModalBody = function (_React$Component2) {
           )
         ),
         __WEBPACK_IMPORTED_MODULE_7_react___default.a.createElement(
-          __WEBPACK_IMPORTED_MODULE_10_react_bootstrap__["r" /* Row */],
+          __WEBPACK_IMPORTED_MODULE_10_react_bootstrap__["q" /* Row */],
           null,
           __WEBPACK_IMPORTED_MODULE_7_react___default.a.createElement(
             __WEBPACK_IMPORTED_MODULE_10_react_bootstrap__["d" /* Col */],
-            { sm: 6 },
+            { sm: 12 },
             this.renderSelectProduct(),
             this.renderSelectProducer()
           )
@@ -81367,16 +81371,16 @@ var ModalBody = function (_React$Component2) {
       var factories = __WEBPACK_IMPORTED_MODULE_2__stores_factory_store_js__["a" /* default */].getFactories();
       var selectedFactory = __WEBPACK_IMPORTED_MODULE_2__stores_factory_store_js__["a" /* default */].getFactory(this.state.selectedFactoryId);
       return __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
-        __WEBPACK_IMPORTED_MODULE_8_react_bootstrap__["i" /* Grid */],
+        'div',
         null,
         __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
-          __WEBPACK_IMPORTED_MODULE_8_react_bootstrap__["r" /* Row */],
+          __WEBPACK_IMPORTED_MODULE_8_react_bootstrap__["q" /* Row */],
           null,
           __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
             __WEBPACK_IMPORTED_MODULE_8_react_bootstrap__["d" /* Col */],
-            { sm: 9 },
+            { sm: 6 },
             __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
-              __WEBPACK_IMPORTED_MODULE_8_react_bootstrap__["r" /* Row */],
+              __WEBPACK_IMPORTED_MODULE_8_react_bootstrap__["q" /* Row */],
               null,
               __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
                 __WEBPACK_IMPORTED_MODULE_8_react_bootstrap__["d" /* Col */],
@@ -81414,11 +81418,11 @@ var ModalBody = function (_React$Component2) {
           )
         ),
         __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
-          __WEBPACK_IMPORTED_MODULE_8_react_bootstrap__["r" /* Row */],
+          __WEBPACK_IMPORTED_MODULE_8_react_bootstrap__["q" /* Row */],
           null,
           __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
             __WEBPACK_IMPORTED_MODULE_8_react_bootstrap__["d" /* Col */],
-            { sm: 9 },
+            { sm: 6 },
             __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
               'div',
               { className: 'help-text' },
@@ -81562,7 +81566,7 @@ var SearchableDropdown = function (_React$Component) {
           null,
           this.props.items.map(function (item, index) {
             return __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
-              __WEBPACK_IMPORTED_MODULE_2_react_bootstrap__["l" /* MenuItem */],
+              __WEBPACK_IMPORTED_MODULE_2_react_bootstrap__["k" /* MenuItem */],
               { key: index, eventKey: index,
                 onClick: function onClick(event) {
                   return _this2.handleMenuItemSelect(item);
@@ -81707,6 +81711,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 
+
 var ModalBody = function (_React$Component) {
   _inherits(ModalBody, _React$Component);
 
@@ -81720,14 +81725,14 @@ var ModalBody = function (_React$Component) {
     key: 'render',
     value: function render() {
       return __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
-        __WEBPACK_IMPORTED_MODULE_5_react_bootstrap__["i" /* Grid */],
+        'div',
         null,
         __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
-          __WEBPACK_IMPORTED_MODULE_5_react_bootstrap__["r" /* Row */],
+          __WEBPACK_IMPORTED_MODULE_5_react_bootstrap__["q" /* Row */],
           null,
           __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
             __WEBPACK_IMPORTED_MODULE_5_react_bootstrap__["d" /* Col */],
-            { sm: 1 },
+            { sm: 3 },
             __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4_react_spinners__["FadeLoader"], {
               sizeUnit: "px",
               size: 60,
@@ -81737,7 +81742,7 @@ var ModalBody = function (_React$Component) {
           ),
           __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
             __WEBPACK_IMPORTED_MODULE_5_react_bootstrap__["d" /* Col */],
-            { sm: 5, className: 'spinner-message' },
+            { sm: 9, className: 'spinner-message' },
             __WEBPACK_IMPORTED_MODULE_0__stores_modal_spinner_store_js__["b" /* default */].getSpinnerMessage()
           )
         )
@@ -87109,7 +87114,7 @@ var TabbedItems = function (_React$Component) {
 
       var tabs = this.props.tabs;
       return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-        __WEBPACK_IMPORTED_MODULE_2_react_bootstrap__["s" /* Tab */].Container,
+        __WEBPACK_IMPORTED_MODULE_2_react_bootstrap__["r" /* Tab */].Container,
         {
           id: 'producer-list',
           defaultActiveKey: 1,
@@ -87117,28 +87122,28 @@ var TabbedItems = function (_React$Component) {
           onSelect: this.handleTabSelect
         },
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          __WEBPACK_IMPORTED_MODULE_2_react_bootstrap__["r" /* Row */],
+          __WEBPACK_IMPORTED_MODULE_2_react_bootstrap__["q" /* Row */],
           null,
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             __WEBPACK_IMPORTED_MODULE_2_react_bootstrap__["d" /* Col */],
             { sm: this.props.sm },
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              __WEBPACK_IMPORTED_MODULE_2_react_bootstrap__["n" /* Nav */],
+              __WEBPACK_IMPORTED_MODULE_2_react_bootstrap__["m" /* Nav */],
               { bsStyle: 'tabs' },
               tabs.map(function (tab, index) {
                 return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                  __WEBPACK_IMPORTED_MODULE_2_react_bootstrap__["o" /* NavItem */],
+                  __WEBPACK_IMPORTED_MODULE_2_react_bootstrap__["n" /* NavItem */],
                   { key: index, eventKey: index },
                   _this2.props.tabCallback(tab)
                 );
               })
             ),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              __WEBPACK_IMPORTED_MODULE_2_react_bootstrap__["s" /* Tab */].Content,
+              __WEBPACK_IMPORTED_MODULE_2_react_bootstrap__["r" /* Tab */].Content,
               { animation: true },
               tabs.map(function (tab, index) {
                 return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                  __WEBPACK_IMPORTED_MODULE_2_react_bootstrap__["s" /* Tab */].Pane,
+                  __WEBPACK_IMPORTED_MODULE_2_react_bootstrap__["r" /* Tab */].Pane,
                   { key: index, eventKey: index },
                   _this2.props.tabContentCallback(tab)
                 );
@@ -87281,7 +87286,7 @@ var Main = function (_Component) {
         'div',
         null,
         __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
-          __WEBPACK_IMPORTED_MODULE_10_react_bootstrap__["q" /* PanelGroup */],
+          __WEBPACK_IMPORTED_MODULE_10_react_bootstrap__["p" /* PanelGroup */],
           {
             accordion: true,
             id: 'factory-panel-group',
@@ -87296,7 +87301,7 @@ var Main = function (_Component) {
               'h3',
               null,
               __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
-                __WEBPACK_IMPORTED_MODULE_10_react_bootstrap__["k" /* Label */],
+                __WEBPACK_IMPORTED_MODULE_10_react_bootstrap__["j" /* Label */],
                 { bsStyle: 'primary' },
                 'Your Factories'
               )
@@ -87452,13 +87457,13 @@ var Factory = function (_React$Component) {
           'h4',
           null,
           __WEBPACK_IMPORTED_MODULE_9_react___default.a.createElement(
-            __WEBPACK_IMPORTED_MODULE_10_react_bootstrap__["k" /* Label */],
+            __WEBPACK_IMPORTED_MODULE_10_react_bootstrap__["j" /* Label */],
             { bsStyle: 'success' },
             'Factory Details'
           )
         ),
         __WEBPACK_IMPORTED_MODULE_9_react___default.a.createElement(
-          __WEBPACK_IMPORTED_MODULE_10_react_bootstrap__["t" /* Table */],
+          __WEBPACK_IMPORTED_MODULE_10_react_bootstrap__["s" /* Table */],
           null,
           __WEBPACK_IMPORTED_MODULE_9_react___default.a.createElement(
             'thead',
@@ -87515,7 +87520,7 @@ var Factory = function (_React$Component) {
 
       if (this.state.factory.production_lines.length > 0) {
         return __WEBPACK_IMPORTED_MODULE_9_react___default.a.createElement(
-          __WEBPACK_IMPORTED_MODULE_10_react_bootstrap__["q" /* PanelGroup */],
+          __WEBPACK_IMPORTED_MODULE_10_react_bootstrap__["p" /* PanelGroup */],
           {
             accordion: true,
             id: 'production-panel-group',
@@ -87545,19 +87550,19 @@ var Factory = function (_React$Component) {
     value: function render() {
       var panelStyle = this.state.factory.production_lines.length > 0 ? 'primary' : 'danger';
       return __WEBPACK_IMPORTED_MODULE_9_react___default.a.createElement(
-        __WEBPACK_IMPORTED_MODULE_10_react_bootstrap__["p" /* Panel */],
+        __WEBPACK_IMPORTED_MODULE_10_react_bootstrap__["o" /* Panel */],
         { bsStyle: panelStyle, eventKey: this.props.eventKey },
         __WEBPACK_IMPORTED_MODULE_9_react___default.a.createElement(
-          __WEBPACK_IMPORTED_MODULE_10_react_bootstrap__["p" /* Panel */].Heading,
+          __WEBPACK_IMPORTED_MODULE_10_react_bootstrap__["o" /* Panel */].Heading,
           null,
           __WEBPACK_IMPORTED_MODULE_9_react___default.a.createElement(
-            __WEBPACK_IMPORTED_MODULE_10_react_bootstrap__["p" /* Panel */].Title,
+            __WEBPACK_IMPORTED_MODULE_10_react_bootstrap__["o" /* Panel */].Title,
             { toggle: true },
             this.state.factory.name
           )
         ),
         __WEBPACK_IMPORTED_MODULE_9_react___default.a.createElement(
-          __WEBPACK_IMPORTED_MODULE_10_react_bootstrap__["p" /* Panel */].Body,
+          __WEBPACK_IMPORTED_MODULE_10_react_bootstrap__["o" /* Panel */].Body,
           { collapsible: true },
           this.renderFactoryDetails(),
           this.renderFactoryProductionLines(),
@@ -87947,7 +87952,7 @@ var ProductionLineDetails = function (_React$Component) {
         'div',
         null,
         __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
-          __WEBPACK_IMPORTED_MODULE_10_react_bootstrap__["t" /* Table */],
+          __WEBPACK_IMPORTED_MODULE_10_react_bootstrap__["s" /* Table */],
           null,
           __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
             'thead',
@@ -87964,16 +87969,16 @@ var ProductionLineDetails = function (_React$Component) {
           'div',
           { className: 'made-in-container' },
           __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
-            __WEBPACK_IMPORTED_MODULE_10_react_bootstrap__["r" /* Row */],
+            __WEBPACK_IMPORTED_MODULE_10_react_bootstrap__["q" /* Row */],
             null,
             __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
-              __WEBPACK_IMPORTED_MODULE_10_react_bootstrap__["k" /* Label */],
+              __WEBPACK_IMPORTED_MODULE_10_react_bootstrap__["j" /* Label */],
               null,
               madeWithTitle
             )
           ),
           __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
-            __WEBPACK_IMPORTED_MODULE_10_react_bootstrap__["r" /* Row */],
+            __WEBPACK_IMPORTED_MODULE_10_react_bootstrap__["q" /* Row */],
             null,
             __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement('img', { src: __WEBPACK_IMPORTED_MODULE_9__router_js__["a" /* default */].route(__WEBPACK_IMPORTED_MODULE_11__constants_js__["u" /* IMAGE_ASSET */], { fileName: this.props.producer.image_file }) }),
             ' ' + this.props.producer.name
@@ -88012,19 +88017,19 @@ var ProductionLineDetails = function (_React$Component) {
       var style = this.props.is_output ? 'success' : this.props.is_primary ? 'warning' : 'info';
 
       return __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
-        __WEBPACK_IMPORTED_MODULE_10_react_bootstrap__["p" /* Panel */],
+        __WEBPACK_IMPORTED_MODULE_10_react_bootstrap__["o" /* Panel */],
         { bsStyle: style, eventKey: this.props.eventKey },
         __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
-          __WEBPACK_IMPORTED_MODULE_10_react_bootstrap__["p" /* Panel */].Heading,
+          __WEBPACK_IMPORTED_MODULE_10_react_bootstrap__["o" /* Panel */].Heading,
           null,
           __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
-            __WEBPACK_IMPORTED_MODULE_10_react_bootstrap__["p" /* Panel */].Title,
+            __WEBPACK_IMPORTED_MODULE_10_react_bootstrap__["o" /* Panel */].Title,
             { toggle: true },
             this.props.name
           )
         ),
         __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
-          __WEBPACK_IMPORTED_MODULE_10_react_bootstrap__["p" /* Panel */].Body,
+          __WEBPACK_IMPORTED_MODULE_10_react_bootstrap__["o" /* Panel */].Body,
           { collapsible: true },
           this.renderProductionDetails()
         )
@@ -88115,21 +88120,21 @@ var PartialModal = function (_React$Component) {
         'div',
         null,
         this.state.modal.header ? __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
-          __WEBPACK_IMPORTED_MODULE_2_react_bootstrap__["m" /* Modal */].Header,
+          __WEBPACK_IMPORTED_MODULE_2_react_bootstrap__["l" /* Modal */].Header,
           null,
           __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
-            __WEBPACK_IMPORTED_MODULE_2_react_bootstrap__["m" /* Modal */].Title,
+            __WEBPACK_IMPORTED_MODULE_2_react_bootstrap__["l" /* Modal */].Title,
             null,
             this.state.modal.header
           )
         ) : '',
         this.state.modal.body ? __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
-          __WEBPACK_IMPORTED_MODULE_2_react_bootstrap__["m" /* Modal */].Body,
+          __WEBPACK_IMPORTED_MODULE_2_react_bootstrap__["l" /* Modal */].Body,
           null,
           this.state.modal.body
         ) : '',
         this.state.modal.footer ? __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
-          __WEBPACK_IMPORTED_MODULE_2_react_bootstrap__["m" /* Modal */].Footer,
+          __WEBPACK_IMPORTED_MODULE_2_react_bootstrap__["l" /* Modal */].Footer,
           null,
           this.state.modal.footer
         ) : ''
@@ -88141,7 +88146,7 @@ var PartialModal = function (_React$Component) {
 
       if (this.state.modal.modalSize) {
         return __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
-          __WEBPACK_IMPORTED_MODULE_2_react_bootstrap__["m" /* Modal */],
+          __WEBPACK_IMPORTED_MODULE_2_react_bootstrap__["l" /* Modal */],
           {
             show: this.state.show,
             onHide: this.handleHideModal,
@@ -88152,7 +88157,7 @@ var PartialModal = function (_React$Component) {
       }
 
       return __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
-        __WEBPACK_IMPORTED_MODULE_2_react_bootstrap__["m" /* Modal */],
+        __WEBPACK_IMPORTED_MODULE_2_react_bootstrap__["l" /* Modal */],
         {
           show: this.state.show,
           onHide: this.handleHideModal

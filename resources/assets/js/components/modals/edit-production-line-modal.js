@@ -12,7 +12,6 @@ import {
   Button,
   ButtonToolbar,
   Col,
-  Grid,
   Label,
   Modal,
   Row,
@@ -184,7 +183,7 @@ export class ModalBody extends React.Component {
 
   renderProductionLines(productionLines) {
     return (
-      <Well>
+      <Well className='scrollable'>
         <div className='list-group'> {
           productionLines.map(productionLine => {
             let product = productionLine.product;
@@ -196,22 +195,20 @@ export class ModalBody extends React.Component {
                 onClick={() => this.handleSelectProductionLine(productionLine)}
                 className='list-group-item list-group-item-action'
                 >
-                  <Grid>
-                    <Row>
-                      <Col sm={2}>
-                        <img src={Router.route(IMAGE_ASSET, {fileName: product.image_file})} />{' '}
-                        {product.name}
-                      </Col>
-                      <Col sm={3}>
-                        <div className='font-bold'>Production Rate (Items/Sec): </div>
-                        {productionLine.items_per_second}
-                      </Col>
-                      <Col sm={3}>
-                        <div className='font-bold'>Number of Producers Needed: </div>
-                        {productionLine.assembly_count}
-                      </Col>
-                    </Row>
-                  </Grid>
+                  <Row>
+                    <Col sm={4}>
+                      <img src={Router.route(IMAGE_ASSET, {fileName: product.image_file})} />{' '}
+                      {product.name}
+                    </Col>
+                    <Col sm={4}>
+                      <div className='font-bold'>Production Rate (Items/Sec): </div>
+                      {productionLine.items_per_second}
+                    </Col>
+                    <Col sm={4}>
+                      <div className='font-bold'>Number of Producers Needed: </div>
+                      {productionLine.assembly_count}
+                    </Col>
+                  </Row>
                 </a>
               </div>
             );

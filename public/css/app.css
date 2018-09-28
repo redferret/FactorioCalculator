@@ -2,6 +2,12 @@ a:hover {
   cursor: pointer;
 }
 
+.scrollable {
+  overflow-x: hidden;
+  overflow-y: auto;
+  height: 165px;
+}
+
 .spinner-center {
   margin: auto;
   width: 35%;

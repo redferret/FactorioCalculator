@@ -7,7 +7,6 @@ import {
   Alert,
   Button,
   Col,
-  Grid,
   Row,
 } from 'react-bootstrap';
 
@@ -33,7 +32,7 @@ class ItemTable extends React.Component {
       }
 
       return (
-        <Grid>
+        <div>
           {rows.map((row, index) =>
             <Row key={index}>
               {row.map((item, index) =>
@@ -54,7 +53,7 @@ class ItemTable extends React.Component {
               )}
             </Row>
           )}
-        </Grid>
+        </div>
       );
     }
     return (

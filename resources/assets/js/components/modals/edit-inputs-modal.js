@@ -12,7 +12,6 @@ import {
   Button,
   ButtonToolbar,
   Col,
-  Grid,
   Row,
 } from 'react-bootstrap';
 
@@ -139,9 +138,9 @@ export class ModalBody extends React.Component {
     let factories = FactoryStore.getFactories();
     let selectedFactory = FactoryStore.getFactory(this.state.selectedFactoryId);
     return (
-      <Grid>
+      <div>
         <Row>
-          <Col sm={9}>
+          <Col sm={6}>
             <Row>
               <Col sm={5}>
                 <h4>Inputs for {productionLine.name}</h4>
@@ -166,7 +165,7 @@ export class ModalBody extends React.Component {
           </Col>
         </Row>
         <Row>
-          <Col sm={9}>
+          <Col sm={6}>
             <div className='help-text'>
               <p>
                 Select a Factory on the right and then select the
@@ -176,7 +175,7 @@ export class ModalBody extends React.Component {
             </div>
           </Col>
         </Row>
-      </Grid>
+      </div>
     );
   }
 }
