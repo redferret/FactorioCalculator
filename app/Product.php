@@ -13,7 +13,7 @@ class Product extends Model
      * The production lines that produce this product
      */
     public function producedByProductionLines() {
-      return $this->hasMany(ProductionLine::class);
+      return $this->belongsToMany(ProductionLine::class, 'product_production_line');
     }
 
     public function consumerProducts() {
@@ -22,6 +22,10 @@ class Product extends Model
 
     public function consumerProduct() {
       return $this->belongsTo(ConsumerProduct::class);
+    }
+
+    public function process() {
+      return $this->belongsToMany(Process::class, 'process_product');
     }
 
     public function productType() {
