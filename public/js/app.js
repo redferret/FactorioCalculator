@@ -5711,7 +5711,7 @@ var ItemTable = function (_React$Component) {
               __WEBPACK_IMPORTED_MODULE_3_react_bootstrap__["t" /* Row */],
               { key: index },
               row.map(function (item, index) {
-                return item == null ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                return item != null ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                   __WEBPACK_IMPORTED_MODULE_3_react_bootstrap__["e" /* Col */],
                   { key: index, sm: _this2.props.sm },
                   _this2.props.noButton ? _this2.props.itemCallback(item) : __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(

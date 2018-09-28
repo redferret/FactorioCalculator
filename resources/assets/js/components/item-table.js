@@ -37,7 +37,7 @@ class ItemTable extends React.Component {
           {rows.map((row, index) =>
             <Row key={index}>
               {row.map((item, index) =>
-                item == null?
+                item != null?
                   <Col key={index} sm={this.props.sm}>
                     {this.props.noButton?
                       this.props.itemCallback(item)
