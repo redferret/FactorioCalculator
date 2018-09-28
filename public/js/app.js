@@ -82346,16 +82346,6 @@ var ModalBody = function (_React$Component2) {
                       __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement('img', { src: __WEBPACK_IMPORTED_MODULE_7__router_js__["a" /* default */].route(__WEBPACK_IMPORTED_MODULE_9__constants_js__["E" /* IMAGE_ASSET */], { fileName: productionLine.product.image_file }) }),
                       productionLine.name
                     );
-                  } }),
-                __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__item_table_js__["a" /* default */], { items: this.state.missingInputs, rowLength: 2,
-                  emptyItemsMessage: 'No Missing Inputs', noButton: true,
-                  itemCallback: function itemCallback(product) {
-                    return __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
-                      __WEBPACK_IMPORTED_MODULE_8_react_bootstrap__["a" /* Alert */],
-                      { bsStyle: 'danger' },
-                      __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement('img', { src: __WEBPACK_IMPORTED_MODULE_7__router_js__["a" /* default */].route(__WEBPACK_IMPORTED_MODULE_9__constants_js__["E" /* IMAGE_ASSET */], { fileName: product.image_file }) }),
-                      product.name
-                    );
                   } })
               ),
               __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
