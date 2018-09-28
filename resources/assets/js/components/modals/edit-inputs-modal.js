@@ -99,7 +99,7 @@ export class ModalBody extends React.Component {
           <div>
             Missing Inputs:
           </div>
-          <ItemTable items={this.state.missingInputs} rowLength={1}
+          <ItemTable items={this.state.missingInputs} rowLength={1} sm={12}
             noButton itemCallback={(product =>
               <div>
                 <img src={Router.route(IMAGE_ASSET, {fileName: product.image_file})} />
@@ -120,7 +120,7 @@ export class ModalBody extends React.Component {
   renderFactoryProductionLines(selectedFactory) {
     if (selectedFactory) {
       return (
-        <ItemTable items={selectedFactory.production_lines} rowLength={2}
+        <ItemTable items={selectedFactory.production_lines} rowLength={2} sm={6}
           emptyItemsMessage='No Production Lines'
           onClickCallback={this.handleAddProductionLine}
           itemCallback={(productionLine =>
@@ -140,11 +140,11 @@ export class ModalBody extends React.Component {
     return (
       <div>
         <Row>
-          <Col sm={6}>
+          <Col sm={12}>
             <Row>
               <Col sm={5}>
                 <h4>Inputs for {productionLine.name}</h4>
-                <ItemTable items={this.state.inputs} rowLength={1}
+                <ItemTable items={this.state.inputs} rowLength={1} sm={12}
                   emptyItemsMessage='No Inputs'
                   onClickCallback={this.handleRemoveProductionLine}
                   itemCallback={(productionLine =>
@@ -165,7 +165,7 @@ export class ModalBody extends React.Component {
           </Col>
         </Row>
         <Row>
-          <Col sm={6}>
+          <Col sm={12}>
             <div className='help-text'>
               <p>
                 Select a Factory on the right and then select the

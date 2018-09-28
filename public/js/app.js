@@ -81329,7 +81329,7 @@ var ModalBody = function (_React$Component2) {
             null,
             'Missing Inputs:'
           ),
-          __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__item_table_js__["a" /* default */], { items: this.state.missingInputs, rowLength: 1,
+          __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__item_table_js__["a" /* default */], { items: this.state.missingInputs, rowLength: 1, sm: 12,
             noButton: true, itemCallback: function itemCallback(product) {
               return __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
                 'div',
@@ -81351,7 +81351,7 @@ var ModalBody = function (_React$Component2) {
     key: 'renderFactoryProductionLines',
     value: function renderFactoryProductionLines(selectedFactory) {
       if (selectedFactory) {
-        return __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__item_table_js__["a" /* default */], { items: selectedFactory.production_lines, rowLength: 2,
+        return __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__item_table_js__["a" /* default */], { items: selectedFactory.production_lines, rowLength: 2, sm: 6,
           emptyItemsMessage: 'No Production Lines',
           onClickCallback: this.handleAddProductionLine,
           itemCallback: function itemCallback(productionLine) {
@@ -81378,7 +81378,7 @@ var ModalBody = function (_React$Component2) {
           null,
           __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
             __WEBPACK_IMPORTED_MODULE_8_react_bootstrap__["d" /* Col */],
-            { sm: 6 },
+            { sm: 12 },
             __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
               __WEBPACK_IMPORTED_MODULE_8_react_bootstrap__["q" /* Row */],
               null,
@@ -81391,7 +81391,7 @@ var ModalBody = function (_React$Component2) {
                   'Inputs for ',
                   productionLine.name
                 ),
-                __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__item_table_js__["a" /* default */], { items: this.state.inputs, rowLength: 1,
+                __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__item_table_js__["a" /* default */], { items: this.state.inputs, rowLength: 1, sm: 12,
                   emptyItemsMessage: 'No Inputs',
                   onClickCallback: this.handleRemoveProductionLine,
                   itemCallback: function itemCallback(productionLine) {
@@ -81422,7 +81422,7 @@ var ModalBody = function (_React$Component2) {
           null,
           __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
             __WEBPACK_IMPORTED_MODULE_8_react_bootstrap__["d" /* Col */],
-            { sm: 6 },
+            { sm: 12 },
             __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
               'div',
               { className: 'help-text' },
