@@ -40,10 +40,13 @@ class EditInputsModalStore extends EventEmitter {
   validateInputs() {
     this._missingInputs = new Set();
     this._currentProducts = new Set();
+    console.log('Validating on: ', productionLine);
+    console.log('Inputs: ', this._inputs);
     this._inputs.forEach(productionLine => {
       this._currentProducts.add(productionLine.product);
     });
     let currentProducts = Array.from(this._currentProducts);
+    console.log('currentProducts: ', currentProducts);
     this._consumerRequirements.forEach(requirement => {
       let index = currentProducts.findIndex((test) => {
         return test.id == requirement.required_product.id;
