@@ -4,33 +4,22 @@
 export const ALL_FACTORIES                  = 'all-factories';
 export const EDIT_FACTORY_MODAL_ID          = 'edit-factory-modal-id';
 export const EDIT_INPUTS_MODAL_ID           = 'edit-inputs-modal-id';
-export const EDIT_PRODUCER_MODAL_ID         = 'edit-producer-modal-id';
-export const EDIT_PRODUCT_MODAL_ID          = 'edit-product-modal-id';
-export const EDIT_PRODUCT_TYPE_MODAL_ID     = 'edit-product-type-modal-id';
 export const EDIT_PRODUCTION_LINE_MODAL_ID  = 'edit-production-line-modal-id';
+
 export const FACTORY_PANEL_                 = 'factory-panel-';
 export const GAME_ITEMS_ID                  = 'game-items-id';
 export const MAIN_ID                        = 'main-id';
 export const MODAL_ID                       = 'modal-id';
 export const NEW_FACTORY_MODAL_ID           = 'new-factory-modal-id';
-export const NEW_PRODUCER_MODAL_ID          = 'new-producer-modal-id';
-export const NEW_PRODUCT_MODAL_ID           = 'new-product-modal-id';
-export const NEW_PRODUCT_TYPE_MODAL_ID      = 'new-product-type-modal-id';
 export const NEW_PRODUCTION_LINE_MODAL_ID   = 'new-production-line-modal-id';
 export const PRODUCTION_LINE_ID             = 'production-line_';
 export const SPINNER_MODAL_ID               = 'spinner-modal-id';
 
 // Constants for Actions and Routes
 export const ADD_FACTORY                  = 'add-factory';
-export const ADD_PRODUCER                 = 'add-producer';
-export const ADD_PRODUCT                  = 'add-product';
-export const ADD_PRODUCT_TYPE             = 'add-product-type';
 export const ADD_PRODUCTION_LINE          = 'add-production-line';
 
 export const DELETE_FACTORY               = 'delete-factory';
-export const DELETE_PRODUCER              = 'delete-producer';
-export const DELETE_PRODUCT               = 'delete-product';
-export const DELETE_PRODUCT_TYPE          = 'delete-product-type';
 export const DELETE_PRODUCTION_LINE       = 'delete-production-line';
 
 export const EDIT_INPUTS                  = 'edit-inputs';
@@ -54,8 +43,5 @@ export const IMAGE_ASSET                    = 'image-file';
 export const INITIAL_APP_LOAD               = 'initial-app-load';
 
 export const UPDATE_FACTORY                   = 'update-factory';
-export const UPDATE_PRODUCER                  = 'update-producer';
 export const UPDATE_PRODUCTION_LINE_PRODUCER  = 'update-production-line-producer';
-export const UPDATE_PRODUCT                   = 'update-product';
-export const UPDATE_PRODUCT_TYPE              = 'update-product-type';
 export const UPDATE_PRODUCTION_LINE           = 'update-production-line';

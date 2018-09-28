@@ -1,30 +1,18 @@
 
 import * as EditFactoryModal from './edit-factory-modal.js';
 import * as EditInputsModal from './edit-inputs-modal.js';
-import * as EditProducerModal from './edit-producer-modal.js';
 import * as EditProductionLineModal from './edit-production-line-modal.js';
-import * as EditProductModal from './edit-product-modal.js';
-import * as EditProductTypeModal from './edit-product-type-modal.js';
 import * as ModalSpinner from './modal-spinner.js';
 import * as NewFactoryModal from './new-factory-modal.js';
-import * as NewProducerModal from './new-producer-modal.js';
 import * as NewProductionLineModal from './new-production-line-modal.js';
-import * as NewProductModal from './new-product-modal.js';
-import * as NewProductTypeModal from './new-product-type-modal.js';
 import ModalsRepository from '../../stores/modals-repository.js'
 import React from 'react';
 
 import {
   EDIT_FACTORY_MODAL_ID,
   EDIT_INPUTS_MODAL_ID,
-  EDIT_PRODUCER_MODAL_ID,
-  EDIT_PRODUCT_MODAL_ID,
-  EDIT_PRODUCT_TYPE_MODAL_ID,
   EDIT_PRODUCTION_LINE_MODAL_ID,
   NEW_FACTORY_MODAL_ID,
-  NEW_PRODUCER_MODAL_ID,
-  NEW_PRODUCT_MODAL_ID,
-  NEW_PRODUCT_TYPE_MODAL_ID,
   NEW_PRODUCTION_LINE_MODAL_ID,
   SPINNER_MODAL_ID,
 } from '../../constants.js';
@@ -40,24 +28,6 @@ ModalsRepository.registerModal(EDIT_FACTORY_MODAL_ID, {
   header: <EditFactoryModal.ModalHeader/>,
   body: <EditFactoryModal.ModalBody/>,
   footer: <EditFactoryModal.ModalFooter/>,
-});
-
-ModalsRepository.registerModal(EDIT_PRODUCER_MODAL_ID, {
-  header: <EditProducerModal.ModalHeader/>,
-  body: <EditProducerModal.ModalBody/>,
-  footer: <EditProducerModal.ModalFooter/>,
-});
-
-ModalsRepository.registerModal(EDIT_PRODUCT_MODAL_ID, {
-  header: <EditProductModal.ModalHeader/>,
-  body: <EditProductModal.ModalBody/>,
-  footer: <EditProductModal.ModalFooter/>
-});
-
-ModalsRepository.registerModal(EDIT_PRODUCT_TYPE_MODAL_ID, {
-  header: <EditProductTypeModal.ModalHeader/>,
-  body: <EditProductTypeModal.ModalBody/>,
-  footer: <EditProductTypeModal.ModalFooter/>
 });
 
 ModalsRepository.registerModal(EDIT_PRODUCTION_LINE_MODAL_ID, {
@@ -78,24 +48,6 @@ ModalsRepository.registerModal(NEW_PRODUCTION_LINE_MODAL_ID, {
   body: <NewProductionLineModal.ModalBody/>,
   footer: <NewProductionLineModal.ModalFooter/>,
   modalSize: 'large'
-});
-
-ModalsRepository.registerModal(NEW_PRODUCT_MODAL_ID, {
-  header: <NewProductModal.ModalHeader/>,
-  body: <NewProductModal.ModalBody/>,
-  footer: <NewProductModal.ModalFooter/>
-});
-
-ModalsRepository.registerModal(NEW_PRODUCT_TYPE_MODAL_ID, {
-  header: <NewProductTypeModal.ModalHeader/>,
-  body: <NewProductTypeModal.ModalBody/>,
-  footer: <NewProductTypeModal.ModalFooter/>
-});
-
-ModalsRepository.registerModal(NEW_PRODUCER_MODAL_ID, {
-  header: <NewProducerModal.ModalHeader/>,
-  body: <NewProducerModal.ModalBody/>,
-  footer: <NewProducerModal.ModalFooter/>
 });
 
 ModalsRepository.registerModal(SPINNER_MODAL_ID, {

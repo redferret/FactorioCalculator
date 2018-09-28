@@ -2,7 +2,6 @@
 import AppDispatcher from '../dispatcher.js';
 import Factory from './factory.js';
 import FactoryStore from '../stores/factory-store.js';
-import GameItems from './game-items.js';
 import MainStore from '../stores/main-store.js';
 import ModalSpinnerStore from '../stores/modal-spinner-store.js';
 import ModalsStore from '../stores/modals-store.js';
