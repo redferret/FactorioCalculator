@@ -92,7 +92,7 @@ class ProductionLineController extends Controller {
       $pl->product;
       $pl->product->consumerProducts;
       $pl->producer;
-      $pl->assembly_count = round($pl->assembly_count);
+      $pl->assembly_count = ceil($pl->assembly_count);
       $pl->items_per_second = round($pl->items_per_second, 1);
       $pl->seconds_per_item = round($pl->seconds_per_item, 1);
       $pl->is_output = false;
@@ -103,7 +103,7 @@ class ProductionLineController extends Controller {
       $pl->product;
       $pl->product->consumerProducts;
       $pl->producer;
-      $pl->assembly_count = round($pl->assembly_count);
+      $pl->assembly_count = ceil($pl->assembly_count);
       $pl->items_per_second = round($pl->items_per_second, 1);
       $pl->seconds_per_item = round($pl->seconds_per_item, 1);
       $pl->is_output = true;
