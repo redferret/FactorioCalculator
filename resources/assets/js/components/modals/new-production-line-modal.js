@@ -102,14 +102,16 @@ export class ModalBody extends React.Component {
             </div>
           }
           tabContentCallback={(productType) =>
-            <ItemTable items={productType.sorted_products} rowLength={3}
-              onClickCallback={this.handleProductSelect} sm={4}
-              itemCallback={(product) =>
-                <div>
-                  <img src={Router.route(IMAGE_ASSET, {fileName: product.image_file})} />{' '}
-                  {product.name}
-                </div>
-              }/>
+            <div className='production-lines-well'>
+              <ItemTable items={productType.sorted_products} rowLength={3}
+                onClickCallback={this.handleProductSelect} sm={4}
+                itemCallback={(product) =>
+                  <div>
+                    <img src={Router.route(IMAGE_ASSET, {fileName: product.image_file})} />{' '}
+                    {product.name}
+                  </div>
+                }/>
+            </div>
           }/>
       </div>
        :
@@ -130,14 +132,16 @@ export class ModalBody extends React.Component {
     return (selectedProducer == null?
       <div>
         <h4>Select a producer</h4>
-        <ItemTable items={producers} rowLength={3}
-          onClickCallback={this.handleProducerSelect} sm={4}
-          itemCallback={(producer) =>
-            <div>
-              <img src={Router.route(IMAGE_ASSET, {fileName: producer.image_file})} />
-              {producer.name}
-            </div>
-          }/>
+        <div className='production-lines-well'>
+          <ItemTable items={producers} rowLength={3}
+            onClickCallback={this.handleProducerSelect} sm={4}
+            itemCallback={(producer) =>
+              <div>
+                <img src={Router.route(IMAGE_ASSET, {fileName: producer.image_file})} />
+                {producer.name}
+              </div>
+            }/>
+        </div>
       </div>
        :
       <div>

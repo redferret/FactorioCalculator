@@ -120,15 +120,17 @@ export class ModalBody extends React.Component {
   renderFactoryProductionLines(selectedFactory) {
     if (selectedFactory) {
       return (
-        <ItemTable items={selectedFactory.production_lines} rowLength={2} sm={6}
-          emptyItemsMessage='No Production Lines'
-          onClickCallback={this.handleAddProductionLine}
-          itemCallback={(productionLine =>
-            <div>
-              <img src={Router.route(IMAGE_ASSET, {fileName: productionLine.product.image_file})} />
-              {productionLine.name}
-            </div>
-          )} />
+        <div className='production-lines-well'>
+          <ItemTable items={selectedFactory.production_lines} rowLength={2} sm={6}
+            emptyItemsMessage='No Production Lines'
+            onClickCallback={this.handleAddProductionLine}
+            itemCallback={(productionLine =>
+              <div>
+                <img src={Router.route(IMAGE_ASSET, {fileName: productionLine.product.image_file})} />
+                {productionLine.name}
+              </div>
+            )} />
+        </div>
       );
     }
   }

@@ -26292,17 +26292,21 @@ var ModalBody = function (_React$Component2) {
             );
           },
           tabContentCallback: function tabContentCallback(productType) {
-            return __WEBPACK_IMPORTED_MODULE_7_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__item_table_js__["a" /* default */], { items: productType.sorted_products, rowLength: 3,
-              onClickCallback: _this3.handleProductSelect, sm: 4,
-              itemCallback: function itemCallback(product) {
-                return __WEBPACK_IMPORTED_MODULE_7_react___default.a.createElement(
-                  'div',
-                  null,
-                  __WEBPACK_IMPORTED_MODULE_7_react___default.a.createElement('img', { src: __WEBPACK_IMPORTED_MODULE_8__router_js__["a" /* default */].route(__WEBPACK_IMPORTED_MODULE_11__constants_js__["u" /* IMAGE_ASSET */], { fileName: product.image_file }) }),
-                  ' ',
-                  product.name
-                );
-              } });
+            return __WEBPACK_IMPORTED_MODULE_7_react___default.a.createElement(
+              'div',
+              { className: 'production-lines-well' },
+              __WEBPACK_IMPORTED_MODULE_7_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__item_table_js__["a" /* default */], { items: productType.sorted_products, rowLength: 3,
+                onClickCallback: _this3.handleProductSelect, sm: 4,
+                itemCallback: function itemCallback(product) {
+                  return __WEBPACK_IMPORTED_MODULE_7_react___default.a.createElement(
+                    'div',
+                    null,
+                    __WEBPACK_IMPORTED_MODULE_7_react___default.a.createElement('img', { src: __WEBPACK_IMPORTED_MODULE_8__router_js__["a" /* default */].route(__WEBPACK_IMPORTED_MODULE_11__constants_js__["u" /* IMAGE_ASSET */], { fileName: product.image_file }) }),
+                    ' ',
+                    product.name
+                  );
+                } })
+            );
           } })
       ) : __WEBPACK_IMPORTED_MODULE_7_react___default.a.createElement(
         'div',
@@ -26338,16 +26342,20 @@ var ModalBody = function (_React$Component2) {
           null,
           'Select a producer'
         ),
-        __WEBPACK_IMPORTED_MODULE_7_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__item_table_js__["a" /* default */], { items: producers, rowLength: 3,
-          onClickCallback: this.handleProducerSelect, sm: 4,
-          itemCallback: function itemCallback(producer) {
-            return __WEBPACK_IMPORTED_MODULE_7_react___default.a.createElement(
-              'div',
-              null,
-              __WEBPACK_IMPORTED_MODULE_7_react___default.a.createElement('img', { src: __WEBPACK_IMPORTED_MODULE_8__router_js__["a" /* default */].route(__WEBPACK_IMPORTED_MODULE_11__constants_js__["u" /* IMAGE_ASSET */], { fileName: producer.image_file }) }),
-              producer.name
-            );
-          } })
+        __WEBPACK_IMPORTED_MODULE_7_react___default.a.createElement(
+          'div',
+          { className: 'production-lines-well' },
+          __WEBPACK_IMPORTED_MODULE_7_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__item_table_js__["a" /* default */], { items: producers, rowLength: 3,
+            onClickCallback: this.handleProducerSelect, sm: 4,
+            itemCallback: function itemCallback(producer) {
+              return __WEBPACK_IMPORTED_MODULE_7_react___default.a.createElement(
+                'div',
+                null,
+                __WEBPACK_IMPORTED_MODULE_7_react___default.a.createElement('img', { src: __WEBPACK_IMPORTED_MODULE_8__router_js__["a" /* default */].route(__WEBPACK_IMPORTED_MODULE_11__constants_js__["u" /* IMAGE_ASSET */], { fileName: producer.image_file }) }),
+                producer.name
+              );
+            } })
+        )
       ) : __WEBPACK_IMPORTED_MODULE_7_react___default.a.createElement(
         'div',
         null,
@@ -81367,17 +81375,21 @@ var ModalBody = function (_React$Component2) {
     key: 'renderFactoryProductionLines',
     value: function renderFactoryProductionLines(selectedFactory) {
       if (selectedFactory) {
-        return __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__item_table_js__["a" /* default */], { items: selectedFactory.production_lines, rowLength: 2, sm: 6,
-          emptyItemsMessage: 'No Production Lines',
-          onClickCallback: this.handleAddProductionLine,
-          itemCallback: function itemCallback(productionLine) {
-            return __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
-              'div',
-              null,
-              __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement('img', { src: __WEBPACK_IMPORTED_MODULE_7__router_js__["a" /* default */].route(__WEBPACK_IMPORTED_MODULE_9__constants_js__["u" /* IMAGE_ASSET */], { fileName: productionLine.product.image_file }) }),
-              productionLine.name
-            );
-          } });
+        return __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
+          'div',
+          { className: 'production-lines-well' },
+          __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__item_table_js__["a" /* default */], { items: selectedFactory.production_lines, rowLength: 2, sm: 6,
+            emptyItemsMessage: 'No Production Lines',
+            onClickCallback: this.handleAddProductionLine,
+            itemCallback: function itemCallback(productionLine) {
+              return __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
+                'div',
+                null,
+                __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement('img', { src: __WEBPACK_IMPORTED_MODULE_7__router_js__["a" /* default */].route(__WEBPACK_IMPORTED_MODULE_9__constants_js__["u" /* IMAGE_ASSET */], { fileName: productionLine.product.image_file }) }),
+                productionLine.name
+              );
+            } })
+        );
       }
     }
   }, {
