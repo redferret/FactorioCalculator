@@ -2,10 +2,14 @@ a:hover {
   cursor: pointer;
 }
 
-.scrollable {
+.production-lines-well {
   overflow-x: hidden;
   overflow-y: auto;
   height: 165px;
+  background-color: #eaeaea;
+  border-radius: 2px;
+  border: 1px solid #d6d6d6;
+  padding: 7px;
 }
 
 .spinner-center {

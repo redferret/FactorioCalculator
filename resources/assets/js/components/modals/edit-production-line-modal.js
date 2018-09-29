@@ -183,7 +183,7 @@ export class ModalBody extends React.Component {
 
   renderProductionLines(productionLines) {
     return (
-      <Well className='scrollable'>
+      <div className='production-lines-well'>
         <div className='list-group'> {
           productionLines.map(productionLine => {
             let product = productionLine.product;
@@ -214,7 +214,7 @@ export class ModalBody extends React.Component {
             );
           })}
         </div>
-      </Well>
+      </div>
     );
   }
 

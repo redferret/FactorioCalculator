@@ -3,10 +3,14 @@ a:hover {
  cursor:pointer;
 }
 
-.scrollable {
+.production-lines-well {
   overflow-x: hidden;
   overflow-y: auto;
   height: 165px;
+  background-color: rgb(234, 234, 234);
+  border-radius: 2px;
+  border: 1px solid rgb(214, 214, 214);
+  padding: 7px;
 }
 
 .spinner-center {
