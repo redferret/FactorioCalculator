@@ -67,6 +67,16 @@ Router.registerRoute(Constants.GET_REQUIRED_INPUT_PRODUCTS, args => {
 /**
  * Special Routes
  */
+
+Router.registerRoute(Constants.LOG_OUT, args => {
+  return ROOT + '/login';
+});
+Router.registerRoute(Constants.LOG_OUT, args => {
+  return ROOT + '/logout';
+});
+Router.registerRoute(Constants.REGISTER, args => {
+  return ROOT + '/register';
+});
 Router.registerRoute(Constants.RE_CALCULATE_PRODUCTION_LINES, args => {
   return ROOT + '/productionlines/recalculate';
 });

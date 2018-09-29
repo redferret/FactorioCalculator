@@ -35,12 +35,15 @@ export const GET_INPUT_PRODUCTION_LINES         = 'get-input-production-lines';
 export const GET_PRODUCTS                       = 'get-products';
 export const GET_PRODUCT_TYPES                  = 'get-product-types';
 
-export const LOAD_FACTORY                   = 'load-factory';
-export const RE_RENDER                      = 're-render';
-export const RE_CALCULATE_PRODUCTION_LINES  = 'recalculate'
-export const ROOT_URL                       = 'root-url';
 export const IMAGE_ASSET                    = 'image-file';
 export const INITIAL_APP_LOAD               = 'initial-app-load';
+export const LOAD_FACTORY                   = 'load-factory';
+export const LOG_IN                         = 'log-in';
+export const LOG_OUT                        = 'log-out';
+export const REGISTER                       = 'register';
+export const RE_CALCULATE_PRODUCTION_LINES  = 'recalculate';
+export const RE_RENDER                      = 're-render';
+export const ROOT_URL                       = 'root-url';
 
 export const UPDATE_FACTORY                   = 'update-factory';
 export const UPDATE_PRODUCTION_LINE_PRODUCER  = 'update-production-line-producer';
