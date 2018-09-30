@@ -291,11 +291,7 @@ class ProductionLineController extends Controller {
 
     $items_per_second = 0;
 
-    // if ($producer->producer_type == 0) {
-    //
-    // } else {
-    //
-    // }
+
     foreach($productionLine->consumerProductionLines as $consumerProductionLine) {
       $consumerProduct = $consumerProductionLine->product;
       $consumerProducts = $consumerProduct->consumerProducts;
@@ -310,14 +306,18 @@ class ProductionLineController extends Controller {
       } else {
         $consumerRequirement = 1;
       }
-
       $items_per_second += ($consumerRequirement / $consumerProductionLine->seconds_per_item) * $consumerProductionLine->assembly_count;
     }
 
     $productionLine->items_per_second = $items_per_second;
-
     $seconds_per_item = $product->crafting_time / $producer->speed;
-    $numberOfAssemblers = ($productionLine->items_per_second * $seconds_per_item) / $product->stock_size;
+    //$producer->producer_type == 0
+    if ($producer->producer_type == 0) {
+      $numberOfAssemblers = ($productionLine->items_per_second * $product->crafting_time) /
+                            ($producer->speed * ($producer->power - $product->hardness));
+    } else {
+      $numberOfAssemblers = ($productionLine->items_per_second * $seconds_per_item) / $product->stock_size;
+    }
 
     $productionLine->assembly_count = $numberOfAssemblers;
     $productionLine->seconds_per_item = $seconds_per_item;
