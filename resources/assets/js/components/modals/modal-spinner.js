@@ -16,7 +16,7 @@ export class ModalBody extends React.Component {
     return (
       <div>
         <Row>
-          <Col sm={3}>
+          <Col sm={3} className='spinner-padding-left'>
             <FadeLoader
               sizeUnit={"px"}
               size={60}

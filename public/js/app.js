@@ -26302,8 +26302,8 @@ var ModalBody = function (_React$Component2) {
             return __WEBPACK_IMPORTED_MODULE_7_react___default.a.createElement(
               'div',
               { className: 'production-lines-well' },
-              __WEBPACK_IMPORTED_MODULE_7_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__item_table_js__["a" /* default */], { items: productType.sorted_products, rowLength: 3,
-                onClickCallback: _this3.handleProductSelect, sm: 4,
+              __WEBPACK_IMPORTED_MODULE_7_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__item_table_js__["a" /* default */], { items: productType.products, rowLength: 4,
+                onClickCallback: _this3.handleProductSelect, sm: 3,
                 itemCallback: function itemCallback(product) {
                   return __WEBPACK_IMPORTED_MODULE_7_react___default.a.createElement(
                     'div',
@@ -81768,7 +81768,7 @@ var ModalBody = function (_React$Component) {
           null,
           __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
             __WEBPACK_IMPORTED_MODULE_5_react_bootstrap__["d" /* Col */],
-            { sm: 3 },
+            { sm: 3, className: 'spinner-padding-left' },
             __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4_react_spinners__["FadeLoader"], {
               sizeUnit: "px",
               size: 60,

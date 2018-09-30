@@ -2,6 +2,10 @@ a:hover {
   cursor: pointer;
 }
 
+.spinner-padding-left {
+  padding-left: 50px;
+}
+
 .production-lines-well {
   overflow-x: hidden;
   overflow-y: auto;
