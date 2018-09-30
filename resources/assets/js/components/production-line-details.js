@@ -137,8 +137,7 @@ export default class ProductionLineDetails extends React.Component {
         <th>{producerCountTitle}</th>
         <th>Items Produced / Second</th>
         <th>{this.props.producer.name} Speed</th>
-        <th>Items Consumed</th>
-        <th>Seconds Per Item</th>
+        <th>Seconds to Produce 1 product</th>
       </tr>
     )
   }
@@ -157,7 +156,6 @@ export default class ProductionLineDetails extends React.Component {
           callback={(event) => this.dispatchProducerChanged(event)}
           initialValue={this.props.producer.speed}/>
         </td>
-        <td>#</td>
         <td><Input initialValue={this.props.seconds_per_item} isStatic={true}/></td>
       </tr>
     )
@@ -171,8 +169,7 @@ export default class ProductionLineDetails extends React.Component {
         <th>Items Produced / Second</th>
         <th>{this.props.producer.name} Speed</th>
         <th>{this.props.producer.name} Power</th>
-        <th>Items Consumed</th>
-        <th>Seconds Per Item</th>
+        <th>Seconds to Produce 1 product</th>
       </tr>
     )
   }
@@ -196,7 +193,6 @@ export default class ProductionLineDetails extends React.Component {
           callback={(event) => this.dispatchProducerChanged(event)}
           initialValue={this.props.producer.power}/>
         </td>
-        <td>#</td>
         <td><Input initialValue={this.props.seconds_per_item} isStatic={true}/></td>
       </tr>
     )

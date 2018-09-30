@@ -87516,11 +87516,6 @@ var Factory = function (_React$Component) {
                 'th',
                 null,
                 'Total Items Produced'
-              ),
-              __WEBPACK_IMPORTED_MODULE_9_react___default.a.createElement(
-                'th',
-                null,
-                'Total Items Consumed'
               )
             )
           ),
@@ -87539,11 +87534,6 @@ var Factory = function (_React$Component) {
                 'td',
                 null,
                 this.state.factory.total_items
-              ),
-              __WEBPACK_IMPORTED_MODULE_9_react___default.a.createElement(
-                'td',
-                null,
-                '#'
               )
             )
           )
@@ -87799,12 +87789,7 @@ var ProductionLineDetails = function (_React$Component) {
         __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
           'th',
           null,
-          'Items Consumed'
-        ),
-        __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
-          'th',
-          null,
-          'Seconds Per Item'
+          'Seconds to Produce 1 product'
         )
       );
     }
@@ -87841,11 +87826,6 @@ var ProductionLineDetails = function (_React$Component) {
               return _this2.dispatchProducerChanged(event);
             },
             initialValue: this.props.producer.speed })
-        ),
-        __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
-          'td',
-          null,
-          '#'
         ),
         __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
           'td',
@@ -87890,12 +87870,7 @@ var ProductionLineDetails = function (_React$Component) {
         __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
           'th',
           null,
-          'Items Consumed'
-        ),
-        __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
-          'th',
-          null,
-          'Seconds Per Item'
+          'Seconds to Produce 1 product'
         )
       );
     }
@@ -87941,11 +87916,6 @@ var ProductionLineDetails = function (_React$Component) {
               return _this3.dispatchProducerChanged(event);
             },
             initialValue: this.props.producer.power })
-        ),
-        __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
-          'td',
-          null,
-          '#'
         ),
         __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
           'td',

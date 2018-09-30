@@ -94,14 +94,12 @@ export default class Factory extends React.Component {
             <tr>
               <th>Number of Production Lines</th>
               <th>Total Items Produced</th>
-              <th>Total Items Consumed</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td>{this.state.factory.production_lines.length}</td>
               <td>{this.state.factory.total_items}</td>
-              <td>#</td>
             </tr>
           </tbody>
         </Table>
