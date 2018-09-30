@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     protected $fillable = ['crafting_time', 'name', 'image_file', 'user_id',
-      'stock_size', 'hardness', 'product_type_id', 'is_fluid', 'consumer_product_id'];
+      'stock_size', 'hardness', 'product_type_id', 'is_fluid'];
 
     /**
      * The production lines that produce this product
@@ -20,10 +20,6 @@ class Product extends Model
       return $this->hasMany(ConsumerProduct::class);
     }
 
-    public function consumerProduct() {
-      return $this->belongsTo(ConsumerProduct::class);
-    }
-
     public function process() {
       return $this->belongsToMany(Process::class, 'process_product');
     }
@@ -32,7 +28,4 @@ class Product extends Model
       return $this->belongsTo(ProductType::class);
     }
 
-    public function user() {
-      return $this->belongsTo(User::class);
-    }
 }
