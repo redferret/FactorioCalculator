@@ -26,7 +26,7 @@
     <Product name='Centrifuge'/>
   </Producer>
 
-  <Producer producer_type='3' speed='1'>
+  <Producer producer_type='3' speed='1' power='2'>
     <Product name='Pumpjack'/>
   </Producer>
   <Producer producer_type='3' speed='1'>

@@ -99,6 +99,7 @@ class ProductionLineController extends Controller {
       $pl->producer;
       $pl->assembly_count = ceil($pl->assembly_count);
       $pl->items_per_second = round($pl->items_per_second, 2);
+      $pl->seconds_per_item = 1 / $pl->items_per_second;
       $pl->seconds_per_item = round($pl->seconds_per_item, 1);
       $pl->is_output = false;
     }
@@ -113,6 +114,7 @@ class ProductionLineController extends Controller {
       $pl->producer;
       $pl->assembly_count = ceil($pl->assembly_count);
       $pl->items_per_second = round($pl->items_per_second, 2);
+      $pl->seconds_per_item = 1 / $pl->items_per_second;
       $pl->seconds_per_item = round($pl->seconds_per_item, 1);
       $pl->is_output = true;
     }
@@ -210,6 +212,7 @@ class ProductionLineController extends Controller {
 
     $productionLine->assembly_count = ceil($productionLine->assembly_count);
     $productionLine->items_per_second = round($productionLine->items_per_second, 2);
+    $productionLine->seconds_per_item = 1 / $productionLine->items_per_second;
     $productionLine->seconds_per_item = round($productionLine->seconds_per_item, 1);
 
     $productionLine->updated = true;
@@ -240,6 +243,7 @@ class ProductionLineController extends Controller {
 
     $productionLine->assembly_count = ceil($productionLine->assembly_count);
     $productionLine->items_per_second = round($productionLine->items_per_second, 2);
+    $productionLine->seconds_per_item = 1 / $productionLine->items_per_second;
     $productionLine->seconds_per_item = round($productionLine->seconds_per_item, 1);
 
   }
@@ -273,6 +277,7 @@ class ProductionLineController extends Controller {
 
     $productionLine->assembly_count = ceil($productionLine->assembly_count);
     $productionLine->items_per_second = round($productionLine->items_per_second, 2);
+    $productionLine->seconds_per_item = 1 / $productionLine->items_per_second;
     $productionLine->seconds_per_item = round($productionLine->seconds_per_item, 1);
 
     $productionLine->updated = true;
@@ -294,7 +299,6 @@ class ProductionLineController extends Controller {
     $producer = $productionLine->producer;
 
     $items_per_second = 0;
-
 
     foreach($productionLine->consumerProductionLines as $consumerProductionLine) {
       $consumerProduct = $consumerProductionLine->product;
@@ -333,6 +337,7 @@ class ProductionLineController extends Controller {
 
     $productionLine->assembly_count = ceil($productionLine->assembly_count);
     $productionLine->items_per_second = round($productionLine->items_per_second, 2);
+    $productionLine->seconds_per_item = 1 / $productionLine->items_per_second;
     $productionLine->seconds_per_item = round($productionLine->seconds_per_item, 1);
 
     $productionLine->updated = true;

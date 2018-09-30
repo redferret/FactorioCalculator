@@ -16,7 +16,6 @@ import {
   Panel,
   Label,
   Table,
-  Grid,
   Row,
   Col,
 } from 'react-bootstrap';
@@ -268,7 +267,7 @@ export default class ProductionLineDetails extends React.Component {
   render() {
     let style = this.props.is_output? 'success'
       : (this.props.is_primary? 'warning' : 'info');
-    
+
     return (
       <Panel bsStyle={style} eventKey={this.props.eventKey}>
         <Panel.Heading>
