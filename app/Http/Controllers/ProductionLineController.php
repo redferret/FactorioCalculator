@@ -92,7 +92,7 @@ class ProductionLineController extends Controller {
     $inputProductionLines = $productionLine->producerProductionLines;
     foreach($inputProductionLines as $pl) {
       $pl->product;
-      $consumerProducts = $pl->$product->consumerProducts;
+      $consumerProducts = $pl->product->consumerProducts;
       foreach ($consumerProducts as $consumerProduct) {
         $consumerProduct->requiredProduct = Product::where('name', $consumerProduct->required_product_name)->first();
       }
@@ -106,7 +106,7 @@ class ProductionLineController extends Controller {
     $outputProductionLines = $productionLine->consumerProductionLines;
     foreach($outputProductionLines as $pl) {
       $pl->product;
-      $consumerProducts = $pl->$product->consumerProducts;
+      $consumerProducts = $pl->product->consumerProducts;
       foreach ($consumerProducts as $consumerProduct) {
         $consumerProduct->requiredProduct = Product::where('name', $consumerProduct->required_product_name)->first();
       }
