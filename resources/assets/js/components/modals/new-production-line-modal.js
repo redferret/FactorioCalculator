@@ -103,8 +103,8 @@ export class ModalBody extends React.Component {
           }
           tabContentCallback={(productType) =>
             <div className='production-lines-well'>
-              <ItemTable items={productType.sorted_products} rowLength={3}
-                onClickCallback={this.handleProductSelect} sm={4}
+              <ItemTable items={productType.products} rowLength={4}
+                onClickCallback={this.handleProductSelect} sm={3}
                 itemCallback={(product) =>
                   <div>
                     <img src={Router.route(IMAGE_ASSET, {fileName: product.image_file})} />{' '}
