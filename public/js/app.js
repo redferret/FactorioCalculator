@@ -4485,7 +4485,6 @@ var EditInputsModalStore = function (_EventEmitter) {
     key: 'setRequiredProducts',
     value: function setRequiredProducts(products) {
       this._consumerRequirements = new Set(products);
-      this.validateInputs();
     }
   }, {
     key: 'setInputs',
@@ -4523,16 +4522,24 @@ var EditInputsModalStore = function (_EventEmitter) {
         _this2._currentProducts.add(productionLine.product);
       });
       var currentProducts = Array.from(this._currentProducts);
-      this._consumerRequirements.forEach(function (requirement) {
-        var index = currentProducts.findIndex(function (test) {
-          if (test != null && requirement.required_product != null) {
-            return test.id == requirement.required_product.id;
-          }return false;
+      if (currentProducts.length == 0) {
+        this._consumerRequirements.forEach(function (requirement) {
+          _this2._missingInputs.add(requirement.requiredProduct);
         });
-        if (index < 0) {
-          _this2._missingInputs.add(requirement.required_product);
-        }
-      });
+      } else {
+        this._consumerRequirements.forEach(function (requirement) {
+          var index = currentProducts.findIndex(function (test) {
+            if (test != null && requirement.requiredProduct != null) {
+              return test.id == requirement.requiredProduct.id;
+            }
+            return false;
+          });
+
+          if (index < 0) {
+            _this2._missingInputs.add(requirement.requiredProduct);
+          }
+        });
+      }
       this._isValid = this._missingInputs.length == 0;
     }
   }, {
@@ -50876,6 +50883,7 @@ __WEBPACK_IMPORTED_MODULE_0__app_actions_js__["a" /* default */].register(__WEBP
     return response.json();
   }).then(function (products) {
     __WEBPACK_IMPORTED_MODULE_2__stores_edit_inputs_modal_store_js__["a" /* default */].setRequiredProducts(products);
+    __WEBPACK_IMPORTED_MODULE_2__stores_edit_inputs_modal_store_js__["a" /* default */].validateInputs();
     __WEBPACK_IMPORTED_MODULE_0__app_actions_js__["a" /* default */].finish(payload);
   });
 });

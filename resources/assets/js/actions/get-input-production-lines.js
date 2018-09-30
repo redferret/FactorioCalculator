@@ -21,6 +21,7 @@ Actions.register(GET_INPUT_PRODUCTION_LINES, payload => {
     return response.json();
   }).then(products => {
     EditInputsModalStore.setRequiredProducts(products);
+    EditInputsModalStore.validateInputs();
     Actions.finish(payload);
   });
 });

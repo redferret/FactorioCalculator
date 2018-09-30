@@ -14,7 +14,6 @@ class EditInputsModalStore extends EventEmitter {
 
   setRequiredProducts(products) {
     this._consumerRequirements = new Set(products);
-    this.validateInputs();
   }
 
   setInputs(inputs) {
@@ -44,16 +43,24 @@ class EditInputsModalStore extends EventEmitter {
       this._currentProducts.add(productionLine.product);
     });
     let currentProducts = Array.from(this._currentProducts);
-    this._consumerRequirements.forEach(requirement => {
-      let index = currentProducts.findIndex((test) => {
-        if (test != null && requirement.required_product != null) {
-          return test.id == requirement.required_product.id;
-        } return false;
+    if (currentProducts.length == 0) {
+      this._consumerRequirements.forEach(requirement => {
+        this._missingInputs.add(requirement.requiredProduct);
       });
-      if (index < 0){
-        this._missingInputs.add(requirement.required_product);
-      }
-    });
+    } else {
+      this._consumerRequirements.forEach(requirement => {
+        let index = currentProducts.findIndex((test) => {
+          if (test != null && requirement.requiredProduct != null) {
+            return test.id == requirement.requiredProduct.id;
+          }
+          return false;
+        });
+
+        if (index < 0){
+          this._missingInputs.add(requirement.requiredProduct);
+        }
+      });
+    }
     this._isValid = this._missingInputs.length == 0;
   }
 
