@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Factory;
+use App\Product;
 use Auth;
 use Illuminate\Http\Request;
 
@@ -16,28 +17,7 @@ class FactoryController extends Controller {
     $factories = Auth::user()->factories;
     $totalProduction = 0;
     foreach($factories as $factory) {
-      $totalItems = 0;
-      $productionLines = $factory->productionLines;
-      foreach($productionLines as $productionLine) {
-        if ($productionLine->consumerProductionLines()->first() == null) {
-          $productionLine->is_output = true;
-        } else {
-          $productionLine->is_output = false;
-        }
-        if ($productionLine->producerProductionLines()->first() == null) {
-          $productionLine->is_primary = true;
-        }
-        $totalItems += $productionLine->items_per_second;
-        $productionLine->producer;
-        $product = $productionLine->product;
-        $product->producedByProductionLines;
-
-        $productionLine->assembly_count = ceil($productionLine->assembly_count);
-        $productionLine->items_per_second = round($productionLine->items_per_second, 2);
-        $productionLine->seconds_per_item = 1 / $productionLine->items_per_second;
-        $productionLine->seconds_per_item = round($productionLine->seconds_per_item, 1);
-      }
-      $factory->total_items = round($totalItems, 2);
+      $this->buildProductionLines($factory);
       $totalProduction += $factory->total_items;
     }
     $factories->$totalProduction = round($totalProduction, 2);
@@ -46,8 +26,14 @@ class FactoryController extends Controller {
 
   public function getFactory($id) {
     $factory = Auth::user()->factories()->find($id);
+    $this->buildProductionLines($factory);
+    return $factory;
+  }
+
+  private function buildProductionLines(& $factory) {
+    $productionLines = $factory->productionLines;
     $totalItems = 0;
-    foreach($factory->productionLines as $productionLine) {
+    foreach($productionLines as $productionLine) {
       if ($productionLine->consumerProductionLines()->first() == null) {
         $productionLine->is_output = true;
       } else {
@@ -60,10 +46,16 @@ class FactoryController extends Controller {
       $productionLine->producer;
       $product = $productionLine->product;
       $product->producedByProductionLines;
+      $consumerProducts = $product->consumerProducts;
+      foreach ($consumerProducts as $consumerProduct) {
+        $consumerProduct->requiredProduct = Product::where('name', $consumerProduct->required_product_name)->first();
+      }
+      $productionLine->assembly_count = ceil($productionLine->assembly_count);
+      $productionLine->items_per_second = round($productionLine->items_per_second, 2);
+      $productionLine->seconds_per_item = 1 / $productionLine->items_per_second;
+      $productionLine->seconds_per_item = round($productionLine->seconds_per_item, 3);
     }
     $factory->total_items = round($totalItems, 2);
-
-    return $factory;
   }
 
   /**

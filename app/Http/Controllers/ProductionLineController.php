@@ -29,7 +29,11 @@ class ProductionLineController extends Controller {
   public function getProductionLines() {
     $productionLines = Auth::user()->productionLines;
     foreach ($productionLines as $productionLine) {
-      $productionLine->product;
+      $product = $productionLine->product;
+      $consumerProducts = $product->consumerProducts;
+      foreach ($consumerProducts as $consumerProduct) {
+        $consumerProduct->requiredProduct = Product::where('name', $consumerProduct->required_product_name)->first();
+      }
     }
     return $productionLines;
   }
@@ -92,10 +96,6 @@ class ProductionLineController extends Controller {
     $inputProductionLines = $productionLine->producerProductionLines;
     foreach($inputProductionLines as $pl) {
       $pl->product;
-      $consumerProducts = $pl->product->consumerProducts;
-      foreach ($consumerProducts as $consumerProduct) {
-        $consumerProduct->requiredProduct = Product::where('name', $consumerProduct->required_product_name)->first();
-      }
       $pl->producer;
       $pl->assembly_count = ceil($pl->assembly_count);
       $pl->items_per_second = round($pl->items_per_second, 2);
@@ -107,10 +107,6 @@ class ProductionLineController extends Controller {
     $outputProductionLines = $productionLine->consumerProductionLines;
     foreach($outputProductionLines as $pl) {
       $pl->product;
-      $consumerProducts = $pl->product->consumerProducts;
-      foreach ($consumerProducts as $consumerProduct) {
-        $consumerProduct->requiredProduct = Product::where('name', $consumerProduct->required_product_name)->first();
-      }
       $pl->producer;
       $pl->assembly_count = ceil($pl->assembly_count);
       $pl->items_per_second = round($pl->items_per_second, 2);
