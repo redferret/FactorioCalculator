@@ -14,6 +14,7 @@ class CreateConsumerProductsTable extends Migration {
     Schema::create('consumer_products', function (Blueprint $table) {
       $table->increments('id');
       $table->integer('consumer_requirement')->default(1);
+      $table->string('required_product_name')->default('');
       $table->integer('product_id')->unsigned()->nullable();
       $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
       $table->timestamps();

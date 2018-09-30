@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Producer;
+use App\Product;
 use App\ProductionLine;
 use Auth;
 use Illuminate\Http\Request;
@@ -37,8 +39,8 @@ class ProductionLineController extends Controller {
     $products = array();
     $product = $productionLine->product;
     $consumerProducts = $product->consumerProducts;
-    foreach($consumerProducts as $consumerProduct) {
-      $consumerProduct->requiredProduct;
+    foreach ($consumerProducts as $consumerProduct) {
+      $consumerProduct->requiredProduct = Product::where('name', $consumerProduct->required_product_name)->first();
     }
     return $consumerProducts;
   }
@@ -90,7 +92,10 @@ class ProductionLineController extends Controller {
     $inputProductionLines = $productionLine->producerProductionLines;
     foreach($inputProductionLines as $pl) {
       $pl->product;
-      $pl->product->consumerProducts;
+      $consumerProducts = $pl->$product->consumerProducts;
+      foreach ($consumerProducts as $consumerProduct) {
+        $consumerProduct->requiredProduct = Product::where('name', $consumerProduct->required_product_name)->first();
+      }
       $pl->producer;
       $pl->assembly_count = ceil($pl->assembly_count);
       $pl->items_per_second = round($pl->items_per_second, 1);
@@ -101,7 +106,10 @@ class ProductionLineController extends Controller {
     $outputProductionLines = $productionLine->consumerProductionLines;
     foreach($outputProductionLines as $pl) {
       $pl->product;
-      $pl->product->consumerProducts;
+      $consumerProducts = $pl->$product->consumerProducts;
+      foreach ($consumerProducts as $consumerProduct) {
+        $consumerProduct->requiredProduct = Product::where('name', $consumerProduct->required_product_name)->first();
+      }
       $pl->producer;
       $pl->assembly_count = ceil($pl->assembly_count);
       $pl->items_per_second = round($pl->items_per_second, 1);
@@ -126,11 +134,11 @@ class ProductionLineController extends Controller {
     Auth::user()->productionLines()->save($newProductionLine);
 
     $producerJson = $request->input('producer');
-    $producer = Auth::user()->producers()->find($producerJson['id'])->replicate();
+    $producer = Producer::find($producerJson['id'])->replicate();
     $newProductionLine->producer()->save($producer);
 
     $productJson = $request->input('product');
-    $product = Auth::user()->products()->find($productJson['id']);
+    $product = Product::find($productJson['id']);
     $product->producedByProductionLines()->save($newProductionLine);
 
     $factory = Auth::user()->factories()->find($request->input('factory_id'));
@@ -186,7 +194,10 @@ class ProductionLineController extends Controller {
 
     $productionLine->producer;
     $product = $productionLine->product;
-    $product->consumerProducts;
+    $consumerProducts = $product->consumerProducts;
+    foreach ($consumerProducts as $consumerProduct) {
+      $consumerProduct->requiredProduct = Product::where('name', $consumerProduct->required_product_name)->first();
+    }
     $product->producedByProductionLines;
 
     foreach($productionLine->producerProductionLines as $pl) {
@@ -203,7 +214,11 @@ class ProductionLineController extends Controller {
   private function updateProductionLineItemsPerSecond(& $productionLine) {
     $producer = $productionLine->producer;
     $product = $productionLine->product;
-    $product->consumerProducts;
+
+    $consumerProducts = $product->consumerProducts;
+    foreach ($consumerProducts as $consumerProduct) {
+      $consumerProduct->requiredProduct = Product::where('name', $consumerProduct->required_product_name)->first();
+    }
     $product->producedByProductionLines;
 
     $previousProducerCount = $productionLine->assembly_count;
@@ -235,7 +250,10 @@ class ProductionLineController extends Controller {
   private function updateProductionLineAssemblers(& $productionLine) {
     $producer = $productionLine->producer;
     $product = $productionLine->product;
-    $product->consumerProducts;
+    $consumerProducts = $product->consumerProducts;
+    foreach ($consumerProducts as $consumerProduct) {
+      $consumerProduct->requiredProduct = Product::where('name', $consumerProduct->required_product_name)->first();
+    }
     $product->producedByProductionLines;
 
     $seconds_per_item = $product->crafting_time / $producer->speed;
@@ -264,7 +282,10 @@ class ProductionLineController extends Controller {
   private function updateInputAssemblers(& $productionLine) {
 
     $product = $productionLine->product;
-    $product->consumerProducts;
+    $consumerProducts = $product->consumerProducts;
+    foreach ($consumerProducts as $consumerProduct) {
+      $consumerProduct->requiredProduct = Product::where('name', $consumerProduct->required_product_name)->first();
+    }
     $product->producedByProductionLines;
     $producer = $productionLine->producer;
 

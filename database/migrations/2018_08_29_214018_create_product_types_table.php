@@ -15,8 +15,6 @@ class CreateProductTypesTable extends Migration {
       $table->increments('id');
       $table->string('name')->default('New Product Type');
       $table->string('image_file')->default('');
-      $table->integer('user_id')->unsigned()->nullable();
-      $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
       $table->timestamps();
     });
   }

@@ -14,17 +14,15 @@ class CreateProductsTable extends Migration {
   public function up() {
     Schema::create('products', function (Blueprint $table) {
       $table->boolean('is_fluid')->default(false);
-      $table->float('crafting_time')->nullable();
+      $table->float('crafting_time');
       $table->float('hardness')->nullable();
-      $table->integer('stock_size')->nullable();
+      $table->integer('stock_size')->default(1);
       $table->string('image_file')->nullable();
       $table->string('name')->default('New Product');
 
       $table->increments('id');
       $table->integer('consumer_product_id')->unsigned()->nullable();
       $table->integer('product_type_id')->unsigned()->nullable();
-      $table->integer('user_id')->unsigned()->nullable();
-      $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
       $table->timestamps();
     });
   }

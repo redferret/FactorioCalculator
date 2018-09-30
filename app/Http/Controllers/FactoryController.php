@@ -29,7 +29,6 @@ class FactoryController extends Controller {
         $totalItems += $productionLine->items_per_second;
         $productionLine->producer;
         $product = $productionLine->product;
-        $product->consumerProducts;
         $product->producedByProductionLines;
 
         $productionLine->assembly_count = ceil($productionLine->assembly_count);
@@ -46,16 +45,17 @@ class FactoryController extends Controller {
     $factory = Auth::user()->factories()->find($id);
     $totalItems = 0;
     foreach($factory->productionLines as $productionLine) {
-      // If this production line is an output
       if ($productionLine->consumerProductionLines()->first() == null) {
-        $totalItems += $productionLine->items_per_second;
         $productionLine->is_output = true;
       } else {
         $productionLine->is_output = false;
       }
+      if ($productionLine->producerProductionLines()->first() == null) {
+        $productionLine->is_primary = true;
+      }
+      $totalItems += $productionLine->items_per_second;
       $productionLine->producer;
       $product = $productionLine->product;
-      $product->consumerProducts;
       $product->producedByProductionLines;
     }
     $factory->total_items = round($totalItems, 1);

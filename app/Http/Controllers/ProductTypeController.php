@@ -13,7 +13,7 @@ class ProductTypeController extends Controller {
   }
 
   public function getAll() {
-    $productTypes = Auth::user()->productTypes;
+    $productTypes = ProductType::all();
     foreach($productTypes as $type) {
       foreach($type->products as $product) {
         $product->producedByProductionLines;
@@ -32,7 +32,6 @@ class ProductTypeController extends Controller {
    */
   public function store(Request $request) {
     $newProductType = ProductType::create($request->all());
-    Auth::user()->productTypes()->save($newProductType);
     return $newProductType;
   }
 
@@ -44,7 +43,7 @@ class ProductTypeController extends Controller {
    * @return \Illuminate\Http\Response
    */
   public function update(Request $request, $id) {
-    $productType = Auth::user()->productTypes()->find($id);
+    $productType = ProductType::find($id);
     if ($productType != null) {
       $productType->fill($request->all());
       $productType->save();
@@ -60,7 +59,7 @@ class ProductTypeController extends Controller {
    * @return \Illuminate\Http\Response
    */
   public function destroy($id) {
-    $productType = Auth::user()->productTypes()->find($id);
+    $productType = ProductType::find($id);
     if ($productType != null) {
       $productType->delete();
       return $productType;

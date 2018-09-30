@@ -14,7 +14,7 @@ class ProductController extends Controller {
   }
 
   public function getAll() {
-    $products = Auth::user()->products;
+    $products = Product::all();
     foreach($products as $product) {
       $product->producedByProductionLines;
     }
@@ -29,13 +29,13 @@ class ProductController extends Controller {
    */
   public function store(Request $request) {
     $newProduct = Product::create($request->input('values'));
-    Auth::user()->products()->save($newProduct);
+    Product::save($newProduct);
     $productsJson = $request->input('products');
     foreach ($productsJson as $productJson) {
       $productRequirement = ConsumerProduct::create([
         'consumer_requirement'=>$productJson['consumer_requirement']
       ]);
-      $product = Auth::user()->products()->find($productJson['id']);
+      $product = Product::find($productJson['id']);
       $productRequirement->requiredProduct()->save($product);
       $newProduct->consumerProducts()->save($productRequirement);
     }
@@ -50,7 +50,7 @@ class ProductController extends Controller {
    * @return \Illuminate\Http\Response
    */
   public function update(Request $request, $id) {
-    $product = Auth::user()->products()->find($id);
+    $product = Product::find($id);
     if ($product != null) {
       $product->fill($request->all());
       $product->save();
@@ -66,7 +66,7 @@ class ProductController extends Controller {
    * @return \Illuminate\Http\Response
    */
   public function destroy($id) {
-    $product = Auth::user()->products()->find($id);
+    $product = Product::find($id);
     if ($product != null) {
       $product->delete();
       return $product;

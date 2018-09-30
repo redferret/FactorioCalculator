@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Producer extends Model {
 
   protected $fillable = ['producer_type', 'image_file', 'speed',
-    'power', 'production_line_id', 'process', 'name'];
+    'power', 'production_line_id', 'name'];
 
   public function productionLine() {
     return $this->belongsTo(ProductionLine::class);
@@ -15,9 +15,5 @@ class Producer extends Model {
 
   public function processes() {
     return $this->hasMany(Process::class);
-  }
-
-  public function user() {
-    return $this->belongsTo(User::class);
   }
 }

@@ -13,7 +13,7 @@ class ProducerController extends Controller {
   }
 
   public function getAll() {
-    $producers = Auth::user()->producers;
+    $producers = Producer::all();
     foreach($producers as $producer) {
       $producer->processes;
     }
@@ -28,7 +28,6 @@ class ProducerController extends Controller {
    */
   public function store(Request $request) {
     $newProducer = Producer::create($request->all());
-    Auth::user()->producers()->save($newProducer);
     return $newProducer;
   }
 
@@ -40,7 +39,7 @@ class ProducerController extends Controller {
    * @return \Illuminate\Http\Response
    */
   public function update(Request $request, $id) {
-    $producer = Auth::user()->producers()->find($id);
+    $producer = Producer::find($id);
     $producer->fill($request->all());
     $producer->save();
     return $producer;
@@ -53,7 +52,7 @@ class ProducerController extends Controller {
    * @return \Illuminate\Http\Response
    */
   public function destroy($id) {
-    $producer = Auth::user()->producers()->find($id);
+    $producer = Producer::find($id);
     if ($producer != null) {
       $producer->delete();
       return $producer;
