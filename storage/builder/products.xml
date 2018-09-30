@@ -4,49 +4,40 @@
     image_file='Coal.png'
     crafting_time='2'
     hardness='0.9'
-    stock_size='1'
   />
   <Product
     name='Stone'
     image_file='Stone.png'
     crafting_time='2'
     hardness='0.4'
-    stock_size='1'
   />
   <Product
     name='Iron ore'
     image_file='Iron_ore.png'
     crafting_time='2'
     hardness='0.9'
-    stock_size='1'
   />
   <Product
     name='Copper ore'
     image_file='Copper_ore.png'
     crafting_time='2'
     hardness='0.9'
-    stock_size='1'
   />
   <Product
     name='Uranium ore'
     image_file='Uranium_ore.png'
     crafting_time='4'
     hardness='0.9'
-    stock_size='1'
   />
   <Product
     name='Crude oil'
     image_file='Crude_oil.png'
     crafting_time='1'
-    hardness='0'
-    stock_size='1'
   />
   <Product
     name='Heavy oil'
     image_file='Heavy_oil.png'
     crafting_time='1'
-    hardness='0'
-    stock_size='1'
   >
     <Processes>
       <Process name='Basic oil processing'/>
@@ -58,8 +49,6 @@
     name='Light oil'
     image_file='Light_oil.png'
     crafting_time='1'
-    hardness='0'
-    stock_size='1'
   >
     <Processes>
       <Process name='Basic oil processing'/>
@@ -71,7 +60,6 @@
     name='Lubricant'
     image_file='Lubricant.png'
     crafting_time='1'
-    hardness='0'
     stock_size='10'
   >
     <Inputs>
@@ -82,8 +70,6 @@
     name='Petroleum gas'
     image_file='Petroleum_gas.png'
     crafting_time='1'
-    hardness='0'
-    stock_size='1'
   >
     <Processes>
       <Process name='Basic oil processing'/>
@@ -95,8 +81,6 @@
     name='Sulfuric acid'
     image_file='Sulfuric_acid.png'
     crafting_time='1'
-    hardness='0'
-    stock_size='1'
   >
     <Inputs>
       <Product name='Iron plate' amount='1'/>
@@ -108,28 +92,21 @@
     name='Water'
     image_file='Water.png'
     crafting_time='1'
-    hardness='0'
-    stock_size='1'
   />
   <Product
     name='Steam'
     image_file='Steam.png'
     crafting_time='1'
-    hardness='0'
-    stock_size='1'
   />
   <Product
     name='Raw wood'
     image_file='Raw_wood.png'
     crafting_time='1'
-    hardness='0'
-    stock_size='1'
   />
   <Product
     name='Wood'
     image_file='Wood.png'
     crafting_time='0.5'
-    hardness='0'
     stock_size='2'
   >
     <Inputs>
@@ -140,8 +117,6 @@
     name='Iron plate'
     image_file='Iron_plate.png'
     crafting_time='3.5'
-    hardness='0'
-    stock_size='1'
   >
     <Inputs>
       <Product name='Iron ore' amount='1' />
@@ -151,8 +126,6 @@
     name='Copper plate'
     image_file='Copper_plate.png'
     crafting_time='3.5'
-    hardness='0'
-    stock_size='1'
   >
     <Inputs>
       <Product name='Copper ore' amount='1' />
@@ -162,8 +135,6 @@
     name='Solid fuel'
     image_file='Solid_fuel.png'
     crafting_time='3'
-    hardness='0'
-    stock_size='1'
   >
     <Processes>
       <Process name='Solid fuel from heavy oil'/>
@@ -175,8 +146,6 @@
     name='Steel plate'
     image_file='Steel_plate.png'
     crafting_time='17.5'
-    hardness='0'
-    stock_size='1'
   >
     <Inputs>
       <Product name='Iron plate' amount='5' />
@@ -186,7 +155,6 @@
     name='Plastic bar'
     image_file='Plastic_bar.png'
     crafting_time='1'
-    hardness='0'
     stock_size='2'
   >
     <Inputs>
@@ -198,7 +166,6 @@
     name='Sulfur'
     image_file='Sulfur.png'
     crafting_time='1'
-    hardness='0'
     stock_size='2'
   >
     <Inputs>
@@ -210,8 +177,6 @@
     name='Battery'
     image_file='Battery.png'
     crafting_time='5'
-    hardness='0'
-    stock_size='1'
   >
     <Inputs>
       <Product name='Copper plate' amount='1'/>
@@ -223,8 +188,6 @@
     name='Explosives'
     image_file='Explosives.png'
     crafting_time='5'
-    hardness='0'
-    stock_size='1'
   >
     <Inputs>
       <Product name='Coal' amount='1'/>
@@ -236,8 +199,6 @@
     name='Crude oil barrel'
     image_file='Crude_oil_barrel.png'
     crafting_time='0.2'
-    hardness='0'
-    stock_size='1'
   >
     <Processes>
       <Process name='Fill crude oil barrel'/>
@@ -247,8 +208,6 @@
     name='Heavy oil barrel'
     image_file='Heavy_oil_barrel.png'
     crafting_time='0.2'
-    hardness='0'
-    stock_size='1'
   >
     <Processes>
       <Process name='Fill heavy oil barrel'/>
@@ -258,8 +217,6 @@
     name='Light oil barrel'
     image_file='Light_oil_barrel.png'
     crafting_time='0.2'
-    hardness='0'
-    stock_size='1'
   >
     <Processes>
       <Process name='Fill light oil barrel'/>
@@ -269,8 +226,6 @@
     name='Lubricant barrel'
     image_file='Lubricant_barrel.png'
     crafting_time='0.2'
-    hardness='0'
-    stock_size='1'
   >
     <Processes>
       <Process name='Fill lubricant barrel'/>
@@ -280,8 +235,6 @@
     name='Petroleum gas barrel'
     image_file='Petroleum_gas_barrel.png'
     crafting_time='0.2'
-    hardness='0'
-    stock_size='1'
   >
     <Processes>
       <Process name='Fill petroleum gas barrel'/>
@@ -291,8 +244,6 @@
     name='Sulfuric acid barrel'
     image_file='Sulfuric_acid_barrel.png'
     crafting_time='0.2'
-    hardness='0'
-    stock_size='1'
   >
     <Processes>
       <Process name='Fill sulfuic acid barrel'/>
@@ -302,19 +253,15 @@
     name='Water barrel'
     image_file='Water_barrel.png'
     crafting_time='0.2'
-    hardness='0'
-    stock_size='1'
   >
     <Processes>
       <Process name='Fill water barrel'/>
     </Processes>
   </Product>
   <Product
-    name='Barrel'
-    image_file='Barrel.png'
+    name='Empty barrel'
+    image_file='Empty_barrel.png'
     crafting_time='1'
-    hardness='0'
-    stock_size='1'
   >
     <Inputs>
       <Product name='Steel plate' amount='1'/>
@@ -333,7 +280,6 @@
     name='Copper cable'
     image_file='Copper_cable.png'
     crafting_time='0.5'
-    hardness='0'
     stock_size='2'
   >
     <Inputs>
@@ -344,7 +290,6 @@
     name='Iron stick'
     image_file='Iron_stick.png'
     crafting_time='0.5'
-    hardness='0'
     stock_size='2'
   >
     <Inputs>
@@ -355,8 +300,6 @@
     name='Iron gear wheel'
     image_file='Iron_gear_wheel.png'
     crafting_time='0.5'
-    hardness='0'
-    stock_size='1'
   >
     <Inputs>
       <Product name='Iron plate' amount='2'/>
@@ -366,8 +309,6 @@
     name='Electronic circuit'
     image_file='Electronic_circuit.png'
     crafting_time='0.5'
-    hardness='0'
-    stock_size='1'
   >
     <Inputs>
       <Product name='Copper cable' amount='3'/>
@@ -378,8 +319,6 @@
     name='Advanced circuit'
     image_file='Advanced_circuit.png'
     crafting_time='6'
-    hardness='0'
-    stock_size='1'
   >
     <Inputs>
       <Product name='Plastic bar' amount='2'/>
@@ -391,11 +330,9 @@
     name='Processing unit'
     image_file='Processing_unit.png'
     crafting_time='10'
-    hardness='0'
-    stock_size='1'
   >
     <Inputs>
-      <Product name='Sulfur acid' amount='5'/>
+      <Product name='Sulfuric acid' amount='5'/>
       <Product name='Advanced circuit' amount='2'/>
       <Product name='Electronic circuit' amount='20'/>
     </Inputs>
@@ -404,12 +341,10 @@
     name='Engine unit'
     image_file='Engine_unit.png'
     crafting_time='10'
-    hardness='0'
-    stock_size='1'
   >
     <Inputs>
       <Product name='Iron gear wheel' amount='1'/>
-      <Product name='Iron pipe' amount='2'/>
+      <Product name='Pipe' amount='2'/>
       <Product name='Steel plate' amount='1'/>
     </Inputs>
   </Product>
@@ -417,8 +352,6 @@
     name='Electric engine unit'
     image_file='Electric_engine_unit.png'
     crafting_time='10'
-    hardness='0'
-    stock_size='1'
   >
     <Inputs>
       <Product name='Electronic circuit' amount='2'/>
@@ -430,8 +363,6 @@
     name='Flying robot frame'
     image_file='Flying_robot_frame.png'
     crafting_time='20'
-    hardness='0'
-    stock_size='1'
   >
     <Inputs>
       <Product name='Battery' amount='2'/>
@@ -444,8 +375,6 @@
     name='Satellite'
     image_file='Satellite.png'
     crafting_time='5'
-    hardness='0'
-    stock_size='1'
   >
     <Inputs>
       <Product name='Accumulator' amount='100'/>
@@ -460,8 +389,6 @@
     name='Rocket part'
     image_file='Rocket_part.png'
     crafting_time='3'
-    hardness='0'
-    stock_size='1'
   >
     <Inputs>
       <Product name='Low density structure' amount='10'/>
@@ -475,8 +402,6 @@
     name='Rocket control unit'
     image_file='Rocket_control_unit.png'
     crafting_time='30'
-    hardness='0'
-    stock_size='1'
   >
     <Inputs>
       <Product name='Processing unit' amount='1'/>
@@ -487,8 +412,6 @@
     name='Low density structure'
     image_file='Low_density_structure.png'
     crafting_time='30'
-    hardness='0'
-    stock_size='1'
   >
     <Inputs>
       <Product name='Copper plate' amount='5'/>
@@ -500,8 +423,6 @@
     name='Rocket fuel'
     image_file='Rocket_fuel.png'
     crafting_time='30'
-    hardness='0'
-    stock_size='1'
   >
     <Inputs>
       <Product name='Solid fuel' amount='10'/>
@@ -511,8 +432,6 @@
     name='Nuclear fuel'
     image_file='Nuclear_fuel.png'
     crafting_time='60'
-    hardness='0'
-    stock_size='1'
   >
     <Inputs>
       <Product name='Rocket fuel' amount='1'/>
@@ -523,8 +442,6 @@
     name='Uranium-235'
     image_file='Uranium-235.png'
     crafting_time='10'
-    hardness='0'
-    stock_size='1'
   >
     <Processes>
       <Process name='Uranium processing'/>
@@ -535,8 +452,6 @@
     name='Uranium-238'
     image_file='Uranium-238.png'
     crafting_time='10'
-    hardness='0'
-    stock_size='1'
   >
     <Processes>
       <Process name='Uranium processing'/>
@@ -547,7 +462,6 @@
     name='Uranium fuel cell'
     image_file='Uranium_fuel_cell.png'
     crafting_time='10'
-    hardness='0'
     stock_size='10'
   >
     <Inputs>
@@ -563,8 +477,6 @@
     name='Used up uranium fuel cell'
     image_file='Used_up_uranium_fuel_cell.png'
     crafting_time='200'
-    hardness='0'
-    stock_size='1'
   >
     <Inputs>
       <Product name='Uranium fuel cell' amount='1'/>
@@ -574,8 +486,6 @@
     name='Science pack 1'
     image_file='Science_pack_1.png'
     crafting_time='5'
-    hardness='0'
-    stock_size='1'
   >
     <Inputs>
       <Product name='Copper plate' amount='1'/>
@@ -586,8 +496,6 @@
     name='Science pack 2'
     image_file='Science_pack_2.png'
     crafting_time='6'
-    hardness='0'
-    stock_size='1'
   >
     <Inputs>
       <Product name='Inserter' amount='1'/>
@@ -598,8 +506,6 @@
     name='Science pack 3'
     image_file='Science_pack_3.png'
     crafting_time='12'
-    hardness='0'
-    stock_size='1'
   >
     <Inputs>
       <Product name='Electric mining drill' amount='1'/>
@@ -611,7 +517,6 @@
     name='Military science pack'
     image_file='Military_science_pack.png'
     crafting_time='10'
-    hardness='0'
     stock_size='2'
   >
     <Inputs>
@@ -624,7 +529,6 @@
     name='Production science pack'
     image_file='Production_science_pack.png'
     crafting_time='14'
-    hardness='0'
     stock_size='2'
   >
     <Inputs>
@@ -636,7 +540,6 @@
     name='High tech science pack'
     image_file='High_tech_science_pack.png'
     crafting_time='14'
-    hardness='0'
     stock_size='2'
   >
     <Inputs>
@@ -646,4 +549,1023 @@
       <Product name='Speed module' amount='1'/>
     </Inputs>
   </Product>
+  <Product
+    name='Iron axe'
+    image_file='Iron_axe.png'
+    crafting_time='0.5'
+  >
+    <Inputs>
+      <Product name='Iron stick' amount='2'/>
+      <Product name='Iron plate' amount='3'/>
+    </Inputs>
+  </Product>
+  <Product
+    name='Steel axe'
+    image_file='Steel_axe.png'
+    crafting_time='0.5'
+  >
+    <Inputs>
+      <Product name='Iron stick' amount='2'/>
+      <Product name='Steel plate' amount='5'/>
+    </Inputs>
+  </Product>
+  <Product
+    name='Repair pack'
+    image_file='Repair_pack.png'
+    crafting_time='0.5'
+  >
+    <Inputs>
+      <Product name='Electronic circuit' amount='2'/>
+      <Product name='Iron gear wheel' amount='2'/>
+    </Inputs>
+  </Product>
+  <Product
+    name='Boiler'
+    image_file='Boiler.png'
+    crafting_time='0.5'
+  >
+    <Inputs>
+      <Product name='Pipe' amount='4'/>
+      <Product name='Stone furnace' amount='1'/>
+    </Inputs>
+  </Product>
+  <Product
+    name='Steam engine'
+    image_file='Steam_engine.png'
+    crafting_time='0.5'
+  >
+    <Inputs>
+      <Product name='Iron gear wheel' amount='8'/>
+      <Product name='Iron plate' amount='10'/>
+      <Product name='Pipe' amount='5'/>
+    </Inputs>
+  </Product>
+  <Product
+    name='Steam turbine'
+    image_file='Steam_turbine.png'
+    crafting_time='3'
+  >
+    <Inputs>
+      <Product name='Iron gear wheel' amount='50'/>
+      <Product name='Copper plate' amount='50'/>
+      <Product name='Pipe' amount='20'/>
+    </Inputs>
+  </Product>
+  <Product
+    name='Solar panel'
+    image_file='Solar_panel.png'
+    crafting_time='10'
+  >
+    <Inputs>
+      <Product name='Electronic circuit' amount='15'/>
+      <Product name='Copper plate' amount='5'/>
+      <Product name='Steel plate' amount='5'/>
+    </Inputs>
+  </Product>
+  <Product
+    name='Accumulator'
+    image_file='Accumulator.png'
+    crafting_time='10'
+  >
+    <Inputs>
+      <Product name='Battery' amount='5'/>
+      <Product name='Iron plate' amount='2'/>
+    </Inputs>
+  </Product>
+  <Product
+    name='Nuclear reactor'
+    image_file='Nuclear_reactor.png'
+    crafting_time='8'
+  >
+    <Inputs>
+      <Product name='Advanced circuit' amount='500'/>
+      <Product name='Concrete' amount='500'/>
+      <Product name='Copper plate' amount='500'/>
+      <Product name='Steel plate' amount='500'/>
+    </Inputs>
+  </Product>
+  <Product
+    name='Heat exchanger'
+    image_file='Heat_exchanger.png'
+    crafting_time='3'
+  >
+    <Inputs>
+      <Product name='Pipe' amount='10'/>
+      <Product name='Copper plate' amount='100'/>
+      <Product name='Steel plate' amount='10'/>
+    </Inputs>
+  </Product>
+  <Product
+    name='Burner mining drill'
+    image_file='Burner_mining_drill.png'
+    crafting_time='2'
+  >
+    <Inputs>
+      <Product name='Iron gear wheel' amount='3'/>
+      <Product name='Iron plate' amount='3'/>
+      <Product name='Stone furnace' amount='1'/>
+    </Inputs>
+  </Product>
+  <Product
+    name='Electric mining drill'
+    image_file='Electric_mining_drill.png'
+    crafting_time='2'
+  >
+    <Inputs>
+      <Product name='Iron gear wheel' amount='5'/>
+      <Product name='Iron plate' amount='10'/>
+      <Product name='Electronic circuit' amount='3'/>
+    </Inputs>
+  </Product>
+  <Product
+    name='Offshore pump'
+    image_file='Offshore_pump.png'
+    crafting_time='0.5'
+  >
+    <Inputs>
+      <Product name='Iron gear wheel' amount='1'/>
+      <Product name='Pipe' amount='1'/>
+      <Product name='Electronic circuit' amount='2'/>
+    </Inputs>
+  </Product>
+  <Product
+    name='Pumpjack'
+    image_file='Pumpjack.png'
+    crafting_time='5'
+  >
+    <Inputs>
+      <Product name='Steel plate' amount='5'/>
+      <Product name='Iron gear wheel' amount='10'/>
+      <Product name='Pipe' amount='10'/>
+      <Product name='Electronic circuit' amount='5'/>
+    </Inputs>
+  </Product>
+  <Product
+    name='Stone furnace'
+    image_file='Stone_furnace.png'
+    crafting_time='0.5'
+  >
+    <Inputs>
+      <Product name='Stone' amount='5'/>
+    </Inputs>
+  </Product>
+  <Product
+    name='Steel furnace'
+    image_file='Steel_furnace.png'
+    crafting_time='3'
+  >
+    <Inputs>
+      <Product name='Steel plate' amount='6'/>
+      <Product name='Stone brick' amount='10'/>
+    </Inputs>
+  </Product>
+  <Product
+    name='Electric furnace'
+    image_file='Electric_furnace.png'
+    crafting_time='5'
+  >
+    <Inputs>
+      <Product name='Advanced circuit' amount='5'/>
+      <Product name='Steel plate' amount='10'/>
+      <Product name='Stone brick' amount='10'/>
+    </Inputs>
+  </Product>
+  <Product
+    name='Assembling machine 1'
+    image_file='Assembling_machine_1.png'
+    crafting_time='0.5'
+  >
+    <Inputs>
+      <Product name='Electronic circuit' amount='3'/>
+      <Product name='Iron gear wheel' amount='5'/>
+      <Product name='Iron plate' amount='9'/>
+    </Inputs>
+  </Product>
+  <Product
+    name='Assembling machine 2'
+    image_file='Assembling_machine_2.png'
+    crafting_time='0.5'
+  >
+    <Inputs>
+      <Product name='Assembling machine 1' amount='1'/>
+      <Product name='Electronic circuit' amount='3'/>
+      <Product name='Iron gear wheel' amount='5'/>
+      <Product name='Iron plate' amount='9'/>
+    </Inputs>
+  </Product>
+  <Product
+    name='Assembling machine 3'
+    image_file='Assembling_machine_3.png'
+    crafting_time='0.5'
+  >
+    <Inputs>
+      <Product name='Assembling machine 2' amount='2'/>
+      <Product name='Speed module' amount='4'/>
+    </Inputs>
+  </Product>
+  <Product
+    name='Oil refinery'
+    image_file='Oil_refinery.png'
+    crafting_time='8'
+  >
+    <Inputs>
+      <Product name='Electronic circuit' amount='10'/>
+      <Product name='Iron gear wheel' amount='10'/>
+      <Product name='Pipe' amount='10'/>
+      <Product name='Steel plate' amount='15'/>
+      <Product name='Stone brick' amount='10'/>
+    </Inputs>
+  </Product>
+  <Product
+    name='Chemical plant'
+    image_file='Chemical_plant.png'
+    crafting_time='5'
+  >
+    <Inputs>
+      <Product name='Electronic circuit' amount='5'/>
+      <Product name='Iron gear wheel' amount='5'/>
+      <Product name='Pipe' amount='5'/>
+      <Product name='Steel plate' amount='5'/>
+    </Inputs>
+  </Product>
+  <Product
+    name='Centrifuge'
+    image_file='Centrifuge.png'
+    crafting_time='4'
+  >
+    <Inputs>
+      <Product name='Advanced circuit' amount='100'/>
+      <Product name='Concrete' amount='100'/>
+      <Product name='Iron gear wheel' amount='100'/>
+      <Product name='Steel plate' amount='50'/>
+    </Inputs>
+  </Product>
+  <Product
+    name='Lab'
+    image_file='Lab.png'
+    crafting_time='2'
+  >
+    <Inputs>
+      <Product name='Electronic circuit' amount='10'/>
+      <Product name='Iron gear wheel' amount='10'/>
+      <Product name='Transport belt' amount='4'/>
+    </Inputs>
+  </Product>
+  <Product
+    name='Beacon'
+    image_file='Beacon.png'
+    crafting_time='15'
+  >
+    <Inputs>
+      <Product name='Advanced circuit' amount='20'/>
+      <Product name='Copper cable' amount='10'/>
+      <Product name='Electronic circuit' amount='20'/>
+      <Product name='Steel plate' amount='10'/>
+    </Inputs>
+  </Product>
+  <Product
+    name='Speed module'
+    image_file='Speed_module.png'
+    crafting_time='15'
+  >
+    <Inputs>
+      <Product name='Advanced circuit' amount='5'/>
+      <Product name='Electronic circuit' amount='5'/>
+    </Inputs>
+  </Product>
+  <Product
+    name='Speed module 2'
+    image_file='Speed_module_2.png'
+    crafting_time='30'
+  >
+    <Inputs>
+      <Product name='Advanced circuit' amount='5'/>
+      <Product name='Processing unit' amount='5'/>
+      <Product name='Speed module' amount='4'/>
+    </Inputs>
+  </Product>
+  <Product
+    name='Speed module 3'
+    image_file='Speed_module_3.png'
+    crafting_time='60'
+  >
+    <Inputs>
+      <Product name='Advanced circuit' amount='5'/>
+      <Product name='Processing unit' amount='5'/>
+      <Product name='Speed module 2' amount='5'/>
+    </Inputs>
+  </Product>
+  <Product
+    name='Efficiency module'
+    image_file='Efficiency_module.png'
+    crafting_time='15'
+  >
+    <Inputs>
+      <Product name='Advanced circuit' amount='5'/>
+      <Product name='Electronic circuit' amount='5'/>
+    </Inputs>
+  </Product>
+  <Product
+    name='Efficiency module 2'
+    image_file='Efficiency_module_2.png'
+    crafting_time='30'
+  >
+    <Inputs>
+      <Product name='Advanced circuit' amount='5'/>
+      <Product name='Efficiency module' amount='4'/>
+      <Product name='Processing unit' amount='5'/>
+    </Inputs>
+  </Product>
+  <Product
+    name='Efficiency module 3'
+    image_file='Efficiency_module_3.png'
+    crafting_time='60'
+  >
+    <Inputs>
+      <Product name='Advanced circuit' amount='5'/>
+      <Product name='Efficiency module 2' amount='5'/>
+      <Product name='Processing unit' amount='5'/>
+    </Inputs>
+  </Product>
+  <Product
+    name='Productivity module'
+    image_file='Productivity_module.png'
+    crafting_time='15'
+  >
+    <Inputs>
+      <Product name='Advanced circuit' amount='5'/>
+      <Product name='Electronic circuit' amount='5'/>
+    </Inputs>
+  </Product>
+  <Product
+    name='Productivity module 2'
+    image_file='Productivity_module_2.png'
+    crafting_time='30'
+  >
+    <Inputs>
+      <Product name='Advanced circuit' amount='5'/>
+      <Product name='Productivity module' amount='4'/>
+      <Product name='Processing unit' amount='5'/>
+    </Inputs>
+  </Product>
+  <Product
+    name='Productivity module 3'
+    image_file='Productivity_module_3.png'
+    crafting_time='60'
+  >
+    <Inputs>
+      <Product name='Advanced circuit' amount='5'/>
+      <Product name='Productivity module 2' amount='5'/>
+      <Product name='Processing unit' amount='5'/>
+    </Inputs>
+  </Product>
+  <Product
+    name='Wooden chest'
+    image_file='Wooden_chest.png'
+    crafting_time='0.5'
+  >
+    <Inputs>
+      <Product name='Wood' amount='4'/>
+    </Inputs>
+  </Product>
+  <Product
+    name='Iron chest'
+    image_file='Iron_chest.png'
+    crafting_time='0.5'
+  >
+    <Inputs>
+      <Product name='Iron plate' amount='8'/>
+    </Inputs>
+  </Product>
+  <Product
+    name='Steel chest'
+    image_file='Steel_chest.png'
+    crafting_time='0.5'
+  >
+    <Inputs>
+      <Product name='Steel plate' amount='8'/>
+    </Inputs>
+  </Product>
+  <Product
+    name='Storage tank'
+    image_file='Storage_tank.png'
+    crafting_time='3'
+  >
+    <Inputs>
+      <Product name='Iron plate' amount='20'/>
+      <Product name='Steel plate' amount='5'/>
+    </Inputs>
+  </Product>
+  <Product
+    name='Transport belt'
+    image_file='Transport_belt.png'
+    crafting_time='0.5'
+  >
+    <Inputs>
+      <Product name='Iron gear wheel' amount='1'/>
+      <Product name='Iron plate' amount='1'/>
+    </Inputs>
+  </Product>
+  <Product
+    name='Fast transport belt'
+    image_file='Fast_transport_belt.png'
+    crafting_time='0.5'
+  >
+    <Inputs>
+      <Product name='Iron gear wheel' amount='5'/>
+      <Product name='Transport belt' amount='1'/>
+    </Inputs>
+  </Product>
+  <Product
+    name='Express transport belt'
+    image_file='Express_transport_belt.png'
+    crafting_time='0.5'
+  >
+    <Inputs>
+      <Product name='Iron gear wheel' amount='10'/>
+      <Product name='Fast transport belt' amount='1'/>
+      <Product name='Lubricant' amount='20'/>
+    </Inputs>
+  </Product>
+  <Product
+    name='Underground belt'
+    image_file='Underground_belt.png'
+    crafting_time='1'
+    stock_size='2'
+  >
+    <Inputs>
+      <Product name='Iron plate' amount='10'/>
+      <Product name='Transport belt' amount='5'/>
+    </Inputs>
+  </Product>
+  <Product
+    name='Fast underground belt'
+    image_file='Fast_underground_belt.png'
+    crafting_time='2'
+    stock_size='2'
+  >
+    <Inputs>
+      <Product name='Iron gear wheel' amount='40'/>
+      <Product name='Underground belt' amount='2'/>
+    </Inputs>
+  </Product>
+  <Product
+    name='Express underground belt'
+    image_file='Express_underground_belt.png'
+    crafting_time='2'
+    stock_size='2'
+  >
+    <Inputs>
+      <Product name='Iron gear wheel' amount='80'/>
+      <Product name='Fast underground belt' amount='2'/>
+      <Product name='Lubricant' amount='40'/>
+    </Inputs>
+  </Product>
+  <Product
+    name='Splitter'
+    image_file='Splitter.png'
+    crafting_time='1'
+  >
+    <Inputs>
+      <Product name='Electronic circuit' amount='5'/>
+      <Product name='Iron plate' amount='5'/>
+      <Product name='Transport belt' amount='4'/>
+    </Inputs>
+  </Product>
+  <Product
+    name='Fast splitter'
+    image_file='Fast_splitter.png'
+    crafting_time='2'
+  >
+    <Inputs>
+      <Product name='Electronic circuit' amount='10'/>
+      <Product name='Iron gear wheel' amount='10'/>
+      <Product name='Splitter' amount='1'/>
+    </Inputs>
+  </Product>
+  <Product
+    name='Express splitter'
+    image_file='Express_splitter.png'
+    crafting_time='2'
+  >
+    <Inputs>
+      <Product name='Advanced circuit' amount='10'/>
+      <Product name='Fast splitter' amount='1'/>
+      <Product name='Iron gear wheel' amount='10'/>
+      <Product name='Lubricant' amount='80'/>
+    </Inputs>
+  </Product>
+  <Product
+    name='Burner inserter'
+    image_file='Burner_inserter.png'
+    crafting_time='0.5'
+  >
+    <Inputs>
+      <Product name='Iron gear wheel' amount='1'/>
+      <Product name='Iron plate' amount='1'/>
+    </Inputs>
+  </Product>
+  <Product
+    name='Inserter'
+    image_file='Inserter.png'
+    crafting_time='0.5'
+  >
+    <Inputs>
+      <Product name='Electronic circuit' amount='1'/>
+      <Product name='Iron gear wheel' amount='1'/>
+      <Product name='Iron plate' amount='1'/>
+    </Inputs>
+  </Product>
+  <Product
+    name='Long handed inserter'
+    image_file='Long_handed_inserter.png'
+    crafting_time='0.5'
+  >
+    <Inputs>
+      <Product name='Inserter' amount='1'/>
+      <Product name='Iron gear wheel' amount='1'/>
+      <Product name='Iron plate' amount='1'/>
+    </Inputs>
+  </Product>
+  <Product
+    name='Fast inserter'
+    image_file='Fast_inserter.png'
+    crafting_time='0.5'
+  >
+    <Inputs>
+      <Product name='Electronic circuit' amount='2'/>
+      <Product name='Inserter' amount='1'/>
+      <Product name='Iron plate' amount='2'/>
+    </Inputs>
+  </Product>
+  <Product
+    name='Filter inserter'
+    image_file='Filter_inserter.png'
+    crafting_time='0.5'
+  >
+    <Inputs>
+      <Product name='Electronic circuit' amount='4'/>
+      <Product name='Fast inserter' amount='1'/>
+    </Inputs>
+  </Product>
+  <Product
+    name='Stack inserter'
+    image_file='Stack_inserter.png'
+    crafting_time='0.5'
+  >
+    <Inputs>
+      <Product name='Advanced circuit' amount='1'/>
+      <Product name='Electronic circuit' amount='15'/>
+      <Product name='Fast inserter' amount='1'/>
+      <Product name='Iron gear wheel' amount='15'/>
+    </Inputs>
+  </Product>
+  <Product
+    name='Stack filter inserter'
+    image_file='Stack_filter_inserter.png'
+    crafting_time='0.5'
+  >
+    <Inputs>
+      <Product name='Stack inserter' amount='1'/>
+      <Product name='Electronic circuit' amount='5'/>
+    </Inputs>
+  </Product>
+  <Product
+    name='Small electric pole'
+    image_file='Small_electric_pole.png'
+    crafting_time='0.5'
+    stock_size='2'
+  >
+    <Inputs>
+      <Product name='Wood' amount='2'/>
+      <Product name='Copper cable' amount='2'/>
+    </Inputs>
+  </Product>
+  <Product
+    name='Medium electric pole'
+    image_file='Medium_electric_pole.png'
+    crafting_time='0.5'
+  >
+    <Inputs>
+      <Product name='Steel plate' amount='2'/>
+      <Product name='Copper plate' amount='2'/>
+    </Inputs>
+  </Product>
+  <Product
+    name='Big electric pole'
+    image_file='Big_electric_pole.png'
+    crafting_time='0.5'
+  >
+    <Inputs>
+      <Product name='Steel plate' amount='5'/>
+      <Product name='Copper plate' amount='5'/>
+    </Inputs>
+  </Product>
+  <Product
+    name='Substation'
+    image_file='Substation.png'
+    crafting_time='0.5'
+  >
+    <Inputs>
+      <Product name='Advanced circuit' amount='5'/>
+      <Product name='Copper plate' amount='5'/>
+      <Product name='Steel plate' amount='10'/>
+    </Inputs>
+  </Product>
+  <Product
+    name='Pipe'
+    image_file='Pipe.png'
+    crafting_time='0.5'
+  >
+    <Inputs>
+      <Product name='Iron plate' amount='1'/>
+    </Inputs>
+  </Product>
+  <Product
+    name='Pipe to ground'
+    image_file='Pipe_to_ground.png'
+    crafting_time='0.5'
+    stock_size='2'
+  >
+    <Inputs>
+      <Product name='Iron plate' amount='5'/>
+      <Product name='Pipe' amount='10'/>
+    </Inputs>
+  </Product>
+  <Product
+    name='Pump'
+    image_file='Pump.png'
+    crafting_time='2'
+  >
+    <Inputs>
+      <Product name='Engine unit' amount='1'/>
+      <Product name='Pipe' amount='1'/>
+      <Product name='Steel plate' amount='1'/>
+    </Inputs>
+  </Product>
+  <Product
+    name='Rail'
+    image_file='Straight_rail.png'
+    crafting_time='0.5'
+    stock_size='2'
+  >
+    <Inputs>
+      <Product name='Iron stick' amount='1'/>
+      <Product name='Steel plate' amount='1'/>
+      <Product name='Stone' amount='1'/>
+    </Inputs>
+  </Product>
+  <Product
+    name='Train stop'
+    image_file='Train_stop.png'
+    crafting_time='0.5'
+  >
+    <Inputs>
+      <Product name='Electronic circuit' amount='5'/>
+      <Product name='Iron plate' amount='10'/>
+      <Product name='Steel plate' amount='3'/>
+    </Inputs>
+  </Product>
+  <Product
+    name='Rail signal'
+    image_file='Rail_signal.png'
+    crafting_time='0.5'
+  >
+    <Inputs>
+      <Product name='Electronic circuit' amount='1'/>
+      <Product name='Iron plate' amount='5'/>
+    </Inputs>
+  </Product>
+  <Product
+    name='Rail chain signal'
+    image_file='Rail_chain_signal.png'
+    crafting_time='0.5'
+  >
+    <Inputs>
+      <Product name='Electronic circuit' amount='1'/>
+      <Product name='Iron plate' amount='5'/>
+    </Inputs>
+  </Product>
+
+  <Product
+    name='Locomotive'
+    image_file='Locomotive.png'
+    crafting_time='4'
+  >
+    <Inputs>
+      <Product name='Electronic circuit' amount='10'/>
+      <Product name='Engine unit' amount='20'/>
+      <Product name='Steel plate' amount='30'/>
+    </Inputs>
+  </Product>
+  <Product
+    name='Cargo wagon'
+    image_file='Cargo_wagon.png'
+    crafting_time='1'
+  >
+    <Inputs>
+      <Product name='Iron gear wheel' amount='10'/>
+      <Product name='Iron plate' amount='20'/>
+      <Product name='Steel plate' amount='20'/>
+    </Inputs>
+  </Product>
+  <Product
+    name='Fluid wagon'
+    image_file='Fluid_wagon.png'
+    crafting_time='1.5'
+  >
+    <Inputs>
+      <Product name='Iron gear wheel' amount='10'/>
+      <Product name='Pipe' amount='8'/>
+      <Product name='Steel plate' amount='16'/>
+      <Product name='Storage tank' amount='1'/>
+    </Inputs>
+  </Product>
+  <Product
+    name='Artillery wagon'
+    image_file='Fluid_wagon.png'
+    crafting_time='4'
+  >
+    <Inputs>
+      <Product name='Advanced circuit' amount='20'/>
+      <Product name='Engine unit' amount='64'/>
+      <Product name='Iron gear wheel' amount='10'/>
+      <Product name='Pipe' amount='16'/>
+      <Product name='Steel plate' amount='40'/>
+    </Inputs>
+  </Product>
+
+  <Product
+    name='Car'
+    image_file='Car.png'
+    crafting_time='2'
+  >
+    <Inputs>
+      <Product name='Engine unit' amount='8'/>
+      <Product name='Iron plate' amount='20'/>
+      <Product name='Steel plate' amount='5'/>
+    </Inputs>
+  </Product>
+  <Product
+    name='Tank'
+    image_file='Tank.png'
+    crafting_time='5'
+  >
+    <Inputs>
+      <Product name='Advanced circuit' amount='5'/>
+      <Product name='Engine unit' amount='32'/>
+      <Product name='Iron gear wheel' amount='15'/>
+      <Product name='Steel plate' amount='50'/>
+    </Inputs>
+  </Product>
+
+  <Product
+    name='Logistic robot'
+    image_file='Logistic_robot.png'
+    crafting_time='0.5'
+  >
+    <Inputs>
+      <Product name='Advanced circuit' amount='2'/>
+      <Product name='Flying robot frame' amount='1'/>
+    </Inputs>
+  </Product>
+  <Product
+    name='Construction robot'
+    image_file='Construction_robot.png'
+    crafting_time='0.5'
+  >
+    <Inputs>
+      <Product name='Electronic circuit' amount='2'/>
+      <Product name='Flying robot frame' amount='1'/>
+    </Inputs>
+  </Product>
+
+  <Product
+    name='Active provider chest'
+    image_file='Active_provider_chest.png'
+    crafting_time='0.5'
+  >
+    <Inputs>
+      <Product name='Advanced circuit' amount='1'/>
+      <Product name='Electronic circuit' amount='3'/>
+      <Product name='Steel chest' amount='1'/>
+    </Inputs>
+  </Product>
+  <Product
+    name='Passive provider chest'
+    image_file='Passive_provider_chest.png'
+    crafting_time='0.5'
+  >
+    <Inputs>
+      <Product name='Advanced circuit' amount='1'/>
+      <Product name='Electronic circuit' amount='3'/>
+      <Product name='Steel chest' amount='1'/>
+    </Inputs>
+  </Product>
+  <Product
+    name='Storage chest'
+    image_file='Storage_chest.png'
+    crafting_time='0.5'
+  >
+    <Inputs>
+      <Product name='Advanced circuit' amount='1'/>
+      <Product name='Electronic circuit' amount='3'/>
+      <Product name='Steel chest' amount='1'/>
+    </Inputs>
+  </Product>
+  <Product
+    name='Buffer chest'
+    image_file='Buffer_chest.png'
+    crafting_time='0.5'
+  >
+    <Inputs>
+      <Product name='Advanced circuit' amount='1'/>
+      <Product name='Electronic circuit' amount='3'/>
+      <Product name='Steel chest' amount='1'/>
+    </Inputs>
+  </Product>
+  <Product
+    name='Requester chest'
+    image_file='Requester_chest.png'
+    crafting_time='0.5'
+  >
+    <Inputs>
+      <Product name='Advanced circuit' amount='1'/>
+      <Product name='Electronic circuit' amount='3'/>
+      <Product name='Steel chest' amount='1'/>
+    </Inputs>
+  </Product>
+  <Product
+    name='Roboport'
+    image_file='Roboport.png'
+    crafting_time='5'
+  >
+    <Inputs>
+      <Product name='Advanced circuit' amount='45'/>
+      <Product name='Iron gear wheel' amount='45'/>
+      <Product name='Steel plate' amount='45'/>
+    </Inputs>
+  </Product>
+
+  <Product
+    name='Lamp'
+    image_file='Lamp.png'
+    crafting_time='0.5'
+  >
+    <Inputs>
+      <Product name='Electronic circuit' amount='1'/>
+      <Product name='Iron plate' amount='1'/>
+      <Product name='Iron stick' amount='3'/>
+    </Inputs>
+  </Product>
+
+  <Product
+    name='Red wire'
+    image_file='Red_wire.png'
+    crafting_time='0.5'
+  >
+    <Inputs>
+      <Product name='Copper cable' amount='1'/>
+      <Product name='Electronic circuit' amount='1'/>
+    </Inputs>
+  </Product>
+  <Product
+    name='Green wire'
+    image_file='Green_wire.png'
+    crafting_time='0.5'
+  >
+    <Inputs>
+      <Product name='Copper cable' amount='1'/>
+      <Product name='Electronic circuit' amount='1'/>
+    </Inputs>
+  </Product>
+
+  <Product
+    name='Arithmetic combinator'
+    image_file='Arithmetic_combinator.png'
+    crafting_time='0.5'
+  >
+    <Inputs>
+      <Product name='Copper cable' amount='5'/>
+      <Product name='Electronic circuit' amount='5'/>
+    </Inputs>
+  </Product>
+  <Product
+    name='Decider combinator'
+    image_file='Decider_combinator.png'
+    crafting_time='0.5'
+  >
+    <Inputs>
+      <Product name='Copper cable' amount='5'/>
+      <Product name='Electronic circuit' amount='5'/>
+    </Inputs>
+  </Product>
+  <Product
+    name='Constant combinator'
+    image_file='Constant_combinator.png'
+    crafting_time='0.5'
+  >
+    <Inputs>
+      <Product name='Copper cable' amount='5'/>
+      <Product name='Electronic circuit' amount='2'/>
+    </Inputs>
+  </Product>
+  <Product
+    name='Power switch'
+    image_file='Power_switch.png'
+    crafting_time='2'
+  >
+    <Inputs>
+      <Product name='Copper cable' amount='5'/>
+      <Product name='Electronic circuit' amount='2'/>
+      <Product name='Iron plate' amount='5'/>
+    </Inputs>
+  </Product>
+  <Product
+    name='Programmable speaker'
+    image_file='Programmable_speaker.png'
+    crafting_time='2'
+  >
+    <Inputs>
+      <Product name='Copper cable' amount='5'/>
+      <Product name='Electronic circuit' amount='4'/>
+      <Product name='Iron plate' amount='5'/>
+    </Inputs>
+  </Product>
+
+  <Product
+    name='Stone brick'
+    image_file='Stone_brick.png'
+    crafting_time='3.5'
+  >
+    <Inputs>
+      <Product name='Stone' amount='2'/>
+    </Inputs>
+  </Product>
+  <Product
+    name='Concrete'
+    image_file='Concrete.png'
+    crafting_time='10'
+    stock_size='10'
+  >
+    <Inputs>
+      <Product name='Iron ore' amount='1'/>
+      <Product name='Stone brick' amount='5'/>
+      <Product name='Water' amount='100'/>
+    </Inputs>
+  </Product>
+  <Product
+    name='Hazard concrete'
+    image_file='Hazard_concrete.png'
+    crafting_time='0.25'
+    stock_size='10'
+  >
+    <Inputs>
+      <Product name='Concrete' amount='10'/>
+    </Inputs>
+  </Product>
+  <Product
+    name='Refined concrete'
+    image_file='Refined_concrete.png'
+    crafting_time='15'
+    stock_size='10'
+  >
+    <Inputs>
+      <Product name='Concrete' amount='20'/>
+      <Product name='Iron stick' amount='8'/>
+      <Product name='Steel plate' amount='1'/>
+      <Product name='Water' amount='100'/>
+    </Inputs>
+  </Product>
+  <Product
+    name='Refined hazard concrete'
+    image_file='Refined_hazard_concrete.png'
+    crafting_time='0.25'
+    stock_size='10'
+  >
+    <Inputs>
+      <Product name='Refined concrete' amount='10'/>
+    </Inputs>
+  </Product>
+  <Product
+    name='Landfill'
+    image_file='Landfill.png'
+    crafting_time='0.5'
+  >
+    <Inputs>
+      <Product name='Stone' amount='20'/>
+    </Inputs>
+  </Product>
+  <Product
+    name='Cliff explosives'
+    image_file='Cliff_explosives.png'
+    crafting_time='8'
+  >
+    <Inputs>
+      <Product name='Empty barrel' amount='1'/>
+      <Product name='Explosives' amount='10'/>
+      <Product name='Grenade' amount='1'/>
+    </Inputs>
+  </Product>
+
 </Products>

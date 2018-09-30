@@ -1,0 +1,45 @@
+<Producers>
+  <Producer speed='0.5'>
+    <Product name='Assembling machine 1'/>
+  </Producer>
+  <Producer speed='0.75'>
+    <Product name='Assembling machine 2'/>
+  </Producer>
+  <Producer speed='1.25'>
+    <Product name='Assembling machine 3'/>
+  </Producer>
+
+  <Producer producer_type='0' speed='0.35' power='2.5'>
+    <Product name='Burner mining drill'/>
+  </Producer>
+  <Producer producer_type='0' speed='0.5' power='3'>
+    <Product name='Electric mining drill'/>
+  </Producer>
+
+  <Producer producer_type='4' speed='1'>
+    <Product name='Oil refinery'/>
+  </Producer>
+  <Producer producer_type='4' speed='1.25'>
+    <Product name='Chemical plant'/>
+  </Producer>
+  <Producer producer_type='4' speed='0.75'>
+    <Product name='Centrifuge'/>
+  </Producer>
+
+  <Producer producer_type='3' speed='1'>
+    <Product name='Pumpjack'/>
+  </Producer>
+  <Producer producer_type='3' speed='1'>
+    <Product name='Offshore pump'/>
+  </Producer>
+
+  <Producer producer_type='2' speed='1'>
+    <Product name='Stone furnace'/>
+  </Producer>
+  <Producer producer_type='2' speed='2'>
+    <Product name='Steel furnace'/>
+  </Producer>
+  <Producer producer_type='2' speed='2'>
+    <Product name='Electric furnace'/>
+  </Producer>
+</Producers>

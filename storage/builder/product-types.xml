@@ -1,12 +1,103 @@
 <ProductTypes>
   <ProductType name='Logistics' image_file='Logistics_(research).png'>
-
+    <Product name='Wooden chest'/>
+    <Product name='Iron chest'/>
+    <Product name='Steel chest'/>
+    <Product name='Storage tank'/>
+    <Product name='Transport belt'/>
+    <Product name='Fast transport belt'/>
+    <Product name='Express transport belt'/>
+    <Product name='Underground belt'/>
+    <Product name='Fast underground belt'/>
+    <Product name='Express underground belt'/>
+    <Product name='Splitter'/>
+    <Product name='Fast splitter'/>
+    <Product name='Express splitter'/>
+    <Product name='Burner inserter'/>
+    <Product name='Inserter'/>
+    <Product name='Long handed inserter'/>
+    <Product name='Fast inserter'/>
+    <Product name='Filter inserter'/>
+    <Product name='Stack inserter'/>
+    <Product name='Stack filter inserter'/>
+    <Product name='Small electric pole'/>
+    <Product name='Medium electric pole'/>
+    <Product name='Big electric pole'/>
+    <Product name='Substation'/>
+    <Product name='Pipe'/>
+    <Product name='Pipe to ground'/>
+    <Product name='Pump'/>
+    <Product name='Rail'/>
+    <Product name='Train stop'/>
+    <Product name='Rail signal'/>
+    <Product name='Rail chain signal'/>
+    <Product name='Locomotive'/>
+    <Product name='Cargo wagon'/>
+    <Product name='Fluid wagon'/>
+    <Product name='Artillery wagon'/>
+    <Product name='Car'/>
+    <Product name='Tank'/>
+    <Product name='Logistic robot'/>
+    <Product name='Construction robot'/>
+    <Product name='Active provider chest'/>
+    <Product name='Passive provider chest'/>
+    <Product name='Storage chest'/>
+    <Product name='Buffer chest'/>
+    <Product name='Requester chest'/>
+    <Product name='Roboport'/>
+    <Product name='Lamp'/>
+    <Product name='Red wire'/>
+    <Product name='Green wire'/>
+    <Product name='Arithmetic combinator'/>
+    <Product name='Decider combinator'/>
+    <Product name='Constant combinator'/>
+    <Product name='Power switch'/>
+    <Product name='Programmable speaker'/>
+    <Product name='Stone brick'/>
+    <Product name='Concrete'/>
+    <Product name='Hazard Concrete'/>
+    <Product name='Refined concrete'/>
+    <Product name='Refined hazard concrete'/>
+    <Product name='Landfill'/>
+    <Product name='Cliff explosives'/>
   </ProductType>
-
   <ProductType name='Production' image_file='Item-group_production.png'>
-
+    <Product name='Iron axe'/>
+    <Product name='Steel axe'/>
+    <Product name='Repair pack'/>
+    <Product name='Boiler'/>
+    <Product name='Steam engine'/>
+    <Product name='Steam turbine'/>
+    <Product name='Solar panel'/>
+    <Product name='Accumulator'/>
+    <Product name='Nuclear reactor'/>
+    <Product name='Heat exchanger'/>
+    <Product name='Heat pipe'/>
+    <Product name='Burner mining drill'/>
+    <Product name='Electric mining drill'/>
+    <Product name='Offshore pump'/>
+    <Product name='Pumpjack'/>
+    <Product name='Stone furnace'/>
+    <Product name='Steel furnace'/>
+    <Product name='Electric furnace'/>
+    <Product name='Assembling machine 1'/>
+    <Product name='Assembling machine 2'/>
+    <Product name='Assembling machine 3'/>
+    <Product name='Oil refinery'/>
+    <Product name='Chemical plant'/>
+    <Product name='Centrifuge'/>
+    <Product name='Lab'/>
+    <Product name='Beacon'/>
+    <Product name='Speed module'/>
+    <Product name='Speed module 2'/>
+    <Product name='Speed module 3'/>
+    <Product name='Efficiency module'/>
+    <Product name='Efficiency module 2'/>
+    <Product name='Efficiency module 3'/>
+    <Product name='Productivity module'/>
+    <Product name='Productivity module 2'/>
+    <Product name='Productivity module 3'/>
   </ProductType>
-
   <ProductType name='Intermediates' image_file='Item-group_intermediate_products.png'>
     <Product name='Coal'/>
     <Product name='Stone'/>
@@ -38,7 +129,7 @@
     <Product name='Petroleum gas barrel'/>
     <Product name='Sulfuric acid barrel'/>
     <Product name='Water barrel'/>
-    <Product name='Barrel'/>
+    <Product name='Empty barrel'/>
     <Product name='Copper cable'/>
     <Product name='Iron stick'/>
     <Product name='Iron gear wheel'/>
@@ -65,7 +156,6 @@
     <Product name='Production science pack'/>
     <Product name='High tech science pack'/>
   </ProductType>
-
   <ProductType name='Combat' image_file='Item-group_military.png'>
 
   </ProductType>
