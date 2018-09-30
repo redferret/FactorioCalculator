@@ -46,5 +46,9 @@ class ExampleTest extends TestCase {
     $productType = $product->productType;
     $this->assertTrue($productType->name == 'Intermediates');
 
+    $product = Product::where('name', 'Lubricant')->firstOrFail();
+    $req = $product->consumerProducts()->first();
+    $reqProduct = $req->requiredProduct;
+    $this->assertTrue($reqProduct->name == 'Heavy oil');
   }
 }
