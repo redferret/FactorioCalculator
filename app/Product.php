@@ -20,10 +20,6 @@ class Product extends Model
       return $this->hasMany(ConsumerProduct::class);
     }
 
-    public function process() {
-      return $this->belongsToMany(Process::class, 'process_product');
-    }
-
     public function productType() {
       return $this->belongsTo(ProductType::class);
     }

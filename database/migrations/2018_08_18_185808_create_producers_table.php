@@ -19,6 +19,7 @@ class CreateProducersTable extends Migration {
       $table->boolean('producer_type')->default(1);
       $table->float('speed')->default(0.5);
       $table->float('power')->default(0);
+      $table->integer('yield')->nullable();
 
       $table->integer('production_line_id')->unsigned()->nullable();
       $table->foreign('production_line_id')->references('id')->on('production_lines')->onDelete('cascade');

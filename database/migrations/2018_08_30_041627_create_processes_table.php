@@ -15,6 +15,7 @@ class CreateProcessesTable extends Migration {
       $table->increments('id');
       $table->string('name')->default('Unnamed Process');
       $table->string('image_file')->default('');
+      $table->integer('crafting_time')->default(1);
       $table->integer('producer_id')->unsigned()->nullable();
       $table->timestamps();
     });

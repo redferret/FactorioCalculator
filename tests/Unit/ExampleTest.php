@@ -7,6 +7,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\AppBuilder;
 use App\User;
 use App\Product;
+use App\Process;
 
 class ExampleTest extends TestCase {
 
@@ -17,9 +18,7 @@ class ExampleTest extends TestCase {
    * @return void
    */
   public function testAppBuilder() {
-    $user = factory(User::class)->make();
-
-    $builder = new AppBuilder($user);
+    $builder = new AppBuilder();
     $builder->populateDatabase();
 
     $this->assertDatabaseHas('product_types', [
@@ -46,9 +45,11 @@ class ExampleTest extends TestCase {
     $productType = $product->productType;
     $this->assertTrue($productType->name == 'Intermediates');
 
-    $product = Product::where('name', 'Lubricant')->firstOrFail();
-    $req = $product->consumerProducts()->first();
-    $reqProduct = $req->requiredProduct;
-    $this->assertTrue($reqProduct->name == 'Heavy oil');
+    $process = Process::where('name', 'Basic oil processing')->firstOrFail();
+    $this->assertTrue($process->inputProducts()->count() == 1);
+    $this->assertTrue($process->inputProducts()->first()->required_product_name == 'Crude oil');
+
+    $this->assertTrue($process->outputProducts()->count() == 3);
+    $this->assertTrue($process->outputProducts()->first()->required_product_name == 'Heavy oil');
   }
 }

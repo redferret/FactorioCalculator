@@ -60,7 +60,43 @@ class AppBuilder {
       $producerProduct = Product::where('name', $producer->Product->attributes()['name'])->first();
       $producerAttributes['name'] = $producerProduct->name;
       $producerAttributes['image_file'] = $producerProduct->image_file;
-      Producer::create($producerAttributes);
+      $newProducer = Producer::create($producerAttributes);
+
+      foreach($producer->Processes as $process) {
+        foreach($process->Process as $producerProcess) {
+          $producerProcessAttributes = array();
+          foreach($producerProcess->attributes() as $key => $value) {
+            $producerProcessAttributes[$key] = $value;
+          }
+          $newProcess = Process::create($producerProcessAttributes);
+          $newProducer->processes()->save($newProcess);
+          foreach ($producerProcess->Inputs as $inputs) {
+            foreach ($inputs->Product as $input) {
+              $productInput = Product::where('name', $input->attributes()['name'])->first();
+              if ($productInput != null) {
+                $productRequirement = ConsumerProduct::create([
+                  'consumer_requirement'=>$input->attributes()['amount']
+                ]);
+                $productRequirement->required_product_name = $productInput->name;
+                $newProcess->inputProducts()->save($productRequirement);
+              }
+            }
+          }
+
+          foreach ($producerProcess->Outputs as $outputs) {
+            foreach ($outputs->Product as $output) {
+              $productOutput = Product::where('name', $output->attributes()['name'])->first();
+              if ($productOutput != null) {
+                $productRequirement = ConsumerProduct::create([
+                  'consumer_requirement'=>$output->attributes()['amount']
+                ]);
+                $productRequirement->required_product_name = $productOutput->name;
+                $newProcess->outputProducts()->save($productRequirement);
+              }
+            }
+          }
+        }
+      }
     }
   }
 

@@ -52,7 +52,8 @@ class FactoryController extends Controller {
       }
       $productionLine->assembly_count = ceil($productionLine->assembly_count);
       $productionLine->items_per_second = round($productionLine->items_per_second, 2);
-      $productionLine->seconds_per_item = 1 / $productionLine->items_per_second;
+      $ips = $productionLine->items_per_second;
+      $productionLine->seconds_per_item = ($ips == 0? 0 : 1 / $ips);
       $productionLine->seconds_per_item = round($productionLine->seconds_per_item, 3);
     }
     $factory->total_items = round($totalItems, 2);

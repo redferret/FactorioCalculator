@@ -10,4 +10,12 @@ class ConsumerProduct extends Model{
   public function consumerProduct() {
     return $this->belongsTo(Product::class);
   }
+
+  public function inputForProcesses() {
+    return $this->belongsToMany(Process::class, 'process_input_products');
+  }
+
+  public function outputForProcesses() {
+    return $this->belongsToMany(Process::class, 'process_output_products');
+  }
 }

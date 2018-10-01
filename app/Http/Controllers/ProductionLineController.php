@@ -92,27 +92,29 @@ class ProductionLineController extends Controller {
   // }
 
   public function getProductionLineInputsOutputs($id) {
-    $productionLine = Auth::user()->productionLines()->find($id);
-    $inputProductionLines = $productionLine->producerProductionLines;
-    foreach($inputProductionLines as $pl) {
-      $pl->product;
-      $pl->producer;
-      $pl->assembly_count = ceil($pl->assembly_count);
-      $pl->items_per_second = round($pl->items_per_second, 2);
-      $pl->seconds_per_item = 1 / $pl->items_per_second;
-      $pl->seconds_per_item = round($pl->seconds_per_item, 1);
-      $pl->is_output = false;
+    $primaryProductionLine = Auth::user()->productionLines()->find($id);
+    $inputProductionLines = $primaryProductionLine->producerProductionLines;
+    foreach($inputProductionLines as $productionLine) {
+      $productionLine->product;
+      $productionLine->producer;
+      $productionLine->assembly_count = ceil($productionLine->assembly_count);
+      $productionLine->items_per_second = round($productionLine->items_per_second, 2);
+      $ips = $productionLine->items_per_second;
+      $productionLine->seconds_per_item = ($ips == 0? 0 : 1 / $ips);
+      $productionLine->seconds_per_item = round($productionLine->seconds_per_item, 1);
+      $productionLine->is_output = false;
     }
 
-    $outputProductionLines = $productionLine->consumerProductionLines;
-    foreach($outputProductionLines as $pl) {
-      $pl->product;
-      $pl->producer;
-      $pl->assembly_count = ceil($pl->assembly_count);
-      $pl->items_per_second = round($pl->items_per_second, 2);
-      $pl->seconds_per_item = 1 / $pl->items_per_second;
-      $pl->seconds_per_item = round($pl->seconds_per_item, 1);
-      $pl->is_output = true;
+    $outputProductionLines = $primaryProductionLine->consumerProductionLines;
+    foreach($outputProductionLines as $productionLine) {
+      $productionLine->product;
+      $productionLine->producer;
+      $productionLine->assembly_count = ceil($productionLine->assembly_count);
+      $productionLine->items_per_second = round($productionLine->items_per_second, 2);
+      $ips = $productionLine->items_per_second;
+      $productionLine->seconds_per_item = ($ips == 0? 0 : 1 / $ips);
+      $productionLine->seconds_per_item = round($productionLine->seconds_per_item, 1);
+      $productionLine->is_output = true;
     }
 
     return array(
@@ -202,16 +204,7 @@ class ProductionLineController extends Controller {
     }
     $product->producedByProductionLines;
 
-    foreach($productionLine->producerProductionLines as $pl) {
-      $this->updateInputAssemblers($pl);
-    }
-
-    $productionLine->assembly_count = ceil($productionLine->assembly_count);
-    $productionLine->items_per_second = round($productionLine->items_per_second, 2);
-    $productionLine->seconds_per_item = 1 / $productionLine->items_per_second;
-    $productionLine->seconds_per_item = round($productionLine->seconds_per_item, 1);
-
-    $productionLine->updated = true;
+    $this->updateValues($productionLine, $numberOfAssemblers, $seconds_per_item);
   }
 
   private function updateProductionLineItemsPerSecond(& $productionLine) {
@@ -239,9 +232,9 @@ class ProductionLineController extends Controller {
 
     $productionLine->assembly_count = ceil($productionLine->assembly_count);
     $productionLine->items_per_second = round($productionLine->items_per_second, 2);
-    $productionLine->seconds_per_item = 1 / $productionLine->items_per_second;
+    $ips = $productionLine->items_per_second;
+    $productionLine->seconds_per_item = ($ips == 0? 0 : 1 / $ips);
     $productionLine->seconds_per_item = round($productionLine->seconds_per_item, 1);
-
   }
 
   /**
@@ -259,24 +252,11 @@ class ProductionLineController extends Controller {
       $consumerProduct->requiredProduct = Product::where('name', $consumerProduct->required_product_name)->first();
     }
     $product->producedByProductionLines;
-
     $seconds_per_item = $product->crafting_time / $producer->speed;
-    $numberOfAssemblers = ($productionLine->items_per_second * $seconds_per_item) / $product->stock_size;
 
-    $productionLine->assembly_count = $numberOfAssemblers;
-    $productionLine->seconds_per_item = $seconds_per_item;
-    $productionLine->save();
+    $numberOfAssemblers = $this->calculateNumberOfProducersNeeded($productionLine, $producer, $product, $seconds_per_item);
 
-    foreach($productionLine->producerProductionLines as $pl) {
-      $this->updateInputAssemblers($pl);
-    }
-
-    $productionLine->assembly_count = ceil($productionLine->assembly_count);
-    $productionLine->items_per_second = round($productionLine->items_per_second, 2);
-    $productionLine->seconds_per_item = 1 / $productionLine->items_per_second;
-    $productionLine->seconds_per_item = round($productionLine->seconds_per_item, 1);
-
-    $productionLine->updated = true;
+    $this->updateValues($productionLine, $numberOfAssemblers, $seconds_per_item);
   }
 
   /**
@@ -315,14 +295,28 @@ class ProductionLineController extends Controller {
 
     $productionLine->items_per_second = $items_per_second;
     $seconds_per_item = $product->crafting_time / $producer->speed;
-    //$producer->producer_type == 0
-    if ($producer->producer_type == 0) {
-      $numberOfAssemblers = ($productionLine->items_per_second * $product->crafting_time) /
-                            ($producer->speed * ($producer->power - $product->hardness));
-    } else {
-      $numberOfAssemblers = ($productionLine->items_per_second * $seconds_per_item) / $product->stock_size;
-    }
 
+    $numberOfAssemblers = $this->calculateNumberOfProducersNeeded($productionLine, $producer, $product, $seconds_per_item);
+
+    $this->updateValues($productionLine, $numberOfAssemblers, $seconds_per_item);
+  }
+
+  private function calculateNumberOfProducersNeeded(& $productionLine, & $producer, & $product, $seconds_per_item) {
+    switch($producer->producer_type){
+      case 0:
+        return ($productionLine->items_per_second * $product->crafting_time) /
+              ($producer->speed * ($producer->power - $product->hardness));
+      case 1:
+      case 2:
+        return ($productionLine->items_per_second * $seconds_per_item) / $product->stock_size;
+      case 3:
+        return ($productionLine->items_per_second * 10) / $producer->yield;
+      case 4:
+        return 0;
+    }
+  }
+
+  private function updateValues(& $productionLine, $numberOfAssemblers, $seconds_per_item) {
     $productionLine->assembly_count = $numberOfAssemblers;
     $productionLine->seconds_per_item = $seconds_per_item;
     $productionLine->save();
@@ -333,10 +327,10 @@ class ProductionLineController extends Controller {
 
     $productionLine->assembly_count = ceil($productionLine->assembly_count);
     $productionLine->items_per_second = round($productionLine->items_per_second, 2);
-    $productionLine->seconds_per_item = 1 / $productionLine->items_per_second;
+    $ips = $productionLine->items_per_second;
+    $productionLine->seconds_per_item = ($ips == 0? 0 : 1 / $ips);
     $productionLine->seconds_per_item = round($productionLine->seconds_per_item, 1);
 
     $productionLine->updated = true;
   }
-
 }
