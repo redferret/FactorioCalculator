@@ -197,6 +197,18 @@ export class ModalFooter extends React.Component {
   }
 
   handleAddProductionLine() {
+    if (NewProductionLineModalStore.getProducer() != null) {
+      if (/(.|\s)*\S(.|\s)*/.test(NewProductionLineModalStore.getName())) {
+        this.addProductionLine();
+      } else {
+        alert('Production Line Name is Invalid');
+      }
+    } else {
+      alert('Please pick a Producer');
+    }
+  }
+
+  addProductionLine() {
     let values = {};
     values['items_per_second'] = NewProductionLineModalStore.getItemsPerSecond();
     values['name'] = NewProductionLineModalStore.getName();
@@ -214,7 +226,7 @@ export class ModalFooter extends React.Component {
         store: FactoryStore,
         componentIds: [NewProductionLineModalStore.getFactoryComponentId()]
       }]
-    })
+    });
   }
 
   render() {

@@ -26472,6 +26472,19 @@ var ModalFooter = function (_React$Component3) {
   _createClass(ModalFooter, [{
     key: 'handleAddProductionLine',
     value: function handleAddProductionLine() {
+      if (__WEBPACK_IMPORTED_MODULE_6__stores_new_production_line_modal_store_js__["a" /* default */].getProducer() != null) {
+        if (/(.|\s)*\S(.|\s)*/.test(__WEBPACK_IMPORTED_MODULE_6__stores_new_production_line_modal_store_js__["a" /* default */].getName())) {
+          this.addProductionLine();
+        } else {
+          alert('Production Line Name is Invalid');
+        }
+      } else {
+        alert('Please pick a Producer');
+      }
+    }
+  }, {
+    key: 'addProductionLine',
+    value: function addProductionLine() {
       var values = {};
       values['items_per_second'] = __WEBPACK_IMPORTED_MODULE_6__stores_new_production_line_modal_store_js__["a" /* default */].getItemsPerSecond();
       values['name'] = __WEBPACK_IMPORTED_MODULE_6__stores_new_production_line_modal_store_js__["a" /* default */].getName();
@@ -87681,20 +87694,52 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 
-var ProductionLineDetails = function (_React$Component) {
-  _inherits(ProductionLineDetails, _React$Component);
+var ProducerTable = function (_React$Component) {
+  _inherits(ProducerTable, _React$Component);
+
+  function ProducerTable() {
+    _classCallCheck(this, ProducerTable);
+
+    return _possibleConstructorReturn(this, (ProducerTable.__proto__ || Object.getPrototypeOf(ProducerTable)).apply(this, arguments));
+  }
+
+  _createClass(ProducerTable, [{
+    key: 'render',
+    value: function render() {
+      return __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
+        __WEBPACK_IMPORTED_MODULE_10_react_bootstrap__["s" /* Table */],
+        null,
+        __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
+          'thead',
+          null,
+          this.props.headTr
+        ),
+        __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
+          'tbody',
+          null,
+          this.props.bodyTr
+        )
+      );
+    }
+  }]);
+
+  return ProducerTable;
+}(__WEBPACK_IMPORTED_MODULE_8_react___default.a.Component);
+
+var ProductionLineDetails = function (_React$Component2) {
+  _inherits(ProductionLineDetails, _React$Component2);
 
   function ProductionLineDetails(props, context) {
     _classCallCheck(this, ProductionLineDetails);
 
-    var _this = _possibleConstructorReturn(this, (ProductionLineDetails.__proto__ || Object.getPrototypeOf(ProductionLineDetails)).call(this, props, context));
+    var _this2 = _possibleConstructorReturn(this, (ProductionLineDetails.__proto__ || Object.getPrototypeOf(ProductionLineDetails)).call(this, props, context));
 
-    _this.handleShowEditProductionLineModal = _this.handleShowEditProductionLineModal.bind(_this);
-    _this.handleShowEditInputsModal = _this.handleShowEditInputsModal.bind(_this);
-    _this.changeProduct = _this.changeProduct.bind(_this);
-    _this.itemsPerSecondChanged = _this.itemsPerSecondChanged.bind(_this);
-    _this.dispatchProducerChanged = _this.dispatchProducerChanged.bind(_this);
-    return _this;
+    _this2.handleShowEditProductionLineModal = _this2.handleShowEditProductionLineModal.bind(_this2);
+    _this2.handleShowEditInputsModal = _this2.handleShowEditInputsModal.bind(_this2);
+    _this2.changeProduct = _this2.changeProduct.bind(_this2);
+    _this2.itemsPerSecondChanged = _this2.itemsPerSecondChanged.bind(_this2);
+    _this2.dispatchProducerChanged = _this2.dispatchProducerChanged.bind(_this2);
+    return _this2;
   }
 
   _createClass(ProductionLineDetails, [{
@@ -87756,9 +87801,6 @@ var ProductionLineDetails = function (_React$Component) {
       }
     }
   }, {
-    key: 'changeProduct',
-    value: function changeProduct(e) {}
-  }, {
     key: 'dispatchProducerChanged',
     value: function dispatchProducerChanged(event) {
       var values = {};
@@ -87784,357 +87826,320 @@ var ProductionLineDetails = function (_React$Component) {
       });
     }
   }, {
+    key: 'changeProduct',
+    value: function changeProduct(e) {}
+  }, {
     key: 'renderTableForMiners',
     value: function renderTableForMiners(itemsPerSecond) {
-      var _this2 = this;
-
-      var product = this.props.product;
-      var productName = product ? product.name : '';
-      var productImage = product ? product.image_file : 'Questionmark.png';
-      return __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
-        __WEBPACK_IMPORTED_MODULE_10_react_bootstrap__["s" /* Table */],
-        null,
-        __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
-          'thead',
-          null,
-          __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
-            'tr',
-            null,
-            __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
-              'th',
-              null,
-              'Name'
-            ),
-            __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
-              'th',
-              null,
-              'Number of Miners'
-            ),
-            __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
-              'th',
-              null,
-              'Ore Produced / Second'
-            ),
-            __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
-              'th',
-              null,
-              this.props.producer.name,
-              ' Speed'
-            ),
-            __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
-              'th',
-              null,
-              this.props.producer.name,
-              ' Power'
-            ),
-            __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
-              'th',
-              null,
-              'Seconds to Produce 1 Ore'
-            )
-          )
-        ),
-        __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
-          'tbody',
-          null,
-          __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
-            'tr',
-            null,
-            __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
-              'td',
-              null,
-              __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement('img', { width: 32, height: 32, src: __WEBPACK_IMPORTED_MODULE_9__router_js__["a" /* default */].route(__WEBPACK_IMPORTED_MODULE_11__constants_js__["v" /* IMAGE_ASSET */], { fileName: productImage }) }),
-              ' ',
-              productName
-            ),
-            __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
-              'td',
-              null,
-              __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__input_js__["a" /* default */], { initialValue: this.props.assembly_count, isStatic: true })
-            ),
-            __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
-              'td',
-              null,
-              itemsPerSecond
-            ),
-            __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
-              'td',
-              null,
-              __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__input_js__["a" /* default */], { type: 'number', name: 'speed',
-                callback: function callback(event) {
-                  return _this2.dispatchProducerChanged(event);
-                },
-                initialValue: this.props.producer.speed })
-            ),
-            __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
-              'td',
-              null,
-              __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__input_js__["a" /* default */], { type: 'number', name: 'power',
-                callback: function callback(event) {
-                  return _this2.dispatchProducerChanged(event);
-                },
-                initialValue: this.props.producer.power })
-            ),
-            __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
-              'td',
-              null,
-              __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__input_js__["a" /* default */], { initialValue: this.props.seconds_per_item, isStatic: true })
-            )
-          )
-        )
-      );
-    }
-  }, {
-    key: 'renderTableForAssemblers',
-    value: function renderTableForAssemblers(itemsPerSecond, title) {
       var _this3 = this;
 
       var product = this.props.product;
       var productName = product ? product.name : '';
       var productImage = product ? product.image_file : 'Questionmark.png';
-      return __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
-        __WEBPACK_IMPORTED_MODULE_10_react_bootstrap__["s" /* Table */],
-        null,
-        __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
-          'thead',
+      return __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(ProducerTable, {
+        headTr: __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
+          'tr',
           null,
           __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
-            'tr',
+            'th',
             null,
-            __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
-              'th',
-              null,
-              'Name'
-            ),
-            __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
-              'th',
-              null,
-              title
-            ),
-            __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
-              'th',
-              null,
-              'Products Produced / Second'
-            ),
-            __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
-              'th',
-              null,
-              this.props.producer.name,
-              ' Speed'
-            ),
-            __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
-              'th',
-              null,
-              'Seconds to Produce 1 Product'
-            )
+            'Name'
+          ),
+          __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
+            'th',
+            null,
+            'Number of Miners'
+          ),
+          __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
+            'th',
+            null,
+            'Ore Produced / Second'
+          ),
+          __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
+            'th',
+            null,
+            this.props.producer.name,
+            ' Speed'
+          ),
+          __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
+            'th',
+            null,
+            this.props.producer.name,
+            ' Power'
+          ),
+          __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
+            'th',
+            null,
+            'Seconds to Produce 1 Ore'
           )
         ),
-        __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
-          'tbody',
+        bodyTr: __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
+          'tr',
           null,
           __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
-            'tr',
+            'td',
             null,
-            __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
-              'td',
-              null,
-              __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement('img', { width: 32, height: 32, src: __WEBPACK_IMPORTED_MODULE_9__router_js__["a" /* default */].route(__WEBPACK_IMPORTED_MODULE_11__constants_js__["v" /* IMAGE_ASSET */], { fileName: productImage }) }),
-              ' ',
-              productName
-            ),
-            __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
-              'td',
-              null,
-              __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__input_js__["a" /* default */], { initialValue: this.props.assembly_count, isStatic: true })
-            ),
-            __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
-              'td',
-              null,
-              itemsPerSecond
-            ),
-            __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
-              'td',
-              null,
-              __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__input_js__["a" /* default */], { type: 'number', name: 'speed',
-                callback: function callback(event) {
-                  return _this3.dispatchProducerChanged(event);
-                },
-                initialValue: this.props.producer.speed })
-            ),
-            __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
-              'td',
-              null,
-              __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__input_js__["a" /* default */], { initialValue: this.props.seconds_per_item, isStatic: true })
-            )
+            __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement('img', { width: 32, height: 32, src: __WEBPACK_IMPORTED_MODULE_9__router_js__["a" /* default */].route(__WEBPACK_IMPORTED_MODULE_11__constants_js__["v" /* IMAGE_ASSET */], { fileName: productImage }) }),
+            ' ',
+            productName
+          ),
+          __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
+            'td',
+            null,
+            __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__input_js__["a" /* default */], { initialValue: this.props.assembly_count, isStatic: true })
+          ),
+          __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
+            'td',
+            null,
+            itemsPerSecond
+          ),
+          __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
+            'td',
+            null,
+            __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__input_js__["a" /* default */], { type: 'number', name: 'speed',
+              callback: function callback(event) {
+                return _this3.dispatchProducerChanged(event);
+              },
+              initialValue: this.props.producer.speed })
+          ),
+          __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
+            'td',
+            null,
+            __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__input_js__["a" /* default */], { type: 'number', name: 'power',
+              callback: function callback(event) {
+                return _this3.dispatchProducerChanged(event);
+              },
+              initialValue: this.props.producer.power })
+          ),
+          __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
+            'td',
+            null,
+            __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__input_js__["a" /* default */], { initialValue: this.props.seconds_per_item, isStatic: true })
           )
         )
-      );
+      });
     }
   }, {
-    key: 'renderTableForPumps',
-    value: function renderTableForPumps(itemsPerSecond) {
+    key: 'renderTableForProducers',
+    value: function renderTableForProducers(itemsPerSecond, title) {
       var _this4 = this;
 
       var product = this.props.product;
       var productName = product ? product.name : '';
       var productImage = product ? product.image_file : 'Questionmark.png';
-      return __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
-        __WEBPACK_IMPORTED_MODULE_10_react_bootstrap__["s" /* Table */],
-        null,
-        __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
-          'thead',
+      return __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(ProducerTable, {
+        headTr: __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
+          'tr',
           null,
           __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
-            'tr',
+            'th',
             null,
-            __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
-              'th',
-              null,
-              'Name'
-            ),
-            __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
-              'th',
-              null,
-              'Number of Pumps'
-            ),
-            __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
-              'th',
-              null,
-              'Units Produced / Second'
-            ),
-            __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
-              'th',
-              null,
-              this.props.producer.name,
-              ' Speed'
-            ),
-            __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
-              'th',
-              null,
-              'Average Yield (%)'
-            )
+            'Name'
+          ),
+          __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
+            'th',
+            null,
+            title
+          ),
+          __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
+            'th',
+            null,
+            'Products Produced / Second'
+          ),
+          __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
+            'th',
+            null,
+            this.props.producer.name,
+            ' Speed'
+          ),
+          __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
+            'th',
+            null,
+            'Seconds to Produce 1 Product'
           )
         ),
-        __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
-          'tbody',
+        bodyTr: __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
+          'tr',
           null,
           __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
-            'tr',
+            'td',
             null,
-            __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
-              'td',
-              null,
-              __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement('img', { width: 32, height: 32, src: __WEBPACK_IMPORTED_MODULE_9__router_js__["a" /* default */].route(__WEBPACK_IMPORTED_MODULE_11__constants_js__["v" /* IMAGE_ASSET */], { fileName: this.props.product.image_file }) }),
-              ' ',
-              this.props.product.name
-            ),
-            __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
-              'td',
-              null,
-              __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__input_js__["a" /* default */], { initialValue: this.props.assembly_count, isStatic: true })
-            ),
-            __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
-              'td',
-              null,
-              itemsPerSecond
-            ),
-            __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
-              'td',
-              null,
-              __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__input_js__["a" /* default */], { type: 'number', name: 'speed',
-                callback: function callback(event) {
-                  return _this4.dispatchProducerChanged(event);
-                },
-                initialValue: this.props.producer.speed })
-            ),
-            __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
-              'td',
-              null,
-              __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__input_js__["a" /* default */], { type: 'number', name: 'yield',
-                callback: function callback(event) {
-                  return _this4.dispatchProducerChanged(event);
-                },
-                initialValue: this.props.producer.yield })
-            )
+            __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement('img', { width: 32, height: 32, src: __WEBPACK_IMPORTED_MODULE_9__router_js__["a" /* default */].route(__WEBPACK_IMPORTED_MODULE_11__constants_js__["v" /* IMAGE_ASSET */], { fileName: productImage }) }),
+            ' ',
+            productName
+          ),
+          __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
+            'td',
+            null,
+            __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__input_js__["a" /* default */], { initialValue: this.props.assembly_count, isStatic: true })
+          ),
+          __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
+            'td',
+            null,
+            itemsPerSecond
+          ),
+          __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
+            'td',
+            null,
+            __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__input_js__["a" /* default */], { type: 'number', name: 'speed',
+              callback: function callback(event) {
+                return _this4.dispatchProducerChanged(event);
+              },
+              initialValue: this.props.producer.speed })
+          ),
+          __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
+            'td',
+            null,
+            __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__input_js__["a" /* default */], { initialValue: this.props.seconds_per_item, isStatic: true })
           )
         )
-      );
+      });
     }
   }, {
-    key: 'renderTableForProcessors',
-    value: function renderTableForProcessors(itemsPerSecond) {
+    key: 'renderTableForPumps',
+    value: function renderTableForPumps(itemsPerSecond) {
       var _this5 = this;
 
       var product = this.props.product;
       var productName = product ? product.name : '';
       var productImage = product ? product.image_file : 'Questionmark.png';
-      return __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
-        __WEBPACK_IMPORTED_MODULE_10_react_bootstrap__["s" /* Table */],
-        null,
-        __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
-          'thead',
+      return __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(ProducerTable, {
+        headTr: __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
+          'tr',
           null,
           __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
-            'tr',
+            'th',
             null,
-            __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
-              'th',
-              null,
-              'Name'
-            ),
-            __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
-              'th',
-              null,
-              'Number of Processors'
-            ),
-            __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
-              'th',
-              null,
-              'Units Produced / Second'
-            ),
-            __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
-              'th',
-              null,
-              this.props.producer.name,
-              ' Speed'
-            )
+            'Name'
+          ),
+          __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
+            'th',
+            null,
+            'Number of Pumps'
+          ),
+          __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
+            'th',
+            null,
+            'Units Produced / Second'
+          ),
+          __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
+            'th',
+            null,
+            this.props.producer.name,
+            ' Speed'
+          ),
+          __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
+            'th',
+            null,
+            'Average Yield (%)'
           )
         ),
-        __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
-          'tbody',
+        bodyTr: __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
+          'tr',
           null,
           __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
-            'tr',
+            'td',
             null,
-            __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
-              'td',
-              null,
-              __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement('img', { width: 32, height: 32, src: __WEBPACK_IMPORTED_MODULE_9__router_js__["a" /* default */].route(__WEBPACK_IMPORTED_MODULE_11__constants_js__["v" /* IMAGE_ASSET */], { fileName: productImage }) }),
-              ' ',
-              productName
-            ),
-            __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
-              'td',
-              null,
-              __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__input_js__["a" /* default */], { initialValue: this.props.assembly_count, isStatic: true })
-            ),
-            __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
-              'td',
-              null,
-              itemsPerSecond
-            ),
-            __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
-              'td',
-              null,
-              __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__input_js__["a" /* default */], { type: 'number', name: 'speed',
-                callback: function callback(event) {
-                  return _this5.dispatchProducerChanged(event);
-                },
-                initialValue: this.props.producer.speed })
-            )
+            __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement('img', { width: 32, height: 32, src: __WEBPACK_IMPORTED_MODULE_9__router_js__["a" /* default */].route(__WEBPACK_IMPORTED_MODULE_11__constants_js__["v" /* IMAGE_ASSET */], { fileName: productImage }) }),
+            ' ',
+            productName
+          ),
+          __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
+            'td',
+            null,
+            __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__input_js__["a" /* default */], { initialValue: this.props.assembly_count, isStatic: true })
+          ),
+          __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
+            'td',
+            null,
+            itemsPerSecond
+          ),
+          __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
+            'td',
+            null,
+            __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__input_js__["a" /* default */], { type: 'number', name: 'speed',
+              callback: function callback(event) {
+                return _this5.dispatchProducerChanged(event);
+              },
+              initialValue: this.props.producer.speed })
+          ),
+          __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
+            'td',
+            null,
+            __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__input_js__["a" /* default */], { type: 'number', name: 'yield',
+              callback: function callback(event) {
+                return _this5.dispatchProducerChanged(event);
+              },
+              initialValue: this.props.producer.yield })
           )
         )
-      );
+      });
+    }
+  }, {
+    key: 'renderTableForProcessors',
+    value: function renderTableForProcessors(itemsPerSecond) {
+      var _this6 = this;
+
+      var product = this.props.product;
+      var productName = product ? product.name : '';
+      var productImage = product ? product.image_file : 'Questionmark.png';
+      return __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(ProducerTable, {
+        headTr: __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
+          'tr',
+          null,
+          __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
+            'th',
+            null,
+            'Name'
+          ),
+          __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
+            'th',
+            null,
+            'Number of Processors'
+          ),
+          __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
+            'th',
+            null,
+            'Units Produced / Second'
+          ),
+          __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
+            'th',
+            null,
+            this.props.producer.name,
+            ' Speed'
+          )
+        ),
+        bodyTr: __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
+          'tr',
+          null,
+          __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
+            'td',
+            null,
+            __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement('img', { width: 32, height: 32, src: __WEBPACK_IMPORTED_MODULE_9__router_js__["a" /* default */].route(__WEBPACK_IMPORTED_MODULE_11__constants_js__["v" /* IMAGE_ASSET */], { fileName: productImage }) }),
+            ' ',
+            productName
+          ),
+          __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
+            'td',
+            null,
+            __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__input_js__["a" /* default */], { initialValue: this.props.assembly_count, isStatic: true })
+          ),
+          __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
+            'td',
+            null,
+            itemsPerSecond
+          ),
+          __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
+            'td',
+            null,
+            __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__input_js__["a" /* default */], { type: 'number', name: 'speed',
+              callback: function callback(event) {
+                return _this6.dispatchProducerChanged(event);
+              },
+              initialValue: this.props.producer.speed })
+          )
+        )
+      });
     }
   }, {
     key: 'renderTableForManualCrafting',
@@ -88142,49 +88147,39 @@ var ProductionLineDetails = function (_React$Component) {
       var product = this.props.product;
       var productName = product ? product.name : '';
       var productImage = product ? product.image_file : 'Questionmark.png';
-      return __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
-        __WEBPACK_IMPORTED_MODULE_10_react_bootstrap__["s" /* Table */],
-        null,
-        __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
-          'thead',
+      return __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(ProducerTable, {
+        headTr: __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
+          'tr',
           null,
           __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
-            'tr',
+            'th',
             null,
-            __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
-              'th',
-              null,
-              'Name'
-            ),
-            __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
-              'th',
-              null,
-              'Products Needed / Hour'
-            )
+            'Name'
+          ),
+          __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
+            'th',
+            null,
+            'Products Needed / Hour'
           )
         ),
-        __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
-          'tbody',
+        bodyTr: __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
+          'tr',
           null,
           __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
-            'tr',
+            'td',
             null,
-            __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
-              'td',
-              null,
-              __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement('img', { width: 32, height: 32, src: __WEBPACK_IMPORTED_MODULE_9__router_js__["a" /* default */].route(__WEBPACK_IMPORTED_MODULE_11__constants_js__["v" /* IMAGE_ASSET */], { fileName: productImage }) }),
-              ' ',
-              productName
-            ),
-            __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
-              'td',
-              null,
-              __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__input_js__["a" /* default */], { type: 'number', isStatic: true,
-                initialValue: this.props.items_per_second * 3600 })
-            )
+            __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement('img', { width: 32, height: 32, src: __WEBPACK_IMPORTED_MODULE_9__router_js__["a" /* default */].route(__WEBPACK_IMPORTED_MODULE_11__constants_js__["v" /* IMAGE_ASSET */], { fileName: productImage }) }),
+            ' ',
+            productName
+          ),
+          __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
+            'td',
+            null,
+            __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__input_js__["a" /* default */], { type: 'number', isStatic: true,
+              initialValue: this.props.items_per_second * 3600 })
           )
         )
-      );
+      });
     }
   }, {
     key: 'renderTable',
@@ -88199,9 +88194,9 @@ var ProductionLineDetails = function (_React$Component) {
         case 0:
           return this.renderTableForMiners(itemsPerSecond);
         case 1:
-          return this.renderTableForAssemblers(itemsPerSecond, 'Number of Assemblers');
+          return this.renderTableForProducers(itemsPerSecond, 'Number of Assemblers');
         case 2:
-          return this.renderTableForAssemblers(itemsPerSecond, 'Number of Furnaces');
+          return this.renderTableForProducers(itemsPerSecond, 'Number of Furnaces');
         case 3:
           return this.renderTableForPumps(itemsPerSecond);
         case 4:
