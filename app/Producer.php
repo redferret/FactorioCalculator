@@ -16,4 +16,8 @@ class Producer extends Model {
   public function processes() {
     return $this->hasMany(Process::class);
   }
+
+  public function producesProducts() {
+    return $this->belongsToMany(Products::class, 'product_producer');
+  }
 }

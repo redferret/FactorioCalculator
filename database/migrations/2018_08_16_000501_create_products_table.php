@@ -18,6 +18,7 @@ class CreateProductsTable extends Migration {
       $table->float('hardness')->nullable();
       $table->integer('stock_size')->default(1);
       $table->string('image_file')->nullable();
+      $table->boolean('from_process')->default(false);
       $table->string('name')->default('New Product');
 
       $table->increments('id');

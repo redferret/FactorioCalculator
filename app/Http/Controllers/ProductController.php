@@ -21,6 +21,14 @@ class ProductController extends Controller {
     return $products;
   }
 
+  public function getAllNotInProcess() {
+    $products = Product::where('from_process', false);
+    foreach($products as $product) {
+      $product->producedByProductionLines;
+    }
+    return $products;
+  }
+
   /**
    * Store a newly created resource in storage.
    *

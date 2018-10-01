@@ -3,7 +3,7 @@ a:hover {
 }
 
 .spinner-padding-left {
-  padding-left: 50px;
+  padding-left: 40px;
 }
 
 .production-lines-well {
@@ -25,7 +25,7 @@ a:hover {
 .spinner-message {
   text-align: left;
   padding-top: 20px;
-  padding-left: 8px;
+  padding-left: 5px;
 }
 
 .font-bold {

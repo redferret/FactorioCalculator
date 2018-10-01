@@ -8,9 +8,38 @@
   <Producer speed='1.25'>
     <Product name='Assembling machine 3'/>
   </Producer>
+  <Producer speed='1'>
+    <Product name='Rocket silo'/>
+  </Producer>
 
-  <Producer speed='1.25'>
+  <Producer producer_type='4' speed='1.25'>
     <Product name='Chemical plant'/>
+    <Processes>
+      <Process
+        name='Heavy oil cracking'
+        image_file='Heavy_oil_cracking.png'
+        crafting_time='3'>
+        <Inputs>
+          <Product name='Heavy oil' amount='40'/>
+          <Product name='Water' amount='30'/>
+        </Inputs>
+        <Outputs>
+          <Product name='Light oil' amount='30'/>
+        </Outputs>
+      </Process>
+      <Process
+        name='Light oil cracking'
+        image_file='Light_oil_cracking.png'
+        crafting_time='3'>
+        <Inputs>
+          <Product name='Light oil' amount='40'/>
+          <Product name='Water' amount='30'/>
+        </Inputs>
+        <Outputs>
+          <Product name='Petroleum gas' amount='30'/>
+        </Outputs>
+      </Process>
+    </Processes>
   </Producer>
 
   <Producer producer_type='0' speed='0.35' power='2.5'>
@@ -117,6 +146,16 @@
   </Producer>
   <Producer producer_type='3' speed='1'>
     <Product name='Offshore pump'/>
+  </Producer>
+  <Producer producer_type='3' speed='1'>
+    <Product name='Boiler'/>
+  </Producer>
+  <Producer producer_type='3' speed='1'>
+    <Product name='Heat exchanger'/>
+  </Producer>
+
+  <Producer producer_type='5' speed='1'>
+    <Product name='Manual crafting'/>
   </Producer>
 
   <Producer producer_type='2' speed='1'>

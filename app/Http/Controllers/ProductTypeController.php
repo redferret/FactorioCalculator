@@ -15,13 +15,15 @@ class ProductTypeController extends Controller {
   public function getAll() {
     $productTypes = ProductType::all();
     foreach($productTypes as $type) {
-      foreach($type->products as $product) {
+      $products = $type->products()->where('from_process', false)->get();
+      foreach($products as $product) {
         $product->producedByProductionLines;
         $product->consumerProducts;
+        $product->producers;
       }
-      $type->sorted_products = collect($type->products)->sortBy('name')->values()->all();
+      $type->products = $products;
     }
-    return collect($productTypes)->sortBy('id')->values()->all();
+    return $productTypes;
   }
 
   /**

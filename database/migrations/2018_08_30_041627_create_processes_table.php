@@ -17,6 +17,7 @@ class CreateProcessesTable extends Migration {
       $table->string('image_file')->default('');
       $table->integer('crafting_time')->default(1);
       $table->integer('producer_id')->unsigned()->nullable();
+      $table->integer('production_line_id')->unsigned()->nullable();
       $table->timestamps();
     });
   }

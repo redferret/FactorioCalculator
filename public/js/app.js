@@ -26276,9 +26276,11 @@ var ModalBody = function (_React$Component2) {
   }, {
     key: 'handleReselectProduct',
     value: function handleReselectProduct() {
+      __WEBPACK_IMPORTED_MODULE_6__stores_new_production_line_modal_store_js__["a" /* default */].setProducer(null);
       __WEBPACK_IMPORTED_MODULE_6__stores_new_production_line_modal_store_js__["a" /* default */].setProduct(null);
       this.setState({
-        selectedProduct: null
+        selectedProduct: null,
+        selectedProducer: null
       });
     }
   }, {
@@ -26356,6 +26358,11 @@ var ModalBody = function (_React$Component2) {
     value: function renderSelectProducer() {
       var selectedProducer = __WEBPACK_IMPORTED_MODULE_6__stores_new_production_line_modal_store_js__["a" /* default */].getProducer();
       var producers = __WEBPACK_IMPORTED_MODULE_2__stores_game_items_store_js__["a" /* default */].getProducers();
+
+      if (this.state.selectedProduct != null) {
+        producers = this.state.selectedProduct.producers;
+      }
+
       return selectedProducer == null ? __WEBPACK_IMPORTED_MODULE_7_react___default.a.createElement(
         'div',
         null,
@@ -88130,6 +88137,56 @@ var ProductionLineDetails = function (_React$Component) {
       );
     }
   }, {
+    key: 'renderTableForManualCrafting',
+    value: function renderTableForManualCrafting() {
+      var product = this.props.product;
+      var productName = product ? product.name : '';
+      var productImage = product ? product.image_file : 'Questionmark.png';
+      return __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
+        __WEBPACK_IMPORTED_MODULE_10_react_bootstrap__["s" /* Table */],
+        null,
+        __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
+          'thead',
+          null,
+          __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
+            'tr',
+            null,
+            __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
+              'th',
+              null,
+              'Name'
+            ),
+            __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
+              'th',
+              null,
+              'Products Needed / Hour'
+            )
+          )
+        ),
+        __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
+          'tbody',
+          null,
+          __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
+            'tr',
+            null,
+            __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
+              'td',
+              null,
+              __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement('img', { width: 32, height: 32, src: __WEBPACK_IMPORTED_MODULE_9__router_js__["a" /* default */].route(__WEBPACK_IMPORTED_MODULE_11__constants_js__["v" /* IMAGE_ASSET */], { fileName: productImage }) }),
+              ' ',
+              productName
+            ),
+            __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
+              'td',
+              null,
+              __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__input_js__["a" /* default */], { type: 'number', isStatic: true,
+                initialValue: this.props.items_per_second * 3600 })
+            )
+          )
+        )
+      );
+    }
+  }, {
     key: 'renderTable',
     value: function renderTable() {
       var inputValue = this.props.items_per_second;
@@ -88149,6 +88206,8 @@ var ProductionLineDetails = function (_React$Component) {
           return this.renderTableForPumps(itemsPerSecond);
         case 4:
           return this.renderTableForProcessors(itemsPerSecond);
+        case 5:
+          return this.renderTableForManualCrafting();
         default:
           return __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
             'div',
@@ -88238,7 +88297,6 @@ var ProductionLineDetails = function (_React$Component) {
     key: 'render',
     value: function render() {
       var style = this.props.is_output ? 'success' : this.props.is_primary ? 'warning' : 'info';
-
       return __WEBPACK_IMPORTED_MODULE_8_react___default.a.createElement(
         __WEBPACK_IMPORTED_MODULE_10_react_bootstrap__["o" /* Panel */],
         { bsStyle: style, eventKey: this.props.eventKey },

@@ -1,81 +1,110 @@
 <Products>
   <Product
+    name='Manual crafting'
+    image_file='Hand_icon.png'
+    crafting_time='1'
+    from_process='1'
+  />
+  <Product
     name='Coal'
     image_file='Coal.png'
     crafting_time='2'
-    hardness='0.9'
-  />
+    hardness='0.9'>
+    <Producers>
+      <Producer name='Burner mining drill'/>
+      <Producer name='Electric mining drill'/>
+    </Producers>
+  </Product>
   <Product
     name='Stone'
     image_file='Stone.png'
     crafting_time='2'
     hardness='0.4'
-  />
+    >
+    <Producers>
+      <Producer name='Burner mining drill'/>
+      <Producer name='Electric mining drill'/>
+    </Producers>
+  </Product>
   <Product
     name='Iron ore'
     image_file='Iron_ore.png'
     crafting_time='2'
     hardness='0.9'
-  />
+    >
+    <Producers>
+      <Producer name='Burner mining drill'/>
+      <Producer name='Electric mining drill'/>
+    </Producers>
+  </Product>
   <Product
     name='Copper ore'
     image_file='Copper_ore.png'
     crafting_time='2'
     hardness='0.9'
-  />
+    >
+    <Producers>
+      <Producer name='Burner mining drill'/>
+      <Producer name='Electric mining drill'/>
+    </Producers>
+  </Product>
   <Product
     name='Uranium ore'
     image_file='Uranium_ore.png'
     crafting_time='4'
     hardness='0.9'
-  />
+    >
+    <Producers>
+      <Producer name='Electric mining drill'/>
+    </Producers>
+  </Product>
   <Product
     name='Crude oil'
     image_file='Crude_oil.png'
     crafting_time='1'
-  />
+    >
+    <Producers>
+      <Producer name='Pumpjack'/>
+    </Producers>
+  </Product>
   <Product
     name='Heavy oil'
     image_file='Heavy_oil.png'
-    crafting_time='1'
-  >
-    <Processes>
-      <Process name='Basic oil processing'/>
-      <Process name='Advanced oil processing'/>
-      <Process name='Coal liquefaction'/>
-    </Processes>
+    crafting_time='1'>
+    <Producers>
+      <Producer name='Oil refinery'/>
+      <Producer name='Chemical plant'/>
+    </Producers>
   </Product>
   <Product
     name='Light oil'
     image_file='Light_oil.png'
-    crafting_time='1'
-  >
-    <Processes>
-      <Process name='Basic oil processing'/>
-      <Process name='Advanced oil processing'/>
-      <Process name='Coal liquefaction'/>
-    </Processes>
+    crafting_time='1'>
+    <Producers>
+      <Producer name='Oil refinery'/>
+      <Producer name='Chemical plant'/>
+    </Producers>
   </Product>
   <Product
     name='Lubricant'
     image_file='Lubricant.png'
     crafting_time='1'
-    stock_size='10'
-  >
+    stock_size='10'>
     <Inputs>
       <Product name='Heavy oil' amount='10'/>
     </Inputs>
+    <Producers>
+      <Producer name='Chemical plant'/>
+    </Producers>
   </Product>
   <Product
     name='Petroleum gas'
     image_file='Petroleum_gas.png'
-    crafting_time='1'
-  >
-    <Processes>
-      <Process name='Basic oil processing'/>
-      <Process name='Advanced oil processing'/>
-      <Process name='Coal liquefaction'/>
-    </Processes>
+    crafting_time='1'>
+    <Producers>
+      <Producer name='Oil refinery'/>
+      <Producer name='Chemical plant'/>
+    </Producers>
   </Product>
   <Product
     name='Sulfuric acid'
@@ -87,22 +116,35 @@
       <Product name='Sulfur' amount='5'/>
       <Product name='Water' amount='100'/>
     </Inputs>
+    <Producers>
+      <Producer name='Chemical plant'/>
+    </Producers>
   </Product>
   <Product
     name='Water'
     image_file='Water.png'
-    crafting_time='1'
-  />
+    crafting_time='1'>
+    <Producers>
+      <Producer name='Offshore pump'/>
+    </Producers>
+  </Product>
   <Product
     name='Steam'
     image_file='Steam.png'
-    crafting_time='1'
-  />
+    crafting_time='1'>
+    <Producers>
+      <Producer name='Boiler'/>
+      <Producer name='Heat exchanger'/>
+    </Producers>
+  </Product>
   <Product
     name='Raw wood'
     image_file='Raw_wood.png'
-    crafting_time='1'
-  />
+    crafting_time='1'>
+    <Producers>
+      <Producer name='Manual crafting'/>
+    </Producers>
+  </Product>
   <Product
     name='Wood'
     image_file='Wood.png'
@@ -112,6 +154,11 @@
     <Inputs>
       <Product name='Raw wood' amount='1' />
     </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 1'/>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
   <Product
     name='Iron plate'
@@ -121,6 +168,11 @@
     <Inputs>
       <Product name='Iron ore' amount='1' />
     </Inputs>
+    <Producers>
+      <Producer name='Stone furnace'/>
+      <Producer name='Steel furnace'/>
+      <Producer name='Electric furnace'/>
+    </Producers>
   </Product>
   <Product
     name='Copper plate'
@@ -130,17 +182,19 @@
     <Inputs>
       <Product name='Copper ore' amount='1' />
     </Inputs>
+    <Producers>
+      <Producer name='Stone furnace'/>
+      <Producer name='Steel furnace'/>
+      <Producer name='Electric furnace'/>
+    </Producers>
   </Product>
   <Product
     name='Solid fuel'
     image_file='Solid_fuel.png'
-    crafting_time='3'
-  >
-    <Processes>
-      <Process name='Solid fuel from heavy oil'/>
-      <Process name='Solid fuel from light oil'/>
-      <Process name='Solid fuel from petroleum gas'/>
-    </Processes>
+    crafting_time='3'>
+    <Producers>
+      <Producer name='Chemical plant'/>
+    </Producers>
   </Product>
   <Product
     name='Steel plate'
@@ -150,6 +204,11 @@
     <Inputs>
       <Product name='Iron plate' amount='5' />
     </Inputs>
+    <Producers>
+      <Producer name='Stone furnace'/>
+      <Producer name='Steel furnace'/>
+      <Producer name='Electric furnace'/>
+    </Producers>
   </Product>
   <Product
     name='Plastic bar'
@@ -161,6 +220,9 @@
       <Product name='Coal' amount='1' />
       <Product name='Petroleum gas' amount='20' />
     </Inputs>
+    <Producers>
+      <Producer name='Chemical plant'/>
+    </Producers>
   </Product>
   <Product
     name='Sulfur'
@@ -172,6 +234,9 @@
       <Product name='Petroleum gas' amount='30' />
       <Product name='Water' amount='30' />
     </Inputs>
+    <Producers>
+      <Producer name='Chemical plant'/>
+    </Producers>
   </Product>
   <Product
     name='Battery'
@@ -183,6 +248,9 @@
       <Product name='Iron plate' amount='1' />
       <Product name='Sulfuric acid' amount='20' />
     </Inputs>
+    <Producers>
+      <Producer name='Chemical plant'/>
+    </Producers>
   </Product>
   <Product
     name='Explosives'
@@ -194,69 +262,107 @@
       <Product name='Sulfur' amount='1'/>
       <Product name='Water' amount='10'/>
     </Inputs>
+    <Producers>
+      <Producer name='Chemical plant'/>
+    </Producers>
   </Product>
   <Product
     name='Crude oil barrel'
     image_file='Crude_oil_barrel.png'
-    crafting_time='0.2'
-  >
-    <Processes>
-      <Process name='Fill crude oil barrel'/>
-    </Processes>
+    crafting_time='0.2'>
+    <Inputs>
+      <Product name='Empty barrel' amount='1'/>
+      <Product name='Crude oil' amount='50'/>
+    </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 1'/>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
   <Product
     name='Heavy oil barrel'
     image_file='Heavy_oil_barrel.png'
-    crafting_time='0.2'
-  >
-    <Processes>
-      <Process name='Fill heavy oil barrel'/>
-    </Processes>
+    crafting_time='0.2'>
+    <Inputs>
+      <Product name='Empty barrel' amount='1'/>
+      <Product name='Heavy oil' amount='50'/>
+    </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 1'/>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
   <Product
     name='Light oil barrel'
     image_file='Light_oil_barrel.png'
-    crafting_time='0.2'
-  >
-    <Processes>
-      <Process name='Fill light oil barrel'/>
-    </Processes>
+    crafting_time='0.2'>
+    <Inputs>
+      <Product name='Empty barrel' amount='1'/>
+      <Product name='Light oil' amount='50'/>
+    </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 1'/>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
   <Product
     name='Lubricant barrel'
     image_file='Lubricant_barrel.png'
-    crafting_time='0.2'
-  >
-    <Processes>
-      <Process name='Fill lubricant barrel'/>
-    </Processes>
+    crafting_time='0.2'>
+    <Inputs>
+      <Product name='Empty barrel' amount='1'/>
+      <Product name='Lubricant' amount='50'/>
+    </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 1'/>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
   <Product
     name='Petroleum gas barrel'
     image_file='Petroleum_gas_barrel.png'
-    crafting_time='0.2'
-  >
-    <Processes>
-      <Process name='Fill petroleum gas barrel'/>
-    </Processes>
+    crafting_time='0.2'>
+    <Inputs>
+      <Product name='Empty barrel' amount='1'/>
+      <Product name='Petroleum gas' amount='50'/>
+    </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 1'/>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
   <Product
     name='Sulfuric acid barrel'
     image_file='Sulfuric_acid_barrel.png'
-    crafting_time='0.2'
-  >
-    <Processes>
-      <Process name='Fill sulfuic acid barrel'/>
-    </Processes>
+    crafting_time='0.2'>
+    <Inputs>
+      <Product name='Empty barrel' amount='1'/>
+      <Product name='sulfuic acid' amount='50'/>
+    </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 1'/>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
   <Product
     name='Water barrel'
     image_file='Water_barrel.png'
-    crafting_time='0.2'
-  >
-    <Processes>
-      <Process name='Fill water barrel'/>
-    </Processes>
+    crafting_time='0.2'>
+    <Inputs>
+      <Product name='Empty barrel' amount='1'/>
+      <Product name='Water' amount='50'/>
+    </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 1'/>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
   <Product
     name='Empty barrel'
@@ -265,26 +371,33 @@
   >
     <Inputs>
       <Product name='Steel plate' amount='1'/>
+      <Product name='Empty crude oil barrel'/>
+      <Product name='Empty heavy oil barrel'/>
+      <Product name='Empty light oil barrel'/>
+      <Product name='Empty sulfuic acid barrel'/>
+      <Product name='Empty petroleum gas barrel'/>
+      <Product name='Empty lubricant barrel'/>
+      <Product name='Empty water barrel'/>
     </Inputs>
-    <Processes>
-      <Process name='Empty crude oil barrel'/>
-      <Process name='Empty heavy oil barrel'/>
-      <Process name='Empty light oil barrel'/>
-      <Process name='Empty sulfuic acid barrel'/>
-      <Process name='Empty petroleum gas barrel'/>
-      <Process name='Empty lubricant barrel'/>
-      <Process name='Empty water barrel'/>
-    </Processes>
+    <Producers>
+      <Producer name='Assembling machine 1'/>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
   <Product
     name='Copper cable'
     image_file='Copper_cable.png'
     crafting_time='0.5'
-    stock_size='2'
-  >
+    stock_size='2'>
     <Inputs>
       <Product name='Copper plate' amount='1'/>
     </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 1'/>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
   <Product
     name='Iron stick'
@@ -295,6 +408,11 @@
     <Inputs>
       <Product name='Iron plate' amount='1'/>
     </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 1'/>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
   <Product
     name='Iron gear wheel'
@@ -304,6 +422,11 @@
     <Inputs>
       <Product name='Iron plate' amount='2'/>
     </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 1'/>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
   <Product
     name='Electronic circuit'
@@ -314,6 +437,11 @@
       <Product name='Copper cable' amount='3'/>
       <Product name='Iron plate' amount='1'/>
     </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 1'/>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
   <Product
     name='Advanced circuit'
@@ -325,6 +453,10 @@
       <Product name='Copper cable' amount='4'/>
       <Product name='Electronic circuit' amount='2'/>
     </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
   <Product
     name='Processing unit'
@@ -336,6 +468,10 @@
       <Product name='Advanced circuit' amount='2'/>
       <Product name='Electronic circuit' amount='20'/>
     </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
   <Product
     name='Engine unit'
@@ -347,6 +483,10 @@
       <Product name='Pipe' amount='2'/>
       <Product name='Steel plate' amount='1'/>
     </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
   <Product
     name='Electric engine unit'
@@ -358,6 +498,10 @@
       <Product name='Engine unit' amount='1'/>
       <Product name='Lubricant' amount='15'/>
     </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
   <Product
     name='Flying robot frame'
@@ -370,6 +514,10 @@
       <Product name='Electronic circuit' amount='3'/>
       <Product name='Steel plate' amount='1'/>
     </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
   <Product
     name='Satellite'
@@ -384,6 +532,9 @@
       <Product name='Rocket fuel' amount='50'/>
       <Product name='Solar panel' amount='100'/>
     </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
   <Product
     name='Rocket part'
@@ -395,8 +546,24 @@
       <Product name='Rocket control unit' amount='10'/>
       <Product name='Rocket fuel' amount='10'/>
     </Inputs>
-    <Processes>
-    </Processes>
+    <Producers>
+      <Producer name='Rocket silo'/>
+    </Producers>
+  </Product>
+  <Product
+    name='Rocket silo'
+    image_file='Rocket_silo.png'
+    crafting_time='30'>
+    <Inputs>
+      <Product name='Concrete' amount='1000'/>
+      <Product name='Electric engine unit' amount='200'/>
+      <Product name='Pipe' amount='100'/>
+      <Product name='Processing unit' amount='200'/>
+      <Product name='Steel plate' amount='1000'/>
+    </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
   <Product
     name='Rocket control unit'
@@ -407,6 +574,11 @@
       <Product name='Processing unit' amount='1'/>
       <Product name='Speed module' amount='1'/>
     </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 1'/>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
   <Product
     name='Low density structure'
@@ -418,6 +590,10 @@
       <Product name='Plastic bar' amount='5'/>
       <Product name='Steel plate' amount='10'/>
     </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
   <Product
     name='Rocket fuel'
@@ -427,6 +603,11 @@
     <Inputs>
       <Product name='Solid fuel' amount='10'/>
     </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 1'/>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
   <Product
     name='Nuclear fuel'
@@ -437,117 +618,148 @@
       <Product name='Rocket fuel' amount='1'/>
       <Product name='Uranium-235' amount='1'/>
     </Inputs>
+    <Producers>
+      <Producer name='Centrifuge'/>
+    </Producers>
   </Product>
   <Product
     name='Uranium-235'
     image_file='Uranium-235.png'
-    crafting_time='10'
-  >
-    <Processes>
-      <Process name='Uranium processing'/>
-      <Process name='Kovarex enrichment process'/>
-    </Processes>
+    crafting_time='10'>
+    <Producers>
+      <Producer name='Centrifuge'/>
+    </Producers>
   </Product>
   <Product
     name='Uranium-238'
     image_file='Uranium-238.png'
-    crafting_time='10'
-  >
-    <Processes>
-      <Process name='Uranium processing'/>
-      <Process name='Kovarex enrichment process'/>
-    </Processes>
+    crafting_time='10'>
+    <Producers>
+      <Producer name='Centrifuge'/>
+    </Producers>
   </Product>
   <Product
     name='Uranium fuel cell'
     image_file='Uranium_fuel_cell.png'
     crafting_time='10'
-    stock_size='10'
-  >
+    stock_size='10'>
     <Inputs>
       <Product name='Iron plate' amount='10'/>
       <Product name='Uranium-235' amount='1'/>
       <Product name='Uranium-238' amount='19'/>
     </Inputs>
-    <Processes>
-      <Process name='Nuclear fuel reprocessing'/>
-    </Processes>
+    <Producers>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
   <Product
     name='Used up uranium fuel cell'
     image_file='Used_up_uranium_fuel_cell.png'
-    crafting_time='200'
-  >
+    crafting_time='200'>
     <Inputs>
       <Product name='Uranium fuel cell' amount='1'/>
     </Inputs>
+    <Producers>
+      <Producer name='Nuclear reactor'/>
+    </Producers>
   </Product>
   <Product
     name='Science pack 1'
     image_file='Science_pack_1.png'
-    crafting_time='5'
-  >
+    crafting_time='5'>
     <Inputs>
       <Product name='Copper plate' amount='1'/>
       <Product name='Iron gear wheel' amount='1'/>
     </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 1'/>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
   <Product
     name='Science pack 2'
     image_file='Science_pack_2.png'
-    crafting_time='6'
-  >
+    crafting_time='6'>
     <Inputs>
       <Product name='Inserter' amount='1'/>
       <Product name='Transport belt' amount='1'/>
     </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 1'/>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
   <Product
     name='Science pack 3'
     image_file='Science_pack_3.png'
-    crafting_time='12'
-  >
+    crafting_time='12'>
     <Inputs>
       <Product name='Electric mining drill' amount='1'/>
       <Product name='Advanced circuit' amount='1'/>
       <Product name='Engine unit' amount='1'/>
     </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
   <Product
     name='Military science pack'
     image_file='Military_science_pack.png'
     crafting_time='10'
-    stock_size='2'
-  >
+    stock_size='2'>
     <Inputs>
       <Product name='Grenade' amount='1'/>
       <Product name='Gun turret' amount='1'/>
       <Product name='Piercing rounds magazine' amount='1'/>
     </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
   <Product
     name='Production science pack'
     image_file='Production_science_pack.png'
     crafting_time='14'
-    stock_size='2'
-  >
+    stock_size='2'>
     <Inputs>
       <Product name='Electric engine unit' amount='1'/>
       <Product name='Electric furnace' amount='1'/>
     </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 1'/>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
   <Product
     name='High tech science pack'
     image_file='High_tech_science_pack.png'
     crafting_time='14'
-    stock_size='2'
-  >
+    stock_size='2'>
     <Inputs>
       <Product name='Copper cable' amount='30'/>
       <Product name='Battery' amount='1'/>
       <Product name='Processing unit' amount='3'/>
       <Product name='Speed module' amount='1'/>
     </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
+  </Product>
+  <Product
+    name='Space science pack'
+    image_file='Space_science_pack.png'
+    crafting_time='14'
+    stock_size='2'>
+    <Producers>
+      <Producer name='Rocket silo'/>
+    </Producers>
   </Product>
   <Product
     name='Iron axe'
@@ -558,6 +770,11 @@
       <Product name='Iron stick' amount='2'/>
       <Product name='Iron plate' amount='3'/>
     </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 1'/>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
   <Product
     name='Steel axe'
@@ -568,6 +785,11 @@
       <Product name='Iron stick' amount='2'/>
       <Product name='Steel plate' amount='5'/>
     </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 1'/>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
   <Product
     name='Repair pack'
@@ -578,6 +800,11 @@
       <Product name='Electronic circuit' amount='2'/>
       <Product name='Iron gear wheel' amount='2'/>
     </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 1'/>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
   <Product
     name='Boiler'
@@ -588,6 +815,11 @@
       <Product name='Pipe' amount='4'/>
       <Product name='Stone furnace' amount='1'/>
     </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 1'/>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
   <Product
     name='Steam engine'
@@ -599,6 +831,10 @@
       <Product name='Iron plate' amount='10'/>
       <Product name='Pipe' amount='5'/>
     </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
   <Product
     name='Steam turbine'
@@ -610,6 +846,10 @@
       <Product name='Copper plate' amount='50'/>
       <Product name='Pipe' amount='20'/>
     </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
   <Product
     name='Solar panel'
@@ -621,6 +861,10 @@
       <Product name='Copper plate' amount='5'/>
       <Product name='Steel plate' amount='5'/>
     </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
   <Product
     name='Accumulator'
@@ -631,6 +875,11 @@
       <Product name='Battery' amount='5'/>
       <Product name='Iron plate' amount='2'/>
     </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 1'/>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
   <Product
     name='Nuclear reactor'
@@ -643,6 +892,10 @@
       <Product name='Copper plate' amount='500'/>
       <Product name='Steel plate' amount='500'/>
     </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
   <Product
     name='Heat exchanger'
@@ -654,6 +907,10 @@
       <Product name='Copper plate' amount='100'/>
       <Product name='Steel plate' amount='10'/>
     </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
   <Product
     name='Burner mining drill'
@@ -665,6 +922,11 @@
       <Product name='Iron plate' amount='3'/>
       <Product name='Stone furnace' amount='1'/>
     </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 1'/>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
   <Product
     name='Electric mining drill'
@@ -676,6 +938,10 @@
       <Product name='Iron plate' amount='10'/>
       <Product name='Electronic circuit' amount='3'/>
     </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
   <Product
     name='Offshore pump'
@@ -687,6 +953,10 @@
       <Product name='Pipe' amount='1'/>
       <Product name='Electronic circuit' amount='2'/>
     </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
   <Product
     name='Pumpjack'
@@ -699,6 +969,10 @@
       <Product name='Pipe' amount='10'/>
       <Product name='Electronic circuit' amount='5'/>
     </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
   <Product
     name='Stone furnace'
@@ -708,6 +982,11 @@
     <Inputs>
       <Product name='Stone' amount='5'/>
     </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 1'/>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
   <Product
     name='Steel furnace'
@@ -718,6 +997,11 @@
       <Product name='Steel plate' amount='6'/>
       <Product name='Stone brick' amount='10'/>
     </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 1'/>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
   <Product
     name='Electric furnace'
@@ -729,6 +1013,10 @@
       <Product name='Steel plate' amount='10'/>
       <Product name='Stone brick' amount='10'/>
     </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
   <Product
     name='Assembling machine 1'
@@ -740,6 +1028,10 @@
       <Product name='Iron gear wheel' amount='5'/>
       <Product name='Iron plate' amount='9'/>
     </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
   <Product
     name='Assembling machine 2'
@@ -752,6 +1044,10 @@
       <Product name='Iron gear wheel' amount='5'/>
       <Product name='Iron plate' amount='9'/>
     </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
   <Product
     name='Assembling machine 3'
@@ -762,6 +1058,11 @@
       <Product name='Assembling machine 2' amount='2'/>
       <Product name='Speed module' amount='4'/>
     </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 1'/>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
   <Product
     name='Oil refinery'
@@ -775,6 +1076,9 @@
       <Product name='Steel plate' amount='15'/>
       <Product name='Stone brick' amount='10'/>
     </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
   <Product
     name='Chemical plant'
@@ -787,6 +1091,10 @@
       <Product name='Pipe' amount='5'/>
       <Product name='Steel plate' amount='5'/>
     </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
   <Product
     name='Centrifuge'
@@ -799,6 +1107,10 @@
       <Product name='Iron gear wheel' amount='100'/>
       <Product name='Steel plate' amount='50'/>
     </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
   <Product
     name='Lab'
@@ -810,6 +1122,10 @@
       <Product name='Iron gear wheel' amount='10'/>
       <Product name='Transport belt' amount='4'/>
     </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
   <Product
     name='Beacon'
@@ -822,6 +1138,10 @@
       <Product name='Electronic circuit' amount='20'/>
       <Product name='Steel plate' amount='10'/>
     </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
   <Product
     name='Speed module'
@@ -832,6 +1152,11 @@
       <Product name='Advanced circuit' amount='5'/>
       <Product name='Electronic circuit' amount='5'/>
     </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 1'/>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
   <Product
     name='Speed module 2'
@@ -843,6 +1168,10 @@
       <Product name='Processing unit' amount='5'/>
       <Product name='Speed module' amount='4'/>
     </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
   <Product
     name='Speed module 3'
@@ -854,6 +1183,10 @@
       <Product name='Processing unit' amount='5'/>
       <Product name='Speed module 2' amount='5'/>
     </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
   <Product
     name='Efficiency module'
@@ -864,6 +1197,11 @@
       <Product name='Advanced circuit' amount='5'/>
       <Product name='Electronic circuit' amount='5'/>
     </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 1'/>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
   <Product
     name='Efficiency module 2'
@@ -875,6 +1213,10 @@
       <Product name='Efficiency module' amount='4'/>
       <Product name='Processing unit' amount='5'/>
     </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
   <Product
     name='Efficiency module 3'
@@ -886,6 +1228,10 @@
       <Product name='Efficiency module 2' amount='5'/>
       <Product name='Processing unit' amount='5'/>
     </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
   <Product
     name='Productivity module'
@@ -896,6 +1242,11 @@
       <Product name='Advanced circuit' amount='5'/>
       <Product name='Electronic circuit' amount='5'/>
     </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 1'/>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
   <Product
     name='Productivity module 2'
@@ -907,6 +1258,10 @@
       <Product name='Productivity module' amount='4'/>
       <Product name='Processing unit' amount='5'/>
     </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
   <Product
     name='Productivity module 3'
@@ -918,6 +1273,10 @@
       <Product name='Productivity module 2' amount='5'/>
       <Product name='Processing unit' amount='5'/>
     </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
   <Product
     name='Wooden chest'
@@ -927,6 +1286,11 @@
     <Inputs>
       <Product name='Wood' amount='4'/>
     </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 1'/>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
   <Product
     name='Iron chest'
@@ -936,6 +1300,11 @@
     <Inputs>
       <Product name='Iron plate' amount='8'/>
     </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 1'/>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
   <Product
     name='Steel chest'
@@ -945,6 +1314,11 @@
     <Inputs>
       <Product name='Steel plate' amount='8'/>
     </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 1'/>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
   <Product
     name='Storage tank'
@@ -955,6 +1329,11 @@
       <Product name='Iron plate' amount='20'/>
       <Product name='Steel plate' amount='5'/>
     </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 1'/>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
   <Product
     name='Transport belt'
@@ -965,6 +1344,11 @@
       <Product name='Iron gear wheel' amount='1'/>
       <Product name='Iron plate' amount='1'/>
     </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 1'/>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
   <Product
     name='Fast transport belt'
@@ -975,6 +1359,11 @@
       <Product name='Iron gear wheel' amount='5'/>
       <Product name='Transport belt' amount='1'/>
     </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 1'/>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
   <Product
     name='Express transport belt'
@@ -986,6 +1375,10 @@
       <Product name='Fast transport belt' amount='1'/>
       <Product name='Lubricant' amount='20'/>
     </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
   <Product
     name='Underground belt'
@@ -997,6 +1390,11 @@
       <Product name='Iron plate' amount='10'/>
       <Product name='Transport belt' amount='5'/>
     </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 1'/>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
   <Product
     name='Fast underground belt'
@@ -1008,6 +1406,11 @@
       <Product name='Iron gear wheel' amount='40'/>
       <Product name='Underground belt' amount='2'/>
     </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 1'/>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
   <Product
     name='Express underground belt'
@@ -1020,6 +1423,10 @@
       <Product name='Fast underground belt' amount='2'/>
       <Product name='Lubricant' amount='40'/>
     </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
   <Product
     name='Splitter'
@@ -1031,6 +1438,10 @@
       <Product name='Iron plate' amount='5'/>
       <Product name='Transport belt' amount='4'/>
     </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
   <Product
     name='Fast splitter'
@@ -1042,6 +1453,10 @@
       <Product name='Iron gear wheel' amount='10'/>
       <Product name='Splitter' amount='1'/>
     </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
   <Product
     name='Express splitter'
@@ -1054,6 +1469,10 @@
       <Product name='Iron gear wheel' amount='10'/>
       <Product name='Lubricant' amount='80'/>
     </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
   <Product
     name='Burner inserter'
@@ -1064,6 +1483,11 @@
       <Product name='Iron gear wheel' amount='1'/>
       <Product name='Iron plate' amount='1'/>
     </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 1'/>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
   <Product
     name='Inserter'
@@ -1075,6 +1499,10 @@
       <Product name='Iron gear wheel' amount='1'/>
       <Product name='Iron plate' amount='1'/>
     </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
   <Product
     name='Long handed inserter'
@@ -1086,6 +1514,10 @@
       <Product name='Iron gear wheel' amount='1'/>
       <Product name='Iron plate' amount='1'/>
     </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
   <Product
     name='Fast inserter'
@@ -1097,6 +1529,10 @@
       <Product name='Inserter' amount='1'/>
       <Product name='Iron plate' amount='2'/>
     </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
   <Product
     name='Filter inserter'
@@ -1107,6 +1543,11 @@
       <Product name='Electronic circuit' amount='4'/>
       <Product name='Fast inserter' amount='1'/>
     </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 1'/>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
   <Product
     name='Stack inserter'
@@ -1119,6 +1560,10 @@
       <Product name='Fast inserter' amount='1'/>
       <Product name='Iron gear wheel' amount='15'/>
     </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
   <Product
     name='Stack filter inserter'
@@ -1129,6 +1574,11 @@
       <Product name='Stack inserter' amount='1'/>
       <Product name='Electronic circuit' amount='5'/>
     </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 1'/>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
   <Product
     name='Small electric pole'
@@ -1140,6 +1590,11 @@
       <Product name='Wood' amount='2'/>
       <Product name='Copper cable' amount='2'/>
     </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 1'/>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
   <Product
     name='Medium electric pole'
@@ -1150,6 +1605,11 @@
       <Product name='Steel plate' amount='2'/>
       <Product name='Copper plate' amount='2'/>
     </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 1'/>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
   <Product
     name='Big electric pole'
@@ -1160,6 +1620,11 @@
       <Product name='Steel plate' amount='5'/>
       <Product name='Copper plate' amount='5'/>
     </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 1'/>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
   <Product
     name='Substation'
@@ -1171,6 +1636,10 @@
       <Product name='Copper plate' amount='5'/>
       <Product name='Steel plate' amount='10'/>
     </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
   <Product
     name='Pipe'
@@ -1180,6 +1649,11 @@
     <Inputs>
       <Product name='Iron plate' amount='1'/>
     </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 1'/>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
   <Product
     name='Pipe to ground'
@@ -1191,6 +1665,11 @@
       <Product name='Iron plate' amount='5'/>
       <Product name='Pipe' amount='10'/>
     </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 1'/>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
   <Product
     name='Pump'
@@ -1202,6 +1681,10 @@
       <Product name='Pipe' amount='1'/>
       <Product name='Steel plate' amount='1'/>
     </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
   <Product
     name='Rail'
@@ -1214,6 +1697,11 @@
       <Product name='Steel plate' amount='1'/>
       <Product name='Stone' amount='1'/>
     </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 1'/>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
   <Product
     name='Train stop'
@@ -1225,6 +1713,10 @@
       <Product name='Iron plate' amount='10'/>
       <Product name='Steel plate' amount='3'/>
     </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
   <Product
     name='Rail signal'
@@ -1235,6 +1727,11 @@
       <Product name='Electronic circuit' amount='1'/>
       <Product name='Iron plate' amount='5'/>
     </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 1'/>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
   <Product
     name='Rail chain signal'
@@ -1245,6 +1742,11 @@
       <Product name='Electronic circuit' amount='1'/>
       <Product name='Iron plate' amount='5'/>
     </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 1'/>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
 
   <Product
@@ -1257,6 +1759,10 @@
       <Product name='Engine unit' amount='20'/>
       <Product name='Steel plate' amount='30'/>
     </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
   <Product
     name='Cargo wagon'
@@ -1268,6 +1774,10 @@
       <Product name='Iron plate' amount='20'/>
       <Product name='Steel plate' amount='20'/>
     </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
   <Product
     name='Fluid wagon'
@@ -1280,6 +1790,10 @@
       <Product name='Steel plate' amount='16'/>
       <Product name='Storage tank' amount='1'/>
     </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
   <Product
     name='Artillery wagon'
@@ -1293,6 +1807,9 @@
       <Product name='Pipe' amount='16'/>
       <Product name='Steel plate' amount='40'/>
     </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
 
   <Product
@@ -1305,6 +1822,10 @@
       <Product name='Iron plate' amount='20'/>
       <Product name='Steel plate' amount='5'/>
     </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
   <Product
     name='Tank'
@@ -1317,6 +1838,10 @@
       <Product name='Iron gear wheel' amount='15'/>
       <Product name='Steel plate' amount='50'/>
     </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
 
   <Product
@@ -1328,6 +1853,11 @@
       <Product name='Advanced circuit' amount='2'/>
       <Product name='Flying robot frame' amount='1'/>
     </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 1'/>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
   <Product
     name='Construction robot'
@@ -1338,6 +1868,11 @@
       <Product name='Electronic circuit' amount='2'/>
       <Product name='Flying robot frame' amount='1'/>
     </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 1'/>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
 
   <Product
@@ -1350,6 +1885,10 @@
       <Product name='Electronic circuit' amount='3'/>
       <Product name='Steel chest' amount='1'/>
     </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
   <Product
     name='Passive provider chest'
@@ -1361,6 +1900,10 @@
       <Product name='Electronic circuit' amount='3'/>
       <Product name='Steel chest' amount='1'/>
     </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
   <Product
     name='Storage chest'
@@ -1372,6 +1915,10 @@
       <Product name='Electronic circuit' amount='3'/>
       <Product name='Steel chest' amount='1'/>
     </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
   <Product
     name='Buffer chest'
@@ -1383,6 +1930,10 @@
       <Product name='Electronic circuit' amount='3'/>
       <Product name='Steel chest' amount='1'/>
     </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
   <Product
     name='Requester chest'
@@ -1394,6 +1945,10 @@
       <Product name='Electronic circuit' amount='3'/>
       <Product name='Steel chest' amount='1'/>
     </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
   <Product
     name='Roboport'
@@ -1405,6 +1960,10 @@
       <Product name='Iron gear wheel' amount='45'/>
       <Product name='Steel plate' amount='45'/>
     </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
 
   <Product
@@ -1417,6 +1976,10 @@
       <Product name='Iron plate' amount='1'/>
       <Product name='Iron stick' amount='3'/>
     </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
 
   <Product
@@ -1428,6 +1991,11 @@
       <Product name='Copper cable' amount='1'/>
       <Product name='Electronic circuit' amount='1'/>
     </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 1'/>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
   <Product
     name='Green wire'
@@ -1438,6 +2006,11 @@
       <Product name='Copper cable' amount='1'/>
       <Product name='Electronic circuit' amount='1'/>
     </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 1'/>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
 
   <Product
@@ -1449,6 +2022,11 @@
       <Product name='Copper cable' amount='5'/>
       <Product name='Electronic circuit' amount='5'/>
     </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 1'/>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
   <Product
     name='Decider combinator'
@@ -1459,6 +2037,11 @@
       <Product name='Copper cable' amount='5'/>
       <Product name='Electronic circuit' amount='5'/>
     </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 1'/>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
   <Product
     name='Constant combinator'
@@ -1469,6 +2052,11 @@
       <Product name='Copper cable' amount='5'/>
       <Product name='Electronic circuit' amount='2'/>
     </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 1'/>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
   <Product
     name='Power switch'
@@ -1480,6 +2068,10 @@
       <Product name='Electronic circuit' amount='2'/>
       <Product name='Iron plate' amount='5'/>
     </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
   <Product
     name='Programmable speaker'
@@ -1491,6 +2083,10 @@
       <Product name='Electronic circuit' amount='4'/>
       <Product name='Iron plate' amount='5'/>
     </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
 
   <Product
@@ -1501,6 +2097,11 @@
     <Inputs>
       <Product name='Stone' amount='2'/>
     </Inputs>
+    <Producers>
+      <Producer name='Stone furnace'/>
+      <Producer name='Steel furnace'/>
+      <Producer name='Electric furnace'/>
+    </Producers>
   </Product>
   <Product
     name='Concrete'
@@ -1513,6 +2114,10 @@
       <Product name='Stone brick' amount='5'/>
       <Product name='Water' amount='100'/>
     </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
   <Product
     name='Hazard concrete'
@@ -1523,6 +2128,11 @@
     <Inputs>
       <Product name='Concrete' amount='10'/>
     </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 1'/>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
   <Product
     name='Refined concrete'
@@ -1536,6 +2146,10 @@
       <Product name='Steel plate' amount='1'/>
       <Product name='Water' amount='100'/>
     </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
   <Product
     name='Refined hazard concrete'
@@ -1546,6 +2160,11 @@
     <Inputs>
       <Product name='Refined concrete' amount='10'/>
     </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 1'/>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
   <Product
     name='Landfill'
@@ -1555,6 +2174,11 @@
     <Inputs>
       <Product name='Stone' amount='20'/>
     </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 1'/>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
   <Product
     name='Cliff explosives'
@@ -1566,6 +2190,10 @@
       <Product name='Explosives' amount='10'/>
       <Product name='Grenade' amount='1'/>
     </Inputs>
+    <Producers>
+      <Producer name='Assembling machine 2'/>
+      <Producer name='Assembling machine 3'/>
+    </Producers>
   </Product>
 
 </Products>

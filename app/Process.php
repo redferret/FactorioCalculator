@@ -18,4 +18,8 @@ class Process extends Model {
   public function producer() {
     return $this->belongsTo(Producer::class);
   }
+
+  public function productionLine() {
+    return $this->belongsTo(ProductionLine::class);
+  }
 }

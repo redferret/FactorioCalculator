@@ -82,9 +82,11 @@ export class ModalBody extends React.Component {
   }
 
   handleReselectProduct() {
+    NewProductionLineModalStore.setProducer(null);
     NewProductionLineModalStore.setProduct(null);
     this.setState({
-      selectedProduct: null
+      selectedProduct: null,
+      selectedProducer: null
     });
   }
 
@@ -129,6 +131,11 @@ export class ModalBody extends React.Component {
   renderSelectProducer() {
     let selectedProducer = NewProductionLineModalStore.getProducer();
     let producers = GameItemsStore.getProducers();
+
+    if (this.state.selectedProduct != null) {
+      producers = this.state.selectedProduct.producers;
+    }
+
     return (selectedProducer == null?
       <div>
         <h4>Select a producer</h4>
@@ -152,7 +159,7 @@ export class ModalBody extends React.Component {
           <Button bsSize='xsmall' onClick={this.handleReselectProducer}>Change Selected Producer</Button>
         </ButtonToolbar>
       </div>
-    )
+    );
   }
 
   render() {

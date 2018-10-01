@@ -23,6 +23,10 @@ class ProductionLine extends Model
       'producer_production_line_id', 'consumer_production_line_id');
   }
 
+  public function process() {
+    return $this->hasOne(Process::class);
+  }
+
   /**
    * The assemply machine or miner for this production line
    */

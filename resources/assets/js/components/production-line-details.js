@@ -278,6 +278,34 @@ export default class ProductionLineDetails extends React.Component {
     );
   }
 
+  renderTableForManualCrafting() {
+    let product = this.props.product;
+    let productName = product? product.name : '';
+    let productImage = product? product.image_file : 'Questionmark.png';
+    return (
+      <Table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Products Needed / Hour</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <img width={32} height={32}  src={Router.route(IMAGE_ASSET, {fileName: productImage})} />{' '}
+              {productName}
+            </td>
+            <td>
+              <Input type='number' isStatic={true}
+                initialValue={this.props.items_per_second * 3600} />
+            </td>
+          </tr>
+        </tbody>
+      </Table>
+    );
+  }
+
   renderTable() {
     let inputValue = this.props.items_per_second;
     let itemsPerSecond = this.props.is_output ?
@@ -298,6 +326,8 @@ export default class ProductionLineDetails extends React.Component {
         return this.renderTableForPumps(itemsPerSecond);
       case 4:
         return this.renderTableForProcessors(itemsPerSecond);
+      case 5:
+        return this.renderTableForManualCrafting();
       default:
         return (<div>Invalid Producer Type!</div>)
     }
@@ -350,9 +380,8 @@ export default class ProductionLineDetails extends React.Component {
   }
 
   render() {
-    let style = this.props.is_output? 'success'
-      : (this.props.is_primary? 'warning' : 'info');
-
+    let style = (this.props.is_output? 'success' :
+                  (this.props.is_primary? 'warning' : 'info'));
     return (
       <Panel bsStyle={style} eventKey={this.props.eventKey}>
         <Panel.Heading>

@@ -51,6 +51,9 @@ class AppBuilder {
     $fileContents = \Storage::get('/builder/producers.xml');
     $producers = simplexml_load_string($fileContents);
 
+    $fileContents = \Storage::get('/builder/products.xml');
+    $products = simplexml_load_string($fileContents);
+
     foreach($producers as $producer) {
       $product = Product::where('name', $producer->attributes()['name']);
       $producerAttributes = array();
@@ -90,10 +93,24 @@ class AppBuilder {
                 $productRequirement = ConsumerProduct::create([
                   'consumer_requirement'=>$output->attributes()['amount']
                 ]);
+                $productOutput->from_process = true;
+                $productOutput->save();
                 $productRequirement->required_product_name = $productOutput->name;
                 $newProcess->outputProducts()->save($productRequirement);
               }
             }
+          }
+        }
+      }
+    }
+
+    foreach ($products->Product as $product) {
+      $curProduct = Product::where('name', $product->attributes()['name'])->firstOrFail();
+      foreach ($product->Producers as $producers) {
+        foreach($producers->Producer as $producer) {
+          $curProducer = Producer::where('name', $producer->attributes()['name'])->first();
+          if ($curProducer != null) {
+            $curProduct->producers()->save($curProducer);
           }
         }
       }

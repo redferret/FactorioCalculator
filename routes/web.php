@@ -26,6 +26,7 @@ Route::put('/productTypes/{id}', 'ProductTypeController@update');
 
 Route::delete('/products/{id}', 'ProductController@destroy');
 Route::get('/products', 'ProductController@getAll');
+Route::get('/products/noprocess', 'ProductController@getAllNotInProcess');
 Route::post('/products', 'ProductController@store');
 Route::put('/products/{id}', 'ProductController@update');
 

@@ -42,11 +42,17 @@ class FactoryController extends Controller {
       if ($productionLine->producerProductionLines()->first() == null) {
         $productionLine->is_primary = true;
       }
+      $productionLine->needs_input_management = false;
       $totalItems += $productionLine->items_per_second;
       $productionLine->producer;
-      $product = $productionLine->product;
-      $product->producedByProductionLines;
-      $consumerProducts = $product->consumerProducts;
+      if ($productionLine->product != null) {
+        $consumerProducts = $productionLine->product->consumerProducts;
+      } else if ($productionLine->process != null) {
+        $consumerProducts = $productionLine->process->consumerProducts;
+      } else {
+        $consumerProducts = array();
+      }
+
       foreach ($consumerProducts as $consumerProduct) {
         $consumerProduct->requiredProduct = Product::where('name', $consumerProduct->required_product_name)->first();
       }
