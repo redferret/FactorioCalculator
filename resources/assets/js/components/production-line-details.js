@@ -130,96 +130,144 @@ export default class ProductionLineDetails extends React.Component {
     });
   }
 
-  renderTHDetails(producerCountTitle) {
+  renderTableForMiners(itemsPerSecond) {
     return (
-      <tr>
-        <th>Name</th>
-        <th>{producerCountTitle}</th>
-        <th>Items Produced / Second</th>
-        <th>{this.props.producer.name} Speed</th>
-        <th>Seconds to Produce 1 product</th>
-      </tr>
+      <Table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Number of Miners</th>
+            <th>Ore Produced / Second</th>
+            <th>{this.props.producer.name} Speed</th>
+            <th>{this.props.producer.name} Power</th>
+            <th>Seconds to Produce 1 Ore</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <img src={Router.route(IMAGE_ASSET, {fileName: this.props.product.image_file})} />{' '}
+              {this.props.product.name}
+            </td>
+            <td><Input initialValue={this.props.assembly_count} isStatic={true}/></td>
+            <td>{itemsPerSecond}</td>
+            <td>
+              <Input type='number' name='speed'
+              callback={(event) => this.dispatchProducerChanged(event)}
+              initialValue={this.props.producer.speed}/>
+            </td>
+            <td>
+              <Input type='number' name='power'
+              callback={(event) => this.dispatchProducerChanged(event)}
+              initialValue={this.props.producer.power}/>
+            </td>
+            <td><Input initialValue={this.props.seconds_per_item} isStatic={true}/></td>
+          </tr>
+        </tbody>
+      </Table>
     )
   }
 
-  renderTDDetails(itemsPerSecond) {
+  renderTableForAssemblers(itemsPerSecond) {
     return (
-      <tr>
-        <td>
-          <img src={Router.route(IMAGE_ASSET, {fileName: this.props.product.image_file})} />{' '}
-          {this.props.product.name}
-        </td>
-        <td><Input initialValue={this.props.assembly_count} isStatic={true}/></td>
-        <td>{itemsPerSecond}</td>
-        <td>
-          <Input type='number' name='speed'
-          callback={(event) => this.dispatchProducerChanged(event)}
-          initialValue={this.props.producer.speed}/>
-        </td>
-        <td><Input initialValue={this.props.seconds_per_item} isStatic={true}/></td>
-      </tr>
-    )
+      <Table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Number of Assemblers</th>
+            <th>Products Produced / Second</th>
+            <th>{this.props.producer.name} Speed</th>
+            <th>Seconds to Produce 1 Product</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <img src={Router.route(IMAGE_ASSET, {fileName: this.props.product.image_file})} />{' '}
+              {this.props.product.name}
+            </td>
+            <td><Input initialValue={this.props.assembly_count} isStatic={true}/></td>
+            <td>{itemsPerSecond}</td>
+            <td>
+              <Input type='number' name='speed'
+              callback={(event) => this.dispatchProducerChanged(event)}
+              initialValue={this.props.producer.speed}/>
+            </td>
+            <td><Input initialValue={this.props.seconds_per_item} isStatic={true}/></td>
+          </tr>
+        </tbody>
+      </Table>
+    );
   }
 
-  renderTHForMiner(producerCountTitle) {
+  renderTableForPumps(itemsPerSecond) {
     return (
-      <tr>
-        <th>Name</th>
-        <th>{producerCountTitle}</th>
-        <th>Items Produced / Second</th>
-        <th>{this.props.producer.name} Speed</th>
-        <th>{this.props.producer.name} Power</th>
-        <th>Seconds to Produce 1 product</th>
-      </tr>
-    )
+      <Table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Number of Pumps</th>
+            <th>Units Produced / Second</th>
+            <th>{this.props.producer.name} Speed</th>
+            <th>Yield %</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <img src={Router.route(IMAGE_ASSET, {fileName: this.props.product.image_file})} />{' '}
+              {this.props.product.name}
+            </td>
+            <td><Input initialValue={this.props.assembly_count} isStatic={true}/></td>
+            <td>{itemsPerSecond}</td>
+            <td>
+              <Input type='number' name='speed'
+              callback={(event) => this.dispatchProducerChanged(event)}
+              initialValue={this.props.producer.speed}/>
+            </td>
+            <td>
+              <Input type='number' name='yield'
+                help='Add up all the oil patches for this value'
+                callback={(event) => this.dispatchProducerChanged(event)}
+                initialValue={this.props.producer.yield}/>
+            </td>
+          </tr>
+        </tbody>
+      </Table>
+    );
   }
 
-  renderTDForMiner(itemsPerSecond) {
+  renderTableForProcessors(itemsPerSecond) {
     return (
-      <tr>
-        <td>
-          <img src={Router.route(IMAGE_ASSET, {fileName: this.props.product.image_file})} />{' '}
-          {this.props.product.name}
-        </td>
-        <td><Input initialValue={this.props.assembly_count} isStatic={true}/></td>
-        <td>{itemsPerSecond}</td>
-        <td>
-          <Input type='number' name='speed'
-          callback={(event) => this.dispatchProducerChanged(event)}
-          initialValue={this.props.producer.speed}/>
-        </td>
-        <td>
-          <Input type='number' name='power'
-          callback={(event) => this.dispatchProducerChanged(event)}
-          initialValue={this.props.producer.power}/>
-        </td>
-        <td><Input initialValue={this.props.seconds_per_item} isStatic={true}/></td>
-      </tr>
-    )
+      <Table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Number of Processors</th>
+            <th>Units Produced / Second</th>
+            <th>{this.props.producer.name} Speed</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <img src={Router.route(IMAGE_ASSET, {fileName: this.props.product.image_file})} />{' '}
+              {this.props.product.name}
+            </td>
+            <td><Input initialValue={this.props.assembly_count} isStatic={true}/></td>
+            <td>{itemsPerSecond}</td>
+            <td>
+              <Input type='number' name='speed'
+              callback={(event) => this.dispatchProducerChanged(event)}
+              initialValue={this.props.producer.speed}/>
+            </td>
+          </tr>
+        </tbody>
+      </Table>
+    );
   }
 
-  renderProductionDetails() {
-    let producerCountTitle = 'undefined';
-    let madeWithTitle = 'undefined';
-    let isMiner = this.props.producer.producer_type === 0;
-    switch(this.props.producer.producer_type) {
-      case 0:
-        producerCountTitle = 'Number of Miners';
-        madeWithTitle = 'Mined With';
-        break;
-      case 1:
-        producerCountTitle = 'Number of Assemblers';
-        madeWithTitle = 'Assembled In';
-        break;
-      case 2:
-        producerCountTitle = 'Number of Furnaces';
-        madeWithTitle = 'Smelted In';
-        break;
-      case 3:
-        producerCountTitle = 'Number of Pumpjacks';
-        madeWithTitle = 'Pumped with';
-    }
-
+  renderTable() {
     let inputValue = this.props.items_per_second;
     let itemsPerSecond = this.props.is_output ?
       <Input type='number' name='items_per_second'
@@ -228,16 +276,45 @@ export default class ProductionLineDetails extends React.Component {
       <Input type='number' isStatic={true}
         initialValue={inputValue} />;
 
+    switch(this.props.producer.producer_type) {
+      case 0:
+        return this.renderTableForMiners(itemsPerSecond);
+      case 1:
+        return this.renderTableForAssemblers(itemsPerSecond);
+      case 2:
+        return this.renderTableForAssemblers(itemsPerSecond);
+      case 3:
+        return this.renderTableForPumps(itemsPerSecond);
+      case 4:
+        return this.renderTableForProcessors(itemsPerSecond);
+      default:
+        return (<div>Invalid Producer Type!</div>)
+    }
+  }
+
+  renderProductionDetails() {
+    let madeWithTitle = '';
+    switch(this.props.producer.producer_type) {
+      case 0:
+        madeWithTitle = 'Mined With';
+        break;
+      case 1:
+        madeWithTitle = 'Assembled In';
+        break;
+      case 2:
+        madeWithTitle = 'Smelted In';
+        break;
+      case 3:
+        madeWithTitle = 'Pumped with';
+        break;
+      case 4:
+        madeWithTitle = 'Processed in';
+        break;
+    }
+
     return (
       <div>
-        <Table>
-          <thead>
-            {isMiner? this.renderTHForMiner(producerCountTitle) : this.renderTHDetails(producerCountTitle)}
-          </thead>
-          <tbody>
-            {isMiner? this.renderTDForMiner(itemsPerSecond) : this.renderTDDetails(itemsPerSecond)}
-          </tbody>
-        </Table>
+        {this.renderTable()}
         <div className='made-in-container'>
           <Row>
             <Label>{madeWithTitle}</Label>
