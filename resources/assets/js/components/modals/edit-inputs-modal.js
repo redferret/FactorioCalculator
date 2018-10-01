@@ -124,12 +124,16 @@ export class ModalBody extends React.Component {
           <ItemTable items={selectedFactory.production_lines} rowLength={2} sm={6}
             emptyItemsMessage='No Production Lines'
             onClickCallback={this.handleAddProductionLine}
-            itemCallback={(productionLine =>
-              <div>
-                <img src={Router.route(IMAGE_ASSET, {fileName: productionLine.product.image_file})} />
-                {productionLine.name}
-              </div>
-            )} />
+            itemCallback={(productionLine => {
+              let product = productionLine.product;
+              let imageFile = product? product.image_file : 'Questionmark.png';
+              return (
+                <div>
+                  <img width={32} height={32} src={Router.route(IMAGE_ASSET, {fileName: imageFile})} />
+                  {productionLine.name}
+                </div>
+              );
+            })} />
         </div>
       );
     }
@@ -149,12 +153,16 @@ export class ModalBody extends React.Component {
                 <ItemTable items={this.state.inputs} rowLength={1} sm={12}
                   emptyItemsMessage='No Inputs'
                   onClickCallback={this.handleRemoveProductionLine}
-                  itemCallback={(productionLine =>
-                    <div>
-                      <img src={Router.route(IMAGE_ASSET, {fileName: productionLine.product.image_file})} />
-                      {productionLine.name}
-                    </div>
-                  )} />
+                  itemCallback={(productionLine => {
+                    let product = productionLine.product;
+                    let imageFile = product? product.image_file : 'Questionmark.png';
+                    return (
+                      <div>
+                        <img width={32} height={32} src={Router.route(IMAGE_ASSET, {fileName: imageFile})} />
+                        {productionLine.name}
+                      </div>
+                    );
+                  })} />
                 {this.renderMissingInputs()}
               </Col>
               <Col sm={7}>

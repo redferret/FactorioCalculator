@@ -131,6 +131,9 @@ export default class ProductionLineDetails extends React.Component {
   }
 
   renderTableForMiners(itemsPerSecond) {
+    let product = this.props.product;
+    let productName = product? product.name : '';
+    let productImage = product? product.image_file : 'Questionmark.png';
     return (
       <Table>
         <thead>
@@ -146,8 +149,8 @@ export default class ProductionLineDetails extends React.Component {
         <tbody>
           <tr>
             <td>
-              <img src={Router.route(IMAGE_ASSET, {fileName: this.props.product.image_file})} />{' '}
-              {this.props.product.name}
+              <img width={32} height={32}  src={Router.route(IMAGE_ASSET, {fileName: productImage})} />{' '}
+              {productName}
             </td>
             <td><Input initialValue={this.props.assembly_count} isStatic={true}/></td>
             <td>{itemsPerSecond}</td>
@@ -168,13 +171,16 @@ export default class ProductionLineDetails extends React.Component {
     )
   }
 
-  renderTableForAssemblers(itemsPerSecond) {
+  renderTableForAssemblers(itemsPerSecond, title) {
+    let product = this.props.product;
+    let productName = product? product.name : '';
+    let productImage = product? product.image_file : 'Questionmark.png';
     return (
       <Table>
         <thead>
           <tr>
             <th>Name</th>
-            <th>Number of Assemblers</th>
+            <th>{title}</th>
             <th>Products Produced / Second</th>
             <th>{this.props.producer.name} Speed</th>
             <th>Seconds to Produce 1 Product</th>
@@ -183,8 +189,8 @@ export default class ProductionLineDetails extends React.Component {
         <tbody>
           <tr>
             <td>
-              <img src={Router.route(IMAGE_ASSET, {fileName: this.props.product.image_file})} />{' '}
-              {this.props.product.name}
+              <img width={32} height={32} src={Router.route(IMAGE_ASSET, {fileName: productImage})} />{' '}
+              {productName}
             </td>
             <td><Input initialValue={this.props.assembly_count} isStatic={true}/></td>
             <td>{itemsPerSecond}</td>
@@ -201,6 +207,9 @@ export default class ProductionLineDetails extends React.Component {
   }
 
   renderTableForPumps(itemsPerSecond) {
+    let product = this.props.product;
+    let productName = product? product.name : '';
+    let productImage = product? product.image_file : 'Questionmark.png';
     return (
       <Table>
         <thead>
@@ -209,13 +218,13 @@ export default class ProductionLineDetails extends React.Component {
             <th>Number of Pumps</th>
             <th>Units Produced / Second</th>
             <th>{this.props.producer.name} Speed</th>
-            <th>Yield %</th>
+            <th>Average Yield (%)</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td>
-              <img src={Router.route(IMAGE_ASSET, {fileName: this.props.product.image_file})} />{' '}
+              <img width={32} height={32}  src={Router.route(IMAGE_ASSET, {fileName: this.props.product.image_file})} />{' '}
               {this.props.product.name}
             </td>
             <td><Input initialValue={this.props.assembly_count} isStatic={true}/></td>
@@ -227,7 +236,6 @@ export default class ProductionLineDetails extends React.Component {
             </td>
             <td>
               <Input type='number' name='yield'
-                help='Add up all the oil patches for this value'
                 callback={(event) => this.dispatchProducerChanged(event)}
                 initialValue={this.props.producer.yield}/>
             </td>
@@ -238,6 +246,9 @@ export default class ProductionLineDetails extends React.Component {
   }
 
   renderTableForProcessors(itemsPerSecond) {
+    let product = this.props.product;
+    let productName = product? product.name : '';
+    let productImage = product? product.image_file : 'Questionmark.png';
     return (
       <Table>
         <thead>
@@ -251,8 +262,8 @@ export default class ProductionLineDetails extends React.Component {
         <tbody>
           <tr>
             <td>
-              <img src={Router.route(IMAGE_ASSET, {fileName: this.props.product.image_file})} />{' '}
-              {this.props.product.name}
+              <img width={32} height={32}  src={Router.route(IMAGE_ASSET, {fileName: productImage})} />{' '}
+              {productName}
             </td>
             <td><Input initialValue={this.props.assembly_count} isStatic={true}/></td>
             <td>{itemsPerSecond}</td>
@@ -280,9 +291,9 @@ export default class ProductionLineDetails extends React.Component {
       case 0:
         return this.renderTableForMiners(itemsPerSecond);
       case 1:
-        return this.renderTableForAssemblers(itemsPerSecond);
+        return this.renderTableForAssemblers(itemsPerSecond, 'Number of Assemblers');
       case 2:
-        return this.renderTableForAssemblers(itemsPerSecond);
+        return this.renderTableForAssemblers(itemsPerSecond, 'Number of Furnaces');
       case 3:
         return this.renderTableForPumps(itemsPerSecond);
       case 4:
@@ -327,9 +338,10 @@ export default class ProductionLineDetails extends React.Component {
         <br/>
         <ButtonToolbar>
           <Button bsStyle='success' onClick={this.handleShowEditInputsModal}>Manage Inputs</Button>
-          <Button bsStyle='warning' onClick={this.handleShowEditProductionLineModal}>
+          <Button bsStyle='info' onClick={this.handleShowEditProductionLineModal}>
             Select Production Line
           </Button>
+          <Button>Select Process</Button>
           <Button onClick={this.changeProduct}>Change Product</Button>
           <Button>Change Producer</Button>
         </ButtonToolbar>

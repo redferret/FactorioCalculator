@@ -29,6 +29,10 @@ import {
   UPDATE_PRODUCTION_LINE_PRODUCER,
 } from '../../constants.js';
 
+const NULL_PRODUCT = {
+
+};
+
 export class ModalHeader extends React.Component {
 
   constructor(props, context) {
@@ -59,9 +63,11 @@ export class ModalHeader extends React.Component {
 
   render() {
     let productionLine = this.state.productionLine;
+    let product = productionLine.product;
+    let imageFile = product? product.image_file : 'Questionmark.png';
     return (
       <div>
-        <img src={Router.route(IMAGE_ASSET, {fileName: productionLine.product.image_file})} />{' '}
+        <img width={32} height={32} src={Router.route(IMAGE_ASSET, {fileName: imageFile})} />
         {productionLine.name}
       </div>
     )
@@ -118,8 +124,16 @@ export class ModalBody extends React.Component {
     let productionLine = EditProductionLineModalStore.getSelectedProductionLine();
     let producer = productionLine.producer;
     let product = productionLine.product;
-    let isMiner = producer.producer_type === 0;
+    let isMiner = producer.producer_type == 0;
     let id = productionLine.id;
+
+    if (product == null) {
+      return (
+        <div>
+          No Product or Process Defined
+        </div>
+      );
+    }
 
     if (isMiner) {
       return (
@@ -187,6 +201,8 @@ export class ModalBody extends React.Component {
         <div className='list-group'> {
           productionLines.map(productionLine => {
             let product = productionLine.product;
+            let productName = product? product.name : '';
+            let imageFile = product? product.image_file : 'Questionmark.png';
             let producer = productionLine.producer;
             return (
               <div key={productionLine.name + product.name + product.id}>
@@ -197,8 +213,8 @@ export class ModalBody extends React.Component {
                 >
                   <Row>
                     <Col sm={4}>
-                      <img src={Router.route(IMAGE_ASSET, {fileName: product.image_file})} />{' '}
-                      {product.name}
+                      <img width={32} height={32} src={Router.route(IMAGE_ASSET, {fileName: imageFile})} />{' '}
+                      {productName}
                     </Col>
                     <Col sm={4}>
                       <div className='font-bold'>Production Rate (Items/Sec): </div>

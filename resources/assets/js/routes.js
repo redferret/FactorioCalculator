@@ -54,6 +54,9 @@ Router.registerRoute(Constants.GET_PRODUCTION_LINE, args => {
 Router.registerRoute(Constants.GET_PRODUCTS, args => {
   return ROOT + '/products';
 });
+Router.registerRoute(Constants.GET_PRODUCTS_NO_PROCESS, args => {
+  return ROOT + '/products/noprocess';
+});
 Router.registerRoute(Constants.GET_PRODUCT_TYPES, args => {
   return ROOT + '/productTypes';
 });

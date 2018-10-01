@@ -33,6 +33,7 @@ export const GET_INPUT_OUTPUT_PRODUCTION_LINES  = 'get-input-output-production-l
 export const GET_REQUIRED_INPUT_PRODUCTS        = 'get-required-input-products';
 export const GET_INPUT_PRODUCTION_LINES         = 'get-input-production-lines';
 export const GET_PRODUCTS                       = 'get-products';
+export const GET_PRODUCTS_NO_PROCESS            = 'get-products-no-process';
 export const GET_PRODUCT_TYPES                  = 'get-product-types';
 
 export const IMAGE_ASSET                    = 'image-file';
