@@ -64,7 +64,8 @@ export class ModalHeader extends React.Component {
   render() {
     let productionLine = this.state.productionLine;
     let product = productionLine.product;
-    let imageFile = product? product.image_file : 'Questionmark.png';
+    let process = productionLine.process;
+    let imageFile = product? product.image_file : (process? process.image_file : 'Questionmark.png');
     return (
       <div>
         <img width={32} height={32} src={Router.route(IMAGE_ASSET, {fileName: imageFile})} />
@@ -127,72 +128,40 @@ export class ModalBody extends React.Component {
     let isMiner = producer.producer_type == 0;
     let id = productionLine.id;
 
-    if (product == null) {
-      return (
-        <div>
-          No Product or Process Defined
-        </div>
-      );
-    }
-
-    if (isMiner) {
-      return (
-        <Table>
-          <thead><tr>
-            <th>Crafting Time Per Item</th>
-            <th>Stock Count</th>
-            <th>Item Hardness</th>
-            <th>Actual Production (Items/Sec)</th>
-            <th>Producers Needed</th>
-          </tr></thead>
-          <tbody><tr>
-            <td>
-              <Input type='number' isStatic={true}
-              initialValue={product.crafting_time} />
-            </td>
-            <td>
-              <Input type='number' isStatic={true}
-              initialValue={product.stock_size} />
-            </td>
+    return (
+      <Table>
+        <thead><tr>
+          <th>Crafting Time Per Item</th>
+          <th>Stock Count</th>
+          {isMiner? <th>Item Hardness</th>:<th></th>}
+          <th>Actual Production (Items/Sec)</th>
+          <th>Producers Needed</th>
+        </tr></thead>
+        <tbody><tr>
+          <td>
+            <Input type='number' isStatic={true}
+            initialValue={productOrProcess.crafting_time} />
+          </td>
+          <td>
+            <Input type='number' isStatic={true}
+            initialValue={product.stock_size} />
+          </td>
+          {isMiner?
             <td>
               <Input type='number' isStatic={true}
               initialValue={product.hardness} />
             </td>
-            <td>
-              <Input type='number' isStatic={true}
-              initialValue={productionLine.items_per_second} />
-            </td>
-            <td>{productionLine.assembly_count}</td>
-          </tr></tbody>
-        </Table>
-      );
-    } else {
-      return (
-        <Table>
-          <thead><tr>
-            <th>Crafting Time Per Item</th>
-            <th>Stock Count</th>
-            <th>Actual Production (Items/Sec)</th>
-            <th>Producers Needed</th>
-          </tr></thead>
-          <tbody><tr>
-            <td>
-              <Input type='number' isStatic={true}
-              initialValue={product.crafting_time} />
-            </td>
-            <td>
-              <Input type='number' isStatic={true}
-              initialValue={product.stock_size} />
-            </td>
-            <td>
-              <Input type='number' isStatic={true}
-              initialValue={productionLine.items_per_second} />
-            </td>
-            <td>{productionLine.assembly_count}</td>
-          </tr></tbody>
-        </Table>
-      );
-    }
+          : <td></td>}
+
+          <td>
+            <Input type='number' isStatic={true}
+            initialValue={productionLine.items_per_second} />
+          </td>
+          <td>{productionLine.assembly_count}</td>
+        </tr></tbody>
+      </Table>
+    );
+
   }
 
   renderProductionLines(productionLines) {
@@ -200,29 +169,27 @@ export class ModalBody extends React.Component {
       <div className='production-lines-well'>
         <div className='list-group'> {
           productionLines.map(productionLine => {
-            let product = productionLine.product;
-            let productName = product? product.name : '';
-            let imageFile = product? product.image_file : 'Questionmark.png';
             let producer = productionLine.producer;
+            let product = productionLine.product;
+            let name = product? product.name : '';
+            let imageFile = product? product.image_file : 'Questionmark.png';
             return (
               <div key={productionLine.name + product.name + product.id}>
                 <Label>Production Line: {productionLine.name}</Label>
-                <a
-                onClick={() => this.handleSelectProductionLine(productionLine)}
-                className='list-group-item list-group-item-action'
-                >
+                <a onClick={() => this.handleSelectProductionLine(productionLine)}
+                  className='list-group-item list-group-item-action'>
                   <Row>
                     <Col sm={4}>
                       <img width={32} height={32} src={Router.route(IMAGE_ASSET, {fileName: imageFile})} />{' '}
-                      {productName}
+                      <span>{name}</span>
                     </Col>
                     <Col sm={4}>
                       <div className='font-bold'>Production Rate (Items/Sec): </div>
-                      {productionLine.items_per_second}
+                      <span>{productionLine.items_per_second}</span>
                     </Col>
                     <Col sm={4}>
                       <div className='font-bold'>Number of Producers Needed: </div>
-                      {productionLine.assembly_count}
+                      <span>{productionLine.assembly_count}</span>
                     </Col>
                   </Row>
                 </a>
@@ -283,6 +250,7 @@ export class ModalFooter extends React.Component {
     return (
       <ButtonToolbar>
         <Button bsStyle='danger' onClick={this.handleDeleteProductionLine}>Delete Production Line</Button>
+        <Button onClick={() => {ModalsStore.hideModal()}}>Close</Button>
       </ButtonToolbar>
     )
   }
