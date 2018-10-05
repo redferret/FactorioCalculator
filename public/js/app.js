@@ -3524,8 +3524,8 @@ var Input = function (_React$Component) {
 }(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component);
 
 Input.defaultProps = {
-  smOffset: 2,
-  sm: 10,
+  smOffset: 0,
+  sm: 12,
   name: 'default',
   isStatic: false,
   autoComplete: 'off',
@@ -21064,10 +21064,14 @@ var ModalBody = function (_React$Component2) {
       var _this3 = this;
 
       var factory = __WEBPACK_IMPORTED_MODULE_1__stores_edit_factory_modal_store_js__["a" /* default */].getFactory();
-      return __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__input_js__["a" /* default */], { name: 'name', type: 'text', label: 'Factory Name', initialValue: factory.name,
-        callback: function callback(event) {
-          return _this3.handleFactoryNameChange(event);
-        } });
+      return __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
+        __WEBPACK_IMPORTED_MODULE_7_react_bootstrap__["t" /* Row */],
+        null,
+        __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__input_js__["a" /* default */], { name: 'name', type: 'text', label: 'Factory Name', initialValue: factory.name,
+          callback: function callback(event) {
+            return _this3.handleFactoryNameChange(event);
+          } })
+      );
     }
   }]);
 
@@ -51095,9 +51099,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 __WEBPACK_IMPORTED_MODULE_0__app_actions_js__["a" /* default */].register(__WEBPACK_IMPORTED_MODULE_2__constants_js__["E" /* REGISTER */], function (payload) {
   fetch(__WEBPACK_IMPORTED_MODULE_1__router_js__["a" /* default */].route(__WEBPACK_IMPORTED_MODULE_2__constants_js__["E" /* REGISTER */]), __WEBPACK_IMPORTED_MODULE_1__router_js__["a" /* default */].method('POST', payload.values)).then(function (response) {
-    return response.json();
+    if (response.status == 422) {
+      return response.json();
+    } else if (response.status == 200) {
+      window.location.replace(response.url);
+    }
   }).then(function (errors) {
-
+    AuthStore.setErrors(errors);
     __WEBPACK_IMPORTED_MODULE_0__app_actions_js__["a" /* default */].finish(payload);
   });
 });
@@ -88746,7 +88754,7 @@ var LoginForm = function (_React$Component) {
       return __WEBPACK_IMPORTED_MODULE_3_react___default.a.createElement(
         __WEBPACK_IMPORTED_MODULE_6_react_bootstrap__["h" /* Form */],
         { horizontal: true },
-        __WEBPACK_IMPORTED_MODULE_3_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__input_js__["a" /* default */], { sm: 4, name: 'email', type: 'email', placeholder: 'Example@gmail.com', label: 'Email',
+        __WEBPACK_IMPORTED_MODULE_3_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__input_js__["a" /* default */], { smOffset: 2, sm: 4, name: 'email', type: 'email', placeholder: 'Example@gmail.com', label: 'Email',
           initialValue: this.state.values.email,
           validationCallback: function validationCallback() {
             return emailError ? 'error' : null;
@@ -88755,7 +88763,7 @@ var LoginForm = function (_React$Component) {
           callback: function callback(event) {
             return _this2.handleInputChanged(event);
           }, autoComplete: 'on' }),
-        __WEBPACK_IMPORTED_MODULE_3_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__input_js__["a" /* default */], { sm: 4, name: 'password', type: 'password', label: 'Password',
+        __WEBPACK_IMPORTED_MODULE_3_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__input_js__["a" /* default */], { smOffset: 2, sm: 4, name: 'password', type: 'password', label: 'Password',
           initialValue: this.state.values.password,
           validationCallback: function validationCallback() {
             return passwordError ? 'error' : null;
@@ -88890,22 +88898,22 @@ var RegisterForm = function (_React$Component) {
       return __WEBPACK_IMPORTED_MODULE_3_react___default.a.createElement(
         __WEBPACK_IMPORTED_MODULE_6_react_bootstrap__["h" /* Form */],
         { horizontal: true },
-        __WEBPACK_IMPORTED_MODULE_3_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__input_js__["a" /* default */], { sm: 4, name: 'name', type: 'text', placeholder: 'John Doe', label: 'Name',
+        __WEBPACK_IMPORTED_MODULE_3_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__input_js__["a" /* default */], { smOffset: 2, sm: 4, name: 'name', type: 'text', placeholder: 'John Doe', label: 'Name',
           initialValue: this.state.values.name, autoComplete: 'on',
           callback: function callback(event) {
             return _this2.handleInputChanged(event);
           } }),
-        __WEBPACK_IMPORTED_MODULE_3_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__input_js__["a" /* default */], { sm: 4, name: 'email', type: 'email', placeholder: 'Example@gmail.com', label: 'Email',
+        __WEBPACK_IMPORTED_MODULE_3_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__input_js__["a" /* default */], { smOffset: 2, sm: 4, name: 'email', type: 'email', placeholder: 'Example@gmail.com', label: 'Email',
           initialValue: this.state.values.email,
           callback: function callback(event) {
             return _this2.handleInputChanged(event);
           }, autoComplete: 'on' }),
-        __WEBPACK_IMPORTED_MODULE_3_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__input_js__["a" /* default */], { sm: 4, name: 'password', type: 'password', label: 'Password',
+        __WEBPACK_IMPORTED_MODULE_3_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__input_js__["a" /* default */], { smOffset: 2, sm: 4, name: 'password', type: 'password', label: 'Password',
           initialValue: this.state.values.password,
           callback: function callback(event) {
             return _this2.handleInputChanged(event);
           } }),
-        __WEBPACK_IMPORTED_MODULE_3_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__input_js__["a" /* default */], { sm: 4, name: 'password_confirmation', type: 'password', label: 'Confirm Password',
+        __WEBPACK_IMPORTED_MODULE_3_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__input_js__["a" /* default */], { smOffset: 2, sm: 4, name: 'password_confirmation', type: 'password', label: 'Confirm Password',
           initialValue: this.state.values.password_confirmation,
           callback: function callback(event) {
             return _this2.handleInputChanged(event);

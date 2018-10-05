@@ -61,19 +61,19 @@ export default class RegisterForm extends React.Component {
   render() {
     return (
       <Form horizontal>
-        <Input sm={4} name='name' type='text' placeholder='John Doe' label='Name'
+        <Input smOffset={2} sm={4} name='name' type='text' placeholder='John Doe' label='Name'
           initialValue={this.state.values.name} autoComplete='on'
           callback={(event) => this.handleInputChanged(event)}/>
 
-        <Input sm={4} name='email' type='email' placeholder='Example@gmail.com' label='Email'
+        <Input smOffset={2} sm={4} name='email' type='email' placeholder='Example@gmail.com' label='Email'
           initialValue={this.state.values.email}
           callback={(event) => this.handleInputChanged(event)} autoComplete='on'/>
 
-        <Input sm={4} name='password' type='password' label='Password'
+        <Input smOffset={2} sm={4} name='password' type='password' label='Password'
           initialValue={this.state.values.password}
           callback={(event) => this.handleInputChanged(event)}/>
 
-        <Input sm={4} name='password_confirmation' type='password' label='Confirm Password'
+        <Input smOffset={2} sm={4} name='password_confirmation' type='password' label='Confirm Password'
           initialValue={this.state.values.password_confirmation}
           callback={(event) => this.handleInputChanged(event)}/>
 

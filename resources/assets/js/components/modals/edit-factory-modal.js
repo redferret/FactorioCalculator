@@ -12,6 +12,7 @@ import {
   ButtonToolbar,
   Label,
   Modal,
+  Row,
   Table,
   Well,
 } from 'react-bootstrap';
@@ -47,8 +48,10 @@ export class ModalBody extends React.Component {
   render() {
     let factory = EditFactoryModalStore.getFactory();
     return (
-      <Input name='name' type='text' label='Factory Name' initialValue={factory.name}
-        callback={(event) => this.handleFactoryNameChange(event)} />
+      <Row>
+        <Input name='name' type='text' label='Factory Name' initialValue={factory.name}
+          callback={(event) => this.handleFactoryNameChange(event)} />
+      </Row>
     )
   }
 }

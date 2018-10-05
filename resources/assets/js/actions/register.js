@@ -7,9 +7,13 @@ Actions.register(REGISTER, payload => {
   fetch(Router.route(REGISTER),
     Router.method('POST', payload.values)
   ).then(response => {
-    return response.json();
+    if (response.status == 422) {
+      return response.json();
+    } else if (response.status == 200) {
+      window.location.replace(response.url);
+    }
   }).then(errors => {
-
+    AuthStore.setErrors(errors);
     Actions.finish(payload);
   });
 });

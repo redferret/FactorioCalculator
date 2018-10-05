@@ -87,15 +87,15 @@ class Input extends React.Component {
             style={this.props.customStyle}
             autoComplete={this.props.autoComplete}/>
           {helpBlock}
-        </Col>
+      </Col>
       </FormGroup>
     );
   }
 }
 
 Input.defaultProps = {
-  smOffset: 2,
-  sm: 10,
+  smOffset: 0,
+  sm: 12,
   name: 'default',
   isStatic: false,
   autoComplete: 'off',
