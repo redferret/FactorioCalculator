@@ -31,7 +31,9 @@ export default class RegisterForm extends React.Component {
   }
 
   _onChange() {
-
+    this.setState({
+      errors: AuthStore.getErrors()
+    })
   }
 
   componentDidMount() {
@@ -54,11 +56,17 @@ export default class RegisterForm extends React.Component {
     AppDispatcher.dispatch({
       action: REGISTER,
       values: this.state.values,
-      emitOn: []
+      emitOn: [{
+        store: AuthStore,
+        componentIds: ['register-form']
+      }]
     });
   }
 
   render() {
+    let errors = this.state.errors;
+    let emailError = typeof errors !== 'undefined'? errors.email : null;
+    let passwordError = typeof errors !== 'undefined'? errors.password : null;
     return (
       <Form horizontal>
         <Input smOffset={2} sm={4} name='name' type='text' placeholder='John Doe' label='Name'
@@ -67,10 +75,14 @@ export default class RegisterForm extends React.Component {
 
         <Input smOffset={2} sm={4} name='email' type='email' placeholder='Example@gmail.com' label='Email'
           initialValue={this.state.values.email}
+          validationCallback={() => emailError? 'error' : null}
+          help={emailError? emailError : ''}
           callback={(event) => this.handleInputChanged(event)} autoComplete='on'/>
 
         <Input smOffset={2} sm={4} name='password' type='password' label='Password'
           initialValue={this.state.values.password}
+          validationCallback={() => passwordError? 'error' : null}
+          help={passwordError? passwordError : ''}
           callback={(event) => this.handleInputChanged(event)}/>
 
         <Input smOffset={2} sm={4} name='password_confirmation' type='password' label='Confirm Password'

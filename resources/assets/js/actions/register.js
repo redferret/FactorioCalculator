@@ -1,4 +1,5 @@
 import Actions from './app-actions.js';
+import AuthStore from '../stores/auth-store.js';
 import Router from '../router.js';
 
 import { REGISTER } from '../constants.js';
