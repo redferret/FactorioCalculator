@@ -1,4 +1,4 @@
-import Actions from './app-actions.js';
+import Actions, { checkStatus, parseJSON, handleError } from './app-actions.js';
 import FactoryStore from '../stores/factory-store.js';
 import GameItemsStore from '../stores/game-items-store.js';
 import ModalSpinnerStore from '../stores/modal-spinner-store.js';
@@ -17,22 +17,25 @@ import {
 
 
 Actions.register(INITIAL_APP_LOAD, payload => {
-  fetch(Router.route(GET_FACTORIES)).then(response => {
-    return response.json();
-  }).then(factories => {
+  fetch(Router.route(GET_FACTORIES))
+  .then(checkStatus)
+  .then(parseJSON)
+  .then(factories => {
     FactoryStore.setFactories(factories);
     return fetch(Router.route(GET_PRODUCERS))
-  }).then(response => {
-    return response.json();
-  }).then(producers => {
+  })
+  .then(checkStatus)
+  .then(parseJSON)
+  .then(producers => {
     GameItemsStore.setProducers(producers);
     return fetch(Router.route(GET_PRODUCT_TYPES));
-  }).then(response => {
-    return response.json();
-  }).then(productTypes => {
+  })
+  .then(checkStatus)
+  .then(parseJSON)
+  .then(productTypes => {
     GameItemsStore.setProductTypes(productTypes);
     ModalsStore.hideModal();
     ModalSpinnerStore.setSpinnerMessage(DEFAULT_MESSAGE);
     Actions.finish(payload);
-  });
+  }).catch(handleError);
 });

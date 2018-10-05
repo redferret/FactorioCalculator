@@ -9,5 +9,4 @@ Actions.register(LOG_OUT, payload => {
   ).then( response => {
     window.location.href = Router.route(LOG_IN);
   });
-
 });

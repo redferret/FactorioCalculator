@@ -1,5 +1,4 @@
-
-import Actions from './app-actions.js';
+import Actions, { checkStatus, parseJSON, handleError } from './app-actions.js';
 import FactoryStore from '../stores/factory-store.js';
 import ModalsStore from '../stores/modals-store.js';
 import Router from '../router.js';
@@ -11,25 +10,25 @@ import {
 } from '../constants.js';
 
 Actions.register(EDIT_INPUTS, payload => {
-  fetch(Router.route(EDIT_INPUTS, {
-    id: payload.data.id
-  }),
-    Router.method('PUT', {
-      inputs: payload.data.inputs
-    })
-  ).then(response => {
-    return response.json();
-  }).then(productionLine => {
+  fetch(Router.route(EDIT_INPUTS, {id: payload.id}),
+  Router.method('PUT', {
+    inputs: payload.inputs
+  }))
+  .then(checkStatus)
+  .then(parseJSON)
+  .then(productionLine => {
     return fetch(Router.route(RE_CALCULATE_PRODUCTION_LINES));
-  }).then(response => {
-    return response.json();
-  }).then(productionLines => {
+  })
+  .then(checkStatus)
+  .then(parseJSON)
+  .then(productionLines => {
     return fetch(Router.route(GET_FACTORIES));
-  }).then(response => {
-    return response.json();
-  }).then(factories => {
+  })
+  .then(checkStatus)
+  .then(parseJSON)
+  .then(factories => {
     FactoryStore.setFactories(factories);
     Actions.finish(payload);
     ModalsStore.hideModal();
-  });
+  }).catch(handleError);
 });

@@ -198,10 +198,8 @@ export class ModalFooter extends React.Component {
     let productionLine = EditInputsModalStore.getProductionLine();
     AppDispatcher.dispatch({
       action: EDIT_INPUTS,
-      data:{
-        id: productionLine.id,
-        inputs: EditInputsModalStore.getInputs()
-      },
+      id: productionLine.id,
+      inputs: EditInputsModalStore.getInputs(),
       emitOn:[{
         store: FactoryStore,
         componentIds: [ALL_FACTORIES]

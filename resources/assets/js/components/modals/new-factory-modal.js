@@ -57,9 +57,7 @@ export class ModalFooter extends React.Component {
     ModalsStore.showModal({id: SPINNER_MODAL_ID});
     AppDispatcher.dispatch({
       action: ADD_FACTORY,
-      data: {
-        values: values
-      },
+      values: values,
       emitOn: [{
         store: MainStore,
         componentIds: [MAIN_ID]

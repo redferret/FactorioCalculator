@@ -64,10 +64,8 @@ export class ModalFooter extends React.Component {
     let factory = EditFactoryModalStore.getFactory();
     AppDispatcher.dispatch({
       action: UPDATE_FACTORY,
-      data: {
-        id: factory.id,
-        name: EditFactoryModalStore.getFactoryName()
-      },
+      id: factory.id,
+      name: EditFactoryModalStore.getFactoryName(),
       emitOn: [{
         store: FactoryStore,
         componentIds: [FACTORY_PANEL_ + factory.id]
@@ -84,9 +82,7 @@ export class ModalFooter extends React.Component {
       ModalsStore.showModal({id: SPINNER_MODAL_ID});
       AppDispatcher.dispatch({
         action: DELETE_FACTORY,
-        data: {
-          id: factory.id
-        },
+        id: factory.id,
         emitOn: [{
           store: MainStore,
           componentIds: [MAIN_ID]

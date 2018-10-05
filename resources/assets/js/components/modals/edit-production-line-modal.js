@@ -111,9 +111,7 @@ export class ModalBody extends React.Component {
     EditProductionLineModalStore.setSelectedProductionLine(productionLine);
     AppDispatcher.dispatch({
       action: GET_INPUT_OUTPUT_PRODUCTION_LINES,
-      data: {
-        id: productionLine.id
-      },
+      id: productionLine.id,
       emitOn: [{
         store: EditProductionLineModalStore,
         componentIds: [EDIT_PRODUCTION_LINE_MODAL_ID]
@@ -235,9 +233,7 @@ export class ModalFooter extends React.Component {
       ModalsStore.showModal({id: SPINNER_MODAL_ID});
       AppDispatcher.dispatch({
         action: DELETE_PRODUCTION_LINE,
-        data: {
-          id: productionLine.id
-        },
+        id: productionLine.id,
         emitOn: [{
           store: FactoryStore,
           componentIds: [ALL_FACTORIES]

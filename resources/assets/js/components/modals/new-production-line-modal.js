@@ -223,9 +223,7 @@ export class ModalFooter extends React.Component {
     ModalsStore.showModal({id: SPINNER_MODAL_ID});
     AppDispatcher.dispatch({
       action: ADD_PRODUCTION_LINE,
-      data: {
-        values: values
-      },
+      values: values,
       emitOn: [{
         store: FactoryStore,
         componentIds: [NewProductionLineModalStore.getFactoryComponentId()]

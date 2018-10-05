@@ -17,10 +17,7 @@ import {
 export default class ApplicationNavbar extends React.Component {
 
   postLogout() {
-    AppDispatcher.dispatch({
-      action: LOG_OUT,
-      emitOn: []
-    });
+    AppDispatcher.dispatch({action: LOG_OUT});
   }
 
   renderCheckForGuest() {

@@ -56,9 +56,7 @@ export default class ProductionLineDetails extends React.Component {
     ModalsStore.setToShowModal(EDIT_INPUTS_MODAL_ID);
     AppDispatcher.dispatch({
       action: GET_INPUT_PRODUCTION_LINES,
-      data: {
-        id: this.props.id
-      },
+      id: this.props.id,
       emitOn: [{
         store: ModalsStore,
         componentIds: [MODAL_ID]
@@ -71,9 +69,7 @@ export default class ProductionLineDetails extends React.Component {
     EditProductionLineModalStore.setSelectedProductionLine(this.props);
     AppDispatcher.dispatch({
       action: GET_INPUT_OUTPUT_PRODUCTION_LINES,
-      data: {
-        id: this.props.id
-      },
+      id: this.props.id,
       emitOn: [{
         store: ModalsStore,
         componentIds: [MODAL_ID]
@@ -91,10 +87,8 @@ export default class ProductionLineDetails extends React.Component {
       });
       AppDispatcher.dispatch({
         action: UPDATE_PRODUCTION_LINE,
-        data: {
-          productionLineId: this.props.id,
-          values: values
-        },
+        productionLineId: this.props.id,
+        values: values,
         emitOn: [{
           store: MainStore,
           componentIds: [MAIN_ID]
@@ -110,16 +104,12 @@ export default class ProductionLineDetails extends React.Component {
     let values = {};
     values[event.target.name] = event.target.value;
 
-    ModalsStore.showModal({
-      id: SPINNER_MODAL_ID
-    });
+    ModalsStore.showModal({id: SPINNER_MODAL_ID});
     let productionLine = this.props;
     AppDispatcher.dispatch({
       action: UPDATE_PRODUCTION_LINE_PRODUCER,
-      data: {
-        id: productionLine.id,
-        values: values
-      },
+      id: productionLine.id,
+      values: values,
       emitOn: [{
         store: MainStore,
         componentIds: [MAIN_ID]
