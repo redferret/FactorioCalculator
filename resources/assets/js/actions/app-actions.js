@@ -18,7 +18,7 @@ class Actions {
     payload.emitOn.map(emitter => {
       var store = emitter.store;
       emitter.componentIds.map(id => {
-        store.emitChange(id);
+        store.emit(id);
       })
     });
   }

@@ -75,9 +75,6 @@ class GameItemsStore extends EventEmitter {
     return this._productTypes;
   }
 
-  emitChange(id) {
-    this.emit(id);
-  }
 }
 
 export default new GameItemsStore();

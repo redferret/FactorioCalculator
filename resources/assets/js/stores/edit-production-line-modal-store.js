@@ -36,10 +36,6 @@ class EditProductionLineModalStore extends EventEmitter {
     return this._outputProductionLines;
   }
 
-  emitChange(id) {
-    this.emit(id);
-  }
-
 }
 
 export default new EditProductionLineModalStore();

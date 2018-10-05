@@ -5,9 +5,6 @@ class MainStore extends EventEmitter {
     super();
   }
 
-  emitChange(id) {
-    this.emit(id);
-  }
 }
 
 export default new MainStore();

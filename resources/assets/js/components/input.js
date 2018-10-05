@@ -2,6 +2,7 @@
 import React from 'react';
 
 import {
+  Col,
   ControlLabel,
   FormControl,
   FormGroup,
@@ -17,7 +18,7 @@ class Input extends React.Component {
 
     this.state = {
       value: this.props.initialValue,
-      isValid: null
+      validationState: this.props.validationCallback()
     };
     this.ignoreBlur = true;
   }
@@ -38,9 +39,7 @@ class Input extends React.Component {
         }
         break;
     }
-    this.setState({
-      isValid: this.props.validationCallback()
-    })
+
   }
 
   componentWillReceiveProps(nextProps) {
@@ -53,7 +52,7 @@ class Input extends React.Component {
 
   render() {
 
-    let validationState = this.state.isValid;
+    let validationState = this.props.validationCallback();
     let label = this.props.label? <ControlLabel>{this.props.label}</ControlLabel> : '';
     let helpBlock = this.props.help? <HelpBlock>{this.props.help}</HelpBlock> : '';
 
@@ -69,30 +68,34 @@ class Input extends React.Component {
 
     return (
       <FormGroup
-        controlId="inputFormGroup"
         validationState={validationState}
       >
-        {label}
-        <FormControl type={this.props.type} name={this.props.name}
-          onBlur={(event) => this.handleChange(event)}
-          onKeyPress={(event) => this.handleChange(event)}
-          onChange={(event) => {
-            this.ignoreBlur = false;
-            this.setState({
-              value: event.target.value
-            });
-          }}
-          inputRef={(reference) => this.DOMRef = reference}
-          value={this.state.value}
-          style={this.props.customStyle}
-          autoComplete={this.props.autoComplete}/>
-        {helpBlock}
+      <Col smOffset={this.props.smOffset} sm={this.props.sm}>
+          {label}
+          <FormControl type={this.props.type} name={this.props.name}
+            placeholder={this.props.placeholder}
+            onBlur={(event) => this.handleChange(event)}
+            onKeyPress={(event) => this.handleChange(event)}
+            onChange={(event) => {
+              this.ignoreBlur = false;
+              this.setState({
+                value: event.target.value
+              });
+            }}
+            inputRef={(reference) => this.DOMRef = reference}
+            value={this.state.value}
+            style={this.props.customStyle}
+            autoComplete={this.props.autoComplete}/>
+          {helpBlock}
+        </Col>
       </FormGroup>
     );
   }
 }
 
 Input.defaultProps = {
+  smOffset: 2,
+  sm: 10,
   name: 'default',
   isStatic: false,
   autoComplete: 'off',

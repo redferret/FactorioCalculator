@@ -72,9 +72,6 @@ class EditInputsModalStore extends EventEmitter {
     return this._isValid;
   }
 
-  emitOn(id) {
-    this.emit(id);
-  }
 }
 
 export default new EditInputsModalStore();

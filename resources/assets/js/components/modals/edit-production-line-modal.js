@@ -140,7 +140,7 @@ export class ModalBody extends React.Component {
         <tbody><tr>
           <td>
             <Input type='number' isStatic={true}
-            initialValue={productOrProcess.crafting_time} />
+            initialValue={product.crafting_time} />
           </td>
           <td>
             <Input type='number' isStatic={true}

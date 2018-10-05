@@ -71,7 +71,7 @@ Router.registerRoute(Constants.GET_REQUIRED_INPUT_PRODUCTS, args => {
  * Special Routes
  */
 
-Router.registerRoute(Constants.LOG_OUT, args => {
+Router.registerRoute(Constants.LOG_IN, args => {
   return ROOT + '/login';
 });
 Router.registerRoute(Constants.LOG_OUT, args => {

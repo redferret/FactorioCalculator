@@ -26,45 +26,11 @@
   </head>
   <body>
     <div>
-      <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
-        <div class="container">
-
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <!-- Right Side Of Navbar -->
-            <ul class="navbar-nav ml-auto">
-              <!-- Authentication Links -->
-              @guest
-                <div id="guest"></div>
-                <li class="nav-item">
-                  <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                </li>
-              @else
-                <div id="user"></div>
-                <li class="nav-item dropdown">
-                  <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                    {{ Auth::user()->name }} <span class="caret"></span>
-                  </a>
-
-                  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="{{ route('logout') }}"
-                       onclick="event.preventDefault();
-                        document.getElementById('logout-form').submit();">
-                      {{ __('Logout') }}
-                    </a>
-
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                      {{ csrf_field() }}
-                    </form>
-                  </div>
-                </li>
-              @endguest
-            </ul>
-          </div>
-        </div>
-      </nav>
+      @guest
+        <div id='app-navbar-guest'></div>
+      @else
+        <div id='app-navbar-user'></div>
+      @endguest
 
       <main class="py-4">
         @yield('content')

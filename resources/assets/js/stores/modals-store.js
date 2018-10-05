@@ -46,12 +46,12 @@ class ModalsStore extends EventEmitter {
       });
     }
 
-    this.emitChange(MODAL_ID);
+    this.emit(MODAL_ID);
   }
 
   hideModal() {
     this._show = false;
-    this.emitChange(MODAL_ID);
+    this.emit(MODAL_ID);
   }
 
   shouldShow() {
@@ -66,9 +66,6 @@ class ModalsStore extends EventEmitter {
     }
   }
 
-  emitChange(id) {
-    this.emit(id);
-  }
 }
 
 export default new ModalsStore();

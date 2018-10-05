@@ -63,10 +63,6 @@ class NewProductionLineModalStore extends EventEmitter {
   getProducer() {
     return this._producer;
   }
-
-  emitChange(id) {
-    this.emit(id);
-  }
 }
 
 export default new NewProductionLineModalStore();

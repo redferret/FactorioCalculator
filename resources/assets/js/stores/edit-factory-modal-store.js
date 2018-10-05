@@ -23,9 +23,6 @@ class EditProducerModalStore extends EventEmitter {
     this._newFactoryName = factory.name;
   }
 
-  emitChange(id) {
-    this.emit(id);
-  }
 }
 
 export default new EditProducerModalStore();

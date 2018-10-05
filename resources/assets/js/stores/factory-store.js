@@ -69,10 +69,6 @@ class FactoryStore extends EventEmitter {
     this._factories.splice(index, 1);
   }
 
-  emitChange(id) {
-    this.emit(id);
-  }
-
 };
 
 export default new FactoryStore();

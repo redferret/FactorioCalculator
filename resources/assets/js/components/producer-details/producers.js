@@ -14,7 +14,7 @@ export default class Producers extends React.Component {
         <tr>
           <th>Name</th>
           <th>{this.props.title}</th>
-          <th>Products Produced / Second</th>
+          <th>Products Needed / Second</th>
           <th>{this.props.producer.name} Speed</th>
           <th>Seconds to Produce 1 Product</th>
         </tr>

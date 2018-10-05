@@ -18,9 +18,6 @@ class ModalSpinnerStore extends EventEmitter {
     this._spinnerMessage = message;
   }
 
-  emitChange(id) {
-    this.emit(id);
-  }
 }
 
 export default new ModalSpinnerStore();

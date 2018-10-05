@@ -14,7 +14,7 @@ export default class ProducerMiners extends React.Component {
         <tr>
           <th>Name</th>
           <th>Number of Miners</th>
-          <th>Ore Produced / Second</th>
+          <th>Ore Needed / Second</th>
           <th>{this.props.producer.name} Speed</th>
           <th>{this.props.producer.name} Power</th>
           <th>Seconds to Produce 1 Ore</th>

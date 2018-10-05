@@ -39,7 +39,11 @@ if (token) {
 }
 
 // Bootstrap the root element and export it for user by Main.js
-export const RootElement = document.getElementById('root');
+export const AppRoot = document.getElementById('root');
+export const Login = document.getElementById('login');
+export const Register = document.getElementById('register');
+export const AppNavbarGuest = document.getElementById('app-navbar-guest');
+export const AppNavbarUser = document.getElementById('app-navbar-user');
 
 /**
  * Pull in the utilities file

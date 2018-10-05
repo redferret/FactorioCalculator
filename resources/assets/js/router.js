@@ -35,7 +35,7 @@ let Router = new WebRouter();
 const HEADERS = {
   'Accept': 'application/json',
   'Content-Type': 'application/json',
-  'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+  'X-CSRF-TOKEN': window.axios.defaults.headers.common['X-CSRF-TOKEN']
 };
 
 Router.registerMethod('DELETE', data => {

@@ -14,9 +14,6 @@ class NewFactoryModalStore extends EventEmitter {
     this._name = name;
   }
 
-  emitChange(id) {
-    this.emit(id);
-  }
 }
 
 export default new NewFactoryModalStore();

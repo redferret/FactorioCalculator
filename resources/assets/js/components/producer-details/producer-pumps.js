@@ -14,7 +14,7 @@ export default class ProducerPumps extends React.Component {
         <tr>
           <th>Name</th>
           <th>Number of Pumps</th>
-          <th>Units Produced / Second</th>
+          <th>Units Needed / Second</th>
           <th>{this.props.producer.name} Speed</th>
           <th>Average Yield (%)</th>
         </tr>

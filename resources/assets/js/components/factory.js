@@ -93,7 +93,7 @@ export default class Factory extends React.Component {
           <thead>
             <tr>
               <th>Number of Production Lines</th>
-              <th>Total Items Produced</th>
+              <th>Total Items Needed / Second</th>
             </tr>
           </thead>
           <tbody>
