@@ -50998,9 +50998,9 @@ __WEBPACK_IMPORTED_MODULE_0__app_actions_js__["a" /* default */].register(__WEBP
     return response.json();
   }).then(function (productTypes) {
     __WEBPACK_IMPORTED_MODULE_2__stores_game_items_store_js__["a" /* default */].setProductTypes(productTypes);
-    __WEBPACK_IMPORTED_MODULE_0__app_actions_js__["a" /* default */].finish(payload);
     __WEBPACK_IMPORTED_MODULE_4__stores_modals_store_js__["a" /* default */].hideModal();
     __WEBPACK_IMPORTED_MODULE_3__stores_modal_spinner_store_js__["b" /* default */].setSpinnerMessage(__WEBPACK_IMPORTED_MODULE_3__stores_modal_spinner_store_js__["a" /* DEFAULT_MESSAGE */]);
+    __WEBPACK_IMPORTED_MODULE_0__app_actions_js__["a" /* default */].finish(payload);
   });
 });
 
@@ -87161,10 +87161,14 @@ var ModalBody = function (_React$Component2) {
     value: function render() {
       var _this3 = this;
 
-      return __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__input_js__["a" /* default */], { name: 'name', type: 'text', label: 'Factory Name',
-        callback: function callback(event) {
-          return _this3.handleInputChanged(event);
-        } });
+      return __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+        __WEBPACK_IMPORTED_MODULE_6_react_bootstrap__["t" /* Row */],
+        null,
+        __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__input_js__["a" /* default */], { name: 'name', type: 'text', label: 'Factory Name',
+          callback: function callback(event) {
+            return _this3.handleInputChanged(event);
+          } })
+      );
     }
   }]);
 

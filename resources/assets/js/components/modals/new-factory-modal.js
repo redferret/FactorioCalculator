@@ -8,6 +8,7 @@ import React from 'react';
 import {
   Button,
   ButtonToolbar,
+  Row,
 } from 'react-bootstrap';
 
 import {
@@ -38,8 +39,10 @@ export class ModalBody extends React.Component {
 
   render() {
     return (
-      <Input name='name' type='text' label='Factory Name'
-        callback={(event) => this.handleInputChanged(event)} />
+      <Row>
+        <Input name='name' type='text' label='Factory Name'
+          callback={(event) => this.handleInputChanged(event)} />
+      </Row>
     )
   }
 }

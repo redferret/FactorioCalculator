@@ -31,8 +31,8 @@ Actions.register(INITIAL_APP_LOAD, payload => {
     return response.json();
   }).then(productTypes => {
     GameItemsStore.setProductTypes(productTypes);
-    Actions.finish(payload);
     ModalsStore.hideModal();
     ModalSpinnerStore.setSpinnerMessage(DEFAULT_MESSAGE);
+    Actions.finish(payload);
   });
 });
