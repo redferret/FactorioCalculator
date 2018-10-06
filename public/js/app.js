@@ -532,7 +532,7 @@ var _curry = curry;
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "C", function() { return NEW_FACTORY_MODAL_ID; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "D", function() { return NEW_PRODUCTION_LINE_MODAL_ID; });
 /* unused harmony export PRODUCTION_LINE_ID */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "I", function() { return SPINNER_MODAL_ID; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "H", function() { return SPINNER_MODAL_ID; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ADD_FACTORY; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return ADD_PRODUCTION_LINE; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return DELETE_FACTORY; });
@@ -557,10 +557,10 @@ var _curry = curry;
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "E", function() { return REGISTER; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "F", function() { return RE_CALCULATE_PRODUCTION_LINES; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "G", function() { return RE_RENDER; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "H", function() { return ROOT_URL; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "J", function() { return UPDATE_FACTORY; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "L", function() { return UPDATE_PRODUCTION_LINE_PRODUCER; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "K", function() { return UPDATE_PRODUCTION_LINE; });
+/* unused harmony export ROOT_URL */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "I", function() { return UPDATE_FACTORY; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "K", function() { return UPDATE_PRODUCTION_LINE_PRODUCER; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "J", function() { return UPDATE_PRODUCTION_LINE; });
 
 
 // Constants for Component Ids
@@ -641,13 +641,18 @@ var WebRouter = function () {
       this._methods.set(name, method);
     }
   }, {
+    key: 'root',
+    value: function root(_root) {
+      this._root = _root;
+    }
+  }, {
     key: 'route',
     value: function route(name, args) {
       var route = this._routes.get(name);
       if (route instanceof Function) {
-        return route(args);
+        return '' + this._root + route(args);
       }
-      console.error('The route "' + name + '" was not registered or is not a function');
+      console.error('The route ' + name + ' was not registered or is not a function');
     }
   }, {
     key: 'method',
@@ -656,7 +661,7 @@ var WebRouter = function () {
       if (method instanceof Function) {
         return method(data);
       }
-      console.error('The method "' + name + '" was not registered or is not a function');
+      console.error('The method ' + name + ' was not registered or is not a function');
     }
   }]);
 
@@ -702,6 +707,8 @@ Router.registerMethod('GET', function (data) {
     body: JSON.stringify(data)
   };
 });
+
+Router.root($('meta[name="rootURL"]').attr('content'));
 
 /* harmony default export */ __webpack_exports__["a"] = (Router);
 
@@ -21135,10 +21142,10 @@ var ModalFooter = function (_React$Component3) {
     key: 'handleApplyChanges',
     value: function handleApplyChanges() {
       __WEBPACK_IMPORTED_MODULE_5__stores_modals_store_js__["a" /* default */].hideModal();
-      __WEBPACK_IMPORTED_MODULE_5__stores_modals_store_js__["a" /* default */].showModal({ id: __WEBPACK_IMPORTED_MODULE_8__constants_js__["I" /* SPINNER_MODAL_ID */] });
+      __WEBPACK_IMPORTED_MODULE_5__stores_modals_store_js__["a" /* default */].showModal({ id: __WEBPACK_IMPORTED_MODULE_8__constants_js__["H" /* SPINNER_MODAL_ID */] });
       var factory = __WEBPACK_IMPORTED_MODULE_1__stores_edit_factory_modal_store_js__["a" /* default */].getFactory();
       __WEBPACK_IMPORTED_MODULE_0__dispatcher_js__["a" /* default */].dispatch({
-        action: __WEBPACK_IMPORTED_MODULE_8__constants_js__["J" /* UPDATE_FACTORY */],
+        action: __WEBPACK_IMPORTED_MODULE_8__constants_js__["I" /* UPDATE_FACTORY */],
         id: factory.id,
         name: __WEBPACK_IMPORTED_MODULE_1__stores_edit_factory_modal_store_js__["a" /* default */].getFactoryName(),
         emitOn: [{
@@ -21151,10 +21158,10 @@ var ModalFooter = function (_React$Component3) {
     key: 'handleDeleteFactory',
     value: function handleDeleteFactory() {
       var factory = __WEBPACK_IMPORTED_MODULE_1__stores_edit_factory_modal_store_js__["a" /* default */].getFactory();
-      var confirmDelete = confirm("Are you sure you want to delete '" + factory.name + "'?" + "This will remove all production lines in this factory as well.");
+      var confirmDelete = confirm('Are you sure you want to delete \'' + factory.name + '\'?" +\n      "This will remove all production lines in this factory as well.');
       if (confirmDelete) {
         __WEBPACK_IMPORTED_MODULE_5__stores_modals_store_js__["a" /* default */].hideModal();
-        __WEBPACK_IMPORTED_MODULE_5__stores_modals_store_js__["a" /* default */].showModal({ id: __WEBPACK_IMPORTED_MODULE_8__constants_js__["I" /* SPINNER_MODAL_ID */] });
+        __WEBPACK_IMPORTED_MODULE_5__stores_modals_store_js__["a" /* default */].showModal({ id: __WEBPACK_IMPORTED_MODULE_8__constants_js__["H" /* SPINNER_MODAL_ID */] });
         __WEBPACK_IMPORTED_MODULE_0__dispatcher_js__["a" /* default */].dispatch({
           action: __WEBPACK_IMPORTED_MODULE_8__constants_js__["d" /* DELETE_FACTORY */],
           id: factory.id,
@@ -26049,10 +26056,10 @@ var ModalFooter = function (_React$Component3) {
     key: 'handleDeleteProductionLine',
     value: function handleDeleteProductionLine() {
       var productionLine = __WEBPACK_IMPORTED_MODULE_1__stores_edit_production_line_modal_store_js__["a" /* default */].getSelectedProductionLine();
-      var confirmation = confirm("Are you sure you want to delete '" + productionLine.name + "'?");
+      var confirmation = confirm('Are you sure you want to delete \'' + productionLine.name + '\'?');
       if (confirmation) {
         __WEBPACK_IMPORTED_MODULE_5__stores_modals_store_js__["a" /* default */].hideModal();
-        __WEBPACK_IMPORTED_MODULE_5__stores_modals_store_js__["a" /* default */].showModal({ id: __WEBPACK_IMPORTED_MODULE_9__constants_js__["I" /* SPINNER_MODAL_ID */] });
+        __WEBPACK_IMPORTED_MODULE_5__stores_modals_store_js__["a" /* default */].showModal({ id: __WEBPACK_IMPORTED_MODULE_9__constants_js__["H" /* SPINNER_MODAL_ID */] });
         __WEBPACK_IMPORTED_MODULE_0__dispatcher_js__["a" /* default */].dispatch({
           action: __WEBPACK_IMPORTED_MODULE_9__constants_js__["e" /* DELETE_PRODUCTION_LINE */],
           id: productionLine.id,
@@ -26541,7 +26548,7 @@ var ModalFooter = function (_React$Component3) {
       values['product'] = __WEBPACK_IMPORTED_MODULE_6__stores_new_production_line_modal_store_js__["a" /* default */].getProduct();
       values['factory_id'] = __WEBPACK_IMPORTED_MODULE_6__stores_new_production_line_modal_store_js__["a" /* default */].getFactoryId();
       __WEBPACK_IMPORTED_MODULE_5__stores_modals_store_js__["a" /* default */].hideModal();
-      __WEBPACK_IMPORTED_MODULE_5__stores_modals_store_js__["a" /* default */].showModal({ id: __WEBPACK_IMPORTED_MODULE_11__constants_js__["I" /* SPINNER_MODAL_ID */] });
+      __WEBPACK_IMPORTED_MODULE_5__stores_modals_store_js__["a" /* default */].showModal({ id: __WEBPACK_IMPORTED_MODULE_11__constants_js__["H" /* SPINNER_MODAL_ID */] });
       __WEBPACK_IMPORTED_MODULE_0__dispatcher_js__["a" /* default */].dispatch({
         action: __WEBPACK_IMPORTED_MODULE_11__constants_js__["b" /* ADD_PRODUCTION_LINE */],
         values: values,
@@ -51117,8 +51124,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
-__WEBPACK_IMPORTED_MODULE_0__app_actions_js__["b" /* default */].register(__WEBPACK_IMPORTED_MODULE_4__constants_js__["J" /* UPDATE_FACTORY */], function (payload) {
-  fetch(__WEBPACK_IMPORTED_MODULE_3__router_js__["a" /* default */].route(__WEBPACK_IMPORTED_MODULE_4__constants_js__["J" /* UPDATE_FACTORY */], { id: payload.id }), __WEBPACK_IMPORTED_MODULE_3__router_js__["a" /* default */].method('PUT', {
+__WEBPACK_IMPORTED_MODULE_0__app_actions_js__["b" /* default */].register(__WEBPACK_IMPORTED_MODULE_4__constants_js__["I" /* UPDATE_FACTORY */], function (payload) {
+  fetch(__WEBPACK_IMPORTED_MODULE_3__router_js__["a" /* default */].route(__WEBPACK_IMPORTED_MODULE_4__constants_js__["I" /* UPDATE_FACTORY */], { id: payload.id }), __WEBPACK_IMPORTED_MODULE_3__router_js__["a" /* default */].method('PUT', {
     name: payload.name
   })).then(__WEBPACK_IMPORTED_MODULE_0__app_actions_js__["a" /* checkStatus */]).then(__WEBPACK_IMPORTED_MODULE_0__app_actions_js__["d" /* parseJSON */]).then(function (factory) {
     __WEBPACK_IMPORTED_MODULE_1__stores_factory_store_js__["a" /* default */].setFactory(factory);
@@ -51148,8 +51155,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
-__WEBPACK_IMPORTED_MODULE_0__app_actions_js__["b" /* default */].register(__WEBPACK_IMPORTED_MODULE_5__constants_js__["L" /* UPDATE_PRODUCTION_LINE_PRODUCER */], function (payload) {
-  fetch(__WEBPACK_IMPORTED_MODULE_4__router_js__["a" /* default */].route(__WEBPACK_IMPORTED_MODULE_5__constants_js__["L" /* UPDATE_PRODUCTION_LINE_PRODUCER */], { id: payload.id }), __WEBPACK_IMPORTED_MODULE_4__router_js__["a" /* default */].method('PUT', payload.values)).then(__WEBPACK_IMPORTED_MODULE_0__app_actions_js__["a" /* checkStatus */]).then(__WEBPACK_IMPORTED_MODULE_0__app_actions_js__["d" /* parseJSON */]).then(function (productionLine) {
+__WEBPACK_IMPORTED_MODULE_0__app_actions_js__["b" /* default */].register(__WEBPACK_IMPORTED_MODULE_5__constants_js__["K" /* UPDATE_PRODUCTION_LINE_PRODUCER */], function (payload) {
+  fetch(__WEBPACK_IMPORTED_MODULE_4__router_js__["a" /* default */].route(__WEBPACK_IMPORTED_MODULE_5__constants_js__["K" /* UPDATE_PRODUCTION_LINE_PRODUCER */], { id: payload.id }), __WEBPACK_IMPORTED_MODULE_4__router_js__["a" /* default */].method('PUT', payload.values)).then(__WEBPACK_IMPORTED_MODULE_0__app_actions_js__["a" /* checkStatus */]).then(__WEBPACK_IMPORTED_MODULE_0__app_actions_js__["d" /* parseJSON */]).then(function (productionLine) {
     // do something with producer
     return fetch(__WEBPACK_IMPORTED_MODULE_4__router_js__["a" /* default */].route(__WEBPACK_IMPORTED_MODULE_5__constants_js__["k" /* GET_FACTORIES */]));
   }).then(__WEBPACK_IMPORTED_MODULE_0__app_actions_js__["a" /* checkStatus */]).then(__WEBPACK_IMPORTED_MODULE_0__app_actions_js__["d" /* parseJSON */]).then(function (factories) {
@@ -51178,8 +51185,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
-__WEBPACK_IMPORTED_MODULE_0__app_actions_js__["b" /* default */].register(__WEBPACK_IMPORTED_MODULE_4__constants_js__["K" /* UPDATE_PRODUCTION_LINE */], function (payload) {
-  fetch(__WEBPACK_IMPORTED_MODULE_3__router_js__["a" /* default */].route(__WEBPACK_IMPORTED_MODULE_4__constants_js__["K" /* UPDATE_PRODUCTION_LINE */], { id: payload.productionLineId }), __WEBPACK_IMPORTED_MODULE_3__router_js__["a" /* default */].method('PUT', payload.values)).then(__WEBPACK_IMPORTED_MODULE_0__app_actions_js__["a" /* checkStatus */]).then(__WEBPACK_IMPORTED_MODULE_0__app_actions_js__["d" /* parseJSON */]).then(function (productionLine) {
+__WEBPACK_IMPORTED_MODULE_0__app_actions_js__["b" /* default */].register(__WEBPACK_IMPORTED_MODULE_4__constants_js__["J" /* UPDATE_PRODUCTION_LINE */], function (payload) {
+  fetch(__WEBPACK_IMPORTED_MODULE_3__router_js__["a" /* default */].route(__WEBPACK_IMPORTED_MODULE_4__constants_js__["J" /* UPDATE_PRODUCTION_LINE */], { id: payload.productionLineId }), __WEBPACK_IMPORTED_MODULE_3__router_js__["a" /* default */].method('PUT', payload.values)).then(__WEBPACK_IMPORTED_MODULE_0__app_actions_js__["a" /* checkStatus */]).then(__WEBPACK_IMPORTED_MODULE_0__app_actions_js__["d" /* parseJSON */]).then(function (productionLine) {
     return fetch(__WEBPACK_IMPORTED_MODULE_3__router_js__["a" /* default */].route(__WEBPACK_IMPORTED_MODULE_4__constants_js__["F" /* RE_CALCULATE_PRODUCTION_LINES */]));
   }).then(__WEBPACK_IMPORTED_MODULE_0__app_actions_js__["a" /* checkStatus */]).then(__WEBPACK_IMPORTED_MODULE_0__app_actions_js__["d" /* parseJSON */]).then(function (productionLines) {
     return fetch(__WEBPACK_IMPORTED_MODULE_3__router_js__["a" /* default */].route(__WEBPACK_IMPORTED_MODULE_4__constants_js__["k" /* GET_FACTORIES */]));
@@ -51204,10 +51211,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /**
  * Root route for the application
  */
-__WEBPACK_IMPORTED_MODULE_1__router_js__["a" /* default */].registerRoute(__WEBPACK_IMPORTED_MODULE_0__constants_js__["H" /* ROOT_URL */], function (args) {
-  return $('meta[name="rootURL"]').attr('content');
-});
-var ROOT = __WEBPACK_IMPORTED_MODULE_1__router_js__["a" /* default */].route(__WEBPACK_IMPORTED_MODULE_0__constants_js__["H" /* ROOT_URL */]);
 
 __WEBPACK_IMPORTED_MODULE_1__router_js__["a" /* default */].registerRoute(__WEBPACK_IMPORTED_MODULE_0__constants_js__["v" /* IMAGE_ASSET */], function (args) {
   return 'https://wiki.factorio.com/images/' + args.fileName;
@@ -51217,54 +51220,54 @@ __WEBPACK_IMPORTED_MODULE_1__router_js__["a" /* default */].registerRoute(__WEBP
  * Routes for adding data
  */
 __WEBPACK_IMPORTED_MODULE_1__router_js__["a" /* default */].registerRoute(__WEBPACK_IMPORTED_MODULE_0__constants_js__["a" /* ADD_FACTORY */], function (args) {
-  return ROOT + '/factories';
+  return '/factories';
 });
 __WEBPACK_IMPORTED_MODULE_1__router_js__["a" /* default */].registerRoute(__WEBPACK_IMPORTED_MODULE_0__constants_js__["b" /* ADD_PRODUCTION_LINE */], function (args) {
-  return ROOT + '/productionlines';
+  return '/productionlines';
 });
 
 /**
  * Routes for deleting data
  */
 __WEBPACK_IMPORTED_MODULE_1__router_js__["a" /* default */].registerRoute(__WEBPACK_IMPORTED_MODULE_0__constants_js__["d" /* DELETE_FACTORY */], function (args) {
-  return ROOT + '/factories/' + args.id;
+  return '/factories/' + args.id;
 });
 __WEBPACK_IMPORTED_MODULE_1__router_js__["a" /* default */].registerRoute(__WEBPACK_IMPORTED_MODULE_0__constants_js__["e" /* DELETE_PRODUCTION_LINE */], function (args) {
-  return ROOT + '/productionlines/' + args.id;
+  return '/productionlines/' + args.id;
 });
 __WEBPACK_IMPORTED_MODULE_1__router_js__["a" /* default */].registerRoute(__WEBPACK_IMPORTED_MODULE_0__constants_js__["g" /* EDIT_INPUTS */], function (args) {
-  return ROOT + '/productionlines/' + args.id + '/inputs';
+  return '/productionlines/' + args.id + '/inputs';
 });
 
 /**
  * Routes for getting data
  */
 __WEBPACK_IMPORTED_MODULE_1__router_js__["a" /* default */].registerRoute(__WEBPACK_IMPORTED_MODULE_0__constants_js__["k" /* GET_FACTORIES */], function (args) {
-  return ROOT + '/factories';
+  return '/factories';
 });
 __WEBPACK_IMPORTED_MODULE_1__router_js__["a" /* default */].registerRoute(__WEBPACK_IMPORTED_MODULE_0__constants_js__["m" /* GET_INPUT_OUTPUT_PRODUCTION_LINES */], function (args) {
-  return ROOT + '/productionlines/' + args.id + '/inputsOutputs';
+  return '/productionlines/' + args.id + '/inputsOutputs';
 });
 __WEBPACK_IMPORTED_MODULE_1__router_js__["a" /* default */].registerRoute(__WEBPACK_IMPORTED_MODULE_0__constants_js__["q" /* GET_PRODUCTION_LINES */], function (args) {
-  return ROOT + '/productionlines';
+  return '/productionlines';
 });
 __WEBPACK_IMPORTED_MODULE_1__router_js__["a" /* default */].registerRoute(__WEBPACK_IMPORTED_MODULE_0__constants_js__["p" /* GET_PRODUCTION_LINE */], function (args) {
-  return ROOT + '/productionlines/' + args.id;
+  return '/productionlines/' + args.id;
 });
 __WEBPACK_IMPORTED_MODULE_1__router_js__["a" /* default */].registerRoute(__WEBPACK_IMPORTED_MODULE_0__constants_js__["r" /* GET_PRODUCTS */], function (args) {
-  return ROOT + '/products';
+  return '/products';
 });
 __WEBPACK_IMPORTED_MODULE_1__router_js__["a" /* default */].registerRoute(__WEBPACK_IMPORTED_MODULE_0__constants_js__["s" /* GET_PRODUCTS_NO_PROCESS */], function (args) {
-  return ROOT + '/products/noprocess';
+  return '/products/noprocess';
 });
 __WEBPACK_IMPORTED_MODULE_1__router_js__["a" /* default */].registerRoute(__WEBPACK_IMPORTED_MODULE_0__constants_js__["t" /* GET_PRODUCT_TYPES */], function (args) {
-  return ROOT + '/productTypes';
+  return '/productTypes';
 });
 __WEBPACK_IMPORTED_MODULE_1__router_js__["a" /* default */].registerRoute(__WEBPACK_IMPORTED_MODULE_0__constants_js__["o" /* GET_PRODUCERS */], function (args) {
-  return ROOT + '/producers';
+  return '/producers';
 });
 __WEBPACK_IMPORTED_MODULE_1__router_js__["a" /* default */].registerRoute(__WEBPACK_IMPORTED_MODULE_0__constants_js__["u" /* GET_REQUIRED_INPUT_PRODUCTS */], function (args) {
-  return ROOT + '/productionlines/' + args.id + '/requiredinputs';
+  return '/productionlines/' + args.id + '/requiredinputs';
 });
 
 /**
@@ -51272,29 +51275,29 @@ __WEBPACK_IMPORTED_MODULE_1__router_js__["a" /* default */].registerRoute(__WEBP
  */
 
 __WEBPACK_IMPORTED_MODULE_1__router_js__["a" /* default */].registerRoute(__WEBPACK_IMPORTED_MODULE_0__constants_js__["y" /* LOG_IN */], function (args) {
-  return ROOT + '/login';
+  return '/login';
 });
 __WEBPACK_IMPORTED_MODULE_1__router_js__["a" /* default */].registerRoute(__WEBPACK_IMPORTED_MODULE_0__constants_js__["z" /* LOG_OUT */], function (args) {
-  return ROOT + '/logout';
+  return '/logout';
 });
 __WEBPACK_IMPORTED_MODULE_1__router_js__["a" /* default */].registerRoute(__WEBPACK_IMPORTED_MODULE_0__constants_js__["E" /* REGISTER */], function (args) {
-  return ROOT + '/register';
+  return '/register';
 });
 __WEBPACK_IMPORTED_MODULE_1__router_js__["a" /* default */].registerRoute(__WEBPACK_IMPORTED_MODULE_0__constants_js__["F" /* RE_CALCULATE_PRODUCTION_LINES */], function (args) {
-  return ROOT + '/productionlines/recalculate';
+  return '/productionlines/recalculate';
 });
 
 /**
  * Routes for editing data
  */
-__WEBPACK_IMPORTED_MODULE_1__router_js__["a" /* default */].registerRoute(__WEBPACK_IMPORTED_MODULE_0__constants_js__["J" /* UPDATE_FACTORY */], function (args) {
-  return ROOT + '/factories/' + args.id;
+__WEBPACK_IMPORTED_MODULE_1__router_js__["a" /* default */].registerRoute(__WEBPACK_IMPORTED_MODULE_0__constants_js__["I" /* UPDATE_FACTORY */], function (args) {
+  return '/factories/' + args.id;
 });
-__WEBPACK_IMPORTED_MODULE_1__router_js__["a" /* default */].registerRoute(__WEBPACK_IMPORTED_MODULE_0__constants_js__["K" /* UPDATE_PRODUCTION_LINE */], function (args) {
-  return ROOT + '/productionlines/' + args.id;
+__WEBPACK_IMPORTED_MODULE_1__router_js__["a" /* default */].registerRoute(__WEBPACK_IMPORTED_MODULE_0__constants_js__["J" /* UPDATE_PRODUCTION_LINE */], function (args) {
+  return '/productionlines/' + args.id;
 });
-__WEBPACK_IMPORTED_MODULE_1__router_js__["a" /* default */].registerRoute(__WEBPACK_IMPORTED_MODULE_0__constants_js__["L" /* UPDATE_PRODUCTION_LINE_PRODUCER */], function (args) {
-  return ROOT + '/productionlines/' + args.id + '/producer';
+__WEBPACK_IMPORTED_MODULE_1__router_js__["a" /* default */].registerRoute(__WEBPACK_IMPORTED_MODULE_0__constants_js__["K" /* UPDATE_PRODUCTION_LINE_PRODUCER */], function (args) {
+  return '/productionlines/' + args.id + '/producer';
 });
 
 /***/ }),
@@ -51358,7 +51361,7 @@ __WEBPACK_IMPORTED_MODULE_6__stores_modals_repository_js__["a" /* default */].re
   modalSize: 'large'
 });
 
-__WEBPACK_IMPORTED_MODULE_6__stores_modals_repository_js__["a" /* default */].registerModal(__WEBPACK_IMPORTED_MODULE_8__constants_js__["I" /* SPINNER_MODAL_ID */], {
+__WEBPACK_IMPORTED_MODULE_6__stores_modals_repository_js__["a" /* default */].registerModal(__WEBPACK_IMPORTED_MODULE_8__constants_js__["H" /* SPINNER_MODAL_ID */], {
   header: null,
   body: __WEBPACK_IMPORTED_MODULE_7_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__modal_spinner_js__["a" /* ModalBody */], null),
   footer: null
@@ -81587,7 +81590,7 @@ var ModalFooter = function (_React$Component3) {
     key: 'handleApplyChanges',
     value: function handleApplyChanges() {
       __WEBPACK_IMPORTED_MODULE_5__stores_modals_store_js__["a" /* default */].hideModal();
-      __WEBPACK_IMPORTED_MODULE_5__stores_modals_store_js__["a" /* default */].showModal({ id: __WEBPACK_IMPORTED_MODULE_9__constants_js__["I" /* SPINNER_MODAL_ID */] });
+      __WEBPACK_IMPORTED_MODULE_5__stores_modals_store_js__["a" /* default */].showModal({ id: __WEBPACK_IMPORTED_MODULE_9__constants_js__["H" /* SPINNER_MODAL_ID */] });
       var productionLine = __WEBPACK_IMPORTED_MODULE_1__stores_edit_inputs_modal_store_js__["a" /* default */].getProductionLine();
       __WEBPACK_IMPORTED_MODULE_0__dispatcher_js__["a" /* default */].dispatch({
         action: __WEBPACK_IMPORTED_MODULE_9__constants_js__["g" /* EDIT_INPUTS */],
@@ -87160,7 +87163,7 @@ var ModalFooter = function (_React$Component3) {
         name: __WEBPACK_IMPORTED_MODULE_4__stores_new_factory_modal_store_js__["a" /* default */].getNewFactoryName()
       };
       __WEBPACK_IMPORTED_MODULE_3__stores_modals_store_js__["a" /* default */].hideModal();
-      __WEBPACK_IMPORTED_MODULE_3__stores_modals_store_js__["a" /* default */].showModal({ id: __WEBPACK_IMPORTED_MODULE_7__constants_js__["I" /* SPINNER_MODAL_ID */] });
+      __WEBPACK_IMPORTED_MODULE_3__stores_modals_store_js__["a" /* default */].showModal({ id: __WEBPACK_IMPORTED_MODULE_7__constants_js__["H" /* SPINNER_MODAL_ID */] });
       __WEBPACK_IMPORTED_MODULE_0__dispatcher_js__["a" /* default */].dispatch({
         action: __WEBPACK_IMPORTED_MODULE_7__constants_js__["a" /* ADD_FACTORY */],
         values: values,
@@ -87433,7 +87436,7 @@ var AppContent = function (_Component) {
     value: function componentDidMount() {
       __WEBPACK_IMPORTED_MODULE_3__stores_main_store_js__["a" /* default */].on(__WEBPACK_IMPORTED_MODULE_11__constants_js__["A" /* MAIN_ID */], this._onChange.bind(this));
       __WEBPACK_IMPORTED_MODULE_4__stores_modal_spinner_store_js__["b" /* default */].setSpinnerMessage('Loading Application Data...');
-      __WEBPACK_IMPORTED_MODULE_5__stores_modals_store_js__["a" /* default */].showModal({ id: __WEBPACK_IMPORTED_MODULE_11__constants_js__["I" /* SPINNER_MODAL_ID */] });
+      __WEBPACK_IMPORTED_MODULE_5__stores_modals_store_js__["a" /* default */].showModal({ id: __WEBPACK_IMPORTED_MODULE_11__constants_js__["H" /* SPINNER_MODAL_ID */] });
       __WEBPACK_IMPORTED_MODULE_0__dispatcher_js__["a" /* default */].dispatch({
         action: __WEBPACK_IMPORTED_MODULE_11__constants_js__["w" /* INITIAL_APP_LOAD */],
         emitOn: [{
@@ -87847,10 +87850,10 @@ var ProductionLineDetails = function (_React$Component) {
 
       if (this.props.items_per_second != event.target.value) {
         __WEBPACK_IMPORTED_MODULE_8__stores_modals_store_js__["a" /* default */].showModal({
-          id: __WEBPACK_IMPORTED_MODULE_15__constants_js__["I" /* SPINNER_MODAL_ID */]
+          id: __WEBPACK_IMPORTED_MODULE_15__constants_js__["H" /* SPINNER_MODAL_ID */]
         });
         __WEBPACK_IMPORTED_MODULE_0__dispatcher_js__["a" /* default */].dispatch({
-          action: __WEBPACK_IMPORTED_MODULE_15__constants_js__["K" /* UPDATE_PRODUCTION_LINE */],
+          action: __WEBPACK_IMPORTED_MODULE_15__constants_js__["J" /* UPDATE_PRODUCTION_LINE */],
           productionLineId: this.props.id,
           values: values,
           emitOn: [{
@@ -87869,10 +87872,10 @@ var ProductionLineDetails = function (_React$Component) {
       var values = {};
       values[event.target.name] = event.target.value;
 
-      __WEBPACK_IMPORTED_MODULE_8__stores_modals_store_js__["a" /* default */].showModal({ id: __WEBPACK_IMPORTED_MODULE_15__constants_js__["I" /* SPINNER_MODAL_ID */] });
+      __WEBPACK_IMPORTED_MODULE_8__stores_modals_store_js__["a" /* default */].showModal({ id: __WEBPACK_IMPORTED_MODULE_15__constants_js__["H" /* SPINNER_MODAL_ID */] });
       var productionLine = this.props;
       __WEBPACK_IMPORTED_MODULE_0__dispatcher_js__["a" /* default */].dispatch({
-        action: __WEBPACK_IMPORTED_MODULE_15__constants_js__["L" /* UPDATE_PRODUCTION_LINE_PRODUCER */],
+        action: __WEBPACK_IMPORTED_MODULE_15__constants_js__["K" /* UPDATE_PRODUCTION_LINE_PRODUCER */],
         id: productionLine.id,
         values: values,
         emitOn: [{
