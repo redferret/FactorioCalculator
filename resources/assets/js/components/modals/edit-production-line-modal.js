@@ -227,7 +227,7 @@ export class ModalFooter extends React.Component {
 
   handleDeleteProductionLine() {
     let productionLine = EditProductionLineModalStore.getSelectedProductionLine();
-    let confirmation = confirm("Are you sure you want to delete '"+productionLine.name+"'?");
+    let confirmation = confirm(`Are you sure you want to delete '${productionLine.name}'?`);
     if (confirmation) {
       ModalsStore.hideModal();
       ModalsStore.showModal({id: SPINNER_MODAL_ID});
