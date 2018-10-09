@@ -68,7 +68,7 @@ export class ModalHeader extends React.Component {
     let imageFile = product? product.image_file : (process? process.image_file : 'Questionmark.png');
     return (
       <div>
-        <img width={32} height={32} src={Router.route(IMAGE_ASSET, {fileName: imageFile})} />
+        <img width={32} height={32} src={Router.plainRoute(IMAGE_ASSET, {fileName: imageFile})} />
         {productionLine.name}
       </div>
     )
@@ -178,7 +178,7 @@ export class ModalBody extends React.Component {
                   className='list-group-item list-group-item-action'>
                   <Row>
                     <Col sm={4}>
-                      <img width={32} height={32} src={Router.route(IMAGE_ASSET, {fileName: imageFile})} />{' '}
+                      <img width={32} height={32} src={Router.plainRoute(IMAGE_ASSET, {fileName: imageFile})} />{' '}
                       <span>{name}</span>
                     </Col>
                     <Col sm={4}>

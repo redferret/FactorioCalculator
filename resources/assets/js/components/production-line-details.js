@@ -184,7 +184,7 @@ export default class ProductionLineDetails extends React.Component {
             <Label>{madeWithTitle}</Label>
           </Row>
           <Row>
-            <img src={Router.route(IMAGE_ASSET, {fileName: this.props.producer.image_file})} />
+            <img src={Router.plainRoute(IMAGE_ASSET, {fileName: this.props.producer.image_file})} />
             {' ' + this.props.producer.name}
           </Row>
         </div>

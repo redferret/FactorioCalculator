@@ -1,8 +1,8 @@
-
-import Actions, { checkStatus, parseJSON, handleError } from './app-actions.js';
-import Router from '../router.js';
-import { GET_INPUT_OUTPUT_PRODUCTION_LINES } from '../constants.js';
+import Actions from './app-actions.js';
 import EditProductionLineModalStore from '../stores/edit-production-line-modal-store.js';
+import Router, { checkStatus, parseJSON, handleError } from '../router.js';
+
+import { GET_INPUT_OUTPUT_PRODUCTION_LINES } from '../constants.js';
 
 Actions.register(GET_INPUT_OUTPUT_PRODUCTION_LINES, payload => {
   fetch(Router.route(GET_INPUT_OUTPUT_PRODUCTION_LINES, {id: payload.id}))

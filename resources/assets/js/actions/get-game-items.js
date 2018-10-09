@@ -1,6 +1,6 @@
-import Actions, { checkStatus, parseJSON, handleError } from './app-actions.js';
+import Actions from './app-actions.js';
 import GameItemsStore from '../stores/game-items-store.js';
-import Router from '../router.js';
+import Router, { checkStatus, parseJSON, handleError } from '../router.js';
 
 import {
   GET_GAME_ITEMS,

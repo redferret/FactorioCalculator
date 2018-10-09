@@ -17,10 +17,18 @@ class WebRouter {
     this._root = root;
   }
 
+  plainRoute(name, args) {
+    return this.getRoute('', name, args);
+  }
+
   route(name, args) {
+    return this.getRoute(this._root, name, args);
+  }
+
+  getRoute(root, name, args) {
     let route = this._routes.get(name);
     if (route instanceof Function) {
-      return `${this._root}${route(args)}`;
+      return `${root}${route(args)}`;
     }
     console.error(`The route ${name} was not registered or is not a function`);
   }
@@ -75,5 +83,23 @@ Router.registerMethod('GET', data => {
 });
 
 Router.root($('meta[name="rootURL"]').attr('content'));
+
+export function handleError(error) {
+  console.error('HTTP request failed', error);
+}
+
+export function checkStatus(response) {
+  if (response.status >= 200 && response.status < 300) {
+    return response;
+  } else {
+    var error = new Error(response.statusText);
+    error.response = response;
+    throw error;
+  }
+}
+
+export function parseJSON(response) {
+  return response.json();
+}
 
 export default Router;

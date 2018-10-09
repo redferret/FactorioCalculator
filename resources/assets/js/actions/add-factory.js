@@ -1,6 +1,5 @@
-
-import Actions, { checkStatus, parseJSON, handleError } from './app-actions.js';
-import Router from '../router.js';
+import Actions from './app-actions.js';
+import Router, { checkStatus, parseJSON, handleError } from '../router.js';
 import { ADD_FACTORY } from '../constants.js';
 import ModalsStore from '../stores/modals-store.js';
 import FactoryStore from '../stores/factory-store.js';

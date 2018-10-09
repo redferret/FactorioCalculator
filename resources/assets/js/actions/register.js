@@ -1,6 +1,6 @@
-import Actions, { checkStatus, parseJSON } from './app-actions.js';
+import Actions from './app-actions.js';
 import AuthStore from '../stores/auth-store.js';
-import Router from '../router.js';
+import Router, { checkStatus, parseJSON } from '../router.js';
 
 import { REGISTER } from '../constants.js';
 

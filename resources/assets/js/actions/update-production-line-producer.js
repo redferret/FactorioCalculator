@@ -1,9 +1,9 @@
 
-import Actions, { checkStatus, parseJSON, handleError } from './app-actions.js';
+import Actions from './app-actions.js';
 import EditProductionLineModalStore from '../stores/edit-production-line-modal-store.js';
 import FactoryStore from '../stores/factory-store.js';
 import ModalsStore from '../stores/modals-store.js';
-import Router from '../router.js';
+import Router, { checkStatus, parseJSON, handleError } from '../router.js';
 
 import {
   GET_FACTORIES,

@@ -102,7 +102,7 @@ export class ModalBody extends React.Component {
           <ItemTable items={this.state.missingInputs} rowLength={1} sm={12}
             noButton itemCallback={(product =>
               <div>
-                <img src={Router.route(IMAGE_ASSET, {fileName: product.image_file})} />
+                <img src={Router.plainRoute(IMAGE_ASSET, {fileName: product.image_file})} />
                 {product.name}
               </div>
             )} />
@@ -129,7 +129,7 @@ export class ModalBody extends React.Component {
               let imageFile = product? product.image_file : 'Questionmark.png';
               return (
                 <div>
-                  <img width={32} height={32} src={Router.route(IMAGE_ASSET, {fileName: imageFile})} />
+                  <img width={32} height={32} src={Router.plainRoute(IMAGE_ASSET, {fileName: imageFile})} />
                   {productionLine.name}
                 </div>
               );
@@ -158,7 +158,7 @@ export class ModalBody extends React.Component {
                     let imageFile = product? product.image_file : 'Questionmark.png';
                     return (
                       <div>
-                        <img width={32} height={32} src={Router.route(IMAGE_ASSET, {fileName: imageFile})} />
+                        <img width={32} height={32} src={Router.plainRoute(IMAGE_ASSET, {fileName: imageFile})} />
                         {productionLine.name}
                       </div>
                     );

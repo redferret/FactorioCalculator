@@ -19,7 +19,7 @@ export default class ManualCrafting extends React.Component {
       bodyTr={
         <tr>
           <td>
-            <img width={32} height={32}  src={Router.route(IMAGE_ASSET, {fileName: productImage})} />{' '}
+            <img width={32} height={32}  src={Router.plainRoute(IMAGE_ASSET, {fileName: productImage})} />{' '}
             {productName}
           </td>
           <td>

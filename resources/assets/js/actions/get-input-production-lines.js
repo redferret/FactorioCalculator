@@ -1,7 +1,6 @@
-
-import Actions, { checkStatus, parseJSON, handleError } from './app-actions.js';
-import Router from '../router.js';
+import Actions from './app-actions.js';
 import EditInputsModalStore from '../stores/edit-inputs-modal-store.js';
+import Router, { checkStatus, parseJSON, handleError } from '../router.js';
 
 import {
   GET_REQUIRED_INPUT_PRODUCTS,

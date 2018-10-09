@@ -39,51 +39,61 @@ export class ModalHeader extends React.Component {
 export class ModalBody extends React.Component {
   constructor(props, context) {
     super(props, context);
-    this.handleNameChange = this.handleNameChange.bind(this);
-    this.handleItemsPerSecondChange = this.handleItemsPerSecondChange.bind(this);
+    this.handleValueChanged = this.handleValueChanged.bind(this);
     this.handleReselectProduct = this.handleReselectProduct.bind(this);
     this.handleReselectProducer = this.handleReselectProducer.bind(this);
     this.handleProductSelect = this.handleProductSelect.bind(this);
     this.handleProducerSelect = this.handleProducerSelect.bind(this);
 
-    this.state = {
-      selectedProduct: null,
-      selectedProducer: null
-    }
+    this.state = NewProductionLineModalStore.getValues();
+  }
+
+  _onChange() {
+    this.setState(NewProductionLineModalStore.getValues());
+  }
+
+  componentDidMount() {
+    NewProductionLineModalStore.on(NEW_PRODUCTION_LINE_MODAL_ID, this._onChange.bind(this));
+  }
+
+  componentWillUnmount() {
+    NewProductionLineModalStore.removeListener(NEW_PRODUCTION_LINE_MODAL_ID, this._onChange.bind(this));
+  }
+
+  handleValueChanged(event) {
+    event.preventDefault();
+    let key = event.target.name;
+    let value = event.target.value;
+    NewProductionLineModalStore.setValue(key, value);
+    this.setState({
+      [key]: value
+    });
   }
 
   handleProducerSelect(producer) {
-    NewProductionLineModalStore.setProducer(producer);
+    NewProductionLineModalStore.setValue('selectedProducer', producer);
     this.setState({
-      selectedProducer: NewProductionLineModalStore.getProducer()
+      selectedProducer: producer
     })
   }
 
   handleProductSelect(product) {
-    NewProductionLineModalStore.setProduct(product);
+    NewProductionLineModalStore.setValue('selectedProduct', product);
     this.setState({
-      selectedProduct: NewProductionLineModalStore.getProduct()
+      selectedProduct: product
     });
   }
 
-  handleNameChange(event) {
-    NewProductionLineModalStore.setName(event.target.value);
-  }
-
-  handleItemsPerSecondChange(event) {
-    NewProductionLineModalStore.setItemsPerSecond(event.target.value);
-  }
-
   handleReselectProducer() {
-    NewProductionLineModalStore.setProducer(null);
+    NewProductionLineModalStore.setValue('selectedProducer', null);
     this.setState({
       selectedProducer: null
     });
   }
 
   handleReselectProduct() {
-    NewProductionLineModalStore.setProducer(null);
-    NewProductionLineModalStore.setProduct(null);
+    NewProductionLineModalStore.setValue('selectedProducer', null);
+    NewProductionLineModalStore.setValue('selectedProduct', null);
     this.setState({
       selectedProduct: null,
       selectedProducer: null
@@ -95,12 +105,12 @@ export class ModalBody extends React.Component {
     let productTypes = GameItemsStore.getProductTypes();
     return (selectedProduct == null?
       <div>
-        <h4>Select a product that will be produced</h4>
+        <h4>Select a product:</h4>
         <TabbedItems tabs={productTypes} sm={12}
           tabCallback={(productType) =>
             <div>
               <h4><Label>{productType.name}</Label></h4>
-              <img src={Router.route(IMAGE_ASSET, {fileName:productType.image_file})}/>
+              <img src={Router.plainRoute(IMAGE_ASSET, {fileName:productType.image_file})}/>
             </div>
           }
           tabContentCallback={(productType) =>
@@ -109,7 +119,7 @@ export class ModalBody extends React.Component {
                 onClickCallback={this.handleProductSelect} sm={3}
                 itemCallback={(product) =>
                   <div>
-                    <img src={Router.route(IMAGE_ASSET, {fileName: product.image_file})} />{' '}
+                    <img src={Router.plainRoute(IMAGE_ASSET, {fileName: product.image_file})} />{' '}
                     {product.name}
                   </div>
                 }/>
@@ -118,8 +128,8 @@ export class ModalBody extends React.Component {
       </div>
        :
       <div>
-        <h4>Selected Product to be Produced:</h4>
-        <img src={Router.route(IMAGE_ASSET, {fileName: selectedProduct.image_file})} />
+        <h4>Selected Product:</h4>
+        <img src={Router.plainRoute(IMAGE_ASSET, {fileName: selectedProduct.image_file})} />
         {selectedProduct.name}
         <ButtonToolbar>
           <Button bsSize='xsmall' onClick={this.handleReselectProduct}>Change Selected Product</Button>
@@ -129,7 +139,7 @@ export class ModalBody extends React.Component {
   }
 
   renderSelectProducer() {
-    let selectedProducer = NewProductionLineModalStore.getProducer();
+    let selectedProducer = this.state.selectedProducer;
     let producers = GameItemsStore.getProducers();
 
     if (this.state.selectedProduct != null) {
@@ -144,7 +154,7 @@ export class ModalBody extends React.Component {
             onClickCallback={this.handleProducerSelect} sm={4}
             itemCallback={(producer) =>
               <div>
-                <img src={Router.route(IMAGE_ASSET, {fileName: producer.image_file})} />
+                <img src={Router.plainRoute(IMAGE_ASSET, {fileName: producer.image_file})} />
                 {producer.name}
               </div>
             }/>
@@ -152,8 +162,8 @@ export class ModalBody extends React.Component {
       </div>
        :
       <div>
-        <h4>Selected a Producer:</h4>
-        <img src={Router.route(IMAGE_ASSET, {fileName: selectedProducer.image_file})} />
+        <h4>Selected Producer:</h4>
+        <img src={Router.plainRoute(IMAGE_ASSET, {fileName: selectedProducer.image_file})} />
         {selectedProducer.name}
         <ButtonToolbar>
           <Button bsSize='xsmall' onClick={this.handleReselectProducer}>Change Selected Producer</Button>
@@ -168,15 +178,15 @@ export class ModalBody extends React.Component {
         <Row>
           <Col sm={6}>
             <Input name='name' type='text' label='Production Line Name'
-              initialValue={NewProductionLineModalStore.getName()}
-              callback={(event)=>this.handleNameChange(event)}/>
+              initialValue={this.state.name}
+              callback={this.handleValueChanged}/>
           </Col>
         </Row>
         <Row>
           <Col sm={4}>
             <Input name='items_per_second' type='number' label='Initial Items Per Second'
-              initialValue={NewProductionLineModalStore.getItemsPerSecond()}
-              callback={(event)=>this.handleItemsPerSecondChange(event)}/>
+              initialValue={this.state.items_per_second}
+              callback={this.handleValueChanged}/>
           </Col>
         </Row>
         <Row>
@@ -197,15 +207,14 @@ export class ModalFooter extends React.Component {
   }
 
   handleAddProductionLine() {
-    if (NewProductionLineModalStore.getProducer() != null) {
-      if (NewProductionLineModalStore.getProduct() != null) {
-        if (/(.|\s)*\S(.|\s)*/.test(NewProductionLineModalStore.getName())) {
-          this.addProductionLine();
-        } else {
-          alert('Production Line Name is Invalid');
-        }
+    let producer = NewProductionLineModalStore.getValue('selectedProducer');
+    let product = NewProductionLineModalStore.getValue('selectedProduct');
+    let name = NewProductionLineModalStore.getValue('name');
+    if (producer != null) {
+      if (/(.|\s)*\S(.|\s)*/.test(name)) {
+        this.addProductionLine();
       } else {
-        alert('Please pick a product to be produced');
+        alert('Production Line Name is Invalid');
       }
     } else {
       alert('Please pick a Producer');
@@ -213,17 +222,11 @@ export class ModalFooter extends React.Component {
   }
 
   addProductionLine() {
-    let values = {};
-    values['items_per_second'] = NewProductionLineModalStore.getItemsPerSecond();
-    values['name'] = NewProductionLineModalStore.getName();
-    values['producer'] = NewProductionLineModalStore.getProducer();
-    values['product'] = NewProductionLineModalStore.getProduct();
-    values['factory_id'] = NewProductionLineModalStore.getFactoryId();
     ModalsStore.hideModal();
     ModalsStore.showModal({id: SPINNER_MODAL_ID});
     AppDispatcher.dispatch({
       action: ADD_PRODUCTION_LINE,
-      values: values,
+      values: NewProductionLineModalStore.getValues(),
       emitOn: [{
         store: FactoryStore,
         componentIds: [NewProductionLineModalStore.getFactoryComponentId()]
@@ -231,11 +234,16 @@ export class ModalFooter extends React.Component {
     });
   }
 
+  closeModal() {
+    ModalsStore.hideModal();
+    NewProductionLineModalStore.reset();
+  }
+
   render() {
     return (
       <ButtonToolbar>
         <Button bsStyle='success' onClick={this.handleAddProductionLine}>Add Production Line</Button>
-        <Button onClick={() => ModalsStore.hideModal()}>Cancel</Button>
+        <Button onClick={this.closeModal}>Cancel</Button>
       </ButtonToolbar>
     )
   }

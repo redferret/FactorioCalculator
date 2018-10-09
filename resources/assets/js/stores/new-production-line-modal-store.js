@@ -1,27 +1,36 @@
 var EventEmitter = require('events').EventEmitter;
 
 class NewProductionLineModalStore extends EventEmitter {
+
   constructor() {
     super();
-    this._product = null;
-    this._producer = null;
-    this._name = '';
-    this._itemsPerSecond = 0;
+    this.reset();
   }
 
   reset() {
-    this._product = null;
-    this._producer = null;
-    this._name = '';
-    this._itemsPerSecond = 0;
+    this._values = {
+      name: '',
+      items_per_second: 0,
+      selectedProduct: null,
+      selectedProducer: null,
+      factory_id: -1
+    }
+  }
+
+  getValue(key) {
+    return this._values[key];
+  }
+
+  getValues() {
+    return this._values;
+  }
+
+  setValue(key, value) {
+    this._values[key] = value;
   }
 
   setFactoryId(id) {
-    this._factoryId = id;
-  }
-
-  getFactoryId() {
-    return this._factoryId;
+    this.setValue('factory_id', id);
   }
 
   setFactoryComponentId(id) {
@@ -32,37 +41,6 @@ class NewProductionLineModalStore extends EventEmitter {
     return this._factoryComponentId;
   }
 
-  setProduct(product) {
-    this._product = product;
-  }
-
-  setProducer(producer) {
-    this._producer = producer;
-  }
-
-  setName(name) {
-    this._name = name;
-  }
-
-  setItemsPerSecond(itemsPerSecond) {
-    this._itemsPerSecond = itemsPerSecond;
-  }
-
-  getItemsPerSecond() {
-    return this._itemsPerSecond;
-  }
-
-  getProduct() {
-    return this._product;
-  }
-
-  getName() {
-    return this._name;
-  }
-
-  getProducer() {
-    return this._producer;
-  }
 }
 
 export default new NewProductionLineModalStore();
